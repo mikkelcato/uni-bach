@@ -19,65 +19,169 @@
 )
 
 = Introduction
-Relativity is in short the idea that only relative motion is measurable, this can be stated as a symmetry---namely that our equations should be unchanged under coordinate transformations. Special relativity is the symmetry with respect to inertial frames, and general relativity extends this to general frames. For this reason we use the language of tensors later on. For now we'll just review special relativity.
-
-/*
-== Symmetries and Transformations
-We begin by looking at some familiar symmetries and transformations. Note we can write (using the usual summation convention) $ arrow(V) = V_i hat(e)_i = V'_i hat(e)'_i $ where we do a change of basis ${hat(e)_i} arrow {hat(e)'_i}$. Take a simple rotation
-$
-  vec(V'_1, V'_2, V'_3) = mat(cos theta, sin theta, 0; - sin theta, cos theta, 0; 0, 0, 1) vec(V_1, V_2, V_3)
-$
-or expressed more neatly as $V'_i = [bold(R)]_(i j) V_j$, where $[bold(R)]$ is the rotation matrix---note that any vector should transform like this. Using this we can immediately find that if $F_i = m a_i$ then $F'_i = m a'_i$, i.e. the physics is the same since everything transforms nicely.
-
-The most basic transformation we have is the Gallilean transformation between two inertial frames $O arrow O'$, it is given by
-$
-  x_i arrow x'_i = [bold(R)(alpha,beta,gamma)]_(i j) x_j - v_i t
-$
-where $arrow(v)$ is the relative velocity and $alpha, beta, gamma$ specify the relative orientations between frames, and time is assumed to be absolute---note that typically $[bold(R)(0,0,0)]_(i j) = delta_(i j)$. Newtonian relativity states that our physical laws are unchanged under this transformation, so it is the symmetry under this transformation.
-
-The problems with this begin when we do electrodynamics, since we know that $c$ is constant. This violates the previous symmetry. Either Maxwell's equations only hold in one inertial frame, or they actually do obey relativity but the transformation between frames is wrong. The second is correct, and Maxwell's equations turn out to be unchanged under the Lorentz transformation. Which for two frames with relative velocity $arrow(v) = v hat(x)$ is given by
-$
-  x' = gamma (x - v t), #h(15pt) y' = y, #h(15pt) z' = z, #h(15pt) t' = gamma(t - v/c^2 x)
-$
-where the Lorentz factor is $gamma = (1- beta^2)^(-1\/2)$ with $beta = v\/c$---note that the Lorentz transformation implies that $c$ is the same in all inertial frames, among other things.
-
-Einstein's relativity made this concrete with his two postulates; the principle of relativity and the constancy of the speed of light. From which the Lorentz transformation naturally follows.
-
-A direct result is the relativity of simultaneity, or if $Delta t = 0$ in one frame then we don't necessarily have $Delta t' = 0$. We also have time dilation and length contraction given by $Delta t = gamma Delta t'$ and $Delta x = Delta x' \/ gamma$, with $O'$ being the rest frame and $O$ moving with respect to this frame.
-
-A quantity which is unchanged under the Lorentz transformation is the spacetime interval
-$
-  Delta s^2 = Delta x^2 - c^2 Delta t^2
-$
-which can easily be checked. This is directly related to the proper time ($Delta x = 0$) where we have $Delta s^2 = -c^2 Delta tau^2$. Since there only is one rest-frame, then its time interval must be unique and all observers should agree on the value.
-
-*/
-
-== Review of Special Relativity
-In special relativity we work in a 4D Minkowski spacetime, where we treat time as a proper coordinate. The objects living in this space are four-vectors $x^mu = vecrow(c t, x, y, z)$. To set up a coordinate system we choose a set of four basis vectors ${bold(e)_mu}$, and we define the metric by
-$ g_(mu nu) equiv bold(e)_mu dot bold(e)_nu $
-Any four-vector can be written as $A = A^mu bold(e)_mu$, and the scalar product between any two four-vectors becomes
-$ A dot B = g_(mu nu) A^mu B^nu $
-this notation is nice because it is easy to see when we have scalars, and scalars are always invariant. The most important is
-$ s^2 = g_(mu nu) x^mu x^nu $
-which we call the metric equation. Another central quantity is the spacetime interval
-$
-  s^2 = - c^2 t^2 + x^2 + y^2 + z^2
-$
-this is exactly the metric equation for $ g_(mu nu) = eta_(mu nu) = diag(-1, 1, 1, 1) $ this metric is constant, so Minkowski spacetime is a flat space. In the general theory of relativity curved spacetime is essentially gravity, which would necessarily make the metric non-constant. For this reason special relativity is the no-gravity limit of general relativity.
-
-Lorentz tranformations are the coordinate transformations between two frames moving with a constant velocity with respect to each other in Minkowski spacetime---we have $x^mu arrow x'^mu$ by $x'^mu = tensor(Lambda, mu, -nu) x^nu$. Note that any four-vector must transform like this.
-
-Having defined the position four-vector we can derive other four-vectors. We know that proper time is a scalar since $s^2 = -c^2 tau^2$ is invariant. So we can define the four-velocity by $ U^mu = dv(x^mu, tau) $ which is a four-vector since $dd(x^mu)$ is. This can be related to the ordinary velocity $ U^mu = gamma dv(x^mu, t) = gamma vecrow(c, v^1, v^2, v^3) $ note that we have $eta_(mu nu) U^mu U^nu = - c^2$ for massive particles, and $eta_(mu nu) U^mu U^nu = 0$ for massless particles. To define four-momentum we naturally do $p^mu equiv m U^mu = gamma vecrow(m c, m v^i)$, or $p^mu = vecrow(E\/c, p^i)$ finding the related invariant gives us the famous mass-energy equivalence
-$
-  E^2 = m^2 c^4 + arrow(p)^2 c^2
-$
-and the relativistic momentum and energy $p^i = gamma m v^i$, $E = gamma m c^2$.
+Relativity is in short the idea that only relative motion is measurable, this can be stated as a symmetry---namely that our equations should be unchanged under coordinate transformations. Special relativity is the symmetry with respect to inertial frames, and general relativity extends this to general frames.
 
 #pagebreak()
-= General Relativity
-== Equivalence principle
-=== Newtonian field theory
+= Special Relativity
+== Galileo and Lorentz
+If we consider a system of point particles interacting gravitationally we can write
+$
+  m_N dv(arrow(r)_N, t, 2) = G sum_M (m_N m_M (arrow(r)_M-arrow(r)_N))/abs(arrow(r)_M-arrow(r)_N)^3
+$
+as the force on the particle $N$. This equation is invariant under the Galilean transformations
+$
+  arrow(r)' = R arrow(r) + arrow(v) t + arrow(d)",  " t' = t + t_0
+$
+where $R$ is a member of $O(3)$---a rotation group---the other symbols have the obvious meanings. The Galilean transformations evidently form a $10$-parameter group, called the Galilean group. Newton was confused as to why there are many other transformations which do not leave Newtonian physics invariant. Newton's laws only hold in frames related by the Galilean transformations---the inertial frames. Newton wanted to know what made these frames special---he believed there must be some absolute space and that inertial frames are at rest or move with uniform velocity within it.
+
+The problems start for real with Maxwell's electromagnetism, which is not invariant under Galilean transformations---e.g. because the speed of light is a universal constant. Initially it was believed that light propagated in the ether with electromagnetism only being valid in the frame at rest with respect tothe ether---this was disproven by Michelson and Morley. Einstein solved this problem by replacing Galilean invariance with Lorentz invariance, which correspond to the Lorentz transformations
+$
+  X'^alpha = tensor(Lambda, +alpha, -beta) X^beta + a^alpha
+$
+$tensor(Lambda, +alpha, -beta)$ is defined such that $tensor(Lambda, +alpha, -gamma) tensor(Lambda, +beta, -delta) tensor(eta, -alpha, -beta) = tensor(eta, -gamma, -delta)$ with $eta_(alpha beta)$ being the usual Minkowski metric defined as $eta_(alpha beta) = g_(alpha beta) equiv e_alpha dot e_beta$---proceeding in this manner we derive everything from this symmetry, which is essentially the cleanest way to do it. Since $a^alpha$ is constant we find
+$
+  dd(x'^alpha) = tensor(Lambda, +alpha, -gamma) dd(x^gamma)
+$
+we define the proper time (with $c equiv 1$)
+$
+  dd(tau^2) equiv dd(t^2)-dd(arrow(x)^2) = - eta_(alpha beta) dd(x^alpha) dd(x^beta)
+$
+this is from $dd(s^2) = -c^2 dd(t^2)+dd(arrow(x)^2)$ with $dd(arrow(x))=0 => dd(t)=dd(tau)$ giving $dd(s^2) = -c^2 dd(tau^2)$. This is invariant
+$
+  dd(tau'^2) &= - eta_(alpha beta) dd(x'^alpha) dd(x'^beta) \
+  &= - eta_(alpha beta) tensor(Lambda, +alpha, -gamma) tensor(Lambda, +beta, -delta) dd(x^gamma) dd(x^delta) \
+  &= - eta_(gamma delta) dd(x^gamma) dd(x^delta) \
+  &= dd(tau^2)
+$
+This gives us a universal speed of light, since we have for light
+$
+  abs(dv(arrow(x), t)) = c = 1 => dd(tau) = 0
+$
+so light travels along null-geodesics---as will be explained later. Since $dd(tau)$ is invariant we have $dd(tau')=0$ so $ abs(dv(arrow(x)', t')) = 1 $ i.e. the speed of light is the same in all coordinates.
+
+These transformations form the Lorentz group, typically we are interested in the proper Lorentz groups, which is a subgroup satisfying
+$
+  tensor(Lambda, +0, -0) >= 1",  " det Lambda =+1
+$
+this excludes non-fundamental symmetries corresponding to non-physical transformations. Further taking $a^alpha = 0$ gives us the homogeneous proper Lorentz groups, this has a subgroup with
+$
+  tensor(Lambda, +i, -j) = R_(i j)",  " tensor(Lambda, +i, -0)=tensor(Lambda, +0, -i) = 0",  " tensor(Lambda, 0, -0) = 1
+$
+so the difference between this and the Galilean group are the boosts. Let's assume an observer $cal(O)$ sees a particle at rest, while another observer $cal(O)'$ sees it having velocity $arrow(v)$, then
+$
+  dd(x'^alpha)=tensor(Lambda, alpha, -beta) dd(x^beta)
+$
+but we know $dd(arrow(x))=0$ so
+$
+  dd(x'^i) = tensor(Lambda, i, -0) dd(t)",  " dd(t') = tensor(Lambda, 0, -0) dd(t)
+$
+combining these give
+$
+  v^i = dv(x'^i, t') => tensor(Lambda, i, -0) = v^i tensor(Lambda, 0, -0)
+$
+and from $eta_(gamma delta) = tensor(Lambda, alpha, -gamma) tensor(Lambda, beta, -delta) eta_(alpha beta)$ we get
+$
+  -1 = tensor(Lambda, alpha, -0) tensor(Lambda, beta, -0) eta_(alpha beta) = sum_i (tensor(Lambda, i, -0))^2 - (tensor(Lambda, 0, -0))^2
+$
+which upon plugging in the previous gives
+$
+  tensor(Lambda, 0, -0) = gamma",  " tensor(Lambda, i, -0) = gamma v^i
+$
+the other elements are not uniquely determined, but we can pick
+$
+  tensor(Lambda, i, -j) = delta_(i j) + v_i v_j (gamma - 1)/v^2",  " tensor(Lambda, 0, -j) = gamma v_j
+$
+
+== Force, energy and momentum
+We can generalize Newton's second law with
+$
+  f^alpha = m dv(x^alpha, tau, 2)
+$
+if a particle is a rest then $dd(tau)=dd(t)$ and this reduces to the usual non-relativistic force, and since $dd(x'^alpha)=tensor(Lambda, alpha, -beta)dd(x^beta)$ with $dd(tau)=dd(tau')$ this implies that $f'^alpha = tensor(Lambda, alpha, -beta) f^beta$, so it is a four-vector---this is nice because we can construct the four-force from the non-relativistic force.
+
+Similarly we can define four-momentum
+$
+  p^alpha = m dv(x^alpha, tau)
+$
+we can then write Newton's law with a net force as
+$
+  dv(p^alpha, tau) = f^alpha
+$
+this is nice because it is covariant. Using $dd(tau) = sqrt(dd(t^2)-dd(arrow(x)^2)) = sqrt(1-v^2) dd(t) = dd(t)\/gamma$ and $arrow(v) = dd(arrow(x))\/dd(t)$ we can find
+$
+  p^0 = m gamma equiv E",  " arrow(p)=m gamma arrow(v)
+$
+in the low-velocity limit these become
+$
+  arrow(p) = m arrow(v) + cal(O)(v^3)",  " E = m + 1/2 m v^2 + cal(O)(v^4)
+$
+By linearity of the Lorentz transformation, if $p^alpha$ is conserved then $p'^alpha$ is conserved.
+
+== Four-vectors and Tensors
+Any four-vector transforming as
+$
+  V^alpha arrow V'^alpha = tensor(Lambda, alpha, -beta) V^beta", for" x^alpha arrow x'^alpha = tensor(Lambda, alpha, -beta)x^beta
+$
+is contravariant, and any four-vector transforming inversely
+$
+  U_alpha arrow U'_alpha = tensor(Lambda, -alpha, beta) U_beta
+$
+with $tensor(Lambda, -alpha, beta) equiv eta_(alpha gamma) eta^(beta delta) tensor(Lambda, gamma, -delta)$ and $eta^(beta delta)=eta_(beta delta)$ with $eta^(beta delta) eta_(alpha delta) = tensor(delta, beta, -alpha)$ is covariant. These are inverses, meaning
+$
+  tensor(Lambda, -alpha, gamma) tensor(Lambda, alpha, -beta) = eta_(alpha delta) eta^(gamma epsilon) tensor(Lambda, delta, -epsilon) tensor(Lambda, alpha, -beta) = eta_(epsilon beta) eta^(gamma epsilon) = tensor(delta, -beta, gamma)
+$
+this means that contractions become invariant
+$
+  U'_alpha V'^alpha = tensor(Lambda, -alpha, gamma) tensor(Lambda, +alpha, -beta) U_gamma V^beta = tensor(delta, -beta, gamma) U_gamma V^beta = U_beta V^beta
+$
+which is very nice. Every contravariant four-vector has a covariant buddy and vice versa given by
+$
+  V_alpha equiv eta_(alpha beta) V^beta",  " U^alpha equiv eta^(alpha beta) U_beta
+$
+so we can raise and lower indices,
+$
+  eta^(alpha beta) V_beta = eta^(alpha beta) eta_(beta gamma) V^gamma = V^alpha
+$
+we can check that $V_alpha$ is actually covariant,
+$
+  V'_alpha = eta_(alpha beta) V'^beta = eta_(alpha beta) tensor(Lambda, beta, -gamma)V^gamma = eta_(alpha beta) eta^(gamma delta) tensor(Lambda, beta, -gamma) V_delta = tensor(Lambda, -alpha, delta)V_delta
+$
+similarly we can check that $U^alpha$ is contravariant,
+$
+  U'^alpha = eta^(alpha beta) U'_beta = eta^(alpha beta) tensor(Lambda, -beta, gamma) U_gamma = eta^(alpha beta) eta_(gamma delta) tensor(Lambda, -beta, gamma) U^delta = tensor(Lambda, alpha, -delta) U^delta
+$
+
+Tensors are essentially generalized four-vectors, so they have more indices, where contra- and covariant indices transform as one would expect,
+$
+  tensor(T, gamma, -alpha beta) arrow tensor(T', gamma, -alpha beta) = tensor(Lambda, gamma, -delta) tensor(Lambda, -alpha, epsilon) tensor(Lambda, -beta, rho) tensor(T, delta, -epsilon rho)
+$
+indices within a tensor can also be contracted $tensor(T, alpha gamma) equiv tensor(T, alpha, -beta, gamma beta)$,
+$
+  tensor(T', alpha gamma) = tensor(T', alpha, -beta, gamma beta) &= tensor(Lambda, alpha, -delta) tensor(Lambda, -beta, epsilon) tensor(Lambda, gamma, -rho) tensor(Lambda, beta, -kappa) tensor(T, delta, -epsilon, rho kappa) \
+  &= tensor(Lambda, alpha, -delta) tensor(Lambda, gamma, -rho) tensor(delta, -kappa, epsilon) tensor(T, delta, -epsilon, rho kappa) \
+  &= tensor(Lambda, alpha, -delta) tensor(Lambda, gamma, -rho) tensor(T, delta, -epsilon, rho epsilon) = tensor(Lambda, alpha, -delta) tensor(Lambda, gamma, -rho) tensor(T, delta, rho)
+$
+we can also make many other construction which are also tensors, e.g. by taking derivatives
+$
+  tensor(T, -alpha, beta gamma) equiv pdv(, x^alpha) tensor(T, beta gamma)
+$
+is a tensor when $tensor(T, beta gamma)$ is a tensor---this is more obvious if we write,
+$
+  partial_alpha equiv pdv(, x^alpha)
+$
+which is covariant. The direct product of two tensors is a tensor,
+$
+  tensor(T, alpha, -beta, gamma) equiv tensor(A, alpha, -beta) tensor(B, gamma)
+$
+the linear combination of tensors is a tensor,
+$
+  tensor(T, alpha, -beta) equiv a tensor(R, alpha, -beta) + b tensor(S, alpha, -beta)
+$
+the Minkowski metric is by definition a tensor, implying that $tensor(delta, alpha, -beta)$ is a tensor---this also implies that raising or lowering indices $tensor(T, -alpha, delta, -gamma) equiv eta^(delta beta) tensor(T, -alpha beta gamma)$ conserves tensor-ness. The Levi-Civita tensor $epsilon^(alpha beta gamma delta)=-epsilon_(alpha beta gamma delta)$ is a tensor. The zero tensor $tensor(T, alpha, -beta)=0$ is always zero, $tensor(T', alpha, -beta)=0$, since $tensor(T, alpha, -beta)=tensor(S, alpha, -beta) => tensor(T', alpha, -beta)=tensor(S', alpha, -beta)$.
+
+#pagebreak()
+= The equivalence principle
+== Newtonian field theory
 Newton's theory of gravity can be summarized by
 $
   arrow(F) = - G_N (m M)/r^2 hat(r) = m arrow(g)
@@ -104,7 +208,7 @@ $
 $
 Importantly the Newtonian field theory of gravitation is clearly incompatible with special relativity as time and space are not treated equally---in fact it is a static theory, this reflects the underlying physics admitting an action at a distance description, implying an infinite signal speed.
 
-=== The principle and implications
+== The principle and implications
 The principle of equivalence is an empirical principle stating the equivalence of inertial mass and gravitational mass---so we have $m_I = m_G$ this was first mentioned by Galileo.
 
 Another way of stating this is by considering a frame freely falling in some gravitational field. Since all objects experience the same acceleration, gravity would be absent in this frame---so physics in a free-falling frame is equivalent to physics in an intertial frame without gravity. Likewise physics in a nonaccelerating frame with gravity $arrow(g)$ is equivalent to physics in a frame without gravity but accelerating with $arrow(a)=-arrow(g)$. So according to the equivalence principle accelerating reference frames can be treated as frames with gravity. This gives us a nice definition of an inertial frame, which is now a frame with no gravity. This is one of Einstein's big realizations.
@@ -160,9 +264,109 @@ $
 To reiterate---the velocity of light has not changed, it is still a universal constant, but an observer with time $t$ measured by some distant clock will see that light appears to move slower. This can be used to calculate the bending of light.\*
 
 #pagebreak()
-== The geodesic equation
-=== Relativity as geometry
-Now we begin general relativity proper. According to Einstein's theory all gravitational effects are caused by the underlying curved spacetime---this is motivated by the equivalence principle. General relativity states that matter and energy warps spacetime $g_(mu nu) eq.not eta_(mu nu)$.
+= Tensors in relativity
+In special relativity the metric was the Minkowski metric $eta_(alpha beta)$, in general we have some other metric $g_(alpha beta) = e_alpha dot e_beta$ which has an inverse $g^(alpha beta) = e^alpha dot e^beta$---we also have $e_alpha e^beta = tensor(delta, -alpha, beta)$, implying $g_(alpha beta) g^(beta gamma) = tensor(delta, -alpha, gamma)$.
+
+Before we had $dd(s^2) = eta_(alpha beta) dd(x^alpha) dd(x^beta)$, now this is just $ dd(s^2) = g_(alpha beta) dd(x^alpha) dd(x^beta) $ which is sometimes used as the definition of the metric---relativity requires that our equations are covariant under any transformation that leaves this invariant. All the previous stuff regarding contractions is of course still valid, now we just use the metric $g_(alpha beta)$ instead of $eta_(alpha beta)$, and we allow arbitrary coordinate transformations.
+
+As opposed to special relativity we now deal with position dependent local transformations---this is because our basis vectors now depend on where we are in space, so $g_(alpha beta) equiv g_(alpha beta) (x)$, this implies that our transformations must also be coordinate dependent. Since space is locally flat it is fair to demand that a transformation $dd(x'^alpha) arrow dd(x^alpha)$ leaves $dd(s^2)$ invariant. From the chain-rule we can write
+$
+  dd(x'^alpha) = pdv(x'^alpha, x^beta) dd(x^beta)
+$
+this immediately tells us how contravariant four-vectors transform
+$
+  x^alpha -> x'^alpha = pdv(x'^alpha, x^beta) x^beta
+$
+similarly one can look at
+$
+  pdv(, x'^alpha) = pdv(x^beta, x'^alpha) pdv(, x^beta)
+$
+to get how covariant four-vectors transform
+$
+  x_alpha -> x'_alpha = pdv(x^beta, x'^alpha) x_beta
+$
+as expected these are inverses
+$
+  pdv(x^beta, x'^alpha) pdv(x'^alpha, x^gamma) = tensor(delta, beta, -gamma)
+$
+now we can write how the metric should transform
+$
+  g'_(alpha beta) = pdv(x^gamma, x'^alpha) pdv(x^delta, x'^beta) g_(gamma delta)
+$
+
+We'd like to be able to take derivatives of tensors, but it's easy to see that $partial_alpha x^beta$ doesn't transform correctly, and is thus not a tensor. To solve this we differentiate the definition of $x^beta$ to get
+$
+  partial'_beta x'^alpha &= pdv(, x'^beta) (pdv(x'^alpha, x^gamma) x^gamma) \
+  &= pdv(x^delta, x'^beta) partial_delta (pdv(x'^alpha, x^gamma) x^gamma) \
+  &= pdv(x^delta, x'^beta) pdv(x'^alpha, x^gamma) partial_delta x^gamma + pdv(x^delta, x'^beta) x^gamma partial_delta pdv(x'^alpha, x^gamma) \
+  &= pdv(x^delta, x'^beta) pdv(x'^alpha, x^gamma) partial_delta x^gamma + pdv(x^delta, x'^beta) pdv(x'^alpha, x^delta, x^gamma) x^gamma \
+  &= pdv(x^delta, x'^beta) pdv(x'^alpha, x^gamma) partial_delta x^gamma + pdv(x'^alpha, x'^beta, x^gamma) x^gamma
+$
+since $ pdv(, x'^beta) = pdv(x^delta, x'^beta) pdv(, x^delta) $ the second term is what makes this a non-tensor. For this reason we seek a covariant derivative $D_alpha$, with the following property
+$
+  D_beta x^alpha -> D'_beta x'^alpha = pdv(x^gamma, x'^beta) pdv(x'^alpha, x^delta) D_gamma x^delta
+$
+consider the derivatives of the four-vector itself $partial_alpha bold(x)$, this transforms like
+$
+  partial_alpha bold(x) -> partial'_alpha bold(x) = pdv(x^gamma, x'^alpha) partial_gamma bold(x)
+$
+since the four-vector is coordinate independent, we can act with $bold(e)'^beta$---the inverse basis vectors---on both sides giving
+$
+  bold(e)'^beta dot partial'_alpha bold(x) = pdv(x^gamma, x'^alpha) pdv(x'^beta, x^delta) bold(e)^delta dot partial_gamma bold(x)
+$
+so we have just found $D_alpha x^beta = bold(e)^beta dot partial_alpha bold(x)$---making the covariant derivative the expansion coefficients of $partial_alpha bold(x)$. This gives us a nice relation because we can write
+$
+  partial_beta x^alpha = bold(e)^alpha dot (partial_beta bold(x)) + bold(x) dot (partial_beta bold(e)^alpha)
+$
+since $x^alpha = bold(e)^alpha dot bold(x)$. We now define $partial_beta bold(e)^alpha = - tensor(Gamma, alpha, -gamma beta) bold(e)^gamma$, or $bold(x) dot (partial_beta bold(e)^alpha) = - tensor(Gamma, alpha, -gamma beta) x^gamma$, giving
+$
+  D_beta x^alpha = partial_beta A^alpha + tensor(Gamma, alpha, -gamma beta) A^gamma
+$
+similarly
+$
+  D_beta x_alpha = partial_beta x_alpha - tensor(Gamma, gamma, -beta alpha) A_gamma
+$
+a mixed tensor $tensor(T, alpha, -beta) = A^alpha B_beta$ will have a covariant derivative
+$
+  D_gamma tensor(T, alpha, -beta) = partial_gamma tensor(T, alpha, -beta) - tensor(Gamma, delta, -gamma beta) tensor(T, alpha, -delta) + tensor(Gamma, alpha, -gamma epsilon) tensor(T, epsilon, -beta)
+$
+so each index gets its own Christoffel symbol, with a negative for covariant indices. A big example is $g_(mu nu)$,
+$
+  D_lambda g_(mu nu) = partial_lambda g_(mu nu) - tensor(Gamma, rho, -lambda mu) g_(rho nu) - tensor(Gamma, rho, -lambda nu) g_(mu rho)
+$
+in how we've defined things we have
+$
+  tensor(Gamma, mu, -nu lambda) = tensor(Gamma, mu, -lambda nu)
+$
+even though the metric is position dependent, it is covariantly constant $D_lambda g_(mu nu) = 0$. To see this consider
+$
+  partial_lambda (bold(e)_mu dot bold(e)_nu) &= (partial_lambda bold(e)_mu) dot bold(e)_nu + bold(e)_mu dot (partial_lambda bold(e)_nu) \
+  &= tensor(Gamma, rho, -lambda mu) bold(e)_rho dot bold(e)_nu + tensor(Gamma, rho, -lambda nu) bold(e)_mu dot bold(e)_rho
+$
+so in terms of $g_(mu nu)$:
+$
+  partial_lambda g_(mu nu) - tensor(Gamma, rho, -lambda mu) g_(rho nu) - tensor(Gamma, rho, -lambda nu) g_(mu rho) = D_lambda g_(mu nu) = 0
+$
+this is an essential property. Now we derive a representation of the Christoffel symbols in terms of the metric. We start with three equations
+$
+  D_lambda g_(mu nu) &= partial_lambda g_(mu nu) - tensor(Gamma, rho, -lambda mu) g_(rho nu) - tensor(Gamma, rho, -lambda nu) g_(mu rho) = 0 \
+  D_nu g_(lambda mu) &= partial_nu g_(lambda mu) - tensor(Gamma, rho, -nu lambda) g_(rho mu) - tensor(Gamma, rho, -nu mu) g_(lambda rho) = 0 \
+  - D_mu g_(nu lambda) &= - partial_mu g_(nu lambda) + tensor(Gamma, rho, -mu nu) g_(rho lambda) + tensor(Gamma, rho, -mu lambda) g_(nu rho) = 0
+$
+so we rotate the indices cyclically. Summing these and using symmetry gives
+$
+  partial_lambda g_(mu nu) + partial_nu g_(lambda mu) - partial_mu g_(nu lambda) - 2 tensor(Gamma, rho, -lambda nu) g_(mu rho) = 0
+$
+or equivalently
+$
+  tensor(Gamma, lambda, -mu nu) = 1/2 g^(lambda rho) (partial_nu g_(mu rho) + partial_mu g_(nu rho) - partial_rho g_(mu nu))
+$
+this is the fundamental theorem of Riemannian geometry.
+
+#pagebreak()
+= The geodesic equation
+== Relativity as geometry
+According to Einstein's theory all gravitational effects are caused by the underlying curved spacetime---this is motivated by the equivalence principle. General relativity states that matter and energy warps spacetime $g_(mu nu) eq.not eta_(mu nu)$.
 
 According to the equivalence principle we found
 $
@@ -182,7 +386,7 @@ Any field theory is a two-step process; source particle $arrow^"field equation"$
 
 What we want to do in relativity is use the Einstein field equations to find the metric $g_(mu nu)$, which then determines the geodesics our particles move along.
 
-=== The equation
+== The equation
 We want to show that the curve with extremum length---the geodesic---can be described in terms of the metric. Any curve can be represented by a set of coordinates $x^mu (lambda)$, where $lambda$ is some parameter. As we have seen the metric determines the infinitesimal length $ dd(s) = sqrt(g_(mu nu) dd(x^mu)dd(x^nu)) $ to get a length we integrate
 $
   s = integral dd(s) = integral sqrt((dv(s, lambda))^2) dd(lambda) = integral L dd(lambda)
@@ -226,25 +430,21 @@ $
 $
 whenever a tensor gets contracted with a symmetric product only the symmetric part survives, since the antisymmetric part cancels. So we can write
 $
-  dv(x^nu, lambda, 2) + Gamma^nu_(sigma rho) dv(x^sigma, lambda) dv(x^rho, lambda) = 0
+  dv(x^nu, lambda, 2) + tensor(Gamma, nu, -sigma rho) dv(x^sigma, lambda) dv(x^rho, lambda) = 0
 $
-where
-$
-  g_(mu nu) Gamma^nu_(sigma rho) = 1/2 [pdv(g_(sigma mu), x^rho) + pdv(g_(rho mu), x^sigma) - pdv(g_(sigma rho), x^mu)]
-$
-is the Christoffel symbol or affine connection.
 
+=== Newtonian limit
 Naturally this should reduce to the Newtonian case in the Newtonian limit of a particle moving with $v << c$ in a static and weak gravitational field. Nonrelativistic speed $dd(x^i)\/dd(t) << c$ implies $dd(x^i) << c dd(t)$ so
 $
   dv(x^i, lambda) << c dv(t, lambda) = dv(x^0, lambda)
 $
 keeping only the dominant term in the double sum then gives
 $
-  dv(x^mu, lambda, 2) + Gamma_(0 0)^mu dv(x^0, lambda) dv(x^0, lambda) = 0
+  dv(x^mu, lambda, 2) + tensor(Gamma, mu, -00) dv(x^0, lambda) dv(x^0, lambda) = 0
 $
 for a static field $dd(g_(mu nu), d: partial) \/dd(x^0, d: partial) = 0$ since all time derivatives should vanish, then the Christoffel symbol becomes
 $
-  g_(mu nu) Gamma_(0 0)^mu = - 1/2 pdv(g_(0 0), x^nu)
+  g_(mu nu) tensor(Gamma, mu, -0 0) = - 1/2 pdv(g_(0 0), x^nu)
 $
 for a weak field we assume the metric is close to $eta_(mu nu)$ meaning
 $
@@ -252,7 +452,7 @@ $
 $
 with $h_(mu nu) << 1$ being a small correction field. Since $eta_(mu nu)$ is a constant metric we have $dd(g_(mu nu), d: partial) \/ dd(x^sigma, d: partial) = dd(h_(mu nu), d: partial)\/dd(x^sigma, d: partial)$, so to leading order
 $
-  eta_(mu nu) Gamma_(0 0)^mu = -1/2 pdv(h_(0 0), x^nu)
+  eta_(mu nu) tensor(Gamma, mu, -0 0) = -1/2 pdv(h_(0 0), x^nu)
 $
 which has for static $h_(0 0)$ gives
 $
@@ -292,11 +492,32 @@ $
 and we have recovered our previous result.
 
 #pagebreak()
-== Some calculus
+= The covariance principle
+The covariance principle states that; our equations must be covariant under the general coordinate transformations which leave $dd(s^2)$ invariant, and our equations should reduce to the correct special relativistic form in local inertial frames---additionally our equations reduce to Newtonian equations in the Newtonian limit. It can be treated as a generalization of the equivalence principle.
 
+This gives us a clear path to convert our equations from special relativity to general relativity, since the tensor formalism developed for the two only differ in their derivatives. We simply replace $partial$ by $D$ to convert our equations,
+$
+  partial -> D " "(= partial + Gamma)
+$
+this is minimal---gravitational---coupling. Christoffel symbols are derivatives of the metric---our potentials---so they bring the gravitational field strength into our equations naturally.
 
-#pagebreak()
-== Covariance principle
+As an example consider Maxwell's equations and the Lorentz force law from special relativity,
+$
+  dv(U^mu, tau) = q/c F^(mu nu) U_nu ->^"minimal coupling" (D U^mu)/(dd(tau)) = q/c F^(mu nu) U_nu
+$
+$
+  partial_mu F^mu nu = - 1/c j^nu & ->^"m.c" D_mu F^(mu nu) =-1/c j^nu \
+  partial_mu tilde(F)^(mu nu) = 0 & ->^"m.c" D_mu tilde(F)^(mu nu)=0
+$
+by taking $F^(mu nu) = 0$ in the Lorentz force law we can rederive the geodesic equation,
+$
+  (D U^mu)/dd(tau) = 0
+$
+just using the definition of $D$ and $U^mu = dd(x^mu)\/dd(tau)$ gives
+$
+  dv(x^mu, tau, 2) + tensor(Gamma, mu, -nu lambda) dv(x^nu, tau) dv(x^lambda, tau) = 0
+$
+which is just the geodesic equation.
 
 #pagebreak()
 = Cosmology
