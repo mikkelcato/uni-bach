@@ -191,6 +191,8 @@ $
   S_z eq^dot hbar/2 mat(1, 0; 0, -1)",  " S_+ eq^dot hbar mat(0, 1; 0, 0)",  " S_- eq^dot hbar mat(0, 0; 1, 0)
 $
 
+$$
+
 #pagebreak()
 == Measurement
 Before any measurement of observable $A$, the system is assumed to be represented by some linear combination
@@ -356,10 +358,503 @@ $
 $
 
 === Uncertainty
+We define an operator $Delta A equiv A-expval(A)$, this is used to find the dispersion
+$ expval((Delta A)^2) = expval(A^2)-expval(A)^2 $
+this characterizes fuzziness of an observable---for eigenstates of $A$ this clearly vanishes.
 
+#lemma[Schwarz inequality][
+  $ braket(alpha, alpha) braket(beta, beta) >= abs(braket(alpha, beta))^2 $
+]
+#proof[
+  Note that
+  $
+    (bra(alpha)+lambda^* bra(beta)) dot (ket(alpha)+lambda ket(beta)) >= 0
+  $
+  this holds for any $lambda in CC$. So it holds for
+  $
+    lambda = - (braket(beta, alpha))/braket(beta, beta) => braket(alpha, alpha)braket(beta, beta) - abs(braket(alpha, beta))^2 >= 0
+  $
+]
+
+#lemma[
+  The expectation value of a Hermitian operator is real.
+]
+#proof[
+  $
+    braket(a, A, a) = braket(a, A^dagger, a)^* = braket(a, A, a)^*
+  $
+]
+
+#lemma[
+  The expectation value of an anti-Hermitian operator $C = - C^dagger$ is purely imaginary.
+]
+#proof[
+  $
+    braket(c, C, c) = braket(c, C^dagger, c)^* = - braket(c, C, c)^*
+  $
+]
+
+Now we'll prove the uncertainty principle
+#thm[
+  Let $A$ and $B$ be observables, then for any state
+  $
+    expval((Delta A)^2)expval((Delta B)^2) >= 1/4 abs(expval([A,B]))^2
+  $
+]
+#proof[
+  Let
+  $
+    ket(alpha) = Delta A ket(dot)",  " ket(beta) = Delta B ket(dot)
+  $
+  where $ket(dot)$ is any state. From Schwarz we get
+  $
+    expval((Delta A)^2)expval((Delta B)^2) >= abs(expval(Delta A Delta B))^2
+  $
+  where we use that $Delta A$ and $Delta B$ are Hermitian. For the right-hand side note
+  $
+    Delta A Delta B = 1/2 [Delta A, Delta B] + 1/2 {Delta A, Delta B}
+  $
+  with $[Delta A, Delta B] = [A, B]$ since expectation values are numbers, and it is anti-Hermitian
+  $
+    ([A,B])^dagger = B A - A B = -[A,B]
+  $
+  as opposed to the anticommutator ${Delta A, Delta B}$ which is Hermitian. So in
+  $
+    expval(Delta A Delta B) = 1/2 expval([A,B]) + 1/2 expval({Delta A, Delta B})
+  $
+  the first term is purely imaginary and the second term is purely real---from the lemmas. So the right-hand side becomes
+  $
+    abs(expval(Delta A Delta B))^2 = 1/4 abs(expval([A,B]))^2 + 1/4 abs(expval({Delta A, Delta B}))^2
+  $
+  and we are done since removing the second term can only make the inequality stronger.
+]
+
+== Changing basis
+Given two incompatible observables $A$ and $B$ the ket space can be spanned by either ${ket(a')}$ or ${ket(b')}$. We want to figure out how these are related, and how we can change our basis or representation. We'll do this through a transformation operator.
+
+#thm[
+  Given two sets of base kets, both satisfying orthonormality and completeness, there exists a unitary operator $U$ such that
+  $
+    ket(b^((1))) = U ket(a^((1))), ket(b^((2))) = U ket(a^((2))),dots
+  $
+]
+
+A unitary operator satisfies $U^dagger U = U U^dagger = 1$.
+
+#proof[
+  We proceed by construction. We claim
+  $
+    U = sum_k ketbra(b^((k)), a^((k)))
+  $
+  is good enough. Clearly
+  $
+    U ket(a^((l)))=ket(b^((l)))
+  $
+  since ${ket(a')}$ satisfies orthonormality. And it is unitary
+  $
+    U^dagger U = sum_k sum_l ket(a^((l))) braket(b^((l)), b^((k))) bra(a^((k))) = sum_k ketbra(a^((k)))=1
+  $
+  where we use orthonormality of ${ket(b')}$ and completeness of ${ket(a')}$.
+]
+
+The matrix elements---the transformation matrix---are easy to find
+$
+  braket(a^((k)), U, a^((l))) = braket(a^((k)), b^((l)))
+$
+so the matrix elements are built from the old bras and new kets.
+
+Consider some expansion
+$
+  ket(alpha) = sum_l ket(a^((l))) braket(a^((l)), alpha)
+$
+then it's easy to get the new expansion coefficients,
+$
+  braket(b^((k)), alpha) = sum_l braket(b^((k)), a^((l))) braket(a^((l)), alpha) = sum_l braket(a^((k)), U^dagger, a^((l))) braket(a^((l)), alpha)
+$
+similarly
+$
+  braket(b^((k)), X, b^((l))) &= sum_m sum_n braket(b^((k)), a^((m)))braket(a^((m)), X, a^((n)))braket(a^((n)), b^((l))) \
+  &= sum_m sum_n braket(a^((k)), U^dagger, a^((m))) braket(a^((m)), X, a^((n)))braket(a^((n)), U, a^((l)))
+$
+which is just the similarity transformation $X' = U^dagger X U$. The trace of an operator is defined as
+$
+  tr(X) &= sum_a' braket(a', X, a') \
+  &= sum_a' sum_b' sum_b'' braket(a', b') braket(b', X, b'')braket(b'', a') \
+  &= sum_b' sum_b'' (sum_a' braket(b'', a') braket(a', b')) braket(b', X, b'') \
+  &= sum_b' sum_b'' braket(b'', b') braket(b', X, b'') \
+  &= sum_b' braket(b', X, b')
+$
+and as shown it is representation independent. Likewise we can prove other things
+$
+  tr(X Y) & = sum_a' braket(a', X Y, a') \
+          & = sum_b' sum_a' braket(a', X, b') braket(b', Y, a') \
+          & = sum_b' sum_a' braket(b', Y, a') braket(a', X, b') \
+          & = sum_b' braket(b', Y X, b')
+$
+and
+$
+  tr(U^dagger X U) & = tr(U^dagger Y) \
+                   & = tr(Y U^dagger) \
+                   & = tr(X U U^dagger) \
+                   & = tr(X)
+$
+and
+$
+  tr(ketbra(a', a'')) & = sum_b' braket(b', a')braket(a'', b') \
+                      & = sum_b' braket(a'', b') braket(b', a') \
+                      & = braket(a'', a') \
+                      & = delta_(a' a'')
+$
+similarly
+$
+  tr(ketbra(b', a')) & = braket(a', b')
+$
+The problem we just solved is equivalent to finding a unitary matrix which diagonalizes $B$. We are interested in finding $b'$ and $ket(b')$ with
+$
+  B ket(b') = b' ket(b')
+$
+we can write this as
+$
+  sum_a' braket(a'', B, a') braket(a', b') = b' braket(a'', b')
+$
+if $ket(b')$ is the $l$'th eigenket of $B$ then this can be written as $ sum_j B_(i j) C_j^((l)) = b^((l)) C_i^((l)) $
+where $B_(i j) =braket(a^((i)), B, a^((j)))$ and $C_k^((l)) = braket(a^((k)), b^((l)))$---this could be written as explicit matrices. Nontrivial solutions are given by
+$
+  det(B- lambda II) = 0
+$
+with the $N$ roots being various $b^((l))$. Knowing these we can find $C_k^((l))$ up to a constant---as should be clear $C_k^((l))$ are the elements of the transformation matrix.
+
+#thm[
+  Consider to orthonormal bases ${ket(a')}$ and ${ket(b')}$ connected by $U$. Then we can construct a unitary transform of $A$: $U A U^dagger$, then $A$ and $U A U^dagger$ are unitary equivalent observables.
+]
+#proof[
+  We can write
+  $
+    A ket(a^((l))) = a^((l)) ket(a^((l)))
+  $
+  which implies
+  $
+    U A U^dagger U ket(a^((l))) = a^((l)) U ket(a^((l)))
+  $
+  which we can rewrite
+  $
+    (U A U^dagger) ket(b^((l))) = a^((l)) ket(b^((l)))
+  $
+]
+
+So the eigenkets $ket(b')$ of $U A U^dagger$ have the same eigenvalues as $A$---so they have identical spectra. This also implies that $B$ and $U A U^dagger$ have simultaneous eigenkets---typically they are the same operator $B = U A U^dagger$.
+
+#pagebreak()
+== $x$, $p$ and translation.
+So far we have looked at observables with discrete spectra, but many observables---position, momentum, etc.---have continuous spectra. In these cases the ket space becomes infinite, luckily many results carry over, but others don't.
+
+We have the eigenvalue equation $xi ket(xi') = xi' ket(xi')$ as before, most other things get replaced by their continuous analog---sums become integrals, and Kronecker deltas become Dirac delta functions:
+$
+      braket(xi', xi'') & = delta(xi'-xi'') \
+                      1 & =integral dd(xi') ketbra(xi') \
+             ket(alpha) & =integral dd(xi') ket(xi') braket(xi', alpha) \
+                      1 & = integral dd(xi') abs(braket(xi', alpha))^2 \
+    braket(beta, alpha) & = integral dd(xi') braket(beta, xi') braket(xi', alpha) \
+  braket(xi'', xi, xi') & = xi' delta(xi''-xi')
+$
+where we use the completeness relation.
+
+=== $x$ eigenkets
+The eigenkets $ket(x')$ satisfy $x ket(x') = x' ket(x')$, and are postulated to form a complete set. So we can expand any state ket $ket(alpha)$ as
+$
+  ket(alpha) = integral_(-oo)^oo dd(x') ket(x') braket(x', alpha)
+$
+now suppose we take a measurement using a detector that only clicks when the particle is very close $x'$, then
+$
+  ket(alpha) = integral_(-oo)^oo dd(x'') ket(x'') braket(x'', alpha) ->^"mm." integral_(x'-Delta\/2)^(x' + Delta\/2) dd(x'')ket(x'') braket(x'', alpha)
+$
+assuming that $braket(x'', alpha)$ is unaffected within the interval, the probability that our detector clicks is $abs(braket(x', alpha))^2 dd(x')$, where we've let $Delta arrow dd(x')$. The probability of finding the particle somewhere is
+$
+  integral_(-oo)^oo dd(x') abs(braket(x', alpha))^2
+$
+which is unity given $ket(alpha)$ is normalized
+$
+  braket(alpha, alpha) = integral_(-oo)^oo dd(x') braket(alpha, x') braket(x', alpha) = 1
+$
+This generalizes to three dimensions, where we assume that the position eigenkets $ket(bold(x)')$ are complete. Then any state can be written as---if we ignore internal degrees of freedom,
+$
+  ket(alpha) = integral dd(x', 3) ket(bold(x)') braket(bold(x)', alpha)
+$
+here $ket(bold(x)')$ is a simultaneous eigenket of $x, y$ and $z$
+$
+  ket(bold(x)') equiv ket(x'","y'","z')" with" x ket(bold(x)') = x' ket(bold(x)')" etc."
+$
+doing this we assume that $x, y$ and $z$ are compatible
+$
+  [x_i,x_j] = 0
+$
+
+=== Translation and $p$
+We want an operator which can take a state from $bold(x)' arrow bold(x)' +dd(bold(x)')$ without affecting anything else. This is the translation operator, and its action is defined by
+$
+  cal(J)(dd(bold(x)')) ket(bold(x)') = ket(bold(x)'+dd(bold(x)'))
+$
+clearly $ket(bold(x)')$ is not an eigenket, now consider the action on some arbitrary $ket(alpha)$
+$
+  cal(J) (dd(bold(x)'))ket(alpha) &= integral dd(x', 3) ket(bold(x)'+dd(bold(x)')) braket(bold(x)', alpha) \
+  &= integral dd(x', 3) ket(bold(x)') braket(bold(x)'-dd(bold(x)'), alpha)
+$
+where we the shift is allowed since we integrate over all of space. So the translated state is obtained by subbing $bold(x)' -> bold(x)' - dd(bold(x)')$.
+
+As all other operators this one has some nice properties. We require that it is unitary, since if $ket(alpha)$ is normalized then $cal(J) (dd(bold(x)')) ket(alpha)$ should also be normalized,
+$
+  braket(alpha) = braket(alpha, cal(J)^dagger (dd(bold(x)')) cal(J) (dd(bold(x)')), alpha) => cal(J)^dagger (dd(bold(x)')) cal(J) (dd(bold(x)')) = 1
+$
+in general it is clear that the norm is preserved under unitary transformation---by definition. Some obvious properties:
+$
+  cal(J) (dd(bold(x)'')) cal(J) (dd(bold(x)')) &= cal(J) (dd(bold(x)') + dd(bold(x)'')) \
+  cal(J) (- dd(bold(x)')) &= cal(J)^(-1) (dd(bold(x)')) \
+  lim_(dd(bold(x)') arrow 0) cal(J) (dd(bold(x)'))&=1
+$
+now we want to find $cal(J) (dd(bold(x)'))$.
+
+It turns out if we define
+$
+  cal(J) (dd(bold(x)')) = 1 - i bold(K) dot dd(bold(x)')
+$
+where $K_i$ are Hermitian operators, then everything is satisfied. First we check unitarity
+$
+  cal(J)^dagger (dd(bold(x)')) cal(J) (dd(bold(x)')) &= (1 + i bold(K)^dagger dd(bold(x)'))(1-i bold(K) dot dd(bold(x)')) \
+  &= 1 - i(bold(K)-bold(K)^dagger) dot dd(bold(x)') + cal(O) [(dd(bold(x)'))^2] \
+  &tilde.eq 1
+$
+and the additive property
+$
+  cal(J) (dd(bold(x)'')) cal(J) (dd(bold(x)')) &= (1 - i bold(K) dot dd(bold(x)''))(1 - i bold(K) dot dd(bold(x)')) \
+  &tilde.eq 1 - i bold(K) dot (dd(bold(x)') + dd(bold(x)'')) \
+  &=cal(J) (dd(bold(x)') + dd(bold(x)''))
+$
+the other two are immediately satisfied by the definition. Now we want to find a relation between $bold(K)$ and $bold(x)$. Notice
+$
+  bold(x) cal(J) (dd(bold(x)')) ket(bold(x)') = bold(x) ket(bold(x)' + dd(bold(x)')) = (bold(x)' + dd(bold(x)'))ket(bold(x)' + dd(bold(x)'))
+$
+and
+$
+  cal(J) (dd(bold(x)')) bold(x) ket(bold(x)') = bold(x)' cal(J) (dd(bold(x)')) ket(bold(x)') = bold(x)' ket(bold(x)' + dd(bold(x)'))
+$
+combining these gives
+$
+  [bold(x),cal(J) (dd(bold(x)'))] ket(bold(x)') = dd(bold(x)') ket(bold(x)' + dd(bold(x)')) tilde.eq dd(bold(x)') ket(bold(x)')
+$
+so we have found the identity $ [bold(x),cal(J) (dd(bold(x)'))] = dd(bold(x)') $
+which implies
+$
+  -i bold(x) bold(K) dot dd(bold(x)') + i bold(K) dot dd(bold(x)') bold(x) = dd(bold(x)')
+$
+here $dd(bold(x)')$ is a number multiplied by the identity operator in the ket space spanned by $ket(bold(x)')$. Letting $dd(bold(x)')$ be along $hat(bold(x))_j$ and forming the scalar product with $hat(bold(x))_i$ we obtain
+$
+  [x_i, K_j] = i delta_(i j)
+$
+but what is $bold(K)$ physically?
+
+In classical mechanics a similar translation can be seen as a canonical transformation
+$
+  bold(x)_"new" equiv bold(X) = bold(x) + dd(bold(x))",  " bold(p)_"new" equiv bold(P) = bold(p)
+$
+with the generating function
+$
+  F(bold(x),bold(P)) = bold(x) dot bold(P) + bold(p) dot dd(bold(x))
+$
+this looks like the translation operator we defined, especially since $bold(x) dot bold(P)$ is the generating function for the identity transformation---so maybe $bold(K)$ is related to momentum? For this to be the case we need to fix units since $bold(K)$ has units of $1\/"length"$,
+$
+  bold(K) = bold(p)/"constant with unit of action"
+$
+so what constant do we choose? Consider de Broglie's relation
+$
+  (2pi)/lambda = p/hbar
+$
+the universal constant we are after turns out to be $hbar$, and the $K$ operator is the operator corresponding to the wave number, typically denoted by $k$. With this identification we have found
+$
+  cal(J) (dd(bold(x)')) = 1 - i bold(p) dot dd(bold(x)')\/hbar
+$
+where $bold(p)$ is the momentum operator, and the commutation relation becomes
+$
+  [x_i, p_j] = i hbar delta_(i j)
+$
+which as we know is very powerful.
+
+Now we see what happens for a finite translation $dd(x', d: Delta)$? We can compound $N -> oo$ translations with displacement $dd(x', d: Delta)\/N$ and we obtain
+$
+  cal(J) (dd(x', d: Delta) hat(bold(x))) &= lim_(N arrow oo) (1 - (i p_x dd(x', d: Delta))/(N hbar))^N \
+  &= exp(- (i p_x dd(x', d: Delta))/hbar)
+$
+where we define
+$
+  exp(X) equiv 1 + X + X^2/2! + dots
+$
+a fundamental property of translations is that successive translations in different directions commute
+$
+  [cal(J) (dd(y', d: Delta) hat(bold(y))), cal(J) (dd(x', d: Delta) hat(bold(x))) ] = 0
+$
+using this we obtain
+$
+  [cal(J) (dd(y', d: Delta) hat(bold(y))), cal(J) (dd(x', d: Delta) hat(bold(x))) ] &= [(1-(i p_y dd(y', d: Delta))/hbar + dots), (1-(i p_x dd(x', d: Delta))/hbar + dots)] \
+  &tilde.eq - ((dd(x', d: Delta)) (dd(y', d: Delta)) [p_y,p_x])/hbar^2
+$
+or since the displacements are arbitrary we find
+$
+  [p_x,p_y]=0 => [p_i,p_j] = 0
+$
+this commutation relation is a direct result of the fact that translations in different directions commute. When the generators of transformations commute the corresponding group is Abelian---so the translation group in three dimensions is Abelian.
+
+This implies we can find a simultaneous eigenket of $p_x, p_y$ and $p_z$
+$
+  ket(bold(p)') equiv ket(p'_x","p'_y","p'_z)",  " p_x ket(bold(p)') = p'_x ket(bold(p)') "etc."
+$
+we can find the effect of the translation operator on this state
+$
+  cal(J) (dd(bold(x)')) ket(bold(p)') &= (1 - (i bold(p) dot dd(bold(x)'))/hbar) ket(bold(p)') \
+  &= (1 - (i bold(p)' dot dd(bold(x)'))/hbar) ket(bold(p)')
+$
+so $ket(bold(p)')$ is an eigenket of $cal(J) (dd(bold(x)'))$, which is obvious since
+$
+  [bold(p),cal(J) (dd(bold(x)'))] = 0
+$
+but the eigenvalues are complex, since $cal(J) (dd(bold(x)'))$ is unitary.
+
+What we have just found are the canonical commutation relations:
+$
+  [x_i,x_j] = 0", " [p_i,p_j] = 0", " [x_i,p_j] = i hbar delta_(i j)
+$
+following Dirac one might notice that these are very similar to Poisson brackets
+$
+  [dot,dot]_"class" -> [dot,dot]/(i hbar)
+$
+this is plausible since the commutator and Poisson bracket share very similar algebraic propeties---these could have been used to immediately find the canonical commutation relations, but using the translation operator is much nicer.
+
+#pagebreak()
+== Wave-functions
+=== Position space
+In one dimension we have
+$
+  x ket(x') = x' ket(x')
+$
+with
+$
+  braket(x'', x') = delta(x''-x')
+$
+any state can then be written
+$
+  ket(alpha) = integral dd(x') ket(x') braket(x', alpha)
+$
+with $abs(braket(x', alpha))^2 dd(x')$ being the probability to find our particle near $x'$. In our formalism we refer to $braket(x', alpha)$ as the wave function $psi_alpha (x')$ for the state $ket(alpha)$---so the wavefunction is just an expansion coefficient.
+
+Consider the inner product
+$
+  braket(beta, alpha) = integral dd(x') braket(beta, x') braket(x', alpha) = integral dd(x') psi_beta^* (x') psi_alpha (x')
+$
+so $braket(beta, alpha)$ characterizes overlap between our wavefunctions---note that in general $braket(beta, alpha)$ is independent of representations, and represents the probability for $ket(alpha)$ to be found in $ket(beta)$.
+
+We can also look at
+$
+  ket(alpha) = sum_a' ket(a') braket(a', alpha)
+$
+and obtain
+$
+  braket(x', alpha) = sum_a' braket(x', a') braket(a', alpha)
+$
+which is typically written $psi_alpha (x') = sum_a' c_a' u_a' (x')$ where $u_a' (x') = braket(x', a')$ is an eigenfunction of an operator $A$, in the $x$-representation, with eigenvalue $a'$. Similarly
+$
+  braket(beta, A, alpha) &= integral dd(x') integral dd(x'') braket(beta, x') braket(x', A, x'') braket(x'', alpha) \
+  &= integral dd(x') integral dd(x'') psi_beta^* (x') braket(x', A, x'') psi_alpha (x'')
+$
+if $A = f(x)$ we get a delta-function eating one of the integrals and
+$
+  braket(beta, f(x), alpha) = integral dd(x') psi_beta^* (x') f(x') psi_alpha (x')
+$
+
+It would be nice to know what $p$ looks like in this basis. We start with momentum as the generator of translations
+$
+  (1 - (i p dd(x', d: Delta))/hbar) ket(alpha) &= integral dd(x') cal(J) (dd(x', d: Delta)) ket(x')) braket(x', alpha) \
+  &= integral dd(x') ket(x') braket(x' - dd(x', d: Delta), alpha) \
+  &= integral dd(x') ket(x') (braket(x', alpha) - dd(x', d: Delta) pdv(, x') braket(x', alpha) )
+$
+comparison gives
+$
+  p ket(alpha) = integral dd(x') ket(x') (- i hbar pdv(, x') braket(x', alpha)) => braket(x', p, alpha) = - i hbar pdv(, x') braket(x', alpha)
+$
+so this is the action of $p$ in the $x$-representation, the matrix element is
+$
+  braket(x', p, x'') = -i hbar pdv(, x') delta(x''-x')
+$
+we can also find
+$
+  braket(beta, p, alpha) &= integral dd(x') braket(beta, x') (- i hbar pdv(, x') braket(x', alpha)) \
+  &= integral dd(x') psi_beta^* (x') (- i hbar pdv(, x')) psi_alpha (x')
+$
+by repeated application we can find
+$
+  braket(x', p^n, alpha) &= (-i hbar)^n pdv(, x', [n]) braket(x', alpha) \
+  braket(beta, p^n, alpha) &= integral dd(x') psi_beta^* (x') (-i hbar)^n pdv(, x', [n]) psi_alpha (x')
+$
+
+=== Momentum-space
+Similarly we have
+$
+  p ket(p') = p' ket(p')",  " braket(p', p'') = delta(p'-p'')
+$
+these like ${ket(x')}$ span the space so for arbitrary $ket(alpha)$ we can write
+$
+  ket(alpha) = integral dd(p') ket(p') braket(p', alpha)
+$
+we call $braket(p', alpha) = phi_alpha (p')$ the momentum-space wave function, and the analogous probability interpretation holds.
+
+Recall that given two bases we can construct a transformation matrix. In this case $braket(x', p')$ is called the transformation function from $x arrow p$, this is what we want to find. Consider
+$
+  braket(x', p, p') & = -i hbar pdv(, x') braket(x', p') \
+                    & = p' braket(x', p')
+$
+the solution is
+$
+  braket(x', p') = N exp((i p' x')/hbar)
+$
+before we normalize, it is worth mentioning that this is just the momentum eigenstate $ket(p')$ in the $x$-representation---if we treat it as a function of $x'$ with fixed $p'$---so the wave function of a momentum eigenstate is just a plain wave. To find $N$ consider
+$
+  braket(x', x'') & = integral dd(p') braket(x', p') braket(p', x'') \
+  & = abs(N)^2 integral dd(p') exp((i p'(x'-x''))/hbar) \
+  & = 2 pi hbar abs(N)^2 delta(x'-x'') =^! delta(x'-x'') => N = 1/sqrt((2 pi hbar))
+$
+where we let $N in RR$ by convention. So we have just found
+$
+  braket(x', p') = 1/(sqrt(2 pi hbar)) exp((i p' x')/hbar)
+$
+now we can relate $psi_alpha (x')$ and $phi_alpha (p')$,
+$
+  braket(x', alpha) &= integral dd(p') braket(x', p') braket(p', alpha)", " braket(p', alpha) = integral dd(x') braket(p', x') braket(x', alpha)
+$
+give
+$
+  psi_alpha (x') &= 1/sqrt(2pi hbar) integral dd(p') exp((i p'x')/hbar) phi_alpha (p') \
+  phi_alpha (p') &= 1/sqrt(2pi hbar) integral dd(x') exp((-i p' x')/hbar) psi_alpha (x')
+$
+this is just a Fourier transform!
+
+The generalization to three dimensions is obvious
+$
+  bold(x) ket(bold(x)') = bold(x)' ket(bold(x)')",  " braket(bold(x)', bold(x)'') = delta^3 (bold(x)'-bold(x)'')
+$
+with completeness
+$
+  integral dd(x', 3) ketbra(bold(x)') = 1 => ket(alpha) = integral dd(x', 3) ket(bold(x)') braket(bold(x)', alpha)
+$
+and $braket(bold(x)', alpha)$ is identified with the wave function $psi_alpha (bold(x)')$---everything is the same for momentum. The momentum operator becomes
+$
+  braket(beta, bold(p), alpha) = integral dd(x', 3) psi_beta^* (bold(x)')(-i hbar grad') psi_alpha (bold(x)')
+$
+and the transformation function
+$
+  braket(bold(x)', bold(p)') = 1/(2 pi hbar)^(3\/2) exp((i bold(p)'dot bold(x)')/hbar)
+$
+so we find
+$
+  psi_alpha (bold(x)') &= 1/(2 pi hbar)^(3\/2) integral dd(p', 3) exp((i bold(p)'dot bold(x)')/hbar) phi_alpha (bold(p)') \
+  phi_alpha (bold(p)') &= 1/(2pi hbar)^(3\/2) integral dd(x', 3) exp((- i bold(p)' dot bold(x)')/hbar) psi_alpha (bold(x)')
+$
 
 #pagebreak()
 = Quantum Dynamics
-
-#pagebreak()
-= Angular Momentum
