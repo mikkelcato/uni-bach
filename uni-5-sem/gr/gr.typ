@@ -518,8 +518,3 @@ $
   dv(x^mu, tau, 2) + tensor(Gamma, mu, -nu lambda) dv(x^nu, tau) dv(x^lambda, tau) = 0
 $
 which is just the geodesic equation.
-
-#pagebreak()
-= Cosmology
-
-
