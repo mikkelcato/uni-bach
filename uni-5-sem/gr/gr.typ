@@ -310,7 +310,7 @@ consider the derivatives of the four-vector itself $partial_alpha bold(x)$, this
 $
   partial_alpha bold(x) -> partial'_alpha bold(x) = pdv(x^gamma, x'^alpha) partial_gamma bold(x)
 $
-since the four-vector is coordinate independent, we can act with $bold(e)'^beta$---the inverse basis vectors---on both sides giving
+since the four-vector is coordinate independent. We can act with $bold(e)'^beta$---the inverse basis vectors---on both sides giving
 $
   bold(e)'^beta dot partial'_alpha bold(x) = pdv(x^gamma, x'^alpha) pdv(x'^beta, x^delta) bold(e)^delta dot partial_gamma bold(x)
 $

@@ -54,6 +54,7 @@ $
 $<lattice-translation>
 all $bold(r)'$ give the lattice.
 
+// 8 subjects, 5 min
 
 #let latt1 = cetz.canvas({
   import cetz.draw: *
@@ -226,7 +227,7 @@ The $bold(a)_i$ are not unique so we can have different types of primitive cells
 === Point groups
 Lattices can be mapped onto themselves by translations $bold(T)$ (the space group) and other symmetry operations. The lattice (crystallographic) point group is the collection of symmetries which when applied to a lattice point returns the lattice. This group includes rotations about an axis and reflections about a plane---an inversion would be a combination of these. For rotations we can find lattices with one-, two-, three-, four-, and sixfold rotational symmetry---others are not possible since our lattice is infinite due to translational symmetry.
 
-Using Schoenflies notation the 32 possible point groups can be classified. These are ${C_n, C_(n h), C_(n v)}, S_(2 n), {D_n, D_(n h), D_(n d)}, {T, T_d, T_h}", and" {O, O_h}$, with $n = {1,2,3,4,6}$.
+
 
 === Two dimensions
 A lattice type is called a Bravais lattice, in two dimensions we have five different Bravais lattices. A general lattice is oblique and has one- and twofold rotational symmetry---see @oblique-latt. To get lattices with nice symmetries we impose restrictions on $bold(a)_1$ and $bold(a)_2$. Here we have four special lattices---see @spec-latt.
@@ -487,6 +488,7 @@ In three dimensions the point symmetry group requires 14 different lattice types
 ) <latt3d>
 
 The cubic system is very important, the three lattices are called the simple cubic, body-centered cubic, and the face-centered cubic---what they look like should be obvious. Note that the position of a point within a cell is denoted using @basis-coord.
+
 /*
 #let latt-cubic = cetz.canvas({
   import cetz.draw: *
@@ -570,7 +572,8 @@ The cubic system is very important, the three lattices are called the simple cub
 */
 
 === Crystal planes
-The orientation of a crystal plane is given by Miller indices. This is done by finding the intercepts with the crystal axes in terms of $a_i$. Then we take the reciprocals and reduce to the smallest three integers having the same ratio, and if an intercept is a infinity we let that index be zero. The result is $(h k l)$, a negative index gets a minus sign like $(h overline(k) l)$. Many planes will be parallel e.g. $(001)$ and $(002)$. We denote equivalent planes by ${h k l}$, so the set of cube faces would be ${1 0 0}$. The indices $[u v w]$ indicates a direction and is basically a vector. In the cubic system $(h k l) perp [h k l]$. Here $expval(u v w)$ is a family of equivalent directions.
+The orientation of a crystal plane is given by Miller indices. This is done by finding the intercepts with the crystal axes in terms of $a_i$. Then we take the reciprocals and reduce to the smallest three integers having the same ratio, and if an intercept is a infinity we let that index be zero. The result is $(h k l)$, a negative index gets a minus sign like $(h overline(k) l)$. Many planes will be parallel e.g. $(001)$ and $(002)$. We denote equivalent planes by ${h k l}$, so the set of cube faces would be ${1 0 0}$. The indices $[u v w]$ indicates a direction and is basically a vector. In the cubic system $(h k l) perp [h k l]$. Here $expval(u v w)$ is a family of equivalent directions. In this course we only use $(h k l)$ and $[h k l]$.
+
 
 In hexagonal crystals we introduce a fourth index $i = -(h + k)$ to get the Miller-Bravais indices $(h k i l)$, similarly we have $[U V T w]$ with $ U = 1/3 (2 u - v)", " V = 1/3 (2 v - u)", and" T = -(u + v) $
 
