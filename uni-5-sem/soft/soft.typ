@@ -152,7 +152,7 @@ $
      & = phi^2 pdv(, phi)(f/phi) + f(0)
 $
 osmotic pressure can be treated as a measure of how strongly solute and solvent mix.
-/*
+
 The mixing force can also be interpreted in terms of the chemical potential $mu$, defined as
 $
   mu_p equiv (pdv(G, N_p))_(N_s,T,P)"    " mu_s equiv (pdv(G, N_s))_(N_p,T,P)
@@ -201,7 +201,7 @@ $
   pdv(f, phi, 2) > 0", for " phi_1 < phi < phi_2
 $
 then $dd(mu_p, d: partial)\/dd(phi, d: partial)$ is always positive, and $dd(mu_s, d: partial)\/dd(phi, d: partial)$ is always negative. So if there is a potential gradient, solute molecules will move from high to low, while solvent molecules will move from low to high. This happens until $mu_p$ increases to some common $mu$ while $mu_s$ decreases---this is diffusion.
-*/
+
 
 In a dilute solution we can ignore the interaction between solute molecules, and $Pi$ is given by van't Hoff's law:
 $
@@ -223,7 +223,6 @@ $
   => f(phi) &= f_0 + k_0 phi + (k_B T)/v_p phi ln phi + A_2 phi^2 + A_3/2 phi^3 + dots
 $
 
-/*
 using this we obtain
 $
   mu_p (phi) &= v_p {P + f(phi,T) + (1- phi) pdv(f, phi)} \
@@ -242,7 +241,7 @@ $
   &= v_s f_0 +v_s P - v_s/v_p k_B T phi - v_s A_2 phi^2 - v_s A_3 phi^3 \
   &= mu_s^((0)) (T) + v_s P - v_s/v_p k_B T phi - v_s (A_2 phi^2 + A_3 phi^3 + dots)
 $
-*/
+
 
 
 === Phases
@@ -272,7 +271,7 @@ $
   f'(phi_a)=f'(phi_b)",  " f(phi_a) - f'(phi_a) phi_a = f(phi_b) - f'(phi_b) phi_b
 $
 
-We can subdivide the region $phi_a < phi < phi_b$ into unstable and metastable regions. Let $phi^*_b$ be the point where
+This is equivalent to the chemical potentials being the same. We can subdivide the region $phi_a < phi < phi_b$ into unstable and metastable regions. Let $phi^*_b$ be the point where
 $
   pdv(f, phi, 2) = 0
 $
@@ -281,8 +280,11 @@ $
   pdv(f, phi, 2) = pdv(f, phi, 3) = 0
 $
 
-== Regular solution theory --- Lattice model
-We'll calculate $f(phi)$ using a simple model---the lattice model. We assume our solution is a lattice, where every point is either occupied by a solute or solvent molecule. We assume both have the same volume $v_c$. Then
+\* spinodal decomposition ($f''<0$), nucleation & growth ($f'' > 0$)---always want $mu_a = mu_b$, "trivially" done for spinodal, harder for systems in $phi_a < phi < phi^*_a ->$ nucleation & growth.
+
+#pagebreak()
+== Regular solution theory
+We'll calculate $f(phi)$ using a simple model. We assume our solution is a lattice, where every point is either occupied by a solute or solvent molecule. We assume both have the same volume $v_c$. Then
 $
   V = v_c N_"tot"",  " phi = N_p/N_"tot"
 $
@@ -300,33 +302,81 @@ $
 $
 to make our lives easier we do
 $
-  Z tilde.eq W exp((- expval(E))/(k_B T))
+  Z tilde.eq W exp((- expval(Delta E_c))/(k_B T))
 $
-with $expval(E)$ being the average energy, and $W$ being the amount of configurations, so how many ways we can place $N_p$ molecules on $N_"tot"$ cells, i.e.
+with $expval(E)$ being the average energy, and $W$ being the amount of configurations, so how many ways we can place $N_p$ molecules on $N_"tot"$ cells. We start by finding $expval(Delta E_c)$
 $
-  W = (N_p+N_s)!/(N_p! N_s!)
-$
-we want to find
-$
-  expval(E) = epsilon_"pp" expval(N)_"pp" + epsilon_"ss" expval(N)_"ss" + epsilon_"ps" expval(N)_"ps" - E_"pure"
+  expval(Delta E_c) = epsilon_"pp" expval(N_"pp") + epsilon_"ss" expval(N_"ss") + epsilon_"ps" expval(N_"ps") - E_"pure"
 $
 each cell has $z$ neighbors, on average $z phi$ cells are solute while $z (1-phi)$ are solvent. So we can write
 $
-  expval(N)_"pp" = (z phi N_p)/2 = (z N_"tot" phi^2)/2
+  expval(N_"pp") = (z phi N_p)/2 = (z N_"tot" phi^2)/2
 $
 and similarly
 $
-  expval(N)_"ss" & = N_s (z(1-phi))/2 = (z N_"tot" (1-phi)^2)/2 \
-  expval(N)_"ps" & = N_p z(1-phi)=N_s z phi = z N_"tot" phi(1-phi)
+  expval(N_"ss") & = N_s (z(1-phi))/2 = (z N_"tot" (1-phi)^2)/2 \
+  expval(N_"ps") & = N_p z(1-phi)=N_s z phi = z N_"tot" phi(1-phi)
 $
 and
 $
-  E_"pure" = epsilon_"pp" expval(N^"pure")_"pp" + epsilon_"ss" expval(N^"pure")_"ss"
+  E_"pure" = epsilon_"pp" expval(N^"pure"_"pp") + epsilon_"ss" expval(N^"pure"_"ss")
 $
 in both cases $phi = 1$ so
 $
-  expval(N^"pure")_"pp" = (N_p z)/2 "   " expval(N^"pure")_"ss" = (N_s z)/2
+  expval(N^"pure"_"pp") = (N_p z)/2 "   " expval(N^"pure"_"ss") = (N_s z)/2
 $
+we get (using $phi = N_p\/N_"tot"$ and $1-phi = N_s\/N_"tot"$)
+$
+  expval(Delta E_c) &= epsilon_"pp" (N_p z phi )/2 + epsilon_"ps" N_p z (1-phi) + epsilon_"ss" (N_s z (1-phi))/2 - epsilon_"pp" (N_p z)/2 - epsilon_"ss" (N_s z)/2 \
+  &= (N_"tot" z)/2 (epsilon_"pp" (phi^2-phi) + 2 epsilon_"ps" phi (1-phi) + epsilon_"ss" ((1-phi)^2 - 1+phi)) \
+  &= (N_"tot" z)/2 (-epsilon_"pp" phi (1-phi) + 2 epsilon_"ps" phi(1-phi) - epsilon_"ss" phi (1-phi)) \
+  &= N_"tot" (z )/2 (2 epsilon_"ps" - epsilon_"pp" - epsilon_"ss") phi (1-phi) \
+  &= N_"tot" k_B T chi phi(1-phi)
+$
+where we define (which is nice and unit-less)
+$
+  chi equiv z/(2 k_B T) (2 epsilon_"ps"-epsilon_"pp"-epsilon_"ss")
+$
+now we need the amount of configurations $W$. This is just $N_"tot" = (N_p + N_s) "choose" N_p$, and since we need the logarithm we do
+$
+  ln (W) &= ln ((N_p + N_s)!/(N_p! N_s!)) \
+  &= ln((N_p + N_s)!) - ln(N_p !) - ln(N_s !) \
+  &tilde.eq^"stirling" (N_p+N_s) ln (N_p + N_s)-N_p - N_s - N_p ln N_p + N_p - N_s ln N_s + N_s \
+  &= (N_p + N_s) ln (N_p+N_s) - N_p ln N_p - N_s ln N_s \
+  &= N_p ln (N_p + N_s)/N_p + N_s ln (N_p + N_s)/N_s \
+  &= - N_p ln N_p/(N_p + N_s) - N_s ln N_s/(N_p+N_s) \
+  &= -N_"tot" ( phi ln phi + (1-phi) ln (1-phi) )
+$
+now we obtain:
+$
+  F &= - k_B T ln Z \
+  &= - k_B T ln (W e^(- expval(Delta E_c)/(k_B T))) \
+  &= - k_B T (ln W - expval(Delta E_c)/(k_B T)) \
+  &= - k_B T ln W + expval(Delta E_c) \
+  &= N_"tot" k_B T (phi ln phi + (1-phi) ln(1-phi)) + N_"tot" k_B T chi phi(1-phi) \
+  &= N_"tot" k_B T (phi ln phi + (1- phi) ln(1-phi) + chi phi(1-phi))
+$
+we want $f(phi,T)$,
+$
+  f(phi,T) &= F/V = F/(N_"tot" v_c) \
+  &= (N_"tot" k_B T)/(N_"tot" v_c) (phi ln phi + (1-phi) ln(1-phi) + chi phi(1-phi)) \
+  &= (k_B T)/v_c (phi ln phi + (1-phi) ln(1-phi) + chi phi(1-phi))
+$
+where everything in the brackets is unitless, and $k_B T\/v_c$ is an energy density. The first two terms correspond to the Gibbs' entropy---and we call it the configurational entropy (or entropy of mixing), from ($H=0$)
+$
+  F = - k_B T sum P_i ln P_i
+$
+The $chi$ term is the interaction term or the enthalpy, and we can write
+$
+  chi = chi_H - T chi_S
+$
+corresponding to $F = H - T S$, evidently at high temperature entropy dominates, while at low temperature the actual interaction between molecules (enthalpy) dominates.
+
+For more $phi$:
+$
+  f(phi_A,phi_B,phi_C, T) = (k_B T)/v_c (phi_A ln phi_A + phi_B ln phi_B + phi_C ln phi_C + chi_(A B) phi_A phi_B + chi_(C B) phi_C phi_B + chi_(A C) phi_A phi_C)
+$
+
 /*
 so
 $
@@ -394,7 +444,7 @@ correlation effect\*
 Elastic soft matter could be rubber or gel. The main property of these materials is that we can deform them, and after they'll recover they shape---these typically consist of polymers, in solution (cross-links) or not in solution.
 
 == Basic definitions
-We can define shear stress $sigma$ and shear strain $gamma$ ass
+We can define shear stress $sigma$ and shear strain $gamma$ as
 $
   sigma = F/S
 $

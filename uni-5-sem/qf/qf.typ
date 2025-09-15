@@ -1381,4 +1381,207 @@ $
 this is just the Hamilton-Jacobi equation, with $S$ being Hamilton's principal function. So in the $hbar arrow 0$ limit we recover classical mechanics.
 #pagebreak()
 == Solutions to the wave-equation
+We'll go through solutions for specific $V(bold(x))$.
+=== Free particle
+We start with $V(bold(x)) = 0$. The time-independent Schrödinger equation becomes
+$
+  nabla^2 u_E (bold(x)) = - (2 m E)/hbar^2 u_E (bold(x))
+$
+we define
+$
+  bold(k)^2 = k_x^2 +k_y^2 + k_z^2 equiv (2 m E)/hbar^2 = bold(p)^2/hbar^2
+$
+this is easily solved by $u_E (bold(x)) = u_x (x) u_y (y) u_z (z)$. Giving
+$
+  (1/u_x dv(u_x, x, 2) + k_x^2) + (1/u_y dv(u_y, y, 2) + k_y^2) + (1/u_z dv(u_z, z, 2) + k_z^2) = 0
+$
+this has solutions
+$
+  u_w (w) = c_w e^(i k_w w)" for "w={x,y,z}
+$
+so we obtain
+$
+  u_E (bold(x)) = c_x c_y c_z e^(i k_x x + i k_y z + i k_z z) = C e^(i bold(k) dot bold(x))
+$
+this cannot be normalized in the usual way. Instead we use big-box normalization, where we say all space is within a cube of side $L$---with periodic boundaries so
+$
+  u_x (x + L) = u_x (x) => k_x L = 2 pi n_x => k_x = (2 pi)/L n_x
+$
+and similarly for $y$ and $z$. Normalization gives
+$
+  1 = integral_0^L dd(x) integral_0^L dd(y) integral_0^L dd(z) u_E^* (bold(x)) u_E (bold(x)) = L^3 abs(C)^2 => C = 1/L^(3\/2)
+$
+so
+$
+  u_E (bold(x)) = 1/(L^(3\/2)) e^(i bold(k) dot bold(x))
+$
+with energies
+$
+  E = bold(p)^2/(2m) = hbar^2/(2m) ((2pi)/L)^2 (n_x^2 + n_y^2 + n_z^2)
+$
+we can find the density of states $dd(N)\/dd(E)$ by considering a shell in $bold(k)$ space with radius $abs(bold(k)) = 2pi abs(bold(n)) \/L$ and thickness $dd(abs(bold(k))) = 2 pi dd(abs(bold(n))) \/L$. All states in this shell have $E = hbar^2 bold(k)^2 \/2 m$. The number of states $dd(N)$ within the shell is $4 pi bold(n)^2 dd(abs(bold(n)))$---volume of shell. So
+$
+  dv(N, E) &= (4 pi bold(n)^2 dd(abs(bold(n))))/(hbar^2 abs(bold(k)) dd(abs(bold(k)))\/m) = (4 pi m)/hbar^2 (bold(n)^2)/(2 pi abs(bold(n))\/L) (dd(abs(bold(n))) )/(2 pi dd(abs(bold(n))) \/ L) \
+  &= (4 pi m)/hbar^2 (L/(2 pi))^2 abs(bold(n)) \
+  &= (4 pi m)/hbar^2 (L/(2 pi))^3 abs(bold(k)) = (4 pi m)/hbar^2 (L/(2 pi))^3 sqrt(2 m E)/hbar \
+  &= (m^(3\/2) E^(1\/2) L^3)/(sqrt(2) pi^2 hbar^3)
+$
+In a more accurate representation the normalization would cancel and give the correct result.
 
+=== SHO
+We have $V(x) = m omega^2 x^2 \/2$, giving
+$
+  - hbar^2/(2m) dv(, x, 2) u_E (x) + 1/2 m omega^2 x^2 u_E (x) = E u_E (x)
+$
+we define $y equiv x\/x_0$ with $x_0 equiv sqrt(hbar\/m omega)$, and a diemensionless energy $epsilon equiv 2 E \/hbar omega$ giving
+$
+  dv(, y, 2) u(y) + (epsilon - y^2) u (y) = 0
+$
+the equation $w''(y) - y^2 w(y) = 0$ has solutions $w(y) prop exp(plus.minus y^2\/2)$, we need the minus sign, else normalizing our solution would be impossible. So we write
+$
+  u(y) = h(y) e^(- y^2 \/2)
+$
+where $h(y)$ satisfies
+$
+  dv(h, y, 2) - 2 y dv(h, y) + (epsilon -1) h(y) = 0
+$
+Now we introduce generating functions. Consider
+$
+  g(x,t) & equiv e^(-t^2 + 2 t x) \
+         & equiv sum_(n=0)^oo H_n (x) t^n/n!
+$
+with $H_n (x)$ being the Hermite polynomials---notice that $H_0 (x) = 1$. And
+$
+  g(0,t) = e^(-t^2) = sum_(n=0)^oo (-1)^n/n! t^(2n)
+$
+so $H_n (0) = 0$ for odd $n$. For even $n$,
+$
+  g(0,t) = e^(-t^2) = sum_(n=0)^oo (-1)^(n\/2)/(n\/2)! t^n = sum_(n=0)^oo (-1)^(n\/2)/(n\/2)! n!/n! t^n => H_n (0) = ((-1)^(n\/2) n!)/(n\/2)!
+$
+and $H_n (-x) = (-1)^n H_n (x)$. By taking two different derivatives we can find
+$
+  H'_n (x) = 2 n H_(n-1) (x)
+$
+with this we can build all $H_n$.
+
+This is relevant since by taking time-derivatives we find
+$
+  H_(n+1) (x) = 2 x H_n (x) - 2n H_(n-1) (x)
+$
+or using the previous recursion relation
+$
+  H''_n (x) = 2 x H'_n (x) - 2 n H_n (x)
+$
+which is equivalent to the transformed Schrödinger equation with $epsilon -1 = 2n$. So
+$
+  u_n (x) = c_n H_n (x sqrt((m omega)/hbar)) e^(- m omega x^2 \/2 hbar)
+$
+with $c_n$ being found by
+$
+  integral_(-oo)^oo H_n (x) H_m (x) e^(-x^2) dd(x) = pi^(1\/2) 2^n n! delta_(n m)
+$
+
+=== Linear potential
+The linear potential is $V(x) = k abs(x)$. This potential has a classical turning point at some $x = a$ with $E = k a$.
+
+The Schrödinger equation becomes
+$
+  - hbar^2/(2m) dv(u_E, x, 2) + k abs(x) u_E (x) = E u_E (x)
+$
+we can just treat $x >= 0$ since $V(-x) = V(x)$. We have two types of solutions $u_E (-x) = plus.minus u_E (x)$, in both cases $u_E (x) arrow 0$ as $x arrow oo$. If $u_E (-x) = - u_E (x)$ then $u_E (0) = 0$. If $u_E (-x) = u_E (x)$ then $u'_E (0) = 0$, since $u_E (epsilon) - u_E (-epsilon) equiv 0$ for $epsilon arrow 0$---these are referred to as even or odd parity.
+
+We define
+$
+  x_0 = ((hbar^2)/(m k))^(1\/3) "and" E_0 = k x_0 = ((hbar^2 k^2)/m)^(1\/3)
+$
+giving dimensionless $y equiv x\/x_0$ and $epsilon equiv E\/E_0$, and we obtain
+$
+  dv(u_E, y, 2) - 2 (y-epsilon) u_E (y) = 0 "for" y>=0
+$
+note $y = epsilon$ when $x = E\/k$---the classical turning point $a$. We can define $z equiv 2^(1\/3) (y-epsilon)$ giving
+$
+  dv(u_E, z, 2) - z u_E (z) = 0
+$
+which is the Airy equation, with the solution being the Airy function $"Ai"(z)$. The boundary conditions becomes zeroes for $"Ai"'(z)$ and $"Ai" (z)$ with $z = - 2^(1\/3) epsilon$. These determine the quantized energies.
+
+This potential actually corresponds to a quark-antiquark bound system with $k tilde r$. It also corresponds to the quantum bouncing ball with $k = m g$---this is only for $x >= 0$ as there is an infinite potential barrier at $x = 0$ causing the bounce---this means that only odd parity solutions are allowed.
+
+=== WKB
+The WKB (Wentzel, Kramers and Brillouin) approximation is a useful technique which uses the linear potential to join solutions near turning points.
+
+We can write
+$
+  dv(u_E, x, 2) + (2 m)/hbar^2 (E - V(x)) u_E (x) = 0
+$
+we define
+$
+  k(x) &equiv [(2 m)/hbar^2 (E-V(x))]^(1\/2) "for" E > V(x) \
+  k(x) equiv - i kappa(x) &equiv - i [(2 m)/hbar^2 (V(x)-E)]^(1\/2) "for" E < V(x)
+$
+so
+$
+  dv(u_E, x, 2) + k(x)^2 u_E (x) = 0
+$
+we assume $V(x)$ varies slowly and try a solution of the form
+$
+  u_E (x) equiv exp(i W(x) \/hbar)
+$
+giving
+$
+  i hbar dv(W, x, 2) - (dv(W, x))^2 + hbar^2 k(x)^2 = 0
+$
+varying slowly is quantified by the condition
+$
+  hbar abs(dv(W, x, 2)) << abs(dv(W, x))^2
+$
+this gives a lowest-order approximation for $W(x)$
+$
+  W'_0 (x) = plus.minus hbar k(x)
+$
+a first-order approximation is then obtained
+$
+  (dv(W_1, x))^2 & = hbar^2 k(x)^2 + i hbar W''_0 (x) \
+                 & = hbar^2 k(x)^2 plus.minus i hbar^2 k' (x)
+$
+so
+$
+  W(x) approx W_1 (x) &= plus.minus hbar integral^x dd(x)' [k^2 (x') plus.minus i k' (x')]^(1\/2) \
+  &approx plus.minus hbar integral^x dd(x)' k(x') [1 plus.minus i/2 (k'(x'))/(k^2 (x'))] \
+  &= plus.minus hbar integral^x dd(x') k(x') + i/2 hbar ln(k(x))
+$
+the WKB approximation is then
+$
+  u_E (x) approx exp[i W(x) \/hbar] = 1/sqrt(k(x)) exp(plus.minus i integral^x dd(x)' k(x'))
+$
+this specifies the solutions for $E > V$ and $E < V$. We don't care about the joining procedure.
+
+Instead consider a potential well with turning points $x_1$ and $x_2$ creating three regions. In the middle region the wave function behaves like our approximation with the first $k(x)$ and in the two outer regions with the second $k(x)$. In the neighborhood of the turning points the solutions are given by Airy function, since we assume a linear approximation in those regions. This leads to a consistency check
+$
+  integral_(x_1)^(x_2) dd(x) sqrt(2 m (E-V(x))) = (n+1/2) pi hbar
+$
+this gives approximate expressions for the energy levels. Again consider the bounding ball with
+$
+  V = cases(m g x "  for" x > 0, oo "     for" x < 0)
+$
+where $x$ is the height from the surface. We could use $x_1 = 0$ and $x_2 = E\/m g$, this is the classical turning points, but our wave function leaks into $x < x_1$ region, even though we require it must vanish. For this we use tha odd-parity solutions which vanish at $x = 0$.  So
+$
+  V(x) = m g abs(x)
+$
+with turning points $x_1 = - E\/m g$ and $x_2 = E\/m g$. Then
+$
+  integral_(- E\/m g)^(E\/m g) dd(x) sqrt(2m (E-m g abs(x))) = (n_"odd" + 1/2) pi hbar
+$
+or
+$
+  integral_0^(E\/m g) dd(x) sqrt(2 m (E- m g x)) = (n - 1/4) pi hbar
+$
+giving
+$
+  E_n = {[3(n - 1\/4) pi]^(2\/3)/2} (m g^2 hbar^2)^(1\/3)
+$
+\* interpretation of WKB limit.
+
+The WKB limit is equivalent to
+$
+  lambda = hbar/sqrt(2 m [E-V(x)]) << (2 (E-V(x)))/abs(dd(V)\/dd(x))
+$

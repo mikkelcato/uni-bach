@@ -208,6 +208,226 @@ $
 $
 Importantly the Newtonian field theory of gravitation is clearly incompatible with special relativity as time and space are not treated equally---in fact it is a static theory, this reflects the underlying physics admitting an action at a distance description, implying an infinite signal speed.
 
+#pagebreak()
+== The principle
+In Newtonian mechanics we have two kinds of mass the inertial mass $m_i$ and the gravitational mass $m_g$ defined by
+$
+  arrow(F) = m_i arrow(a)"  and  "arrow(F) = m_g arrow(g)
+$
+the most basic statement of the equivalence principle (EP) is that $m_i = m_g$, which lets us identify $dot.double(arrow(x)) = arrow(g)$---notably this is an empirical law, which is why we call it a principle.
+
+The principle implies that we can always do a coordinate transformation to some local frame with no acceleration by
+$
+  arrow(y) = arrow(x) - 1/2 arrow(g) t^2 => dot.double(arrow(y)) = 0
+$
+if $dot.double(arrow(x)) = arrow(g)$---so locally $arrow(g) tilde arrow(a)$.
+
+What Einstein did was generalize this to all of physics by the strong equivalence principle (strong EP)---which can be stated as:
+
+_"In any gravitational field it is possible to select a locally inertial system (i.e. we can pick $arrow(y)$ with no gravity)---a freely falling elevator---such that the laws of physics are the same as in special relativity---i.e. no gravity."_
+
+From this principle everything in general relativity essentially follows, as will be seen the next section.
+
+== The metric and the geodesic equation
+In special relativity we had
+$
+  dd(tau)^2 = - eta_(alpha beta) dd(y)^alpha dd(y)^beta
+$
+here space is flat and there is no gravity ($x_i = x^i$). With gravity the previous is still true locally $y^alpha -> y^alpha (x)$ so
+$
+  dd(tau)^2 = - eta_(alpha beta) dd(y)^alpha (x) dd(y)^beta (x)
+$
+to get a global relation we have by the chain rule
+$
+  dd(tau)^2 &= - eta_(alpha beta) pdv(y^alpha (x), x^mu) pdv(y^beta (x), x^nu) dd(x)^mu dd(x)^nu \
+  &= - g_(mu nu) (x) dd(x)^mu dd(x)^nu
+$
+so now the metric $g_(mu nu)$ has become space dependent, with
+$
+  g_(mu nu) (x) = eta_(alpha beta) pdv(y^alpha (x), x^mu) pdv(y^beta (x), x^nu)
+$
+now the metric obviously becomes space-dependent, and hence space becomes non-euclidean---so $g_(mu nu)$ contains gravity.
+
+Locally we have
+$
+  dv(y^alpha (x), tau, 2) = 0
+$
+which can be written as
+$
+  0 & = dv(, tau) (dv(y^alpha (x), tau)) \
+  & = dv(, tau) (pdv(y^alpha, x^mu) pdv(x^mu (tau), tau)) \
+  & = pdv(y^alpha, x^mu) dv(x^mu, tau, 2) + pdv(y^alpha, x^mu, x^nu) dv(x^mu, tau) dv(x^nu, tau) \
+  & = pdv(x^lambda, y^alpha) (pdv(y^alpha, x^mu) dv(x^mu, tau, 2) + pdv(y^alpha, x^mu, x^nu) dv(x^mu, tau) dv(x^nu, tau)) \
+  & = tensor(delta, lambda, -mu) dv(x^mu, tau, 2) + pdv(x^lambda, y^alpha) pdv(y^alpha, x^mu, x^nu) dv(x^mu, tau) dv(x^nu, tau) \
+  & = dv(x^lambda, tau, 2) + tensor(Gamma, lambda, -mu nu) dv(x^mu, tau) dv(x^nu, tau)
+$
+where we define the Christoffel symbol (or affine connection) as
+$
+  tensor(Gamma, lambda, -mu nu) = pdv(x^lambda, y^alpha) pdv(y^alpha, x^mu, x^nu)
+$
+which is zero for flat space. This is our equation of motion in general relativity, and it is just the geodesic equation---see appendix.
+
+Since the Christoffel symbol is zero for flat space it in some way encodes gravity, meaning there must be some relation between $Gamma tilde g$. To this end note that
+$
+  tensor(Gamma, lambda, -mu nu) pdv(y^beta, x^lambda) &= pdv(y^alpha, x^mu, x^nu) pdv(x^lambda, y^alpha) pdv(y^beta, x^lambda) \
+  &= pdv(y^alpha, x^mu, x^nu) tensor(delta, beta, -alpha) \
+  &= pdv(y^beta, x^mu, x^nu)
+$
+then
+$
+  pdv(g_(mu nu), x^lambda) &= pdv(, x^lambda) (eta_(alpha beta) pdv(y^alpha, x^mu) pdv(y^beta, x^nu)) \
+  &= eta_(alpha beta) pdv(y^alpha, x^lambda, x^mu) pdv(y^beta, x^nu) + eta_(alpha beta) pdv(y^beta, x^lambda, x^nu) pdv(y^alpha, x^mu) \
+  &= eta_(alpha beta) pdv(y^beta, x^nu) tensor(Gamma, rho, -lambda mu) pdv(y^alpha, x^rho) + eta_(alpha beta) pdv(y^alpha, x^mu) tensor(Gamma, rho, -lambda nu) pdv(y^beta, x^rho) \
+  &= g_(rho nu) tensor(Gamma, rho, -mu lambda) + g_(rho mu) tensor(Gamma, rho, -nu lambda)
+$
+using the symmetry of the Christoffel symbol we can then find
+$
+  pdv(g_(mu nu), x^lambda) + pdv(g_(lambda nu), x^mu) - pdv(g_(mu lambda), x^nu) = 2 g_(sigma nu) tensor(Gamma, rho, -lambda mu)
+$
+now we define the inverse metric $g^(mu nu)$ by
+$
+  g_(mu nu) (x) g^(nu sigma) (x) = tensor(delta, sigma, -mu)
+$
+we claim that
+$
+  g^(nu sigma) = eta^(alpha beta) pdv(x^nu, y^alpha) pdv(x^sigma, y^beta)
+$
+is the inverse. This is easily checked
+$
+  g_(mu nu) g^(nu sigma) &= eta_(gamma delta) pdv(y^gamma, x^mu) pdv(y^delta, x^nu) eta^(alpha beta) pdv(x^nu, y^alpha) pdv(x^sigma, y^beta) \
+  &= eta_(gamma delta) eta^(alpha beta) tensor(delta, delta, -alpha) pdv(y^gamma, x^mu) pdv(x^sigma, y^beta) \
+  &= eta_(gamma delta) eta^(delta beta) pdv(y^gamma, x^mu) pdv(x^sigma, y^beta) \
+  &= tensor(delta, beta, -gamma) pdv(y^gamma, x^mu) pdv(x^sigma, y^beta) \
+  &= pdv(y^beta, x^mu) pdv(x^sigma, y^beta) \
+  &= tensor(delta, sigma, -mu)
+$
+so the inverse exists and we can write the Christoffel symbol as
+$
+  tensor(Gamma, lambda, -mu nu) = 1/2 g^(lambda sigma) [pdv(g_(nu sigma), x^mu) + pdv(g_(mu sigma), x^nu) - pdv(g_(mu nu), x^sigma)]
+$
+and this clearly shows that the metric encodes gravity. Which is why as we'll see solving the Einstein field equations give us the metric---which then gives us the path of motion by the geodesic equation.
+
+== Newtonian limit
+We want to check if we can recover Newton's law of gravity in the Newtonian limit. In this limit all velocities are small $abs(dd(arrow(x))\/dd(tau)) << 1$, and $g_(mu nu)$ is time-independent---so the field is static.
+
+In this limit we have to lowest order (by the first assumption)
+$
+  dv(x^lambda, tau, 2) + tensor(Gamma, lambda, -mu nu) dv(x^mu, tau) dv(x^nu, tau) = 0 => dv(x^mu, tau, 2) + tensor(Gamma, mu, -00) (dv(t, tau))^2 tilde.eq 0
+$
+by the second assumption
+$
+  tensor(Gamma, mu, -00) = 1/2 g^(mu sigma) [pdv(g_(0 sigma), x^0) + pdv(g_(mu 0), x^0) - pdv(g_(00), x^sigma)] tilde.eq - 1/2 g^(mu sigma) pdv(g_(00), x^sigma)
+$
+we assume gravity is small, so we write
+$
+  g_(mu nu) (x) = eta_(mu nu) + h_(mu nu) (x)",  " abs(h_(mu nu)) << 1
+$
+so to leading order in $h_(mu nu)$ we have
+$
+  tensor(Gamma, mu, -00) tilde.eq - 1/2 eta^(mu sigma) pdv(h_(00), x^sigma)
+$
+given $h_(00)$ is time-independent then $tensor(Gamma, 0, -00) = 0$, so we find
+$
+  dv(t, tau) = "const"
+$
+for $mu = i$ then
+$
+  dv(arrow(x), tau, 2) - 1/2 (dv(t, tau))^2 grad h_(00) (arrow(x)) tilde.eq 0 => dv(arrow(x), t, 2) = 1/2 grad h_(00) (arrow(x))
+$
+by comparison with Newton's law of gravity we identify
+$
+  h_(00) = - 2 Phi + "const"
+$
+or
+$
+  g_(00) = - (1 + 2 Phi(x))
+$
+this immediately leads to non-trivial results by considering a clock in free fall
+$
+  dd(tau)^2 = - eta_(00) dd(t)^2_"falling" tilde.eq - g_(00) dd(t)^2
+$
+so $dd(tau) = sqrt(-g_(00)) dd(t)$. This leads to a redshift
+$
+  omega_2/omega_1 = sqrt((g_00 (x_2))/(g_00 (x_1))) => (Delta omega)/omega_1 = Phi(x_2) - Phi(x_1)
+$
+
+#pagebreak()
+= The covariance principle
+The covariance principle states that; our equations must be covariant under the general coordinate transformations which leave $dd(s^2)$ invariant, and our equations should reduce to the correct special relativistic form in local inertial frames---additionally our equations reduce to Newtonian equations in the Newtonian limit. It can be treated as a generalization of the equivalence principle.
+
+This gives us a clear path to convert our equations from special relativity to general relativity, since the tensor formalism developed for the two only differ in their derivatives. We simply replace $partial$ by $D$ to convert our equations,
+$
+  partial -> D " "(= partial + Gamma)
+$
+this is minimal---gravitational---coupling. Christoffel symbols are derivatives of the metric---our potentials---so they bring the gravitational field strength into our equations naturally.
+
+As an example consider Maxwell's equations and the Lorentz force law from special relativity,
+$
+  dv(U^mu, tau) = q/c F^(mu nu) U_nu ->^"minimal coupling" (D U^mu)/(dd(tau)) = q/c F^(mu nu) U_nu
+$
+$
+  partial_mu F^mu nu = - 1/c j^nu & ->^"m.c" D_mu F^(mu nu) =-1/c j^nu \
+  partial_mu tilde(F)^(mu nu) = 0 & ->^"m.c" D_mu tilde(F)^(mu nu)=0
+$
+by taking $F^(mu nu) = 0$ in the Lorentz force law we can rederive the geodesic equation,
+$
+  (D U^mu)/dd(tau) = 0
+$
+just using the definition of $D$ and $U^mu = dd(x^mu)\/dd(tau)$ gives
+$
+  dv(x^mu, tau, 2) + tensor(Gamma, mu, -nu lambda) dv(x^nu, tau) dv(x^lambda, tau) = 0
+$
+which is just the geodesic equation.
+
+#pagebreak()
+= Derivation of the geodesic equation
+We want to show that the curve with extremum length---the geodesic---can be described in terms of the metric. Any curve can be represented by a set of coordinates $x^mu (lambda)$, where $lambda$ is some parameter. As we have seen the metric determines the infinitesimal length $ dd(s) = sqrt(g_(mu nu) dd(x^mu)dd(x^nu)) $ to get a length we integrate
+$
+  s = integral dd(s) = integral sqrt((dv(s, lambda))^2) dd(lambda) = integral L dd(lambda)
+$
+with the Lagrangian being
+$
+  L = sqrt(g_(mu nu) dv(x^mu, lambda) dv(x^nu, lambda)) = L (x, dot(x))
+$
+where we define $dot(x)^mu equiv dd(x)^mu\/dd(lambda)$. To find the extremum line we use the variational principle
+$
+  delta s = delta integral L(x,dot(x)) dd(lambda)=0
+$
+giving the Euler-Lagrange equation
+$
+  dv(, lambda) pdv(L, dot(x)^mu) - pdv(L, x^mu) = 0
+$
+it is a fact that using a Lagrangian of the form $ L(x, dot(x)) = g_(mu nu) dot(x)^mu dot(x)^nu $ gives the same equation of motion---this is just much easier to work with. The derivatives are relatively simple to calculate
+$
+  pdv(L, x^mu) = pdv(g_(sigma rho), x^mu) dot(x)^sigma dot(x)^rho
+$
+$
+  pdv(L, dot(x)^mu) &= pdv(, dot(x)^mu) [g_(sigma nu) dot(x)^sigma dot(x)^nu] \
+  &= g_(sigma nu) pdv(dot(x)^sigma, dot(x)^mu) dot(x)^nu + g_(sigma nu) dot(x)^sigma pdv(dot(x)^nu, dot(x)^mu) \
+  &= g_(sigma nu) delta_mu^sigma dot(x)^nu + g_(sigma nu) dot(x)^sigma delta_mu^nu = 2 g_(mu nu) dot(x)^nu
+$
+plugging everything in we find
+$
+  dv(, lambda) (g_(mu nu) dot(x)^nu) - 1/2 pdv(g_(sigma rho), x^mu) dot(x)^sigma dot(x)^rho = 0
+$
+which is our equation of motion. We can rewrite this into a neater form
+$
+  g_(mu nu) dv(x^nu, lambda, 2) + pdv(g_(mu nu), x^sigma)dv(x^sigma, lambda) dv(x^nu, lambda) - 1/2 pdv(g_(sigma rho), x^mu) dv(x^sigma, lambda) dv(x^rho, lambda)=0
+$
+in the second term the factor $(dd(x^sigma)\/dd(lambda))(dd(x^nu)\/dd(lambda))$ is symmetric under $sigma arrow.l.r nu$, so only the symmetric part of the coefficient, namely
+$
+  1/2 (pdv(g_(mu nu), x^sigma) + pdv(g_(mu sigma), x^nu))
+$
+will contribute. This happens since every tensor can be decomposed in a symmetric and antisymmetric part---since
+$
+  A_(sigma nu) = 1/2 (A_(sigma nu) + A_(nu sigma)) + 1/2(A_(sigma nu)-A_(nu sigma))
+$
+whenever a tensor gets contracted with a symmetric product only the symmetric part survives, since the antisymmetric part cancels. So we can write
+$
+  dv(x^nu, lambda, 2) + tensor(Gamma, nu, -sigma rho) dv(x^sigma, lambda) dv(x^rho, lambda) = 0
+$
+
+/*
 == The principle and implications
 The principle of equivalence is an empirical principle stating the equivalence of inertial mass and gravitational mass---so we have $m_I = m_G$ this was first mentioned by Galileo.
 
@@ -262,8 +482,8 @@ $
   n(r) equiv c/c(r) tilde.eq 1 - Phi(r)/c^2
 $
 To reiterate---the velocity of light has not changed, it is still a universal constant, but an observer with time $t$ measured by some distant clock will see that light appears to move slower. This can be used to calculate the bending of light.\*
-
-#pagebreak()
+*/
+/*
 = Tensors in relativity
 In special relativity the metric was the Minkowski metric $eta_(alpha beta)$, in general we have some other metric $g_(alpha beta) = e_alpha dot e_beta$ which has an inverse $g^(alpha beta) = e^alpha dot e^beta$---we also have $e_alpha e^beta = tensor(delta, -alpha, beta)$, implying $g_(alpha beta) g^(beta gamma) = tensor(delta, -alpha, gamma)$.
 
@@ -362,8 +582,9 @@ $
   tensor(Gamma, lambda, -mu nu) = 1/2 g^(lambda rho) (partial_nu g_(mu rho) + partial_mu g_(nu rho) - partial_rho g_(mu nu))
 $
 this is the fundamental theorem of Riemannian geometry.
+*/
 
-#pagebreak()
+/*
 = The geodesic equation
 == Relativity as geometry
 According to Einstein's theory all gravitational effects are caused by the underlying curved spacetime---this is motivated by the equivalence principle. General relativity states that matter and energy warps spacetime $g_(mu nu) eq.not eta_(mu nu)$.
@@ -490,31 +711,6 @@ $
   &= 1 + (Phi_"em"-Phi_"rec")/c^2 + cal(O)(Phi^2\/c^4)
 $
 and we have recovered our previous result.
+*/
 
-#pagebreak()
-= The covariance principle
-The covariance principle states that; our equations must be covariant under the general coordinate transformations which leave $dd(s^2)$ invariant, and our equations should reduce to the correct special relativistic form in local inertial frames---additionally our equations reduce to Newtonian equations in the Newtonian limit. It can be treated as a generalization of the equivalence principle.
 
-This gives us a clear path to convert our equations from special relativity to general relativity, since the tensor formalism developed for the two only differ in their derivatives. We simply replace $partial$ by $D$ to convert our equations,
-$
-  partial -> D " "(= partial + Gamma)
-$
-this is minimal---gravitational---coupling. Christoffel symbols are derivatives of the metric---our potentials---so they bring the gravitational field strength into our equations naturally.
-
-As an example consider Maxwell's equations and the Lorentz force law from special relativity,
-$
-  dv(U^mu, tau) = q/c F^(mu nu) U_nu ->^"minimal coupling" (D U^mu)/(dd(tau)) = q/c F^(mu nu) U_nu
-$
-$
-  partial_mu F^mu nu = - 1/c j^nu & ->^"m.c" D_mu F^(mu nu) =-1/c j^nu \
-  partial_mu tilde(F)^(mu nu) = 0 & ->^"m.c" D_mu tilde(F)^(mu nu)=0
-$
-by taking $F^(mu nu) = 0$ in the Lorentz force law we can rederive the geodesic equation,
-$
-  (D U^mu)/dd(tau) = 0
-$
-just using the definition of $D$ and $U^mu = dd(x^mu)\/dd(tau)$ gives
-$
-  dv(x^mu, tau, 2) + tensor(Gamma, mu, -nu lambda) dv(x^nu, tau) dv(x^lambda, tau) = 0
-$
-which is just the geodesic equation.
