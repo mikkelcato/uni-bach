@@ -161,3 +161,7 @@ $
   dot.double(a)/a = - (4 pi G P)/c^2 < 0
 $
 so $dot.double(a) < 0$ meaning the universe would contract.
+
+#pagebreak()
+= Lecture 3
+

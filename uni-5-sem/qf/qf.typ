@@ -1095,7 +1095,7 @@ these are obviously the same $braket(b', cal(U) (t,0), a')$.
 The basic difference between the two pictures is that in the Schrödinger picture only the state kets evolve, observables and base kets are stationary---while in the Heisenberg picture the state kets are stationary and both observables and base kets evolve, and here base kets evolve "backwards".
 
 #pagebreak()
-== SHO
+== Simple Harmonic Oscillator
 We want to solve
 $
   H = p^2/(2m) + (m omega^2 x^2)/2
@@ -1585,3 +1585,312 @@ The WKB limit is equivalent to
 $
   lambda = hbar/sqrt(2 m [E-V(x)]) << (2 (E-V(x)))/abs(dd(V)\/dd(x))
 $
+
+== Propagators & the Path Integral
+=== Propagators
+We know that we can write
+$
+  ket(alpha","t_0";"t) = sum_a' ket(a') braket(a', alpha","t_0) exp[(-i E_a' (t-t_0))/hbar]
+$
+in terms of the wavefunction
+$
+  psi(bold(x)', t) = sum_a' c_a' (t_0) u_a' (bold(x)') exp[(-i E_a' (t-t_0))/hbar]
+$
+with $u_a' (bold(x)') = braket(bold(x)', a')$ and
+$
+  c_a' (t_0) = braket(a', alpha","t_0) = integral dd(x', 3) u_a'^* (bold(x)') psi(bold(x)', t_0)
+$
+we can write
+$
+  psi(bold(x)'', t) = integral dd(x', 3) K(bold(x)'',t;bold(x)',t_0) psi(bold(x)', t_0)
+$
+where the propagator $K$ is
+$
+  K(bold(x)'',t;bold(x)',t_0) = sum_a' braket(bold(x)'', a') braket(a', bold(x)') exp[(-i E_a' (t-t_0))/hbar]
+$
+note that if $bold(x)'$ and $t_0$ is fixed then the propagator satisfies the Schrödinger wave equation, and in the limit $t arrow t_0$ we have
+$
+  lim_(t arrow t_0) K(bold(x)'',t;bold(x)',t_0) = delta^3 (bold(x)''-bold(x)')
+$
+this looks a lot like a Green function. The propagator is exactly the Greens function for the Schrödinger wave equation, since it satisfies
+$
+  [- hbar^2/(2m) nabla''^2 + V(bold(x)'') - i hbar pdv(, t)] K(bold(x)'',t;bold(x)',t_0) = - i hbar delta^3 (bold(x)''-bold(x)') delta(t-t_0)
+$
+given $K = 0$ for $t < t_0$.
+
+Let $t_0 = 0$ and $bold(x)''=bold(x)'$, then
+$
+  G(t) &equiv integral dd(x', 3) K(bold(x)',t;bold(x)',0) \
+  &= integral dd(x', 3) sum_a' abs(braket(bold(x)', a'))^2 exp((-i E_a' t)/hbar) \
+  &= sum_a' exp((-i E_a' t)/hbar)
+$
+this looks a lot like a partition function, we can write
+$
+  Z = sum_a' exp(- beta E_a') "with" beta=(i t)/hbar
+$
+we can also find
+$
+  tilde(G) (E) = sum_a' 1/(E-E_a')
+$
+where $tilde(G)$ is the Laplace-Fourier transform of $G$.
+
+We can write the propagator as
+$
+  K(bold(x)'',t;bold(x)',t_0) &= sum_a' braket(bold(x)'', exp((-i H t)/hbar), a') braket(a', exp((i H t_0)/hbar), bold(x)') \
+  &= braket(bold(x)'', cal(U)(t,t_0), bold(x)') \
+  &= braket(bold(x)''","t, bold(x)'","t_0)
+$
+with $ket(bold(x)'","t_0)$ and $bra(bold(x)''","t)$ being an eigenket and an eigenbra of the position operator in the Heisenberg picture. This shows us that we can identify the propagator as the transition amplitude for a particle to go from $(bold(x)',t_0) -> (bold(x)'',t)$. In fact we can split our interval say $(t',t''')$ into $(t',t'')$ and $(t'',t''')$ to write
+$
+  braket(bold(x)'''","t''', bold(x)'","t') = integral dd(x'', 3) braket(bold(x)'''","t''', bold(x)''","t'') braket(bold(x)''","t'', bold(x)'","t')
+$
+since
+$
+  integral dd(x'', 3) braket(bold(x)''","t'', bold(x)''","t'') = 1
+$
+this can of course be done for more subdivisions---the composition property.
+
+=== Path integrals in the book
+We stay in one-dimension. We consider the transition amplitude for $(x_1,t_1) arrow (x_N, t_N)$, with $N-1$ equal intervals of length
+$
+  t_j - t_(j-1) = Delta t = (t_N-t_1)/(N-1)
+$
+then by the composition property
+$
+  braket(x_N","t_N, x_1","t_1) &= integral dd(x_(N-1)) dots integral dd(x_2) braket(x_N","t_N, x_"N-1"","t_"N_1") dots braket(x_2","t_2, x_1","t_1)
+$
+this means that for each $t_(n-1) arrow t_n$ we integrate over $x_2,x_3,dots, x_(N-1)$, so we essentially sum over all possible paths. In classical mechanics the path taken by a particle is unique and determined by the least action principle
+$
+  delta integral_(t_1)^(t_2) dd(t) L_"classical" (x,dot(x)) = 0
+$
+in quantum mechanics however we must consider every possible path---but we should still retrieve the classical path in the limit $hbar -> 0$. This is the problem Feynman tried to solve.
+
+We define
+$
+  S(n,n-1) equiv integral_(t_(n-1))^t_n dd(t) L_"classical" (x,dot(x))
+$
+consider some small path segment $(x_(n-1),t_(n-1)) -> (x_n,t_n)$, following Dirac we associate $exp[(i S(n,n-1))\/hbar]$ to that segment. Then going along some path we get
+$
+  product_(n=2)^N exp[(i S(n,n-1))/hbar] = exp[i/hbar sum_(n=2)^N S(n,n-1)] = exp[(i S(N,1))/hbar]
+$
+this gives a contribution to $braket(x_N","t_N, x_1","t_1)$ following a particular path---so we can write
+$
+  braket(x_N","t_N, x_1","t_1) tilde sum_"all paths" exp[(i S(N,1))/hbar]
+$
+in the limit $hbar arrow 0$ then the exponential will oscillate a bunch, leading to many paths cancelling. But if a path satisfies $delta S(N,1) = 0$---i.e. it would be the classically correct path---then slight deformations don't change $exp(i S\/hbar)$, so in the $hbar -> 0$ limit this leads to constructive interference with the classical path being singled out and all others vanishing.
+
+To make this precise we write
+$
+  braket(x_n","t_n, x_(n-1)","t_(n-1)) = 1/w(Delta t) exp[(i S(n,n-1))/hbar]
+$
+where we assume $t_n-t_(n-1)$ is an infinitesimal. We'd like to determine the weight factor $w(Delta t)$. Due to $Delta t -> 0$ we can treat the path between $t_(n-1) -> t_n$ as a straight line
+$
+  S(n,n-1) & = integral_(t_(n-1))^(t_n) dd(t) [(m dot(x)^2)/2 - V(x)] \
+           & = Delta t { m/2 [(x_n-x_(n-1))/(Delta t)]^2 - V((x_n +x_(n-1))/2)}
+$
+since the weight doesn't depend on $V(x)$ we find it for the free particle. For $V = 0$ we have
+$
+  braket(x_n","t_n, x_(n-1)","t_(n-1)) = 1/w(Delta t) exp[(i m(x_n-x_(n-1))^2)/(2 hbar Delta t)]
+$
+in the limit $t_n = t_(n-1)$ this should be $delta(x_n - x_(n-1))$ giving
+$
+  1/w(Delta t) = sqrt(m/(2 pi i hbar Delta t))
+$
+so we have
+$
+  braket(x_n","t_n, x_(n-1)","t_(n-1)) = sqrt(m/(2 pi i hbar Delta t)) exp[(i S(n,n-1))/hbar]
+$
+so
+$
+  braket(x_N","t_N, x_(N-1)","t_(N-1)) &= lim_(N arrow oo) (m/(2 pi i hbar Delta t))^((N-1)\/2) integral dd(x_(N-1)) dots integral dd(x_2) product_(n=2)^N exp[(i S(n,n-1))/hbar]
+$
+by convention we define the operator
+$
+  integral_(x_1)^(x_N) cal(D) [x(t)] equiv lim_(N -> oo) (m/(2 pi i hbar Delta t))^((N-1)\/2) integral dd(x_(N-1)) dots integral dd(x_2)
+$
+so
+$
+  braket(x_N","t_N, x_(N-1)","t_(N-1)) &= integral_(x_1)^(x_N) cal(D) [x(t)] exp[i integral_(t_1)^(t_N) dd(t) (L_"classical" (x,dot(x)))/hbar] \
+  &= integral_(x_1)^(x_N) cal(D) [x(t)] exp[(i S(N,1))/hbar]
+$
+this is the Feynman path integral.
+
+The last thing we'll do is show that this formulation is equivalent to Schrödinger's wave mechanics---by showing that the path integral for $braket(x_N","t_N, x_1","t_1)$ satisfies the Schrödinger equation, and is just the propagator. \*
+
+=== Path integrals in the notes
+We define
+$
+  Delta t = (t_f - t_i)/N
+$
+where $t_i = t_0$ and $t_f = t$, similarly $x' = x_i$ and $x''=x_f$. We can write
+$
+  braket(x_f","t_f, x_i","t_i) &= braket(x_f, exp[(-i H (t_f-t_i))/hbar], x_i) \
+  &= braket(x_f, exp[(-i H(t_f-t_i))/(N hbar)]^N, x_i) \
+  &= braket(x_f, exp[(-i H Delta t)/hbar]^N, x_i) \
+  &=^"insert identity" braket(x_N, exp[(-i H Delta t)/hbar] integral dd(x_(N-1)), x_(N-1))bra(x_(N-1)) dots \ & dots integral dd(x_1) ket(x_1) braket(x_1, exp[(-i H Delta t)/hbar], x_0) \
+  &= integral product_(i=1)^(N-1) dd(x_i) product_(j=1)^N braket(x_j, exp[(- i H Delta t)/hbar], x_(j-1)) \
+  &=^"insert identity" integral product_(i=1)^(N-1) dd(x_i) product_(j=1)^N dd(p_i) product_(k=1)^N braket(x_k, p_k) braket(p_k, exp[(-i H Delta t)/hbar], x_(k-1))
+$
+this is exact. We assume
+$
+  H = p^2/(2m) + V(x)
+$
+we rewrite the last term
+$
+  braket(p_j, exp[(-i H Delta t)/hbar], x_(j-1)) &= braket(p_j, 1-i/hbar H Delta t + dots, x_(j-1)) \
+  &= braket(p_j, 1-i/hbar [p^2/(2 m) + V(x)] Delta t, x_(j-1)) \
+  &= [1-i/hbar (p_j^2/(2 m) + V(x_(j-1))) Delta t ] 1/(sqrt(2 pi hbar)) exp[(- i p_j x_(j-1))/hbar] \
+  &= 1/sqrt(2 pi hbar) exp[- i/hbar (p_j x_(j-1) + {p_j^2/(2m) + V(x_(j-1))} Delta t)] \
+  &= 1/sqrt(2 pi hbar) exp[- i/hbar (p_j x_(j-1) + H(x_(j-1),p_j) Delta t)]
+$
+so
+$
+  braket(x_j, p_j) braket(p_j, exp[(-i H Delta t)/hbar], x_(j-1)) &= 1/(2 pi hbar) exp[i/hbar p_j (x_j-x_(j-1)) - i/hbar H(x_(j-1),p_j) Delta t]
+$
+and
+$
+  product_(j=1)^N dots = 1/(2 pi hbar)^N exp[i/hbar Delta t sum_(j=1)^N {p_j (x_j - x_(j-1))/(Delta t) - H(x_(j-1),p_j)}]
+$
+in the limit $N arrow oo$ we find
+$
+  braket(x_f","t_f, x_i","t_i) &= lim_(N -> oo) integral product_(i=1)^(N-1) dd(x_i) product_(j=1)^N dd(p_j)/(2pi hbar) exp[i/hbar Delta t sum_(k=1)^N {p_k (x_k-x_(k-1))/Delta t - H(x_(k-1),p_k)}] \
+  &equiv integral dd(x, p, d: D) exp[i/hbar integral_(t_i)^(t_f) dd(t) {p dot(x) - H(x,p)}] \
+  &= integral dd(x, p, d: D) exp[i/hbar S_H (x,p)]
+$
+with the Hamiltonian action being
+$
+  S_H (x,p) = p dot(x) - H(x,p)
+$
+and
+$
+  integral dd(x, d: D) = lim_(N -> oo) product_(i=1)^(N-1) dd(x_i)",  " integral dd(p, d: D) = lim_(N -> oo) product_(j=1)^N dd(p_j)/(2 pi hbar)
+$
+this is the path integral in phase space---we perform the integration over $p$ to get the path integral in configuration space.
+$
+  product_(j=1)^N & integral dd(p_j)/(2pi hbar) exp[i/hbar Delta t sum_(k=1)^N {p_k (x_k-x_(k-1))/Delta t - H(x_(k-1),p_k)}] \
+  &= product_(j=1)^N integral dd(p_j)/(2 pi hbar) exp[i/hbar Delta t sum_(k=1)^N {-1/(2 m) (p_k - m (x_k - x_(k-1))/(Delta t))^2 + m/2 ((x_k-x_(k-1))/(Delta t))^2 - V(x_(k-1))}] \
+  &= exp[i/hbar Delta t sum_(k=1)^N {m/2 ((x_k-x_(k-1))/(Delta t))^2 - V(x_(k-1))}] product_(j=1)^N integral dd(p_j)/(2 pi hbar) exp[i/hbar Delta t sum_(k=1)^N {-1/(2m) (p_k - m (x_k-x_(k-1))/(Delta t))^2}]
+$
+letting
+$
+  p'_k = p_k - m (x_k-x_(k-1))/(Delta t)
+$
+we find
+$
+  product_(j=1)^N & integral dd(p_j)/(2pi hbar) exp[i/hbar Delta t sum_(k=1)^N {p_k (x_k-x_(k-1))/Delta t - H(x_(k-1),p_k)}] \
+  &= exp[i/hbar Delta t sum_(k=1)^N {m/2 ((x_k-x_(k-1))/(Delta t))^2 - V(x_(k-1))}] product_(j=1)^N (integral dd(p'_j)/(2 pi hbar)) exp[i/hbar Delta t sum_(k=1)^N {-1/(2m)p'_j^2}] \
+  &= exp[i/hbar Delta t sum_(k=1)^N {m/2 ((x_k - x_(k-1))/(Delta t))^2 - V(x_(k-1))}] (integral dd(p')/(2 pi hbar) exp[- 1/2 {(i Delta t)/(m hbar)} p'^2])^N \
+  &= exp[i/hbar Delta t sum_(k=1)^N {m/2 ((x_k - x_(k-1))/(Delta t))^2 - V(x_(k-1))}] (1/(2 pi hbar) sqrt((2 pi m hbar)/(i Delta t)))^N \
+  &= (m/(2 pi i hbar Delta t))^(N\/2) exp[i/hbar Delta t sum_(k=1)^N {m/2 ((x_k - x_(k-1))/(Delta t))^2 - V(x_(k-1))}]
+$
+so we find
+$
+  braket(x_f","t_f, x_i","t_i) &= lim_(N -> oo) integral (product_(i=1)^(N-1) dd(x_i)) (m/(2 pi i hbar Delta t))^(N\/2) exp[i/hbar Delta t sum_(k=1)^N {m/2 ((x_k - x_(k-1))/(Delta t))^2 - V(x_(k-1))}] \
+  & equiv integral dd(x, d: D) exp[i/hbar integral_(t_i)^(t_f) dd(t) {1/2 m dot(x)^2 - V(x)}] \
+  &= integral dd(x, d: D) exp[i/hbar S(x)]
+$
+with the Lagrangian action being
+$
+  S(x) = integral_(t_i)^(t_f) L(x,dot(x)) dd(t) = integral_(t_i)^(t_f) dd(t) (1/2 m dot(x)^2 - V(x))
+$
+and
+$
+  integral dd(x, d: D) = lim_(N -> oo) c(N) integral product_(i=1)^(N-1) dd(x_i)",  " c(N) = (m/(2 pi i hbar Delta t))^(N\/2)
+$
+this is the expression the book found.
+
+#pagebreak()
+== Gauge Transformations
+Consider adding a constant potential $V_0$ to some $V(bold(x))$. How is the state ket $ket(alpha","t_0";"t)$ for $V(bold(x))$ related to the state ket $tilde(ket(alpha","t_0";"t))$ for $tilde(V(bold(x)))$?---we assume they coincide at $t = t_0$, and obtain
+$
+  tilde(ket(alpha","t_0";"t)) &= exp[-i (bold(p)^2/(2m) + V(x) + V_0) (t-t_0)/hbar] ket(alpha) \
+  &= exp[(-i V_0 (t-t_0))/hbar] ket(alpha","t_0";"t)
+$
+so $V_0$ just adds a phase. For a stationary state with time-dependence $ exp[(-i E(t-t_0))/hbar] =>^"equivalent" E -> E+V_0 $
+this is an example of a gauge transformation. For $V(bold(x))+V_0 (t)$ we find
+$
+  ket(alpha","t_0";"t) -> exp[- i integral_(t_0)^(t) dd(t') (V_0 (t'))/hbar] ket(alpha","t_0";"t)
+$
+this has real measurable effects---which are purely quantum mechanical---see pg. 122-125.
+
+=== Electromagnetism
+We have
+$
+  bold(E) = - grad phi",  " bold(B) = curl bold(A)
+$
+classically
+$
+  H = 1/(2 m) (bold(p) - (e bold(A))/c)^2 + e phi
+$
+in QM we say $phi$ and $bold(A)$ are functions of the operator $bold(x)$---so $bold(p)$ and $bold(A)$ don't commute. So we write
+$
+  (bold(p) - (e bold(A))/c)^2 -> p^2 - (e/c) (bold(p) dot bold(A) + bold(A) dot bold(p)) + (e/c)^2 bold(A)^2
+$
+we can obtain---in the Heisenberg picture
+$
+  dv(x_i, t) = [x_i,H]/(i hbar) = (p_i - e A_i\/c)/m
+$
+we denote $bold(p)$ by the canonical momentum, and this new quantity by the kinematical momentum
+$
+  bold(Pi) equiv m dv(bold(x), t) = bold(p) - (e bold(A))/c
+$
+we have
+$
+  [Pi_i,Pi_j] = (i hbar e)/c epsilon_(i j k) B_k
+$
+we can also obtain the QM equivalent Lorentz law
+$
+  m dv(bold(x), t, 2) = dv(bold(Pi), t) = e [bold(E) + 1/(2 c) (dv(bold(x), t) times bold(B)-bold(B) times dv(bold(x), t))]
+$
+sandwiching $H$ between $bra(bold(x)')$ and $ket(alpha","t_0";"t)$ gives
+$
+  1/(2m) [- i hbar nabla' - (e bold(A) (bold(x)'))/c ] dot [- i hbar nabla' - (e bold(A) (bold(x)'))/c] braket(bold(x)', alpha","t_0";"t) + e phi (bold(x)') braket(bold(x)', alpha","t_0";"t) = i hbar pdv(, t) braket(bold(x)', alpha","t_0";"t)
+$
+this is minimal coupling and amounts to $bold(p) -> bold(Pi)$ in the Schrödinger equation.
+
+The common gauge transformation is given by
+$
+  phi -> phi - 1/c pdv(Lambda, t)",  " bold(A) -> bold(A) + grad Lambda
+$
+which leaves $bold(E)$ and $bold(B)$ invariant, given
+$
+  bold(E) = - grad phi - 1/c pdv(bold(A), t)",  " bold(B) = curl bold(A)
+$
+but we don't concern our selves with time-dependent fields or potentials so the time derivative is zero. Classically $bold(p)$ is not gauge-invariant, but $bold(Pi)$ is.
+
+In QM we demand that the expectation values behave similarly to the classical case, so $expval(bold(x))$ and $expval(bold(Pi))$ should be gauge-invariant while $expval(bold(p))$ is expected to change. Let $tilde(bold(A)) = bold(A) + grad Lambda$---then we require
+$
+  braket(alpha, bold(x), alpha) = braket(tilde(alpha), bold(x), tilde(alpha))
+$
+and
+$
+  expval((bold(p)-(e bold(A))/c), alpha) = expval((bold(p)-(e tilde(bold(A)))/c), tilde(alpha))
+$
+the norm should also be preserved $braket(alpha) = braket(tilde(alpha))$. We want to construct an operator $cal(G)$ defined by
+$
+  ket(tilde(alpha)) = cal(G) ket(alpha)
+$
+it must therefore satisfy
+$
+  cal(G)^dagger bold(x) cal(G) &= bold(x) \
+  cal(G)^dagger (bold(p) - (e bold(A))/c - (e grad Lambda)/c) cal(G) &= bold(p) - (e bold(A))/c
+$
+we claim
+$
+  cal(G) = exp[(i e Lambda(bold(x)))/(hbar c)]
+$
+this is unitary so that's a good start, and note
+$
+  exp[(-i e Lambda)/(hbar c)] bold(p) exp[(i e Lambda)/(hbar c)] &= exp[(-i e Lambda)/(hbar c)] (bold(p), exp[(i e Lambda)/(hbar c)]) + bold(p) \
+  &= - exp[(-i e Lambda)/(hbar c)] i hbar grad (exp[(i e Lambda)/(hbar c)]) + bold(p) \
+  &= bold(p) + (e grad Lambda)/c
+$
+so a gauge transformation just corresponds to adding a phase factor $cal(G) = exp[i e Lambda (bold(x))\/hbar c]$---this can also be shown less elegantly using the Schrödinger equation directly. We find
+$
+  tilde(psi) (bold(x)',t) = exp[(i e Lambda(bold(x)'))/(hbar c)] psi(bold(x)', t)
+$
+notably the probability flux is gauge-invariant.
+
+\*Aharanov-Bohm effect and magnetic monopoles.
+
+

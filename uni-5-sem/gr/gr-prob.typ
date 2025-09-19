@@ -320,21 +320,32 @@ $
 $
 where $square_g$ is the generally covariant generalization of the d'Alembertian $square equiv partial_mu partial^mu$.
 
-We start with deriving the Jacobi formula
+
+We start with the identity
 $
-  pdv(det M, x) = det M Tr(M^(-1) pdv(M, x))
+  ln det D = tr ln D
 $
-to do this we choose to start with the identity
+which holds trivially for any diagonal $D$. Now consider a diagonalizable $A$
 $
-  ln det M = tr ln M
+  D = P^(-1) A P
 $
-taking the derivative of both sides
+then
 $
-  1/(det M) pdv(det M, x) & = pdv(, x) tr ln M \
-                          & = tr pdv(, x) (ln M) \
-                          & = tr (M^(-1) pdv(M, x))
+  det D = det A
 $
-and we are done.
+and
+$
+  tr ln D = tr P^(-1) ln A P = tr ln A
+$
+so if $A$ is diagonalizable then
+$
+  ln det A = tr ln A
+$
+taking the derivative gives
+$
+        d (ln det A) & = tr d(ln A) \
+  1/(det A) d(det A) & = tr (A^(-1) d(A))
+$
 
 Now consider the RHS of
 $
@@ -342,12 +353,11 @@ $
 $
 rewriting
 $
-  pdv(ln (-g), x^lambda) &= 1/(-g) pdv((-g), x^lambda) \
-  &= 1/g pdv(det g_(mu nu), x^lambda) \
-  &= 1/g [det g_(mu nu) Tr (g^(mu nu) pdv(g_(mu nu), x^lambda)) ] \
-  &= g^(mu nu) pdv(g_(mu nu), x^lambda)
+  pdv(ln (-g), x^lambda) & = 1/(-g) pdv((-g), x^lambda) \
+                         & = 1/g pdv(det g_(mu nu), x^lambda) \
+                         & =^(A = g_(mu nu)) g^(mu nu) pdv(g_(mu nu), x^lambda)
 $
-so
+which we can do since we can transform to the free-falling elevator in which the metric is diagonal (this is very overkill, since the Jacobi formula holds for invertible matrices), so
 $
   pdv(ln(-g), x^lambda) = g^(mu nu) pdv(g_(mu nu), x^lambda)
 $
@@ -363,14 +373,10 @@ $
   g^(mu nu) tensor(Gamma, rho, -mu nu) &= 1/2 g^(mu nu) g^(rho sigma) [ pdv(g_(nu sigma), x^mu) + pdv(g_(mu sigma), x^nu) - pdv(g_(mu nu), x^sigma)] \
   &= g^(rho sigma) g^(mu nu) pdv(g_(nu sigma), x^mu) - 1/2 g^(rho sigma) g^(mu nu) pdv(g_(mu nu), x^sigma)
 $
-for the first term we use
+for the first term we use an identity from the first exercise
 $
   g^(mu alpha) g_(alpha nu) &= tensor(delta, mu, -nu) \
-  pdv(, x^rho) (g^(mu alpha) g_(alpha nu)) &= 0 \
-  pdv(g^(mu alpha), x^rho) g_(alpha nu) g^(nu beta) + g^(mu alpha) pdv(g_(alpha nu), x^(rho)) g^(nu beta) &= 0 \
-  pdv(g^(mu beta), x^rho) &= - g^(mu alpha) g^(nu beta) pdv(g_(alpha nu), x^rho) \
-  pdv(g^(mu beta), x^rho) &= - g^(mu alpha) g^(beta nu) pdv(g_(alpha nu), x^rho) \
-  pdv(g^(mu nu), x^rho) &= - g^(mu alpha) g^(nu beta) pdv(g_(alpha beta), x^rho)
+  => pdv(g^(mu nu), x^rho) &= - g^(mu alpha) g^(nu beta) pdv(g_(alpha beta), x^rho)
 $
 so
 $
@@ -388,8 +394,14 @@ $
   &= pdv(g^(mu rho), x^(mu)) + 1/sqrt(-g) g^(mu rho) pdv(sqrt(-g), x^mu) \
   &= 1/sqrt(-g) pdv(, x^mu) (g^(mu rho) sqrt(-g))
 $
-so
+so the Beltrami guy becomes
 $
   square_g phi.alt &= g^(mu rho) partial_rho partial_mu phi.alt + 1/sqrt(-g) partial_mu (g^(mu rho) sqrt(-g)) partial_rho phi.alt \
   square_g phi.alt &= 1/sqrt(-g) partial_mu (sqrt(-g) g^(mu rho) partial_rho phi.alt)
+$
+so we have derived three nice identities
+$
+  partial_lambda ln(-g) &= g^(mu nu) partial_lambda g_(mu nu) \
+  -g^(mu nu) tensor(Gamma, rho, -mu nu) &= 1/sqrt(-g) partial_mu (g^(mu rho) sqrt(-g)) \
+  square_g phi &= 1/sqrt(-g) partial_mu (sqrt(-g) g^(mu rho) partial_rho phi)
 $

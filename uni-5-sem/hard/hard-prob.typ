@@ -69,3 +69,98 @@ $
   (c/a)^2 & = 4 - 4/3 \
       c/a & = sqrt(8/3)
 $
+#pagebreak()
+= Lecture 2
+== Interplanar separation
+Consider a plane $h k l$ in a crystal.
+
+a. Prove that $bold(G) = h bold(b)_1 + k bold(b)_2 + l bold(b)_3$ is perpendicular to the plane.
+
+The plane contains $bold(r)_1$ and $bold(r)_2$ then it contains $Delta bold(r) = bold(r)_2-bold(r)_1$. Then
+$
+  bold(G) dot Delta bold(r) = 2 pi (h Delta u + k Delta v + l Delta w ) = 2 pi (0) = 0
+$
+
+
+b. Prove the distance between adjacent parallel planes is $d(h k l) = 2pi \/ abs(bold(G))$.
+
+
+By definition $bold(G) dot bold(r) = 2 pi m$ adjacent plates have
+$
+  bold(G) dot bold(d) = 2pi => d = (2 pi)/abs(bold(G))
+$
+
+
+c. Show for a sc lattice that $d^2 = a^2\/(h^2+k^2+l^2)$
+
+We have
+$
+  bold(b)_i = (2 pi)/a hat(bold(x_i))
+$
+so
+$
+  abs(bold(G)) = (2 pi)/a sqrt(h^2+k^2+l^2) => d = a/(sqrt(h^2+k^2+l^2))
+$
+
+== Hexagonal space lattice
+We have
+$
+  bold(a)_1 & = (sqrt(3)a)/2 hat(bold(x)) + a/2 hat(bold(y)) \
+  bold(a)_2 & = - (sqrt(3)a)/2 hat(bold(x)) + a/2 hat(bold(y)) \
+  bold(a)_3 & = c hat(bold(z))
+$
+
+a. Show the volume is $sqrt(3)a^2 c \/2$.
+
+We have $V_c = abs(bold(a)_1 dot bold(a)_2 times bold(a)_3)$.
+
+$
+  bold(a)_1 dot bold(a)_2 times bold(a)_3 &= bold(a)_1 dot ( (sqrt(3) a c)/2 hat(bold(y)) + (a c)/2 hat(bold(x))) \
+  &= (sqrt(3) a^2 c)/4 + (sqrt(3)a^2 c)/4 = (sqrt(3) a^2 c)/2
+$
+
+b. Find the primitive reciprocal lattice vectors.
+
+$
+  bold(b)_1 &= 2 pi/V_c (bold(a)_2 times bold(a)_3) \
+  &= 2 pi 2/(sqrt(3) a^2 c) ((sqrt(3) a c)/2 hat(bold(y)) + (a c)/2 hat(bold(x))) \
+  &= (2 pi)/a (hat(bold(x))/sqrt(3) + hat(bold(y)))
+$
+$
+  bold(b)_2 & = (4 pi)/(sqrt(3) a^2 c) (bold(a)_3 times bold(a)_1) \
+            & = (2 pi)/(a) (- hat(bold(x))/sqrt(3)+hat(bold(y)))
+$
+$
+  bold(b)_3 & = (4 pi)/(sqrt(3) a^2 c) (bold(a)_1 times bold(a)_2) \
+            & = (4 pi)/(sqrt(3) a^2 c) (sqrt(3) a^2)/2 hat(bold(z)) \
+            & = (2pi)/(c) hat(bold(z))
+$
+
+c. Brillouin zone.
+
+== Width of diffraction maximum
+a. Show that
+$
+  abs(F)^2 = (sin^2 [M/2 (bold(a) dot Delta bold(k))])/(sin^2 [1/2 (bold(a) dot Delta bold(k))])
+$
+
+we have
+$
+  F = (1 - exp[-i M (bold(a) dot Delta bold(k))])/(1 - exp[-i (bold(a) dot Delta bold(k))])
+$
+so
+$
+  F^* F &= [(1 - exp[i M (bold(a) dot Delta bold(k))])/(1 - exp[i (bold(a) dot Delta bold(k))])][(1 - exp[-i M (bold(a) dot Delta bold(k))])/(1 - exp[-i (bold(a) dot Delta bold(k))])] \
+  &= (2 - (exp[i M (bold(a) dot Delta bold(k))] + exp[-i M (bold(a) dot Delta bold(k))]))/(2 -( exp[i(bold(a) dot Delta bold(k))]+exp[-i(bold(a) dot Delta bold(k))])) \
+  &= (1 - cos ( M(bold(a) dot Delta bold(k))))/(1 - cos (bold(a) dot Delta bold(k))) \
+  &= (sin^2 [M/2 (bold(a) dot Delta bold(k))])/(sin^2 [1/2 (bold(a) dot Delta bold(k))])
+$
+
+b. Max at $bold(a) dot Delta bold(k) = 2 pi h$ with $h in ZZ$. $-> Delta bold(k)$ so $bold(a) dot Delta bold(k) = 2pi h + epsilon$ such that $epsilon$ gives first zero in $sin[M/2 (bold(a) dot Delta bold(k))]$. Show that $epsilon = 2 pi\/M$.
+
+We have
+$
+  0 = sin[M/2 (2 pi h + epsilon)] & = sin(pi h M + (epsilon M)/2) \
+                                  & = (-1)^(h M) sin (epsilon M)/2 \
+                                  & = sin (epsilon M)/2 => epsilon = (2 pi)/M
+$

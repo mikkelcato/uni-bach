@@ -300,7 +300,7 @@ and
 $
   f(phi,T) = (- k_B T ln Z)/V
 $
-to make our lives easier we do
+to make our lives easier we do---mean field approximation
 $
   Z tilde.eq W exp((- expval(Delta E_c))/(k_B T))
 $
@@ -372,10 +372,121 @@ $
 $
 corresponding to $F = H - T S$, evidently at high temperature entropy dominates, while at low temperature the actual interaction between molecules (enthalpy) dominates.
 
-For more $phi$:
+
+
+#pagebreak()
+== Polymers
+Torsion angles---every angle $phi$ has different energies, three favorable ${g^-,0,g^+}$, on the scale of $k_B T$---at sufficient temperature this becomes a random walk.
+
+=== Flory-Huggins
+The previous analysis (regular solution theory) can be extended to polymers. Instead of seperate solute molecules $p$ we assume they are connected and move together like a random walk---given there are $N$ steps per polymer we reduce the translational entropy by $N^(-1)$:
 $
-  f(phi_A,phi_B,phi_C, T) = (k_B T)/v_c (phi_A ln phi_A + phi_B ln phi_B + phi_C ln phi_C + chi_(A B) phi_A phi_B + chi_(C B) phi_C phi_B + chi_(A C) phi_A phi_C)
+  f(phi) = (k_B T)/v_c (phi/N ln phi + (1-phi) ln(1 - phi) + chi phi(1-phi))
 $
+we essentially say we know where every connected $p$ is knowing where one is.
+
+We have a typical size of a polymer given by
+$
+  R_g^2 = (b^2 N)/6 => rho^* = 1/(R_g^2)^(3\/2)
+$
+where $rho^*$ is the critical density. Flory-Huggins works for $rho >= rho^*$ since in this case the mean field approximation is not bad. In the extreme case the polymers essentially drown out and we return to a regular solution.
+
+=== Random walk
+We assume steps $arrow(b)_n$ are statistically independent---so
+$
+                 expval(arrow(b)_n) & = 0 \
+  expval(arrow(b)_n dot arrow(b)_m) & = expval(b^2) delta_(n m)
+$
+the length of the entire polymer (contour length) is
+$
+  L = N b
+$
+the length from start to end is given by the vector $arrow(R)$, this is a stochastic quantity so
+$
+  expval(arrow(R)) = expval(sum_(n=1)^N arrow(b)_n) = sum_(n=1)^N expval(arrow(b)_n) = 0
+$
+so this is a bad quantity---what is the length
+$
+  expval(arrow(R)dot arrow(R)) &= expval(sum_(n=1)^N arrow(b)_n dot sum_(m=1)^N arrow(b)_m) \
+  &= expval((arrow(b)_1+arrow(b)_2+dots+arrow(b)_N) dot (arrow(b)_1+arrow(b)_2+dots+arrow(b)_N)) \
+  &= expval(arrow(b)_1 dot arrow(b)_1 + arrow(b)_2 dot arrow(b)_2 + dots + arrow(b)_N dot arrow(b)_N) \
+  &= expval(sum_(n=1)^N b_n^2) = sum_(n=1)^N expval(b^2) = N b^2
+$
+so $d tilde sqrt(expval(arrow(R)dot arrow(R))) = b sqrt(N)$---size in space. So
+$
+  d/L = 1/(sqrt(N))
+$
+with $b tilde Å <->"nm"$ while $N$ varies wildly $tilde 10^2 <-> 10^6$.
+
+Now we are interested in the probability distribution, to get this we treat every step as a spring with spring constant $k$---then
+$
+  H = 1/2 k (x^2 + y^2 + z^2) = 1/2 k (arrow(b)_n dot arrow(b)_n)
+$
+with $arrow(b)_n = vecrow(x, y, z)$. We obtain
+$
+  expval(H) & = 1/2 k expval(arrow(b)_n dot arrow(b)_n) \
+  3/2 k_B T & = 1/2 k expval(b_n^2) => k = (3 k_B T)/expval(b^2)
+$
+with this spring constant we get the same step size as for the random walk---incorporating springs let us bring dynamics into a random walk, since a random walk is static. We can find
+$
+  expval(arrow(R) dot arrow(R)) = (3 k_B T N)/k
+$
+we can ask
+$
+  P(arrow(b)_n) & prop exp((-H)/(k_B T)) \
+  & prop exp(- k/2 (arrow(b)_n dot arrow(b)_n)/(k_B T)) \
+  & prop exp(-(3 x^2)/(2expval(b^2))) exp(-(3y^2)/(2expval(b^2))) exp(-(3z^2)/(2expval(b^2)))
+$
+For a polymer chain we have $k_"chain" = k\/N$, so one spring corresponds to our spring steps, where each step has a $k$ such that it is equivalent to the random walk---so we could write
+$
+  expval(arrow(R) dot arrow(R)) = (3 k_B T)/k_"chain"
+$
+the Hamiltonian of the chain is
+$
+          H_"chain" & = 1/2 k_"chain" (R_x^2 + R_y^2 + R_z^2) \
+  expval(H_"chain") & = 1/2 k_"chain" expval(R_x^2+R_y^2+R_z^2) \
+        (3 k_B T)/2 & = 1/2 k_"chain" expval(arrow(R) dot arrow(R)) \
+                    & => expval(arrow(R) dot arrow(R)) = (3 k_B T)/k_"chain"
+$
+so we recover the result.
+
+For $P(arrow(R))$ we can write
+$
+  P(arrow(R)) & prop exp(- H_"chain"/(k_B T)) \
+  & prop exp(- k_"chain"/2 (arrow(R) dot arrow(R))/(k_B T)) \
+  & prop exp(- k_"chain"/2 (R_x^2 + R_y^2 + R_z^2)/(k_B T)) \
+  & prop exp(- 3/2 (R_x^2 + R_y^2 + R_z^2)/(expval(arrow(R)dot arrow(R))))
+$
+so everything in the chain is Gaussian, both individual steps and $arrow(R)$---here $sigma = expval(arrow(R) dot arrow(R))\/3$, as is expected since every direction is equivalent. The exact distribution is
+$
+  P(arrow(R)) = (3/(2 pi expval(arrow(R) dot arrow(R))))^(3\/2) exp(- 3/2 (R_x^2+R_y^2+R_z^2)/(expval(arrow(R) dot arrow(R))))
+$
+
+Consider pulling a polymer with some $f_"ext"$ then it will resist with an entropic force. In one-dimension
+$
+  P(R_x) prop exp(- 3/2 R_x^2/(2 expval(arrow(R) dot arrow(R)))) prop Omega(R_x)
+$
+with $Omega (R_x)$ being the number of microstates,
+$
+  S(R_x) & = k_B ln Omega(R_x) \
+         & = k_B ln ("const" exp[-3/2 R_x^2/(expval(arrow(R) dot arrow(R)))] ) \
+         & = - k_B (3 R_x^2)/(2 expval(arrow(R) dot arrow(R))) + S_0
+$
+now
+$
+  F_"poly" = U - T S & = -T S \
+                     & = k_B T (3 R_x^2)/(2 expval(arrow(R)dot arrow(R))) + F_0 \
+                     & = (3 k_B T)/(2) R_x^2/(expval(arrow(R)dot arrow(R)))
+$
+giving
+$
+  F_"system" & = (3 k_B T)/2 R_x^2/(expval(arrow(R) dot arrow(R))) - f_"ext" R_x \
+           0 & =^"equil." pdv(F_"system", R_x) \
+           0 & = (3 k_B T)/expval(arrow(R) dot arrow(R)) R_x - f_"ext" \
+     f_"ext" & = (3 k_B T R_x)/expval(arrow(R)dot arrow(R)) \
+    f_"poly" & = - f_"ext"
+$
+less configurations as it gets stretched means it gets lower entropy leading to a free energy and a force.
 
 /*
 so

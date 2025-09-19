@@ -587,3 +587,121 @@ The lattice is a sc, with a basis consisting of one $"Cs"^+$ at $000$ and one $"
 
 === Packings
 There is an infinite number of ways to maximize the packing fraction for identical spheres. One is fcc (ABCABC$dots$), another is the hexagonal close-packed structure (ABABAB$dots$).
+
+#pagebreak()
+= Wave Diffraction and the Reciprocal Lattice
+== Diffraction & Fourier
+Crystal structure can be studied using diffraction, one way is using Bragg's law. Here we suppose incident waves are reflected from parallel planes of atoms in the crystal, these will then interfere destructively and constructively. If parallel lattice planes have spacing $d$, then the path difference is $2 d sin theta$ with $theta$ being measured with respect to the plane. If the path difference is $n lambda$ with $n in NN$ then we have constructive interference
+$
+  2 d sin theta = n lambda
+$
+this is a result of the lattice periodicity, note that if the planes were perfectly reflecting then we would only see radiation from the first plane and therefore a perfect reflection, instead what we actually see is the reflection from many, many planes. This also means that we don't get any information about the intensity or basis---the electron distribution---which we want.
+
+We know the crystal structure is invariant under $bold(T)$, so any local property must also be invariant under $bold(T)$---we want the electron density $n(bold(r))$, so we require $n(bold(r)+bold(T)) = n(bold(r))$. This screams Fourier series---so we write $n(bold(r))$ as
+$
+  n(bold(r)) = sum_bold(G) n_bold(G) exp[i bold(G) dot bold(r)]
+$
+where $bold(G)$ is a set of vectors such that all $bold(T)$ leave the crystal invariant---reciprocal lattice vectors---$n_bold(G)$ determines the scattering amplitude. We can do the inverse Fourier transform to get the amplitudes
+$
+  n_bold(G) = V_c^(-1) integral_"cell" dd(V) n(bold(r)) exp[-i bold(G) dot bold(r)]
+$
+
+Now we just need to find $bold(G)$---we essentially proceed by construction. The reciprocal lattice axis vectors are given by
+$
+  bold(b)_1 = 2pi (bold(a)_2 times bold(a)_3)/(bold(a)_1 dot bold(a)_2 times bold(a)_3)",  " bold(b)_2 = 2pi (bold(a)_3 times bold(a)_1)/(bold(a)_1 dot bold(a)_2 times bold(a)_3)",  " bold(b)_3 = 2pi (bold(a)_1 times bold(a)_2)/(bold(a)_1 dot bold(a)_2 times bold(a)_3)
+$
+if the $bold(a)_i$ are primitive, then so are the $bold(b)_i$. Then
+$
+  bold(b)_i dot bold(a)_j = 2 pi delta_(i j)
+$
+and
+$
+  bold(G) = v_1 bold(b)_1 + v_2 bold(b)_2 + v_3 bold(b)_3
+$
+with $v_i in ZZ$---typically these are denoted $h k l$. With this definition we have the required invariance
+$
+  n(bold(r) + bold(T)) &= sum_bold(G) n_bold(G) exp[i bold(G) dot bold(r)] exp[i bold(G) dot bold(T)] \
+  &= sum_bold(G) n_bold(G) exp[i bold(G) dot bold(r)]
+$
+since $exp[i bold(G) dot bold(T)]=1$ by construction. So every crystal has two lattices associated with it the crystal lattice (physical lattice) and the reciprocal lattice (diffraction lattice).
+
+== Conditions
+#thm[
+  The set of reciprocal lattice vectors $bold(G)$ determines the possible x-ray reflections.
+]
+
+We consider two beams scattered from volume elements $bold(r)$ apart---the incoming and outgoing wavevectors are $bold(k)$ and $bold(k)'$ and the difference in phase factors will be $exp[i(bold(k)-bold(k)') dot bold(r)]$. We define the scattering amplitude as
+$
+  F equiv integral dd(V) n(bold(r)) exp[i(bold(k)-bold(k)') dot bold(r)] = integral dd(V) n(bold(r)) exp[- i Delta bold(k) dot bold(r)]
+$
+where $bold(k)+Delta bold(k) = bold(k)'$ is the scattering vector. Using the expansion for $n(bold(r))$ we obtain
+$
+  F = sum_bold(G) integral dd(V) n_bold(G) exp[i (bold(G)-Delta bold(k)) dot bold(r)]
+$
+so we get the diffraction condition $ Delta bold(k) = bold(G) => F = V n_G $ it can be shown that $F$ is very small when $Delta bold(k) eq.not bold(G)$---so $bold(G)$ determines the possible reflections. Another way to express $Delta bold(k) = bold(G)$ are the Laue equations
+$
+  bold(a)_i dot Delta bold(k) = 2 pi v_i
+$
+If the scattering is elastic $hbar bold(omega)$ is conserved so $k^2 = k'^2$, so $bold(k)+bold(G) = bold(k)'$ becomes
+$
+  2 bold(k) dot bold(G) + G^2 = 0 <=> 2 bold(k) dot bold(G) = G^2
+$
+this is equivalent to Bragg's law---one can show that the spacing $d(h k l)$ between parallel lattice planes normal to $bold(G) = h bold(b)_1 + k bold(b)_2 + l bold(b)_3$ is $d(h k l) = 2 pi \/abs(bold(G))$, with these the condition becomes
+$
+  2 (2pi)/lambda sin theta = (2 pi)/d(h k l)
+$
+or $2 d(h k l) sin theta = lambda => 2 d sin theta = n lambda$. This can also be interpreted in terms of Brillouin zones, which are Wigner-Seitz primitive cells in the reciprocal lattice---this can be done to higher orders, notably $bold(k)$ touching the _edge_ of the Brillouin zones give diffraction.
+
+== Examples of Lattices
+=== sc Lattice
+We have the primitive translation vectors
+$
+  bold(a)_1 = a hat(bold(x))",  " bold(a)_2 = a hat(bold(y))",  " bold(a)_3 = a hat(bold(z))
+$
+the volume of a cell is $bold(a)_1 dot bold(a)_2 times bold(a)_3 = a^3$ so
+$
+  bold(b)_1 = (2 pi)/(a) hat(bold(x))",  " bold(b)_2 = (2 pi)/a hat(bold(y))",  " bold(b)_3 = (2 pi)/a hat(bold(z))
+$
+
+=== bcc Lattice
+We have the primitive translation vectors
+$
+  bold(a)_1 & = a/2 (-hat(bold(x))+hat(bold(y))+hat(bold(z))) \
+  bold(a)_2 & = a/2 (hat(bold(x))-hat(bold(y))+hat(bold(z))) \
+  bold(a)_3 & = a/2 (hat(bold(x))+hat(bold(y))-hat(bold(z)))
+$
+the volume is $a^3\/2$, so
+$
+  bold(b)_1 = (2pi)/a (hat(bold(y))+hat(bold(z)))",  " bold(b)_2 = (2pi)/a (hat(bold(x))+hat(bold(z)))",  " bold(b)_3 = (2pi)/a (hat(bold(x))+hat(bold(y)))
+$
+
+=== fcc Lattice
+We have the primitive translation vectors
+$
+  bold(a)_1 = a/2 (hat(bold(y))+hat(bold(z)))",  " bold(a)_2 = a/2 (hat(bold(x))+hat(bold(z)))",  " bold(a)_3 = a/2 (hat(bold(x))+hat(bold(y)))
+$
+the volume is $a^3\/4$, so
+$
+  bold(b)_1 & = (2pi)/a (- hat(bold(x))+hat(bold(y))+hat(bold(z))) \
+  bold(b)_2 & = (2pi)/a (hat(bold(x))-hat(bold(y))+hat(bold(z))) \
+  bold(b)_3 & = (2pi)/a (hat(bold(x))+hat(bold(y))-hat(bold(z)))
+$
+
+== Factors
+When $Delta bold(k) = bold(G)$ we can write
+$
+  F_bold(G) = N integral_"cell" dd(V) n(bold(r)) exp[-i bold(G) dot bold(r)] = N S_bold(G)
+$
+where $S_bold(G)$ is the structure factor---note it's the integral over a single cell. We can also write
+$
+  n(bold(r)) = sum_(j-1)^s n_j (bold(r)-bold(r)_j)
+$
+where $n_j (bold(r)-bold(r)_j)$ is the contribution to $n(bold(r))$ from the $j^"th"$ atom (of $s$) in the basis. We obtain
+$
+  S_bold(G) &= sum_j integral dd(V) n_j (bold(r)-bold(r)_j) exp[-i bold(G) dot bold(r)] \
+  &= sum_j exp[-i bold(G) dot bold(r)_j] integral dd(V) n_j (bold(rho)) exp[-i bold(G) dot bold(rho)] \
+  &= sum_j f_j exp[- i bold(G) dot bold(r)_j]
+$
+with $bold(rho) = bold(r)-bold(r)_j$ and $f_j$ being the atomic form factor and $S_bold(G)$ now being called the structure factor of the basis---note $bold(G) dot bold(r)_j = 2 pi (v_1 x_j + v_2 y_j + v_3 z_j)$.
+
+\*Oxford splits this chapter in two, and does some delta-function business but the end result should be the same.

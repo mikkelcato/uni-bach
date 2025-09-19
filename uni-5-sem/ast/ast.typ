@@ -212,3 +212,277 @@ however Einstein discarded this after Hubble showed everything is moving apart--
 
 #pagebreak()
 == Model Universes
+In a homogeneous and isotropic universe we can use
+$
+  (dot(a)/a)^2 & = (8 pi G)/(3 c^2) epsilon - (kappa c^2)/(R_0^2 a^2) \
+             0 & = dot(epsilon) + 3 dot(a)/a (epsilon + P) \
+             P & = w epsilon
+$
+to relate $epsilon(t)$, $P(t)$ and $a(t)$.
+
+=== Energy density
+The energy density due to different components with different $w_i$ and $epsilon_i$ is additive
+$
+  epsilon = sum_i epsilon_i
+$
+similarly for the pressure
+$
+  P = sum_i w_i epsilon_i
+$
+assuming there is no interaction between different components then every component should obey a fluid equation
+$
+  dot(epsilon)_i +3 dot(a)/a (1 + w_i) epsilon_i = 0 => dd(epsilon_i)/epsilon_i = - 3 ( 1 + w_i ) dd(a)/a
+$
+assuming $w_i$ is constant we obtain
+$
+  epsilon_i (a) = epsilon_(i,0) a^(-3 (1 + w_i))
+$
+this tells us how $epsilon_i$ evolves---note that we never used the Friedmann equation. Take $epsilon_m$ with $w = 0$ then
+$
+  epsilon_m (a) = epsilon_(m,0)/a^3
+$
+or $epsilon_r$ with $w = 1\/3$ then
+$
+  epsilon_r (a) = epsilon_(r,0)/a^4
+$
+the difference is caused by
+$
+  epsilon_m & = n E = n (m c^2) prop a^(-3) \
+  epsilon_r & = n E = n (h c\/lambda) prop a^(-4)
+$
+since $n prop a^(-3)$ and $lambda prop a$---during this we assume that photons are not created or destroyed, which they are, however $epsilon_"CMB"$ is so large that it dominates completely.
+
+It turns out that the photon CMB and neutrino CMB together give
+$
+  Omega_(r,0) = Omega_("CMB",0)+Omega_(nu,0) = 9.00 times 10^(-5)
+$
+see pg. 72-73. This is very small in comparison to $Omega_(m,0) approx 0.31$ and $Omega_(Lambda,0) approx 0.69$---this is the Benchmark Model. In this model we have
+$
+  epsilon_(Lambda,0)/epsilon_(m,0) = Omega_(Lambda,0)/Omega_(m,0) approx 2.23
+$
+so today $Lambda$ dominates. In the past the ratio was
+$
+  (epsilon_Lambda (a))/(epsilon_m (a)) = epsilon_(Lambda, 0)/(epsilon_(m,0) a^(-3)) = Omega_(Lambda,0)/Omega_(m,0) a^3
+$
+since $epsilon_Lambda (a)$ is constant. The point when they were equal had
+$
+  a_(m Lambda) = (Omega_(m,0)/Omega_(Lambda,0))^(1\/3)
+$
+similarly
+$
+  (epsilon_m (a))/(epsilon_r (a)) = (epsilon_(m,0))/(epsilon_(r,0)) a => a_(r m) = (epsilon_(r,0))/(epsilon_(m,0))
+$
+the equation for $epsilon_i (a)$ tells us that in the limit $a -> 0$ components with big $w$ dominate, while for $a -> oo$ components with small $w$ dominate. This matches what observational evidence shows, namely that radiation ($w = 1\/3$) dominated, then matter $(w = 0)$, and then the cosmological constant $(w = -1)$. Given that $a$ is monotonically increasing with respect to $t$ then it is common to use it in place of time---similarly we can use the redshift $z$---especially since the conversion $a -> t$ is difficult.
+
+
+=== Empty universes
+In the following sections we'll use the multi-component Friedmann equation
+$
+  dot(a)^2 = (8 pi G)/(3 c^2) sum_i epsilon_(i,0) a^(-1 - 3 w_i) - (kappa c^2)/R_0^2
+$
+where we've just plugged in the previous expression for $epsilon (a)$ and multipled by $a^2$.
+
+We start with the simplest case, an empty universe. In this case the Friedmann equation becomes
+$
+  dot(a)^2 = - (kappa c^2)/R_0^2
+$
+one solution has $dot(a)=kappa=0$---so an empty, static, flat universe, i.e. the one described by the Minkowski metric. The other solution has $kappa = -1$ (Milne universe) giving
+$
+  dot(a) & = plus.minus c/R_0 \
+         & => a(t) = t/t_0 "with" t_0 = R_0/c = H_0^(-1)
+$
+in this universe the light we observe at $t = t_0$ would be observed at some $t = t_e$ related by
+$
+  1 + z = 1/a(t_e) = t_0/t_e => t_e = (H_0^(-1))/(1 + z)
+$
+we also have
+$
+  d_p (t_0) = c integral_(t_e)^(t_0) dd(t)/a(t) = c t_0 integral_(t_e)^(t_0) dd(t)/t = c t_0 ln t_0/t_e = c/H_0 ln(1+z)
+$
+the distance at emission is smaller by a factor
+$
+  (a(t_e))/(a(t_0)) = 1/(1+z) => d_p (t_e) = c/H_0 ln(1+z)/(1+z)
+$
+
+=== Single-component universes
+Now we'll treat spacially flat universes with only one component having some $w$, in this case the Friedmann equation becomes
+$
+  dot(a)^2 = (8 pi G epsilon_0)/(3 c^2) a^(-(1+3 w))
+$
+to solve this we make the ansatz $a prop t^q$. In this case the LHS is $prop t^(2 q - 2)$ and the RHS is $prop t^(-(1+3 w)q)$ this is only true if
+$
+  q = 2/(3+ 3 w)
+$
+the scale factor is then
+$
+  a(t) = (t/t_0)^(2\/(3+3w)) "with" t_0 = 1/(1+w) (c^2/(6 pi G epsilon_0))^(1\/2)
+$
+and the Hubble constant would be
+$
+  H_0 equiv (dot(a)/a)_(t=t_0) = 2/(3(1+w)) t_0^(-1)
+$
+and the energy density would be
+$
+  epsilon(t) = epsilon_0 (t/t_0)^(-2)
+$
+letting $epsilon_0 = epsilon_(c,0)$ we can write
+$
+  epsilon(t) = 1/(6 pi (1+w)^2) c^2/G t^(-2)
+$
+Knowing $z$ we can find
+$
+  1 + z = (a(t_0))/(a(t_e)) = (t_0/t_e)^(2\/(3+3w)) => t_e = t_0/((1+z)^(3(1+w)\/2))
+$
+giving the proper distance
+$
+  d_p (t_0) = c/H_0 2/(1+3 w) [1 - (1+z)^(-(1+3w)\/2)]
+$
+in the limit $t_e = 0$ ($z = oo$) we get the horizon distance
+$
+  d_"hor" (t_0) = c integral_0^(t_0) dd(t)/a(t) = c/H_0 2/(1+3w)
+$
+the above is great for $w eq.not -1$, since then $q$ wouldn't be defined.
+
+For a $Lambda$-dominated universe the Friedmann equation becomes
+$
+  dot(a)^2 = (8 pi G epsilon_Lambda)/(3 c^2) a^2 => dot(a) = H_0 a "with" H_0 = ((8 pi G epsilon_Lambda)/(3 c^2))^(1\/2)
+$
+clearly
+$
+  a(t) = e^(H_0 (t-t_0))
+$
+we can find
+$
+  d_p (t_0) = c/H_0 z => d_p (t_e) = c/H_0 z/(1+z)
+$
+
+=== Multi-component universes
+We can rewrite the Friedmann equation without explicit curvature as
+$
+  (H(t)^2)/H_0^2 = epsilon(t)/epsilon_(c,0) + (1-Omega_0)/a(t)^2
+$
+including matter ($w=0$), radiation ($w=1\/3$) and the cosmological constant ($w=-1$) we get
+$
+  H^2/H_0^2 = Omega_(r,0)/a^4 + Omega_(m,0)/a^3 + Omega_(Lambda,0) + (1-Omega_0)/a^2
+$
+in the Benchmark model $Omega_0 = Omega_(r,0) + Omega_(m,0) + Omega_(Lambda,0) = 1$---it is spatially flat.
+
+Much of analyzing different component compositions consists of using seperation of variables to integrate the Friedmann equation giving $H_0 t = dots$, and then some expression for the scale factor pops out---it's also easy to find $a_"max"$. As an example take a universe with matter and a cosmological constant---then for $Omega_(Lambda, 0) < 0$ we get
+$
+  H^2/H_0^2 = Omega_(m,0)/a^3 + (1-Omega_(m,0)) => H_0 t = 2/(3 sqrt(Omega_(m,0)-1)) sin^(-1) [(a/a_"max")^(3\/2)]
+$
+where
+$
+  a_"max" = (Omega_(m,0)/(Omega_(m,0)-1))^(1\/3)
+$
+for $Omega_(Lambda, 0) > 0$ we get
+$
+  H_0 t = 2/(3 sqrt(1-Omega_(m,0))) ln[(a/a_(m Lambda))^(3\/2) + sqrt(1+(a/a_(m Lambda))^3)]
+$
+where
+$
+  a_(m Lambda) = (Omega_(m,0)/(1-Omega_(m,0)))^(1\/3)
+$
+this let's us calculate the approximate age of the universe with $Omega_(m,0) = 0.31$ and $Omega_(Lambda,0) = 0.69$ and
+$
+  t_0 = (2 H_0^(-1))/(3 sqrt(1-Omega_(m,0))) ln[(sqrt(1-Omega_(m,0))+1)/sqrt(Omega_(m,0))] = 13.74 plus.minus 0.40 "Gyr"
+$
+and $t_(m Lambda)$ or when $a=a_(m Lambda)$ is
+$
+  t_(m Lambda) = (2 H_0^(-1))/(3 sqrt(1-Omega_(m,0))) ln(1 + sqrt(2)) = 10.17 plus.minus 0.30 "Gyr"
+$
+which tells us that the cosmological constant has dominated for $approx 3.5 "Gyr"$. (with $Omega_(r,0) = 0$ and $kappa = 0$)
+
+For a universe with just matter and radiation then
+$
+  t_(r m) = 4/3 (1 - 1/sqrt(2)) a^2_(r m)/sqrt(Omega_(r,0)) H_0^(-1) = 50000 "yr"
+$
+for the Benchmark model---thus radiation only dominated for a very short time and we can essentially ignore it.
+
+=== Benchmark model
+\* skipped for now just a block of text.
+
+Most of the important times ($t_(r m), t_(m Lambda)$ and $t_0$) have been listed, as well as the composition.
+
+#pagebreak()
+== Measuring Parameters
+If we know the scale factor $a(t)$ we essentially know everything---so this is the quantity we want to measure. This is hard, so what we do is use a Taylor expansion
+$
+  a(t) = a(t_0) + dv(a, t)_(t=t_0) (t-t_0) + 1/2 dv(a, t, 2)_(t_t_0) (t-t_0)^2 + dots
+$
+assuming that $a$ isn't weird and fluctuates in a scuffed way we only really need the first couple of terms. We can write
+$
+  a(t) approx 1 + H_0 (t-t_0) - 1/2 q_0 H_0^2 (t-t_0)^2
+$
+with $H_0$ being the usual Hubble constant and $q_0$ being the deceleration parameter
+$
+  q_0 equiv - ((dot.double(a) a)/dot(a)^2)_(t=t_0) = - (dot.double(a)/(a H^2))_(t=t_0)
+$
+so we want to find $H_0$ and $q_0$---then we can approximate $a(t)$ near $t_0$.
+
+Using the acceleration equation we can write
+$
+  -dot.double(a)/(a H^2) &= 1/2 [(8 pi G)/(3 c^2 H^2)] sum_(i=1)^N epsilon_i (1 + 3 w_i) \
+  &= 1/2 sum_(i=1)^N Omega_i (1 + 3 w_i)
+$
+at the present moment then
+$
+  q_0 & = 1/2 sum_(i=1)^N Omega_(i,0) (1 + 3 w_i) \
+      & = Omega_(r,0) + 1/2 Omega_(m,0) - Omega_(Lambda,0) approx^"b.mark" -0.53
+$
+In principle $H_0$ can be found using $c z = H_0 d$, but the distance is tough to work with. We can write
+$
+  1/a(t) approx 1 - H_0 (t-t_0) + (1 + q_0/2) H_0^2 (t-t_0)^2
+$
+then
+$
+  d_p (t_0) approx c (t_0-t_e) + (c H_0)/2 (t_0 - t_e)^2
+$
+here the first term is what the proper time would be in a static universe, and the second term is a correction since the universe expands. We don't know $t_0 - t_e$ but
+$
+  z = 1/a(t_e) -1 => z approx H_0 (t_0 - t_e) + (1+q_0/2) H_0^2 (t_0 - t_e)^2
+$
+so
+$
+  t_0-t_e approx H_0^(-1) [z-(1+q_0/2) z^2] => d_p (t_0) approx (c z)/H_0 [1-(1+ q_0)/2 z]
+$
+but $d_p (t_0)$ is not measurable.
+
+So we need some way to measure distance from stuff we can measure---one way is using the luminosity distance
+$
+  d_L equiv (L/(4 pi f))^(1\/2)
+$
+which can give us the distance to some object (if the universe were static and flat) with a known luminosity $L$ using a measured flux $f$. In a universe described by the RW-metric the surface area of a sphere is given by
+$
+  A_p (t_0) = 4 pi S_kappa (r)^2
+$
+and the observed flux will be decreased by a factor $(1+z)^(-2)$ since the energy of a photon will be decreased by $(1+z)^(-1)$ (due to wavelength stretching) and the time between photons will be lengthened by $(1+z)$. The result is
+$
+  f = L/(4 pi S_kappa (r)^2 (1+z)^2) => d_L = S_kappa (r) (1+z)
+$
+given space seems flat $d_L = r(1+z) = d_p (t_0) (1+z)$, this gives
+$
+  d_L approx c/H_0 z (1 + (1-q_0)/2 z)
+$
+we can measure $d_L$, $q_0$ and $z$ so this gives us $H_0$ in terms of measurable quantities.
+
+#pagebreak()
+== Particle Physics
+=== The observation
+An easy observation to make is that our universe contains different stuff. For us the most significant difference between stuff is what elementary particles make them up. Baryonic matter corresponds to protons, neutrons, and electrons---since the electrons weigh so little---most of this is found as hydrogen and helium (we also have dark matter, which we won't discuss). We also have three types of neutrinos $nu$ and three mass states---these have very little mass and are not very reactive.
+
+The important mass-less particle for our purposes is the photon, which unlike the neutrino is very reactive---for blackbody radiation we know
+$
+  epsilon(f) dd(f) = (8 pi h)/c^3 (f^3 dd(f))/(exp[h f\/k_B T]-1)
+$
+with a peak at $h f_"peak" approx 2.82 k T$, and
+$
+  epsilon_gamma = alpha T^4
+$
+the number density is just
+$
+  n(f) dd(f) = (epsilon (f) dd(f))/(h f) = (8 pi)/c^2 (f^2 dd(f))/(exp[h f\/k_B T]-1)
+$
+so $n_gamma = beta T^3 => E_"mean" approx 2.70 k_B T$---the blackbody is important since our universe is essentially just one big blackbody (see CMB).
+
+=== Nucleosynthesis

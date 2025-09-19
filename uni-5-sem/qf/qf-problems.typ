@@ -515,48 +515,38 @@ $
 which is nonsense.
 
 == 2.3
-An electron is subject to a uniform time-independent magnetic field $B$ in the positive $z$-direction. At $t=0$ the electron is known to be in an eigenstate of $bold(S) dot hat(bold(n))$. With $hat(bold(n))$ lying in the $x z$-plane making an angle $beta$ with the $z$-axis.
-
-From a previous problem we have $alpha = 0$. Giving
+We let $alpha = 0$ then
 $
   hat(bold(n)) = sin beta bold(e)_x + cos beta bold(e)_z
 $
 and
 $
-  ket(alpha) = ket(bold(S) dot hat(bold(n))";"+) = cos beta/2 ket(+) + sin beta/2 ket(-)
+  ket(alpha) = ket(bold(S) dot hat(bold(n))","+) = cos beta/2 ket(+) + sin beta/2 ket(-)
 $
-the Hamiltonian is
+and
 $
-  H = - e/(m c) bold(S) dot bold(B) = omega S_z "with" omega = -(e B)/(m c)
+  H = omega S_z
 $
-
-at some time $t$
+at time $t$
 $
-  ket(alpha";"t) = cal(U) (t) ket(alpha) &= exp((-i omega t S_z)/hbar) [cos beta/2 ket(+) + sin beta/2 ket(-)] \
-  &= exp((-i omega t)/2) cos beta/2 ket(+) + exp((i omega t)/2) sin beta/2 ket(-)
+  ket(alpha";"t) & = cal(U) (t) ket(alpha) \
+  &= exp[(- i omega t)/2] cos beta/2 ket(+) + exp[(i omega t)/2] sin beta/2 ket(-)
 $
-
-a. Probability for finding electorn in the $S_x$ state.
-
+the probability for
 $
-  ket(S_x ";" +) = 1/sqrt(2) ket(+) + 1/sqrt(2) ket(-)
+  ket(S_x ";" t) = 1/sqrt(2) ket(+) + 1/sqrt(2) ket(-)
 $
-so
+is
 $
-  P = abs(braket(S_x";"t, alpha";"t))^2 & = 1/2 (1 + sin beta cos omega t)
+  P & = abs(braket(S_x";"t, alpha";"t))^2 \
+    & = 1/2 (1 + sin beta cos omega t)
 $
-
-b. Find $expval(S_x)$
-
+the expectation value
 $
-  braket(alpha";"t, S_x, alpha";"t) & = hbar/2 sin beta cos omega t
+  expval(S_x, alpha";"t) &= braket(hbar/2 ketbra(+, -) + hbar/2 ketbra(-, +), alpha";"t) \
+  &= hbar/2 sin beta cos omega t
 $
-
-c. Sanity check
-
-For $beta = 0 => expval(S_x) = 0$
-
-For $beta = pi\/2 => expval(S_x) = hbar/2 cos omega t$---precession in $x y$-plane.
+for $beta -> 0 => expval(S_x) = 0$ and $beta -> pi\/2 => expval(S_x) = (hbar\/2) cos omega t => "precession in "x y"-plane"$.
 
 == 2.10
 Let $ket(a')$ and $ket(a'')$ be eigenstates of a Hermitian operator $A$ with eigenvalues $a'$ and $a''$ ($a' eq.not a''$). The Hamiltonian is given by
@@ -774,5 +764,35 @@ $
 
 
 == 2.42
+We have
+$
+  Z = integral dd(x', 3) K (bold(x)',t;bold(x)',0) = sum_a' exp[- beta E_a']
+$
+now
+$
+  pdv(Z, beta) = - sum_a' E_a' exp[- beta E_a']
+$
+so
+$
+  - 1/Z pdv(Z, beta) & = (sum_a' E_a' exp[-beta E_a'])/(sum_a' exp[-beta E_a']) \
+  &= (sum_a' E_a' exp[-beta (E_a' - E_0)])/(sum_a' exp[- beta (E_a'-E_0)]) \
+  &= (E_0 + E_1 exp[- beta(E_1-E_0)] + dots)/(1 + exp[-beta(E_1-E_0) + dots])
+$
+now consider $E_i - E_0 > 0$ since $E_0$ is by definition the smallest energy. Thus in the limit $beta -> oo$ every exponential vanishes and we get
+$
+  lim_(beta -> oo) (- 1/Z pdv(Z, beta)) & = E_0
+$
 
 == 2.43
+For a free particle
+$
+  cal(U)^dagger = exp[i/hbar bold(p)^2/(2m) t]
+$
+so the propagator is
+$
+  braket(bold(p)''","t, bold(p)'","t_0)_H &= braket(bold(p)'', cal(U) cal(U)^dagger, bold(p)') \
+  &= braket(bold(p)'', exp[- i/hbar bold(p)^2/(2m) t] exp[i/hbar bold(p)^2/(2m) t_0], bold(p)') \
+  &= braket(bold(p)'', exp[- i/hbar bold(p^2)/(2m) (t-t_0)], bold(p)') \
+  &= exp[- i/hbar bold(p)'^2/(2 m) (t-t_0)] braket(bold(p)'', bold(p)') \
+  &= exp[- i/hbar bold(p)'^2/(2 m) (t-t_0)] delta^3 (bold(p)''-bold(p)')
+$

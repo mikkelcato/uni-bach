@@ -352,32 +352,107 @@ $
 $
 
 #pagebreak()
-= The covariance principle
-The covariance principle states that; our equations must be covariant under the general coordinate transformations which leave $dd(s^2)$ invariant, and our equations should reduce to the correct special relativistic form in local inertial frames---additionally our equations reduce to Newtonian equations in the Newtonian limit. It can be treated as a generalization of the equivalence principle.
+= The principle of general covariance
+We'd like to express the laws of physics such that they hold in all coordinate frames---we want them to be generally covariant. The idea is that if we can express the laws of special relativity in covariant form, then they will be valid in all coordinate frames---in this way we get laws of physics that by definition are valid in every frame and thus satisfy the equivalence principle.
 
-This gives us a clear path to convert our equations from special relativity to general relativity, since the tensor formalism developed for the two only differ in their derivatives. We simply replace $partial$ by $D$ to convert our equations,
+Using the equivalence principle, we can to each point define a freely falling elevator, wherein the laws of physics are those of special relativity. Recall
 $
-  partial -> D " "(= partial + Gamma)
+  dv(x^lambda, tau, 2) + tensor(Gamma, lambda, -mu nu) dv(x^mu, tau) dv(x^nu, tau) = 0
 $
-this is minimal---gravitational---coupling. Christoffel symbols are derivatives of the metric---our potentials---so they bring the gravitational field strength into our equations naturally.
+at every point $x = tilde(x)$ we can pick a freely falling elevator such that
+$
+  g_(mu nu) (tilde(x)) = eta_(mu nu)
+$
+for this to hold---i.e. no deviation from free fall--- we need the Christoffel symbols to vanish at $x = tilde(x)$ meaning that
+$
+  pdv(g_(mu nu) (x), x^sigma)_(x=tilde(x)) = 0
+$
+but we don't require that
+$
+  pdv(g_(mu nu) (x), x^sigma, x^rho)_(x=tilde(x)) = 0
+$
+this means that if we move away from $x=tilde(x)$ the Christoffel symbols don't necessarily vanish anymore.
 
-As an example consider Maxwell's equations and the Lorentz force law from special relativity,
+== Tensors in relativity
+To write our laws of physics in a systematic way to ensure covariance we need the language of tensors---since these objects transform nicely under general coordinate transformations.
+
+Scalars like $dd(tau)$ or $phi(x)$ are invariant under $x -> x'$.
+
+Note that $dd(x^mu)$ transforms like
 $
-  dv(U^mu, tau) = q/c F^(mu nu) U_nu ->^"minimal coupling" (D U^mu)/(dd(tau)) = q/c F^(mu nu) U_nu
+  dd(x'^mu) = pdv(x'^mu, x^nu) dd(x^nu)
 $
+we say that stuff that transforms like $dd(x^mu)$ is a contravariant vector---e.g. so $U^mu$ is a contravariant vector if under $x -> x'$ we have
 $
-  partial_mu F^mu nu = - 1/c j^nu & ->^"m.c" D_mu F^(mu nu) =-1/c j^nu \
-  partial_mu tilde(F)^(mu nu) = 0 & ->^"m.c" D_mu tilde(F)^(mu nu)=0
+  U'^mu = pdv(x'^mu, x^nu) U^nu
 $
-by taking $F^(mu nu) = 0$ in the Lorentz force law we can rederive the geodesic equation,
+
+Covariant vectors are defined as those that transform inversely of this, so a covariant vector transforms as
 $
-  (D U^mu)/dd(tau) = 0
+  A'_mu = pdv(x^nu, x'^mu) A_nu
 $
-just using the definition of $D$ and $U^mu = dd(x^mu)\/dd(tau)$ gives
+this is the inverse since a contraction of a contravariant and covariant vector gives a scalar
 $
-  dv(x^mu, tau, 2) + tensor(Gamma, mu, -nu lambda) dv(x^nu, tau) dv(x^lambda, tau) = 0
+  A'_mu U'^mu = pdv(x^nu, x'^mu) pdv(x'^mu, x^sigma) A_nu U^sigma = tensor(delta, nu, -sigma) A_nu U^sigma = A_nu U^nu
 $
-which is just the geodesic equation.
+we can also form a covariant vector by differentiation of a scalar
+$
+  pdv(phi' (x'), x'^mu) = pdv(phi(x), x^nu) pdv(x^nu, x'^mu)
+$
+so $A_mu = pdv(phi(x), x^mu) = partial_mu phi(x)$ is covariant. A general tensor transforms in the obvious way. As an example take the metric tensor $g_(mu nu)$ which is covariant
+$
+  g'_(mu nu) (x') = eta_(alpha beta) pdv(y^alpha, x'^mu) pdv(y^beta, x'^nu) = eta_(alpha beta) pdv(y^alpha, x^rho) pdv(y^beta, x^sigma) pdv(x^rho, x'^mu) pdv(x^sigma, x'^nu) = pdv(x^rho, x'^mu) pdv(x^sigma, x'^nu) g_(rho sigma) (x)
+$
+similarly $g^(mu nu)$ is contravariant, and we can define
+$
+  tilde(T)_(mu nu) = g_(mu sigma) g_(nu rho) T^(sigma rho)
+$
+by comparison we see that $tilde(T)_(mu nu)$ must be covariant since the indices $sigma, rho$ "cancel" leaving just the covariant $mu, nu$, and we let $tilde(T)_(mu nu) = T_(mu nu)$. This also shows that the Kronecker-delta is a mixed tensor $tensor(delta, mu, -nu) = g^(mu sigma) g_(sigma nu)$.
+
+We define $g equiv det g_(mu nu)$ giving $g' = abs(pdv(x, x'))^2 g$ where $abs(pdv(x, x')) = abs(det(pdv(x^mu, x'^nu)))$ is the Jacobian determinant. Then
+$
+  sqrt(-g') dd(x', 4) = sqrt(-g') abs(pdv(x', x)) dd(x, 4) = sqrt(-g) dd(x, 4)
+$
+so the measure $sqrt(-g) dd(x, 4)$ is invariant.
+
+== Derivatives
+In general the derivative of a tensor is a non-tensor, this is a problem. Instead consider some $x^nu (tau)$ then
+$
+  "invariant" = dv(phi(x), tau) = pdv(phi, x^mu) (dv(x^mu, tau))
+$
+implying
+$
+  "invariant" = dv(phi, tau, 2) = pdv(phi, x^mu, x^nu) dv(x^nu, tau) dv(x^mu, tau) + pdv(phi, x^mu) dv(x^mu, tau, 2)
+$
+if $x^mu (tau)$ is the trajectory of a free-fall then using the geodesic equation gives
+$
+  dv(phi, tau, 2) = (pdv(phi, x^mu, x^nu)-tensor(Gamma, sigma, -mu nu) pdv(phi, x^sigma)) times dv(x^mu, tau) dv(x^nu, tau)
+$
+the right factor is contravariant, so the left factor must be covariant given their contraction is invariant. With $V_mu = pdv(phi, x^mu)$ we define the covariant derivative
+$
+  D_mu V_nu = partial_mu V_nu - tensor(Gamma, sigma, -mu nu) V_sigma
+$
+similarly
+$
+  D_mu V^nu = partial_mu V^nu + tensor(Gamma, nu, -mu sigma) V^sigma
+$
+which generalizes in the obvious way. In the freely falling local elevator this reduces to the ordinary derivative since the Christoffel symbol will vanish---so $D_mu -> partial_mu$. This also implies that the Christoffel symbol is not a tensor.
+
+In a local elevator we have
+$
+  partial_sigma g_(mu nu) = 0 => D_sigma g_(mu nu) = 0
+$
+since the covariant form reduces to the special relativity equation---$D_sigma -> partial_sigma$ so the covariant form holds in the local elevator, and thus it must hold in any frame---similarly any equation can be made generally covariant by $partial_sigma -> D_sigma$ since $D_sigma -> partial_sigma$ in the local elevator.
+
+By projecting the covariant derivative to the tangent of the curve $x^mu (tau)$ by multiplying it by $dd(x^mu)\/dd(tau)$ we obtain
+$
+  dv(V^nu, tau, d: D) equiv dv(V^nu, tau) + tensor(Gamma, nu, -mu sigma) V^sigma dv(x^mu, tau)
+$
+notice that $D_tau -> d_tau$ in the local elevator, this lets us derive the geodesic equation. In special relativity the equation of motion can be written as
+$
+  dv(V^mu, tau) = 0 => dv(V^mu, tau, d: D) = 0
+$
+which using $V^mu = dv(x^mu, tau)$ becomes the geodesic equation.
 
 #pagebreak()
 = Derivation of the geodesic equation
