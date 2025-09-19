@@ -1,41 +1,11 @@
 //**** init-ting
 #import "@preview/physica:0.9.5": *
+#import "chpt-temp.typ": *
 #import "@preview/cetz:0.4.1" // drawings
 #import "@preview/subpar:0.2.2" // subfigures
-#import "temp.typ": *
-
 
 #show: thmrules.with(qed-symbol: $square$)
-#show: note.with(
-  title: [
-    *solid state physics*
-  ],
-  authors: (
-    (
-      name: "mkh",
-    ),
-  ),
-  abstract: [
-    Notes on solid state physics taken during the SDU course. Based on Kittel supplemented by Oxford and A&M.
-  ],
-)
-
-#show figure.caption: emph
-
-#show ref: it => {
-  let eq = math.equation
-  let el = it.element
-  if el != none and el.func() == eq {
-    // Override equation references.
-    link(el.location(), numbering(
-      el.numbering,
-      ..counter(eq).at(el.location()),
-    ))
-  } else {
-    // Other references as usual.
-    it
-  }
-}
+#show: chpt-note.with()
 
 = Introduction
 /*
