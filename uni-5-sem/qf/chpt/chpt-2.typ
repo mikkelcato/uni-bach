@@ -1080,6 +1080,7 @@ $
 $
 but we don't concern our selves with time-dependent fields or potentials so the time derivative is zero. Classically $bold(p)$ is not gauge-invariant, but $bold(Pi)$ is.
 
+=== Gauge operator
 In QM we demand that the expectation values behave similarly to the classical case, so $expval(bold(x))$ and $expval(bold(Pi))$ should be gauge-invariant while $expval(bold(p))$ is expected to change. Let $tilde(bold(A)) = bold(A) + grad Lambda$---then we require
 $
   braket(alpha, bold(x), alpha) = braket(tilde(alpha), bold(x), tilde(alpha))

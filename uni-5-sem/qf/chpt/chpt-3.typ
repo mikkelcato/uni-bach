@@ -5,4 +5,5 @@
 #show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
-= Structure Formation
+= Theory of Angular Momentum
+

@@ -675,3 +675,239 @@ $
 with $bold(rho) = bold(r)-bold(r)_j$ and $f_j$ being the atomic form factor and $S_bold(G)$ now being called the structure factor of the basis---note $bold(G) dot bold(r)_j = 2 pi (v_1 x_j + v_2 y_j + v_3 z_j)$.
 
 \*Oxford splits this chapter in two, and does some delta-function business but the end result should be the same.
+
+#pagebreak()
+= Crystal Binding and Elastic Constants
+What holds a crystal together?---in solids the electrostatic interaction between electrons and nuclei is entirely responsible for cohesion. There are four principal types of crystalline binding---van der Waals, ionic, metallic and covalent.
+
+== Inert gases
+These form the simplest crystals and the $e^-$ distribution is similar to the free atoms. In this case the atoms pack as tight as possible, so most are fcc. Tiny distortions of the $e^-$ distribution leads to the van der Waals interaction---small fluctuations lead to induced dipoles.
+
+To model this consider two identical harmonic oscillators separated by $R$. Each has charges $plus.minus e$ with separations $x_1$ and $x_2$---these oscillate along $x$, let $p_1$ and $p_2$ be their momenta. Then the Hamiltonian
+$
+  cal(H)_0 = 1/(2 m) p_1^2 + 1/2 C x_1^2 + 1/(2 m) p_2^2 + 1/2 C x_2^2
+$
+we assume each has $omega_0$, then $C = m omega_0^2$. Let $cal(H)_1$ be the Coulomb interaction then
+$
+  cal(H)_1 = e^2/R + e^2/(R+x_1-x_2) - e^2/(R+x_1) - e^2/(R-x_2)
+$
+in the point-dipole limit $abs(x_1), abs(x_2) << R$ we find to lowest order
+$
+  cal(H)_1 tilde.equiv - (2 e^2 x_1 x_2)/R^3
+$
+writing
+$
+  x_s equiv 1/sqrt(2) (x_1 + x_2)",  " x_a equiv 1/sqrt(2) (x_1 - x_2)
+$
+we can obtain
+$
+  x_1 = 1/sqrt(2) (x_s + x_a)",  " x_2 = 1/sqrt(2) (x_s - x_a)
+$
+and equivalent expressions for $p_1$ and $p_2$---subbing these in the total Hamiltonian is
+$
+  cal(H) = [1/(2 m) p_s^2 + 1/2 (C-(2 e^2)/R_3) x_s^2] + [1/(2 m) p_a^2 + 1/2 (C+ (2 e^2)/R^3) x_a^2]
+$
+so have two coupled modes $s$ and $a$, by inspection
+$
+  omega = [(C plus.minus (2 e^2)\/R^3)/m]^(1\/2) = omega_0 [1 plus.minus 1/2 ((2 e^2)/(C R^3)) - 1/8 ((2 e^2)/(C R^3))^2 + dots]
+$
+the zero-point energy is $hbar\/2 (omega_s + omega_a)$ which is lower than the uncoupled value $hbar omega_0$ by
+$
+  dd(U, d: Delta) = 1/2 hbar(dd(omega_s, d: Delta)+dd(omega_a, d: Delta)) = - hbar omega_0 1/8 ((2 e^2)/(C R^3))^2 = - A/R^6
+$
+this is the van der Waals interaction or London interaction or induced dipole-dipole interaction$dots$ It is the principle attractive interaction in crystals of inert gases---and is solely a product of the dipole-dipole coupling---one can approximate $A tilde hbar omega_0 alpha^2$.
+
+As two atoms get attracted they will begin to overlap, this lead to a repulsive force due to the Pauli exclusion principle---$e^-$ will be forced to higher states increasing the energy and leading to a repulsive interaction $tilde B\/R^12$. Combining these effects one can write the potential energy of two atoms as
+$
+  U(R) = 4 epsilon [(sigma/R)^12 - (sigma/R)^6]
+$
+this is the Lennard-Jones potential---other exponential forms $lambda exp(-R\/rho)$ with $rho$ being a measure of the interaction range can also be used and are usually easier to handle analytically.
+
+We can approximate the total energy of a crystal with $N$ atoms by summing over the Lennard-Jones potential
+$
+  U_"tot" = 1/2 N(4 epsilon) [sum_j ' (sigma/(p_(i j)R))^12 - sum_j ' (sigma/(p_(i j)R))^6]
+$
+with $p_(i j) R$ being the distance between atom $i$ and any other atom $j$ in terms of the nearest neighbor distance $R$---the sums are known. For fcc we can find the equilibrium distance
+$
+  dv(U_"tot", R) = 0 => R_0/sigma = 1.09
+$
+using this one can then obtain
+$
+  U_"tot" (R_0) = -(2.15)(4 N epsilon)
+$
+which should hold for all inert gases---this is the cohesive energy when the atoms are at rest---of course this is also very naive and ignores quantum effects which become more evident for smaller atoms.
+
+== Ionic crystals
+Ionic crystals consist of positive and negative ions---the ionic bond comes from the electrostatic interaction of oppositely charged ions---as with inert gas atoms we expect that the ions have symmetric charge distributions, but with distortions where they touch.
+
+Tne long range interaction between ions with $plus.minus q$ is the Coulomb interaction $plus.minus q^2\/r$---the ions will try to balance this with the repulsive interaction between ion cores, this is similar to the inert gas case. The van der Waals interaction is very weak for ionic bonds, instead the main contribution to the binding energy is the Madelung energy. We define
+$
+  U_i = sum_j ' U_(i j)
+$
+where we sum over all $j eq.not i$. We write $U_(i j)$ as a central field repulsive potential and a Coulomb interaction
+$
+  U_(i j) = lambda exp(- r_(i j)/rho) plus.minus q^2/r_(i j)
+$
+neglecting surface effects we write $U_"tot" = N U_i$ with $N$ being the amount of molecules---$2 N$ ions. We again use $r_(i j) equiv p_(i j) R$, only including the repulsive interaction for nearest neighbors we find
+$
+  U_(i j) = cases(
+    lambda exp(-R\/rho)- q^2\/R #h(10pt) & "nearest",
+    plus.minus 1\/p_(i j) q^2\/R & "else"
+  )
+$
+so
+$
+  U_"tot" = N U_i = N (z lambda e^(-R\/rho) - (alpha q^2)/R)
+$
+where $z$ is the number of nearest neighbors of any ion and
+$
+  alpha equiv sum_j ' ((plus.minus))/p_(i j) equiv "Madelung constant"
+$
+the equilibrium separation can be written as
+$
+  N dv(U_i, R) = - (N z lambda)/rho e^(-R\/rho) + (N alpha q^2)/R^2 = 0 => R_0^2 e^(-R_0\/rho) = (rho alpha q^2)/(z lambda)
+$
+using this we obtain
+$
+  U_"tot" = - (N alpha q^2)/R_0 (1- rho/R_0)
+$
+with the Madelung energy being
+$
+  - (N alpha q^2)/R_0
+$
+for a crystal to be stable we require that $alpha$ is positive. If we take our reference ion to be negative then the plus sign applies to all positive ions---an equivalent definition of $alpha$ is
+$
+  alpha/R = sum_j ' ((plus.minus))/r_j
+$
+with $r_j$ being the distance from the $j^"th"$ ion to the reference ion. As an example consider an infinite line of alternating ions---let $R$ be the distance between adjacent ions, then
+$
+  alpha/R = 2 [1/R - 1/(2 R) + 1/(3 R) - 1/(4 R) + dots] => alpha = 2 (1-1/2+1/3-dots) = 2 ln 2
+$
+this is obviously way harder for three-dimensional structures.
+
+== Other bonds
+Aside from the mentioned bonds we quickly mention covalent bonds, mettalic bonds and hydrogen bonds.
+
+Covalent bonds are formed from two $e^-$---one from each atom. These tend to be partly localized between the two atoms and their spins when bonded are antiparallel. Notably this bond has strong directional properties and doesn't fill space as tightly as other bonds---it only allows four nearest neighbors. The binding energy depends on the spin orientation of the two $e^-$ due to the Pauli exclusion principle which will modify the charge distribution in accordane with the spin distribution. This spin-dependent Coulomb interaction is called the exchange interaction.
+
+Metals have a large number of free $e^-$ zooming around---conduction $e^-$---the valence $e^-$ of the atoms become the conduction $e^-$ of the metal. In a metallic bond the energy of these valence $e^-$ is lower as compared with the free atom.
+
+== Elasticity
+We treat a crystal as a continuous homogeneous medium---this approximation is valid for elastic waves of $lambda$ longer that $tilde 10^(-8) "m"$. We'll only consider infinitesimal strains such that Hooke's law applies. Take three axis defined by $hat(bold(x))_i$ then after a small uniform deformation these get deformed
+$
+  bold(x)' &= (1 + epsilon.alt_(x x)) hat(bold(x)) + epsilon.alt_(x y) hat(bold(y)) + epsilon.alt_(x z) hat(bold(z)) \
+  bold(y)' &= epsilon.alt_(y x) hat(bold(x)) + (1 + epsilon.alt_(y y)) hat(bold(y)) + epsilon.alt_(y z) hat(bold(z)) \
+  bold(z)' &= epsilon.alt_(z x) hat(bold(x)) + epsilon.alt_(z y) hat(bold(y)) + (1 + epsilon.alt_(z z)) hat(bold(z))
+$
+the coefficients $epsilon.alt_(alpha beta)$ define the deformation---even though the old axes were of unit length this is no longer guaranteed. We define the displacement $bold(R)$ of the deformation as
+$
+  bold(R) equiv bold(r)'-bold(r) = x (bold(x)'-hat(bold(x))) + dots
+$
+or more generally
+$
+  bold(R) (bold(r)) = u(bold(r)) hat(bold(x)) + v(bold(r)) hat(bold(y)) + w(bold(r)) hat(bold(z))
+$
+with
+$
+  epsilon.alt_(x x) tilde.equiv pdv(u, x)",  " epsilon.alt_(y x) tilde.equiv pdv(u, y)",  etc."
+$
+we define the strain components by this
+$
+  e_(x x) equiv epsilon.alt_(x x) = pdv(u, x)
+$
+similarly for $e_(y y)$ and $e_(z z)$. For the other components we define
+$
+  e_(x y) equiv bold(x)' dot bold(y)' tilde.equiv epsilon.alt_(y x) + epsilon.alt_(x y) = pdv(u, y) + pdv(v, x)
+$
+
+We define the dilation by $V' = bold(x)' dot bold(y)' times bold(z)'$, and we obtain
+$
+  delta equiv (V'-V)/V tilde.equiv e_(x x)+e_(y y) + e_(z z)
+$
+we basically ignore terms of order $epsilon.alt^2$ in all of these.
+=== Constants
+We define the stress as the force acting on a unit area in the solid---we have nine components $X_x,X_y,X_z, dots$, with the capital letter denoting the direction, and the subscript denoting the normal to the plane to which the force is applied---we say that $Y_z = Z_y$ etc. giving us six stress components $X_x, Y_y, Z_z, Y_z, Z_x, X_y$. Assuming Hooke's law holds we can write
+$
+  e_(x x) = S_(1 1) X_x + S_(1 2) Y_y + S_(1 3) Z_z + S_(1 4) Y_z + S_(1 5) Z_x + S_(1 6) X_y
+$
+and so on for $e_(y y), e_(z z), e_(y z), e_(z x)$ and $e_(x y)$. Inversely we can write
+$
+  X_x = C_(11) e_(x x) + C_(12) e_(y y) + C_(13) e_(z z) + C_(14) e_(y z) + C_(15) e_(z x) + C_(16) e_(x y)
+$
+etc. etc. All the $S_(11) dots$ are called elastic compliance constants, and the $C_(11) dots$ are called elastic stiffness constants or moduli of elasticity.
+
+We can write
+$
+  U = 1/2 sum_(lambda=1)^6 sum_(mu=1)^6 tilde(C)_(lambda mu) e_lambda e_mu
+$
+with $1 -> 6 = {x x, y y, z z, y z, z x, x y}$, with
+$
+  X_x = pdv(U, e_(x x)) equiv pdv(U, e_1) = tilde(C)_(1 1) e_1 + 1/2 sum_(beta = 2)^6 (tilde(C)_(1 beta) + tilde(C)_(beta 1)) e_beta
+$
+now we see that
+$
+  C_(alpha beta) = 1/2 (tilde(C)_(alpha beta) + tilde(C)_(beta alpha)) = C_(beta alpha)
+$
+i.e. they are symmetric meaning the $36$ constants reduce to $21$.
+
+If our crystal has some symmetry this number reduces further. We claim that for a cubic crystal
+$
+  U = 1/2 C_11 (e_(x x)^2 + e_(y y)^2 + e_(z z)^2) + 1/2 C_44 (e_(y z)^2 + e_(z x)^2 + e_(x y)^2) + C_12 (e_(y y)e_(z z) + e_(z z) e_(x x) + e_(x x) e_(y y))
+$
+for a cubic structure we require four three-fold rotation axes, this happens according to
+$
+  x -> y -> z -> x & "  " -x->z->y->-x \
+    x-> z-> -y-> x & "  " -x->y->z->-x
+$
+all terms are invariant under these in the posed $U$---if a term were odd we could find a rotation which would change the sign since $e_(x y) = - e_(x(-y))$. So we have found that for a cubic crystal we have merely three elastic stiffness constants.
+
+=== Bulk modulus
+Consider the case $e_(x x)=e_(y y)=e_(z z) = 1/3 delta$ then for a cubic crystal
+$
+  U = 1/6 (C_11 + 2 C_12) delta^2
+$
+we define the bulk modulus $B$ by
+$
+  U = 1/2 B delta^2
+$
+which is equivalent to
+$
+  B = - V dv(p, V)
+$
+so for a cubic crystal
+$
+  B = 1/3 (C_11+2C_12)
+$
+the compressibility $K$ is defined as $K = B^(-1)$.
+
+=== Elastic waves
+For a volume element in a crystal we can obtain
+$
+  rho pdv(u, t, 2) = pdv(X_x, x)+pdv(X_y, y)+pdv(X_z, z)
+$
+or plugging stuff in
+$
+  rho pdv(u, t, 2) &= C_11 pdv(e_(x x), x) + C_12 (pdv(e_(y y), x)+pdv(e_(z z), x)) + C_44 (pdv(e_(x y), y)+pdv(e_(z x), z)) \
+  &= C_11 pdv(u, x, 2) + C_44 (pdv(u, y, 2)+pdv(u, z, 2)) + (C_11+C_44) (pdv(v, x, y)+pdv(w, x, z))
+$
+by symmetry we have similar equations for $v$ and $w$. These equations are hell---we consider one simple solution
+$
+  u = u_0 exp[i(K x-omega t)]
+$
+with $u$ being the $x$-component of the particle displacement---with $K=2 pi\/lambda$ and $omega = 2pi nu$. Plugging this guy in gives
+$
+  omega^2 rho = C_11 K^2
+$
+so the velocity of a longitudinal wave in the $[1 0 0]$ direction is
+$
+  v_s = nu lambda = omega/K = (C_11/rho)^(1\/2)
+$
+take a transverse wave
+$
+  v = v_0 exp[i(K x- omega t)]
+$
+and we obtain the velocity of a transverse wave in the $[1 0 0]$ direction
+$
+  omega^2 rho = C_44 K^2 => v_s = (C_44/rho)^(1\/2)
+$
+similarly is obtained by $w$. So for $bold(K)$ parallel to $[1 0 0]$ the two shear waves have equal velocities---this is not generally true.

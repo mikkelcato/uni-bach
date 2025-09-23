@@ -454,6 +454,10 @@ $
 we can measure $d_L$, $q_0$ and $z$ so this gives us $H_0$ in terms of measurable quantities.
 
 #pagebreak()
+== The Cosmic Microwave Backgroud
+
+
+#pagebreak()
 == Particle Physics
 === The observation
 An easy observation to make is that our universe contains different stuff. For us the most significant difference between stuff is what elementary particles make them up. Baryonic matter corresponds to protons, neutrons, and electrons---since the electrons weigh so little---most of this is found as hydrogen and helium (we also have dark matter, which we won't discuss). We also have three types of neutrinos $nu$ and three mass states---these have very little mass and are not very reactive.
@@ -472,4 +476,110 @@ $
 $
 so $n_gamma = beta T^3 => E_"mean" approx 2.70 k_B T$---the blackbody is important since our universe is essentially just one big blackbody (see CMB).
 
-=== Nucleosynthesis
+=== Nucleosynthesis and the Early Universe
+Before the time of the last scattering surface $t_(1s) approx 0.37 "Myr"$ the universe was opaque, meaning we can't see what the universe was like.
+
+In the very early universe radiation dominated at times $t << t_(r m) approx 50000 "yr"$ here $a(t) prop t^(1\/2)$ and the temperature of blackbody photons in the universe with $T prop a^(-1)$ is given by
+$
+  T(t) prop t^(-1\/2) -> E_"mean" (t) = 2.7 k_B T(t)
+$
+using actual numbers we find that the LHC can achieve energies corresponding to a time of $t tilde 10^(-13) "s"$.
+
+As the universe expanded and cooled the energy dropped from
+$
+  E_"mean" (t_P) tilde E_P tilde 10^(28)"eV" -> E_"mean" (t_0) tilde 10^(-3)"eV"
+$
+this is a very wide range---and obviously some scales are of more interest according to which process is being studied. Recombination and photoionization occur at energies $tilde 10"eV"$, while fission and fusion occur at much higher energies.
+
+When talking atomic nuclei we use the mass number $A = Z + N$, where $Z$ is the amount of protons, and $N$ is the amount of neutrons---two of the most importan are $p$ (proton, hydrogen) and $D$ (deuterium). The binding energy $B$ of a nucleus is the energy required to pull it apart into its component protons and neutrons---for example $B_D = 2.22 "MeV"$
+$
+  p + n harpoons.rtlb "D" + 2.22 "MeV"
+$
+the relative binding energy can be written as $B\/A$, the usual energies here are $tilde 8 "MeV"$. This shows us that before recombination at $tilde 10 "eV"$ there was a period of nucleosynthesis (BBN) when protons and neutrons began to fuse and form deuterium, which could then fuse and form heavier nuclei.
+
+The building blocks for nucleosynthesis are $n$ and $p$---note
+$
+  Q_n = (m_n - m_p )c^2 = 1.29 "MeV"
+$
+a free neutron is unstable and decays
+$
+  n -> p + e^- + overline(nu)_e
+$
+with decay time $tau_n = 880 "s"$---given that $Q_n > m_e c^2 = 0.51 "MeV"$ some energy is carried away by the kinetic energy of the electron and the antineutrino---this decay time is short on cosmological scales so free neutrons quickly went extinct. When $E_"mean" tilde 10 "MeV"$ at $t = 0.1"s"$ we had positrons and electrons since this energy is much larger then their rest energies, these were created by pair production
+$
+  gamma + gamma harpoons.rtlb e^- + e^+
+$
+also at this time neutrinos were still coupled to neutrons and protons so
+$
+  n + nu_e & harpoons.rtlb p + e^- \
+   n + e^+ & harpoons.rtlb p + overline(nu)_e
+$
+and this early in the universe everything was in kinetic equilibrium with $k_B T << m_p c^2$---using this eventually leads to
+$
+  n_n/n_p = exp[- Q_n/(k_B T)]
+$
+but at some point the neutrons and protons won't be in equilibrium---the interaction between them requires a neutrino or antineutrino. These interact through the weak force which has a relatively small cross-section and $sigma_w prop t^(-1)$ combined with $n_nu prop t^(-3\/2)$ the interaction rate is
+$
+  Gamma prop n_nu sigma_w = t^(-5\/2)
+$
+when $Gamma tilde H$ the neutrino decouples from the protons and neutrons and hence there is no longer a conversion---the ratio is frozen---it can be shown that
+$
+  n_n/n_p = exp[- Q_n/(k_B T_"freeze")] approx 0.2
+$
+and $t_"freeze" tilde 1"s"$---the ratio would be valid for $t_"freeze" < t << tau_n$. This is one reason why BNN is quite inefficient since $p + n -> "D"$ is easy but $p + p -> "D"$ is a two-step process
+$
+  p + p harpoons.rtlb isotope("He", a: 2) -> "D" + e^+ + nu_e
+$
+note that $isotope("He", a: 2)$ is really, really unstable and decays into two $p$ with $tau_"split" tilde 10^(-23) "s"$---so fusing two $p$ is really rare. For this reason we can say that BNN stops when every neutron is bound---with the remaining protons just being alone.
+
+After freezeout at $t tilde 2"s"$ the first step is as mentioned production of deuterium
+$
+  p + n harpoons.rtlb "D" + gamma
+$
+with $B_D$ being carried away by a gamma photon---to analyze this we can use the nucleosynthetic Saha equation
+$
+  n_D/(n_p n_n) = 6 ((m_n k_B T)/(pi hbar^2))^(-3\/2) exp[B_D/(k_B T)]
+$
+the time of nucleosynthesis defined by $n_D\/n_n = 1$ can be found to be $t_"nuc" tilde 200"s"$.
+
+After deuterium is formed many other reactions are possible, most leading to the formation of helium. We have
+$
+  D + p & harpoons.rtlb isotope("He", a: 3)+gamma \
+    D+n & harpoons.rtlb isotope("H", a: 3)+gamma
+$
+or
+$
+  D + D harpoons.rtlb isotope("He", a: 4) + gamma
+$
+more likely
+$
+  D + D & harpoons.rtlb isotope("H", a: 3) + p \
+  D + D & harpoons.rtlb isotope("He", a: 3) + n
+$
+which then quickly fuse
+$
+   isotope("H", a: 3) + p & harpoons.rtlb isotope("He", a: 4) + gamma \
+  isotope("He", a: 3) + n & harpoons.rtlb isotope("He", a: 4) + gamma \
+   isotope("H", a: 3) + D & harpoons.rtlb isotope("He", a: 4) + n \
+  isotope("He", a: 3) + D & harpoons.rtlb isotope("He", a: 4) + p \
+$
+when helium is reached however nucleosynthesis has trouble since it is very tightly bounded relative to its mass number. Furthere exist no stable nuclei with $A=5$ meaning it can't fuse with $p$ or $n$ and hope it achieves something. It can form small amount of lithium through
+$
+  isotope("He", a: 4) + D &harpoons.rtlb isotope("Li", a: 6) + gamma \
+  isotope("He", a: 4) + isotope("H", a: 3) &harpoons.rtlb isotope("Li", a: 7) + gamma
+$
+and beryllium
+$
+  isotope("He", a: 4) + isotope("He", a: 3) &harpoons.rtlb isotope("Be", a: 7) + gamma
+$
+again there are no stable nuclei for $A=8$ so we reach another roadblock---for obvious reasons this is way more complicated, e.g. temperature dependent cross-sections.
+
+One question still being researched today can be expressed as
+$
+  n_"antibary" << n_"bary" << n_gamma
+$
+why is there a baryon-antibaryon asymmetry? In the early universe quarks and antiquarks were constantly formed through pair-production and quickly annihilated. However, suppose there was a tiny asymmetry $delta_q << 1$ leading to
+$
+  n_q/n_gamma tilde delta_q
+$
+If we had $1003$ quarks per $1000$ antiquarks then for every three surviving quarks there'd be $2000$ photons---the three quarks would when the universe cooled down form a single baryon giving a very low $eta$. In reality we just need $800000003$ quarks per $800000000$ antiquarks to get the $eta$ we observe.
