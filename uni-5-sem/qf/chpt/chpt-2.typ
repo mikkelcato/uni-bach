@@ -655,7 +655,8 @@ We have $V(x) = m omega^2 x^2 \/2$, giving
 $
   - hbar^2/(2m) dv(, x, 2) u_E (x) + 1/2 m omega^2 x^2 u_E (x) = E u_E (x)
 $
-we define $y equiv x\/x_0$ with $x_0 equiv sqrt(hbar\/m omega)$, and a diemensionless energy $epsilon equiv 2 E \/hbar omega$ giving
+we define $y equiv x\/x_0$ with $x_0 equiv sqrt(hbar\/m omega)$, and a dimensionless energy $epsilon equiv 2 E \/hbar omega$ giving
+
 $
   dv(, y, 2) u(y) + (epsilon - y^2) u (y) = 0
 $

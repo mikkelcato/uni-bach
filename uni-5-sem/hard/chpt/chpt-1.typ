@@ -17,6 +17,8 @@
 
 #pagebreak()
 = Crystal structure
+Everything in solid state physics is basically a crystal, this part of the course describes the basic mathematical description of these.
+
 == The Lattice
 An ideal crystal consists of the infinite repetition of identical groups of atoms---this group is referred to as the basis. The set to which the basis is attached is called the lattice. This lattice can be defined by three translation vectors $bold(a)_1, bold(a)_2$ and $bold(a)_3$, such that our crystal looks the same when viewed from $bold(r)$ and $bold(r)'$ related by
 $
@@ -740,11 +742,11 @@ which should hold for all inert gases---this is the cohesive energy when the ato
 == Ionic crystals
 Ionic crystals consist of positive and negative ions---the ionic bond comes from the electrostatic interaction of oppositely charged ions---as with inert gas atoms we expect that the ions have symmetric charge distributions, but with distortions where they touch.
 
-Tne long range interaction between ions with $plus.minus q$ is the Coulomb interaction $plus.minus q^2\/r$---the ions will try to balance this with the repulsive interaction between ion cores, this is similar to the inert gas case. The van der Waals interaction is very weak for ionic bonds, instead the main contribution to the binding energy is the Madelung energy. We define
+The long range interaction between ions with $plus.minus q$ is the Coulomb interaction $plus.minus q^2\/r$---the ions will try to balance this with the repulsive interaction between ion cores, this is similar to the inert gas case. The van der Waals interaction is very weak for ionic bonds, instead the main contribution to the binding energy is the Madelung energy. We define
 $
   U_i = sum_j ' U_(i j)
 $
-where we sum over all $j eq.not i$. We write $U_(i j)$ as a central field repulsive potential and a Coulomb interaction
+where we sum over all $j eq.not i$. We write $U_(i j)$ as a central field repulsive potential (instead of the Pauli potential) and a Coulomb interaction
 $
   U_(i j) = lambda exp(- r_(i j)/rho) plus.minus q^2/r_(i j)
 $
@@ -786,13 +788,15 @@ $
 this is obviously way harder for three-dimensional structures.
 
 == Other bonds
-Aside from the mentioned bonds we quickly mention covalent bonds, mettalic bonds and hydrogen bonds.
+Aside from the mentioned bonds we quickly mention covalent bonds, metallic bonds and hydrogen bonds.
 
-Covalent bonds are formed from two $e^-$---one from each atom. These tend to be partly localized between the two atoms and their spins when bonded are antiparallel. Notably this bond has strong directional properties and doesn't fill space as tightly as other bonds---it only allows four nearest neighbors. The binding energy depends on the spin orientation of the two $e^-$ due to the Pauli exclusion principle which will modify the charge distribution in accordane with the spin distribution. This spin-dependent Coulomb interaction is called the exchange interaction.
+Covalent bonds are formed from two $e^-$---one from each atom. These tend to be partly localized between the two atoms and their spins when bonded are antiparallel. Notably this bond has strong directional properties and doesn't fill space as tightly as other bonds---it only allows four nearest neighbors. The binding energy depends on the spin orientation of the two $e^-$ due to the Pauli exclusion principle which will modify the charge distribution in accordance with the spin distribution. This spin-dependent Coulomb interaction is called the exchange interaction. The big point is that orbitals will hybridize, and sometimes this is favorably and a bond will form (bonding)---other times this is not at all favorably and a bond will not form (antibonding).
 
 Metals have a large number of free $e^-$ zooming around---conduction $e^-$---the valence $e^-$ of the atoms become the conduction $e^-$ of the metal. In a metallic bond the energy of these valence $e^-$ is lower as compared with the free atom.
 
 == Elasticity
+We briefly discuss elasticity since we'll eventually discuss elastic waves in crystals.
+
 We treat a crystal as a continuous homogeneous medium---this approximation is valid for elastic waves of $lambda$ longer that $tilde 10^(-8) "m"$. We'll only consider infinitesimal strains such that Hooke's law applies. Take three axis defined by $hat(bold(x))_i$ then after a small uniform deformation these get deformed
 $
   bold(x)' &= (1 + epsilon.alt_(x x)) hat(bold(x)) + epsilon.alt_(x y) hat(bold(y)) + epsilon.alt_(x z) hat(bold(z)) \
@@ -836,7 +840,7 @@ $
 $
 etc. etc. All the $S_(11) dots$ are called elastic compliance constants, and the $C_(11) dots$ are called elastic stiffness constants or moduli of elasticity.
 
-We can write
+We can write the energy density as (Hooke's law)
 $
   U = 1/2 sum_(lambda=1)^6 sum_(mu=1)^6 tilde(C)_(lambda mu) e_lambda e_mu
 $
@@ -860,6 +864,12 @@ $
     x-> z-> -y-> x & "  " -x->y->z->-x
 $
 all terms are invariant under these in the posed $U$---if a term were odd we could find a rotation which would change the sign since $e_(x y) = - e_(x(-y))$. So we have found that for a cubic crystal we have merely three elastic stiffness constants.
+
+To conclude we can summarize all of this with Hooke's law
+$
+  bold(sigma) = bold(C) bold(epsilon)
+$
+with $bold(sigma)$ being all the $X_x dots$ the stress components, and $bold(epsilon)$ being the strain components $e_(x x) dots$. $bold(C)$ is then a tensor containing all the elastic constants.
 
 === Bulk modulus
 Consider the case $e_(x x)=e_(y y)=e_(z z) = 1/3 delta$ then for a cubic crystal
@@ -888,7 +898,7 @@ $
 or plugging stuff in
 $
   rho pdv(u, t, 2) &= C_11 pdv(e_(x x), x) + C_12 (pdv(e_(y y), x)+pdv(e_(z z), x)) + C_44 (pdv(e_(x y), y)+pdv(e_(z x), z)) \
-  &= C_11 pdv(u, x, 2) + C_44 (pdv(u, y, 2)+pdv(u, z, 2)) + (C_11+C_44) (pdv(v, x, y)+pdv(w, x, z))
+  &= C_11 pdv(u, x, 2) + C_44 (pdv(u, y, 2)+pdv(u, z, 2)) + (C_12+C_44) (pdv(v, x, y)+pdv(w, x, z))
 $
 by symmetry we have similar equations for $v$ and $w$. These equations are hell---we consider one simple solution
 $
@@ -911,3 +921,7 @@ $
   omega^2 rho = C_44 K^2 => v_s = (C_44/rho)^(1\/2)
 $
 similarly is obtained by $w$. So for $bold(K)$ parallel to $[1 0 0]$ the two shear waves have equal velocities---this is not generally true.
+
+To find the velocities one can also solve a system of equations see the problems---further note that for longitudinal wave the motion is parallel to $bold(K)$ and for transverse motion it is perpendicular to $bold(K)$---in general there are three modes, see problems.
+
+

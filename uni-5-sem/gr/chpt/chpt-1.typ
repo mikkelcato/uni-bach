@@ -441,52 +441,46 @@ $
 $
 which using $V^mu = dv(x^mu, tau)$ becomes the geodesic equation.
 
-#pagebreak()
-= Derivation of the geodesic equation
-We want to show that the curve with extremum length---the geodesic---can be described in terms of the metric. Any curve can be represented by a set of coordinates $x^mu (lambda)$, where $lambda$ is some parameter. As we have seen the metric determines the infinitesimal length $ dd(s) = sqrt(g_(mu nu) dd(x^mu)dd(x^nu)) $ to get a length we integrate
+== Electromagnetism
+From electrodynamics we recall the antisymmetric Faraday tensor $ F_(mu nu) = partial_mu A_nu - partial_nu A_mu $ and the four-current $J^mu = vecrow(rho, bold(J))$. Then we know that the two inhomogeneous Maxwell equations can be written in compact form as
 $
-  s = integral dd(s) = integral sqrt((dv(s, lambda))^2) dd(lambda) = integral L dd(lambda)
+  partial_mu F^(mu nu) = - J^nu
 $
-with the Lagrangian being
+likewise the two homogeneous Maxwell equations become
 $
-  L = sqrt(g_(mu nu) dv(x^mu, lambda) dv(x^nu, lambda)) = L (x, dot(x))
+  partial_mu F_(nu gamma) + partial_(gamma) F_(mu nu) + partial_nu F_(gamma mu) = 0
 $
-where we define $dot(x)^mu equiv dd(x)^mu\/dd(lambda)$. To find the extremum line we use the variational principle
+which we call the Bianchi identity---this generally holds for tensors of the form $T_(mu nu) = partial_mu B_nu - partial_nu B_mu$ since terms cancel due to antisymmetry and the Schwarz identity. Two include gravity we simply replace $partial_mu -> D_mu$ giving
 $
-  delta s = delta integral L(x,dot(x)) dd(lambda)=0
+  D_mu F^(mu nu) & = - J^nu \
+               0 & = D_mu F_(nu lambda) + D_lambda F_(mu nu) + D_nu F_(lambda mu)
 $
-giving the Euler-Lagrange equation
+But, due to the cyclical nature of the Bianchi identity and the antisymmetricy of $F_(mu nu)$, then all Christoffel symbols due to the covariant derivative cancel giving
 $
-  dv(, lambda) pdv(L, dot(x)^mu) - pdv(L, x^mu) = 0
+  partial_mu F_(nu lambda) + partial_lambda F_(mu nu) + partial_nu F_(lambda mu) = 0
 $
-it is a fact that using a Lagrangian of the form $ L(x, dot(x)) = g_(mu nu) dot(x)^mu dot(x)^nu $ gives the same equation of motion---this is just much easier to work with. The derivatives are relatively simple to calculate
+so it is unchanged. Also using the identity
 $
-  pdv(L, x^mu) = pdv(g_(sigma rho), x^mu) dot(x)^sigma dot(x)^rho
+  D_mu F^(mu nu) = 1/sqrt(-g) partial_mu (sqrt(-g) F^(mu nu))
 $
+which holds for any antisymmetric tensor---we obtain
 $
-  pdv(L, dot(x)^mu) &= pdv(, dot(x)^mu) [g_(sigma nu) dot(x)^sigma dot(x)^nu] \
-  &= g_(sigma nu) pdv(dot(x)^sigma, dot(x)^mu) dot(x)^nu + g_(sigma nu) dot(x)^sigma pdv(dot(x)^nu, dot(x)^mu) \
-  &= g_(sigma nu) delta_mu^sigma dot(x)^nu + g_(sigma nu) dot(x)^sigma delta_mu^nu = 2 g_(mu nu) dot(x)^nu
+  partial_mu (sqrt(-g) F^(mu nu)) = - sqrt(-g) J^nu
 $
-plugging everything in we find
+differentiating both sides the LHS gives
 $
-  dv(, lambda) (g_(mu nu) dot(x)^nu) - 1/2 pdv(g_(sigma rho), x^mu) dot(x)^sigma dot(x)^rho = 0
+  partial_nu partial_mu (sqrt(-g) F^(mu nu)) = 0
 $
-which is our equation of motion. We can rewrite this into a neater form
+since $partial_nu partial_mu$ is symmetric while $F^(mu nu)$ is antisymmetric. This implies
 $
-  g_(mu nu) dv(x^nu, lambda, 2) + pdv(g_(mu nu), x^sigma)dv(x^sigma, lambda) dv(x^nu, lambda) - 1/2 pdv(g_(sigma rho), x^mu) dv(x^sigma, lambda) dv(x^rho, lambda)=0
+  partial_nu (sqrt(-g) J^nu) = 0
 $
-in the second term the factor $(dd(x^sigma)\/dd(lambda))(dd(x^nu)\/dd(lambda))$ is symmetric under $sigma arrow.l.r nu$, so only the symmetric part of the coefficient, namely
+which is the covariant version of four-current conversation, as opposed to in special relativity where $partial_nu J^nu = 0$.
+
+Finally recall the Lorentz force
 $
-  1/2 (pdv(g_(mu nu), x^sigma) + pdv(g_(mu sigma), x^nu))
+  f^mu = e tensor(F, mu, -nu) U^nu
 $
-will contribute. This happens since every tensor can be decomposed in a symmetric and antisymmetric part---since
-$
-  A_(sigma nu) = 1/2 (A_(sigma nu) + A_(nu sigma)) + 1/2(A_(sigma nu)-A_(nu sigma))
-$
-whenever a tensor gets contracted with a symmetric product only the symmetric part survives, since the antisymmetric part cancels. So we can write
-$
-  dv(x^nu, lambda, 2) + tensor(Gamma, nu, -sigma rho) dv(x^sigma, lambda) dv(x^rho, lambda) = 0
-$
+this is already covariant! Given we write $F_(mu nu) = D_mu A_nu - D_nu A_mu$.
 
 

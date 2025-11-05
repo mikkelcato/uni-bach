@@ -453,9 +453,273 @@ $
 $
 we can measure $d_L$, $q_0$ and $z$ so this gives us $H_0$ in terms of measurable quantities.
 
-#pagebreak()
-== The Cosmic Microwave Backgroud
+Another distance we need later when talking CMB is the angular-diameter distance defined by
+$
+  d_A equiv l/dd(theta, d: delta)
+$
+the distance between two ends of a body on the sky can be written as
+$
+  dd(s) = a(t_e) S_kappa (r) dd(theta, d: delta) = l => d_A = (S_kappa (r))/(1+z) = d_L/(1+z)^2 =^"kappa = 0" d_p (t_e)
+$
+so for $kappa = 0$ we have
+$
+  d_A (1+z) = d_p (t_0) = d_L/(1+z)
+$
+importantly for $z-> oo$ and $d_p (t_0) -> d_"hor" (t_0)$ we find
+$
+  d_L tilde z d_"hor" (t_0)\
+  d_A tilde (d_"hor" (t_0))/z
+$
 
+#pagebreak()
+== The Cosmic Microwave Background
+The sky is uniformly bright at a $T_0 = 2.7255 "K"$ due to photons from the Big Bang (note that $T prop a^(-1)$). Currently
+$
+  epsilon_(gamma,0) = alpha T_0^4 = 0.2606 " MeVm"^(-3)
+$
+which is small, but since $h f_"mean"$ is small
+$
+  n_(gamma,0) = beta T^3 = 4.107 times 10^8 "m"^(-3)
+$
+which is large. Whereas for baryons
+$
+  epsilon_("bary",0) tilde 234 "MeVm"^(-3) -> n_("bary",0) tilde 0.25 "m"^(-3)
+$
+giving
+$
+  eta = n_("bary",0)/n_(gamma,0) tilde 6.1 times 10^(-10)
+$
+=== Observing the CMB
+The CMB was first observed as a constant isotropic noise---it is now known to be a blackbody, so the entire universe is itself a blackbody, around the microwave range.
+
+We have three big observational results due to e.g. WMAP and COBE; at any angular position $(theta, phi.alt)$ on the sky, the spectrum of the CMB is a blackbody to within $10^(-4)$. The CMB also has a dipole distortion caused by our relative motion to it, blueshifting half the sky. When the dipole distortion is accounted for the remaining temperature fluctuation are minute in amplitude---at any point on the sky let the temperature be $T(theta,phi.alt)$ then
+$
+  expval(T) = 1/(4 pi) integral T(theta,phi.alt) sin theta dd(theta) dd(phi.alt) = 2.7255 "K"
+$
+the fluctuations are characterized by
+$
+  dd(T, d: delta)/T (theta,phi.alt) equiv (T(theta,phi.alt) - expval(T))/expval(T)
+$
+the deviations are of order
+$
+  expval((dd(T, d: delta)/T)^2)^(1\/2)
+$
+this is what we'd expect in a hot Big Bang model.
+
+=== Recombination and Decoupling
+We want to know how $"ionized plasma" -> "gas of neutral atoms"$ in the early universe---and the related process of $"opaque" -> "transparent"$. We distinguish between three epochs; recombination, photon decoupling and last scattering.
+
+We assume the only baryonic component is hydrogen, either in the form of neutral hydrogen or protons $p$. For charge neutrality in this universe we require $n_p = n_e$. The ionization can be characterized by
+$
+  X equiv n_p/(n_p+n_H) = n_p/n_"bary" = n_e/n_"bary"
+$
+in this universe the relevant energy scale is $Q = 13.6 "eV"$ a photon with energy $h f > Q$ can photoionize a hydrogen atom---$p$ and $e^-$ can also recombine
+$
+  H + gamma ->^"ionization" p + e^- ->^"recombination" H + gamma
+$
+the balance between these processes determine $X$. At a time when $a tilde 10^(-5)$ we had $T tilde 3 times 10^5 "K" -> h f_"mean" tilde 2.7 k_B T tilde 60 "eV"$. With $1.6$ billion photons per baryon all hydrogen atoms that would form by recombination are almost instantly ionized$-> X = 1$. At this time photons interacted with $e^-$ through Thomson scattering
+$
+  gamma + e^- -> gamma + e^-
+$
+this has $sigma_e = 6.65 times 10^(-29) "m"^2$ giving a mean distance before scattering
+$
+  lambda = 1/(n_e sigma_e) =>^"rate" Gamma = c/lambda = n_e sigma_e c
+$
+when the universe is fully ionized $n_e = n_p = n_"bary"$ and $n_"bary" = n_("bary",0) a^(-3)$ so the scattering rate for photons is
+$
+  Gamma = (n_("bary",0) sigma_e c)/a^3 = (5 times 10^(-21) "s"^(-1))/a^3
+$
+so for $a tilde 10^(-5) -> Gamma = 5 times 10^(-6) "s"^(-1)$ this is not very high---but photons are coupled to electrons as long as $Gamma > H$ or equivalently $lambda < c\/H$ so the mean free path is shorter than the Hubble distance. When the inequality flips the $e^-$ dilute faster than photons can interact with them---at this point the universe becomes transparent, and the baryonic matter is no longer compelled to have the same temperature as the CMB. For $a < a_(r m) tilde 2.9 times 10^(-4)$ we have
+$
+  H^2/H_0^2 = Omega_(r,0)/a^4 -> H = (H_0 Omega_(r,0)^(1\/2))/a^2
+$
+giving for $a tilde 10^(-5) -> H = 2.1 times 10^(-10) "s"^(-1)$ this is way smaller than the corresponding $Gamma$ so photons we strongly coupled to $e^-$. If hydrogen had remained ionized then photons would have remained coupled to protons and electrons until recently. One can find that if this were the case then decoupling would happen at $a tilde 0.025$ with $T tilde 110 "K"$, but at this temperature the CMB photons don't have enough energy to keet hydrogen ionized. For this reason decoupling is not gradually caused just by dilution of $e^-$---instead it is a sudden process caused by recombination.
+
+=== Recombination physics
+Naively one can say that when the mean photon energy falls below $Q$ recombination happens---this gives
+$
+  T_"rec" tilde Q/(2.7 k_B) tilde 60000"K"
+$
+this is very crude, since the CMB is a blackbody with an exponential tail. We expect the true $T_"rec"$ be dependent on $eta$ and $Q$.
+
+Consider the reaction
+$
+  H + gamma harpoons.rtlb p + e^-
+$
+this determines $X$ in the early universe. We assume thermal equilibrium and kinetic equilibrium---so the temperature is the same for everything and the particles adhere to either the Fermi-Dirac or Bose-Einstein distribution. Then the number density of a particle type $x$ in the momentum range $p -> p+dd(p)$ is given by (abuse of notation)
+$
+  n_x (p) dd(p) = g_x (4 pi)/h^3 (p^2 dd(p))/(exp([E-mu_x]/(k_B T))plus.minus 1)
+$
+with $+$ for fermions, and $-$ for bosons---$g_x$ is the statistical weight $gamma, e^- "and" p$ have $g_x = 2$. For photons with $E = p c = h f$ and $mu_gamma = 0$ we find
+$
+  n_gamma (f) dd(f) = (8pi)/c^3 (f^2 dd(f))/(exp[(h f)/(k_B T)]-1)
+$
+this is just the blackbody spectrum, integrating gives
+$
+  n_gamma = (2.4041)/pi^2 ((k_B T)/(hbar c))^3
+$
+note from lecture; assuming $E = p c$ and $mu_x << E(p)$ (radiation) we can find
+$
+  epsilon_x &= integral_0^oo dd(p) n_x (p) E \
+  &= g_x c/(hbar^3 2 pi^2) integral_0^oo (dd(p) p^3)/(exp[p c\/k_B T] plus.minus 1) \
+  &= g_x (k_B^4 T^4)/(hbar^3 c^3 2 pi^2) integral_0^oo dd(y) y^3/(exp(y) plus.minus 1) \
+  &= g_x pi^2/30 (k_B^4 T^4)/(hbar^3 c^3) cases(1 ": boson", 7/8 ": fermion")
+$
+which is the familiar Stefan-Boltzmann law: $epsilon_gamma prop alpha T^4$, since $epsilon_r prop a^(-4)$ this implies $T prop a^(-1)$ as mentioned. We define (since over time different species stop being relativistic)
+$
+  epsilon_r (t) = sum_("ultra rel." x) epsilon_x (t) equiv g_* (t) pi^2/30 (k_B^4 T^4)/(hbar^3 c^3)
+$
+with $g_*$ being the number of (effective) bosonic relativistic degrees of freedoms:
+$
+  g_* (t) = sum_("rel. bosons" x) g_x + 7/8 sum_("rel. fermions" y) g_y
+$
+
+When recombination happened $e^-, p "and" H$ atoms all had non-relativistic speeds (no longer radiation) $m c^2 >> k_B T$ so $p tilde m_x v$ and
+$
+  E tilde m_x c^2 + p^2/(2 m_x)
+$
+so for $m_x c^2 - mu_x >> k_B T$ we find
+$
+  n_x (p) dd(p) = g_x (4 pi)/h^3 exp[(-m_x c^2 + mu_x)/(k_B T)] exp[- p^2/(2 m_x k_B T)] p^2 dd(p)
+$
+this is just the Maxwell-Boltzmann distribution, integrating gives
+$
+  n_x = g_x ((m_x k_B T)/(2 pi hbar^2))^(3\/2) exp[(-m_x c^2 + mu_x)/(k_B T)]
+$
+this gives
+$
+  epsilon_x tilde.eq m_x c^2 n_x tilde exp(-(m_x c^2 - mu_x)/(k_B T)) << 1 => epsilon_x << epsilon_r
+$
+this is consistent with the universe being radiation dominated during this time---until $mu_x tilde m_x c^2$. Note from lecture; we observe $n_overline(x) << n_x$ since we have matter, this implies that $mu_x eq.not mu_overline(x)$ since otherwise both $n_i$ would be exponentially supressed---see baryon-antibaryon assymmetry.
+
+Now we assume that there was chemical equilibrium at the time of recombination. Given $mu_gamma = 0$ this means that
+$
+  mu_H = mu_p + mu_e
+$
+this gives
+$
+  n_H/(n_p n_e) = g_H/(g_p g_e) (m_H/(m_p m_e))^(3\/2) ((k_B T)/(2 pi hbar^2))^(-3\/2) exp[((m_p + m_e - m_H)c^2)/(k_B T)]
+$
+we now let $m_H\/m_p = 1$ and $Q = (m_p+m_e-m_H)c^2$ by definition and with $g_p=g_e=2$ and $g_H = 4$ we find
+$
+  n_H/(n_p n_e) = ((m_e k_B T)/(2 pi hbar^2))^(-3\/2) exp[Q/(k_B T)]
+$
+which is the Saha equation. We make the substitution
+$
+  n_H = (1-X)/X n_p
+$
+and with $n_e = n_p$ and $eta equiv n_"bary"\/n_gamma = n_p \/X n_gamma$ we find
+$
+  n_p = 0.2436 X eta ((k_B T)/(hbar c))^3
+$
+plugging everything into the Saha equation
+$
+  (1-X)/X^2 = 3.84 eta ((k_B T)/(m_e c^2))^(3\/2) exp[Q/(k_B T)]
+$
+this has a solution
+$
+  X = (-1 + sqrt(1+4S))/(2 S)",  " S(T,eta) = 3.84 eta ((k_B T)/(m_e c^2))^(3\/2) exp[Q/(k_B T)]
+$
+we define recombination by $X = 1\/2$ giving
+$
+  k_B T_"rec" = 0.324 "eV" = Q/42 -> T_"rec" = 3760 "K" tilde 250000"yr"
+$
+this was obviously not instantaneous but $X = 1\/2$ is reasonable. We can write
+$
+  Gamma (z) = n_e (z) sigma_e c = X(z) (1+z)^3 n_("bary",0) sigma_e c = 5 times 10^(-21) "s"^(-1) X(z) (1+z)^3
+$
+at this time the universe is matter-dominated so
+$
+  H^2/H_0^2 = Omega_(m,0)/a^3 = Omega_(m,0) (1+z)^3 => H(z) = 1.23 times 10^(-18) "s"^(-1) (1+z)^(3\/2)
+$
+so we find at $Gamma = H$
+$
+  1+z_"dec" = 39.3/(X(z_"dec")^(2\/3)) => z_"dec" = 1120
+$
+in reality the value is smaller---since the reaction is not in equilibrium and the real value is $z_"dec" tilde 1090 <-> T_"dec" = 2970 "K" <-> t_"dec" = 371000 "yr"$.
+
+We define the optical depth by
+$
+  tau(t) = integral_t^(t_0) Gamma(t) dd(t)
+$
+this quantity is the expected number of scatterings a detected CMB photon at $t_0$ has undergone since $t$. The time of last scattering was when $tau = 1$. We can obtain
+$
+  tau(a) &= integral_a^1 Gamma (a) dd(a)/dot(a) = integral_a^1 (Gamma(a))/H(a) dd(a)/a \
+  tau(z) &= integral_0^z (Gamma(z))/H(z) dd(z)/(1+z) = 0.0041 integral_0^z X(z) (1+z)^(1\/2) dd(z)
+$
+for our purposes $z_"ls" tilde z_"dec" tilde 1090$.
+
+=== Temperature fluctuations
+The angular size $dd(theta, d: delta)$ of a temperature fluctuation in the CMB is related to a physical size $l$ of the last scattering surface by
+$
+  d_A = l/dd(theta, d: delta)
+$
+with $d_A$ being the angular-diameter distance to the last scattering surface. We have $z_"ls" >> 1$ so
+$
+  d_A tilde (d_"hor" (t_0))/z_"ls"
+$
+this gives
+$
+  d_A tilde 12.8 "Mpc" => l = 3.7 "kpc" (dd(theta, d: delta)/(1 "arcmin"))
+$
+the smallest WMAP has resolved are of size $dd(theta, d: delta) tilde 5 "arcmin"$ corresponding to $l tilde 18 "kpc"$ at $t_"ls"$ or $l(1+z_"ls") tilde 20 "Mpc"$ today.
+
+To analyze fluctuations it's typically smart to do a Fourier transform---on a sphere this corresponds to using spherical harmonics
+$
+  dd(T, d: delta)/T (theta,phi.alt) = sum_(l=0)^oo sum_(m=-l)^l a_(l m) Y_(l m) (theta,phi.alt)
+$
+we are interested in the statistical properties of hot and cold spots---we use the correlation function $C(theta)$. We consider two points on the sky, relative to some observer they have directions $hat(n)$ and $hat(n)'$, these are seperated by $cos theta = hat(n) dot hat(n)'$. We define
+$
+  C(theta) equiv expval(dd(T, d: delta)/T (hat(n)) dd(T, d: delta)/T (hat(n)'))_(hat(n)dot hat(n)' = cos theta)
+$
+so we average over all points seperated by $theta$---so it gives us a way to characterize fluctuations in terms of scales. We can find
+$
+  C(theta) = 1/(4 pi) sum_(l=0)^oo (2 l + 1) C_l P_l (cos theta)
+$
+the $P_l$ are Legendre polynomials and the $C_l$ are the multiple moments of $C(theta)$. The $l= 0$ (monopole) term should vanish if the mean temperature is defined properly. The $l=1$ (dipole) term corresponds to the dipole distortion. For bigger $l$ the $C_l$ are a measure of temperature fluctuations on an angular scale $theta tilde 180 degree\/l$---so they are interchangeable---with bigger $l$ corresponding to fluctuations on smaller and smaller scales. It is typical to plot the power-spectrum given by
+$
+  Delta_T equiv ((l(l+1))/(2 pi) C_l)^(1\/2) expval(T)
+$
+this tells us the contribution per logarithmic interval in $l$ to the total temperature fluctuation $dd(T, d: delta)$.
+
+=== Cause of Fluctuations
+We are interested in the horizon distance
+$
+  d_"hor" (t_"ls") = a(t_"ls") c integral_0^(t_"ls") dd(t)/(a(t))
+$
+we ignore dark energy since we are so early, so we take the universe to just contain matter and radiation. Then
+$
+  d_"hor" (t_"ls") = 2.24 c t_"ls" = 0.251 "Mpc"
+$
+this correspond to
+$
+  theta_"hor" = (d_"hor" (t_"ls") )/d_A tilde 1.1 degree -> l_"hor" tilde 160
+$
+this angle _splits_ the power-spectrum in two parts---on larger angular scales $theta > 4theta_"hor"$ it levels off at a nearly constant $Delta_T tilde 30 mu"K"$ on smaller angular scales $theta < theta_"hor"$ we see multiple peaks at $l tilde 220, 520, 800$.
+
+For $theta > theta_"hor"$ the fluctuations are caused by gravitational effects due to density fluctuations in the distribution of nonbaryonic dark matter---since at this point $epsilon_"dm" > epsilon_gamma > epsilon_"bary"$, meaning the distribtuion of dark matter dominated the gravitational potential at the time of last scattering. Assuming the distribution was not perfectly homogeneous we can write
+$
+  epsilon(arrow(r)) = overline(epsilon) + dd(epsilon(arrow(r)), d: delta)
+$
+according to Newtonian mechanics the spatially varying deviation $dd(epsilon(arrow(r)), d: delta)$ leads to a varying potential $dd(Phi, d: delta)$ related by
+$
+  nabla^2 dd(Phi, d: delta) = (4 pi G)/c^2 dd(epsilon, d: delta)
+$
+so at the time of last scattering there would be gravitational fluctuations unless the distribution was perfectly homogeneous. CMB photons could be at either potential wells or hills (or somewhere in between) at the time of last scattering---this necessarily changes their energy since they either have to climb out of a potential well losing energy (redshift) or fall down a potnetial hill gaining energy (blueshift). So looking at the CMB hot spots correspond to maxima in $dd(Phi, d: delta)$ while cool spots correspond to minima---precisely
+$
+  dd(T, d: delta)/T = 1/3 dd(Phi, d: delta)/c^2
+$
+this is called the Sachs-Wolfe effect after the two guys who derived it. Given that $Delta_T$ is nearly constant for $l tilde 2 "to" l tilde 40$ tells us that $dd(Phi, d: delta)$ was constant across a range of scales.
+
+For $theta < theta_"hor"$ the fluctuations are more complicated given that baryons and photons exist. Prior to decoupling these lived together in a photon-baryon fluid with energy density being $tilde 40%$ of $epsilon_"dm"$---so this fluid moved primarily due to gravity by dark matter. If this fluid happens to be in a well then it will start to collapse due to gravity, but as this happens the pressure in the fluid will increase due to photon-baryon interactions---this effect eventually wins and the fluid will begin to expand, until the pressure decreases sufficiently and it will collapse again. These cycles are called acoustic oscillations. If the fluid in a well is at maximum compression at the time of photon decoupling then its density will on average be higher, and since $T prop epsilon_gamma^(1\/4)$ the photons will be hotter than average. Similarly if the fluid is a maximum expansion then the photons will be cooler than average. If the fluid is in the process of expanding or collapsing then the photons will be cooler or hotter due to Doppler shifting. The first peak of $Delta_T$ at $l tilde 220 "or" theta tilde 0.8 degree$ corresponds to potential wells where the fluid had just reached maximum compression at the time of last scattering---these have size comparable to the sound horizon distance for the fluid at the time of last scattering. $d_s$ is the maximum proper distance that a sound wave in the fluid could have traveled since the Big Bang
+$
+  d_s (t_"ls") = a(t_"ls") integral_0^(t_"ls") (c_s (t) dd(t))/a(t)
+$
+we can approximate $c_s tilde c\/sqrt(3)$---the speed of sound in a pure photon gas. This gives
+$
+  theta_s tilde (d_s (t_"ls"))/d_A tilde 0.7 degree
+$
+this assumes the universe is flat, since the peak would shift given curvature. The observed first peak is consistent with $kappa = 0$. The amplitude of the peak is dependent on $c_s$ with lower speeds giving higher amplitudes---by definition $c_s = sqrt(w_"pb") c$ with $w_"pb"$ dependent on $eta$ the photon-baryon ratio. So the first peak gives us information about both curvature and composition of the universe.
 
 #pagebreak()
 == Particle Physics
@@ -514,9 +778,9 @@ $
   n + nu_e & harpoons.rtlb p + e^- \
    n + e^+ & harpoons.rtlb p + overline(nu)_e
 $
-and this early in the universe everything was in kinetic equilibrium with $k_B T << m_p c^2$---using this eventually leads to
+in the universe everything was in kinetic equilibrium with $k_B T << m_p c^2$---using this eventually leads to
 $
-  n_n/n_p = exp[- Q_n/(k_B T)]
+  n_n/n_p tilde.eq exp[- Q_n/(k_B T)]
 $
 but at some point the neutrons and protons won't be in equilibrium---the interaction between them requires a neutrino or antineutrino. These interact through the weak force which has a relatively small cross-section and $sigma_w prop t^(-1)$ combined with $n_nu prop t^(-3\/2)$ the interaction rate is
 $
@@ -526,7 +790,7 @@ when $Gamma tilde H$ the neutrino decouples from the protons and neutrons and he
 $
   n_n/n_p = exp[- Q_n/(k_B T_"freeze")] approx 0.2
 $
-and $t_"freeze" tilde 1"s"$---the ratio would be valid for $t_"freeze" < t << tau_n$. This is one reason why BNN is quite inefficient since $p + n -> "D"$ is easy but $p + p -> "D"$ is a two-step process
+and $t_"freeze" tilde 1"s"$ with $k_B T tilde.eq 0.8 "MeV"$---the ratio would be valid for $t_"freeze" < t << tau_n$. This is one reason why BNN is quite inefficient since $p + n -> "D"$ is easy but $p + p -> "D"$ is a two-step process
 $
   p + p harpoons.rtlb isotope("He", a: 2) -> "D" + e^+ + nu_e
 $
@@ -563,7 +827,7 @@ $
    isotope("H", a: 3) + D & harpoons.rtlb isotope("He", a: 4) + n \
   isotope("He", a: 3) + D & harpoons.rtlb isotope("He", a: 4) + p \
 $
-when helium is reached however nucleosynthesis has trouble since it is very tightly bounded relative to its mass number. Furthere exist no stable nuclei with $A=5$ meaning it can't fuse with $p$ or $n$ and hope it achieves something. It can form small amount of lithium through
+when helium is reached however nucleosynthesis has trouble since it is very tightly bounded relative to its mass number. Further, there exist no stable nuclei with $A=5$ meaning it can't fuse with $p$ or $n$ and hope it achieves something. It can form small amount of lithium through
 $
   isotope("He", a: 4) + D &harpoons.rtlb isotope("Li", a: 6) + gamma \
   isotope("He", a: 4) + isotope("H", a: 3) &harpoons.rtlb isotope("Li", a: 7) + gamma
@@ -583,3 +847,4 @@ $
   n_q/n_gamma tilde delta_q
 $
 If we had $1003$ quarks per $1000$ antiquarks then for every three surviving quarks there'd be $2000$ photons---the three quarks would when the universe cooled down form a single baryon giving a very low $eta$. In reality we just need $800000003$ quarks per $800000000$ antiquarks to get the $eta$ we observe.
+

@@ -21,3 +21,5 @@
 #include "chpt/chpt-1.typ"
 #include "chpt/chpt-2.typ"
 #include "chpt/chpt-3.typ"
+#include "chpt/chpt-4.typ"
+#include "chpt/chpt-5.typ"
