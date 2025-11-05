@@ -1,5 +1,6 @@
 .DS_Store
-# Ignore personal/untracked work files
+
+# problemsets etc.
 uni-5-sem/ast/.ipynb_checkpoints/
 uni-5-sem/ast/ast-prob.typ
 uni-5-sem/ast/cobe.ipynb
