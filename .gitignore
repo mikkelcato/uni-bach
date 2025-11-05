@@ -1,1 +1,16 @@
 .DS_Store
+# Ignore personal/untracked work files
+uni-5-sem/ast/.ipynb_checkpoints/
+uni-5-sem/ast/ast-prob.typ
+uni-5-sem/ast/cobe.ipynb
+uni-5-sem/ast/firas_monopole_spec_v1.txt
+uni-5-sem/ast/psets/
+uni-5-sem/eksamen.txt
+uni-5-sem/gr/gr-prob.typ
+uni-5-sem/hard/hard-prob.typ
+uni-5-sem/hard/phonon-proj/
+uni-5-sem/hard/psets/
+uni-5-sem/qf/psets/
+uni-5-sem/qf/qf-problems-2.typ
+uni-5-sem/qf/qf-problems.typ
+uni-5-sem/td.txt
