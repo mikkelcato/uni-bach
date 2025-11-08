@@ -5,7 +5,8 @@
 #show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
-= Cosmology
+#text(size: 35pt, strong("Cosmology"))
+
 Cosmology is the study of the universe, and given the universe is quite complicated we rely on many simplifications. Ignoring small things like galaxies, allows us to try to answer very fundamental questions about the universe as a whole.
 
 Cosmology deals with very large and very small scales. For large scales we generally use the megaparsec and the Sun as a reference---like we're used to. For very small scales we can use the fundamental constants $G, c, k_B "and" hbar$ to construct the Planck scale:
@@ -18,8 +19,8 @@ $
 $
 this is also known as the natural scale---since if distance, mass, time, and temperature are measured in Planck units then $c = k_B = hbar = G = 1$ by definition.
 #pagebreak()
-== Fundamental observations
-=== Why is the night sky dark?
+= Fundamental observations
+== Why is the night sky dark?
 This is known as Olbers' paradox. To see the problem we compute the brightness of the sky given an infinite universe.
 
 Let $n_*$ be the number density of stars in the universe, and $R_*$ the typical size of a star. Now consider a cylinder of radius $R_*$ about our line of sight, our view will be blocked if the center of a star lies within this cylinder. If the length of the cylinder is $lambda$ then it has a volume $V = lambda pi R_*^2$. The average number of stars blocking our view can be found $ N = n_* V = n_* lambda pi R_*^2 $ the typical distance before our view is blocked is the $lambda$ for which $N = 1$ implying $ lambda = 1/(n_* pi R_*^2) < oo $
@@ -33,7 +34,7 @@ For large scales the universe is isotropic and homogeneous, so there is no prefe
 
 Isotropicity does not imply homogeneity and vice versa. However, we adopt the Copernican principle---there is nothing special about our location in the universe. The universe around us appears isotropic, so by the Copernican principle it is isotropic everywhere---from this homogeneity follows. The statement that the universe is isotropic and homogeneous on large scales is the cosmological principle.
 
-=== Hubble-Lemaître's law
+== Hubble-Lemaître's law
 Looking at emission or absorption lines we observe a redshift
 $
   z equiv (lambda_"ob" - lambda_"em")/(lambda_"em")
@@ -55,8 +56,8 @@ $ t_0 = r/v = H_0^(-1) = 14.38 plus.minus 0.42 "Gyr" $
 assuming no forces acted to change their relative motion. So the observation of redshifts naturally leads to a Big Bang model, i.e. a model where the universe expands from an initially very dense state. We can say the age of the universe is $t_0 tilde H_0^(-1)$---since this is obviously not exact---and the first light can only have travelled a distance $d tilde c t_0 tilde c\/H_0$. This therefore resolves Olbers' paradox, since light from past this wouldn't have had time to reach us.
 
 #pagebreak()
-== Cosmic Dynamics
-=== Distance
+= Cosmic Dynamics
+== Distance
 We assume basic knowledge of (special) relativity and skip most of this. A useful metric in cosmology is the Robertson-Walker metric
 $
   dd(s)^2 = -c^2 dd(t)^2 + a(t)^2 (dd(r)^2 + S_kappa (r)^2 dd(Omega)^2) "with" S_kappa (r) = cases(R_0 sin r\/R_0 #h(20pt)&(kappa=1), r& (kappa = 0), R_0 sinh r\/R_0& (kappa =-1))
@@ -92,7 +93,7 @@ $
 $
 which is nice.
 
-=== Friedmann equation
+== Friedmann equation
 We seek equations linking $a(t), kappa$ and $R_0$---the geometry---with $epsilon(t)$ and $P(t)$---the contents of the universe.
 
 The first four are related by the Friedmann equation---see GR notes for proper derivation. This course doesn't use relativity proper so we'll derive a Newtonian version and just state the correct version.
@@ -133,7 +134,7 @@ $
 $
 so if we know $Omega_0$ then we get the sign of $kappa$ and if we know $c\/H_0$ then we can find $R_0$---currently $Omega_0$ seems very close to $1$.
 
-=== Fluid and Acceleration equations
+== Fluid and Acceleration equations
 The Friedmann equation is nice, but we still need something relating $a(t)$ and $epsilon(t)$. We start by deriving the fluid equation, again using a Newtonian approach---however, this time it turns out not to matter. We start with the first law of thermodynamics
 $
   dd(Q) = dd(E) + P dd(V)
@@ -163,7 +164,7 @@ $
 $
 which is the acceleration equation. If $epsilon > 0$ then it leads to a negative acceleration---it decreases the value of $dot(a)$ and reduces the relative velocity of any two points in the universe. It also includes the pressure associated with the content in the universe. Baryonic matter has positive $P$, as does photons---this also leads to a negative acceleration. But if something has $P < - epsilon\/3$ then it would lead to a positive acceleration.
 
-=== Equations of state
+== Equations of state
 What we have so far are three equations, two of which are independent. But we have three unknowns $a(t), epsilon(t) "and" P(t)$, this is a problem. What we need is some function $P equiv P(epsilon)$---an equation of state.
 
 Many of these are very simple for our purposes---it can typically be written in linear form $P = w epsilon$ where $w$ is dimensionless. As an example take a non-relativistic gas which obeys the perfect gas law
@@ -198,7 +199,7 @@ $
 however Einstein discarded this after Hubble showed everything is moving apart---i.e. the universe is expanding. Currently it seems like $Lambda$ is needed, but its value should be greater than what Einstein believed, given that the universe is expanding---and the expansion is accelerating.
 
 #pagebreak()
-== Model Universes
+= Model Universes
 In a homogeneous and isotropic universe we can use
 $
   (dot(a)/a)^2 & = (8 pi G)/(3 c^2) epsilon - (kappa c^2)/(R_0^2 a^2) \
@@ -207,7 +208,7 @@ $
 $
 to relate $epsilon(t)$, $P(t)$ and $a(t)$.
 
-=== Energy density
+== Energy density
 The energy density due to different components with different $w_i$ and $epsilon_i$ is additive
 $
   epsilon = sum_i epsilon_i
@@ -262,7 +263,7 @@ $
 the equation for $epsilon_i (a)$ tells us that in the limit $a -> 0$ components with big $w$ dominate, while for $a -> oo$ components with small $w$ dominate. This matches what observational evidence shows, namely that radiation ($w = 1\/3$) dominated, then matter $(w = 0)$, and then the cosmological constant $(w = -1)$. Given that $a$ is monotonically increasing with respect to $t$ then it is common to use it in place of time---similarly we can use the redshift $z$---especially since the conversion $a -> t$ is difficult.
 
 
-=== Empty universes
+== Empty universes
 In the following sections we'll use the multi-component Friedmann equation
 $
   dot(a)^2 = (8 pi G)/(3 c^2) sum_i epsilon_(i,0) a^(-1 - 3 w_i) - (kappa c^2)/R_0^2
@@ -291,7 +292,7 @@ $
   (a(t_e))/(a(t_0)) = 1/(1+z) => d_p (t_e) = c/H_0 ln(1+z)/(1+z)
 $
 
-=== Single-component universes
+== Single-component universes
 Now we'll treat spacially flat universes with only one component having some $w$, in this case the Friedmann equation becomes
 $
   dot(a)^2 = (8 pi G epsilon_0)/(3 c^2) a^(-(1+3 w))
@@ -343,7 +344,7 @@ $
   d_p (t_0) = c/H_0 z => d_p (t_e) = c/H_0 z/(1+z)
 $
 
-=== Multi-component universes
+== Multi-component universes
 We can rewrite the Friedmann equation without explicit curvature as
 $
   (H(t)^2)/H_0^2 = epsilon(t)/epsilon_(c,0) + (1-Omega_0)/a(t)^2
@@ -386,13 +387,13 @@ $
 $
 for the Benchmark model---thus radiation only dominated for a very short time and we can essentially ignore it.
 
-=== Benchmark model
+== Benchmark model
 \* skipped for now just a block of text.
 
 Most of the important times ($t_(r m), t_(m Lambda)$ and $t_0$) have been listed, as well as the composition.
 
 #pagebreak()
-== Measuring Parameters
+= Measuring Parameters
 If we know the scale factor $a(t)$ we essentially know everything---so this is the quantity we want to measure. This is hard, so what we do is use a Taylor expansion
 $
   a(t) = a(t_0) + dv(a, t)_(t=t_0) (t-t_0) + 1/2 dv(a, t, 2)_(t_t_0) (t-t_0)^2 + dots
@@ -472,7 +473,7 @@ $
 $
 
 #pagebreak()
-== The Cosmic Microwave Background
+= The Cosmic Microwave Background
 The sky is uniformly bright at a $T_0 = 2.7255 "K"$ due to photons from the Big Bang (note that $T prop a^(-1)$). Currently
 $
   epsilon_(gamma,0) = alpha T_0^4 = 0.2606 " MeVm"^(-3)
@@ -489,7 +490,7 @@ giving
 $
   eta = n_("bary",0)/n_(gamma,0) tilde 6.1 times 10^(-10)
 $
-=== Observing the CMB
+== Observing the CMB
 The CMB was first observed as a constant isotropic noise---it is now known to be a blackbody, so the entire universe is itself a blackbody, around the microwave range.
 
 We have three big observational results due to e.g. WMAP and COBE; at any angular position $(theta, phi.alt)$ on the sky, the spectrum of the CMB is a blackbody to within $10^(-4)$. The CMB also has a dipole distortion caused by our relative motion to it, blueshifting half the sky. When the dipole distortion is accounted for the remaining temperature fluctuation are minute in amplitude---at any point on the sky let the temperature be $T(theta,phi.alt)$ then
@@ -506,7 +507,7 @@ $
 $
 this is what we'd expect in a hot Big Bang model.
 
-=== Recombination and Decoupling
+== Recombination and Decoupling
 We want to know how $"ionized plasma" -> "gas of neutral atoms"$ in the early universe---and the related process of $"opaque" -> "transparent"$. We distinguish between three epochs; recombination, photon decoupling and last scattering.
 
 We assume the only baryonic component is hydrogen, either in the form of neutral hydrogen or protons $p$. For charge neutrality in this universe we require $n_p = n_e$. The ionization can be characterized by
@@ -535,7 +536,7 @@ $
 $
 giving for $a tilde 10^(-5) -> H = 2.1 times 10^(-10) "s"^(-1)$ this is way smaller than the corresponding $Gamma$ so photons we strongly coupled to $e^-$. If hydrogen had remained ionized then photons would have remained coupled to protons and electrons until recently. One can find that if this were the case then decoupling would happen at $a tilde 0.025$ with $T tilde 110 "K"$, but at this temperature the CMB photons don't have enough energy to keet hydrogen ionized. For this reason decoupling is not gradually caused just by dilution of $e^-$---instead it is a sudden process caused by recombination.
 
-=== Recombination physics
+== Recombination physics
 Naively one can say that when the mean photon energy falls below $Q$ recombination happens---this gives
 $
   T_"rec" tilde Q/(2.7 k_B) tilde 60000"K"
@@ -649,7 +650,7 @@ $
 $
 for our purposes $z_"ls" tilde z_"dec" tilde 1090$.
 
-=== Temperature fluctuations
+== Temperature fluctuations
 The angular size $dd(theta, d: delta)$ of a temperature fluctuation in the CMB is related to a physical size $l$ of the last scattering surface by
 $
   d_A = l/dd(theta, d: delta)
@@ -682,7 +683,7 @@ $
 $
 this tells us the contribution per logarithmic interval in $l$ to the total temperature fluctuation $dd(T, d: delta)$.
 
-=== Cause of Fluctuations
+== Cause of Fluctuations
 We are interested in the horizon distance
 $
   d_"hor" (t_"ls") = a(t_"ls") c integral_0^(t_"ls") dd(t)/(a(t))
@@ -722,8 +723,8 @@ $
 this assumes the universe is flat, since the peak would shift given curvature. The observed first peak is consistent with $kappa = 0$. The amplitude of the peak is dependent on $c_s$ with lower speeds giving higher amplitudes---by definition $c_s = sqrt(w_"pb") c$ with $w_"pb"$ dependent on $eta$ the photon-baryon ratio. So the first peak gives us information about both curvature and composition of the universe.
 
 #pagebreak()
-== Particle Physics
-=== The observation
+= Particle Physics
+== The observation
 An easy observation to make is that our universe contains different stuff. For us the most significant difference between stuff is what elementary particles make them up. Baryonic matter corresponds to protons, neutrons, and electrons---since the electrons weigh so little---most of this is found as hydrogen and helium (we also have dark matter, which we won't discuss). We also have three types of neutrinos $nu$ and three mass states---these have very little mass and are not very reactive.
 
 The important mass-less particle for our purposes is the photon, which unlike the neutrino is very reactive---for blackbody radiation we know
@@ -740,7 +741,7 @@ $
 $
 so $n_gamma = beta T^3 => E_"mean" approx 2.70 k_B T$---the blackbody is important since our universe is essentially just one big blackbody (see CMB).
 
-=== Nucleosynthesis and the Early Universe
+== Nucleosynthesis and the Early Universe
 Before the time of the last scattering surface $t_(1s) approx 0.37 "Myr"$ the universe was opaque, meaning we can't see what the universe was like.
 
 In the very early universe radiation dominated at times $t << t_(r m) approx 50000 "yr"$ here $a(t) prop t^(1\/2)$ and the temperature of blackbody photons in the universe with $T prop a^(-1)$ is given by

@@ -37,5 +37,7 @@
   }
 }
 
-#include "chpt/chpt-1.typ"
-#include "chpt/chpt-2.typ"
+#include "chpt/chpt-1.typ" // lattice/reciprocal lattice
+#include "chpt/chpt-2.typ" // vibrations and phonons
+#include "chpt/chpt-3.typ" // electron models
+#include "chpt/chpt-4.typ" // fermi surface and semiconductors

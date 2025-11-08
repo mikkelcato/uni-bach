@@ -18,8 +18,8 @@
   ],
 )
 
-#include "chpt/chpt-1.typ"
-#include "chpt/chpt-2.typ"
-#include "chpt/chpt-3.typ"
-#include "chpt/chpt-4.typ"
-#include "chpt/chpt-5.typ"
+#include "chpt/chpt-1.typ" // formality
+#include "chpt/chpt-2.typ" // dynamics
+#include "chpt/chpt-3.typ" // angular momentum
+#include "chpt/chpt-4.typ" // symmetries
+#include "chpt/chpt-5.typ" // perturbative methods

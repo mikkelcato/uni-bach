@@ -117,3 +117,9 @@
   "Proof",
   padding: (top: 0.0em, bottom: 0.0em),
 )
+
+#let alt = thmplain(
+  "alternative",
+  "Alternative",
+  namefmt: emph,
+).with(numbering: none)

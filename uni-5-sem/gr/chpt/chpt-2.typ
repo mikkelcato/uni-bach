@@ -492,7 +492,7 @@ Birkhoff's theorem is very important and useful since it allows us to extend the
   A spherically symmetric gravitational field in empty space must be static with a metric given by the Schwarzchild metric.
 ]
 #proof[
-  Our main assumption was that $E$ and $F$ we time-independent, this can be shown to always be the case. From $R_(t r) = 0$ we have
+  Our main assumption was that $E$ and $F$ are time-independent, this can be shown to always be the case. From $R_(t r) = 0$ we have
   $
     1/(r F) pdv(F, t) = 0 => pdv(F, t) = 0
   $
@@ -687,19 +687,62 @@ $
 $
 with $A = 4 pi R^2$ being the area of the black hole. So black holes have entropy $prop$ area! We find that as the black hole loses energy and gets smaller then it gets hotter since $T prop R^(-1)$---which acts to increase the radiation---this is absurd! We also see that $S prop A$ even though usually $S prop V$---meaning that if we have some spherical mass which collapses then its entropy goes from being $prop V$ to being $prop A$ which is also absurd. This leads to the principle of holography, which essentially says that there are one-one correspondences between theories on the interior of some space-time to the boundary of said space-time. So everything is determined by the boundary---similar to Stokes theorem. Another thing we might consider is that we start with some pure state, nothing is hidden, then if we were to add a black hole to this pure state, then we could trace out the black hole (and the information) to get a mixed state. What then happens when the black hole eventually radiates away? Then we are back to the initial state but now we've just lost the information we initially traced out---this is the black hole information paradox.
 
-== Kruskal coordinates
-In the Schwarzchild metric we have two singularities the first is the singularity at $r = 0$, and the second is the one discussed above at the horizon $r = R$. As we've seen the second is weird in the sense that nothing really happens to the free-falling observer when it crosses the horizon. For this reason we might suspect that this is merely a coordinate artifact, which turns out to be correct. At the horizon there are really no problems with curvature etc. so we should be able to change coordinates to get rid of the singularity---unlike at $r = 0$ where curvature explodes.
+== Kruskal-Szekeres coordinates
+In the Schwarzschild metric we have two singularities the first is the singularity at $r = 0$, and the second is the one discussed above at the horizon $r = R$. As we've seen the second is weird in the sense that nothing really happens to the free-falling observer when it crosses the horizon. For this reason we might suspect that this is merely a coordinate artifact, which turns out to be correct. At the horizon there are really no problems with curvature etc. so we should be able to change coordinates to get rid of the singularity---unlike at $r = 0$ where curvature explodes.
 
-The new coordinates are the Kruskal coordinates defined by
+The new coordinates are the Kruskal-Szekeres coordinates defined by---note in the actual lecture we used $X -> r'$ and $T -> t'$
 $
-  r'^2 - t'^2 = A^2 (r/R - 1) exp(r/R)
+  X^2 - T^2 = (r/R - 1) exp(r/R) " and " T/X = tanh (t/(2R))
 $
-and
+where the exponential and hyperbolic tangent act to make our infinities finite. In these coordinates the Schwarzschild metric takes the form
 $
-  (2 r' t')/(r'^2 + t'^2) = tanh t/R
+  dd(tau^2) = (32 R^3)/(r^2) exp(- r/R) (dd(T^2) - dd(X^2)) - r^2 dd(Omega^2)
 $
-where the exponential and hyperbolic tangent act to make our infinities finite. In these coordinates the Schwarzchild metric takes the form
+where $r equiv r(X,T)$. Now there are no problems at the horizon, but the singularity at $r = 0$ persists. Many things about these coordinates are nicely summarized by a Kruskal-Szekeres chart (in this case $R equiv 1$) as in @kruskal:
+
+#figure(
+  image("Kruskal_diagram_of_Schwarzschild_chart.svg", width: 100%),
+  caption: [A Kruskal-Szekeres chart.],
+) <kruskal>
+
+We see that for $t -> plus.minus oo => T = plus.minus X$ which corresponds to the two dashed lines. We also see that for $r = R => X^2 = T^2 => X = plus.minus T$ so the dashed line seperating I (exterior of black hole) and II (interior of black hole) is the horizon. The various lines drawn for constant $r$ are all hyperbolic due to $X^2 - T^2 = "const"$, with their direction depending on if $r < R$ or $r > R$. The limit is at $r = 0$ where $X^2 - T^2 = -1$ so for $X = 0 => T = 1$, meaning the singularity is a hyperbola with the minimum at $T = 1$. The two respective mirror regions are denoted III (mirror exterior) and IV (mirror interior or white hole). When $t=0 => T = 0 => X"-axis"$. To see how light moves we know that for light $ dd(tau^2)=0 =>^"no angular part" dd(X^2)=dd(T^2) $
+so light moves along $45 degree$ lines. This is important because it means one can't travel from I $->$ III (they are causally disconnected), one can also never escape II (trap), but one is forced to escape IV (anti-trap). However, there seems to be a point connecting I and III, this is what we'll analyze next. But at $T=0$ region I and III appear connected?
+
+=== Wormholes
+We consider the slice $T=0$,
 $
-  dd(tau^2) = (32 G^3 M^3)/(r A^2) exp(- r/(2 M G)) (dd(t'^2) - dd(r'^2)) - r^2 dd(Omega^2)
+  X = [r/R-1]^(1\/2) exp(r/(2R))
 $
-and now there are no problems at the horizon, but the singularity at $r = 0$ is still there.
+then
+$
+  dd(T)=0";  " dd(X) = r^(1\/2)/(2 R^(3\/2)) (1-R/r)^(-1\/2) exp(r/(2 R)) dd(r)
+$
+We fix $theta = 0$, yielding the two-dimensional metric
+$
+  dd(s^2) = 1/(1-R/r) dd(r^2) + r^2 dd(phi^2)
+$
+this describes a two-dimensional surface (of revolution)! We want to embed this surface in three-dimensional Euclidean space. We do this by adding a coordinate $(r,phi) -> (r,phi,z)$, which are just cylindrical coordinates with the Euclidean metric
+$
+  dd(s^2) & = dd(z^2)+dd(r^2)+r^2 dd(phi^2) \
+          & = ((dd(z)/dd(r))^2+1) dd(r^2) + r^2 dd(phi^2)
+$
+matching coefficients give a condition for $z$
+$
+  (dd(z)/dd(r))^2 +1 = 1/(1-R/r) => dd(z) = plus.minus sqrt(R/(r-R)) dd(r)
+$
+which can be solved
+$
+  z^2 (r) = 4 R(r-R)
+$
+plotting this gives an embedding diagram as in @wormhole:
+
+#figure(
+  image("Lorentzian_Wormhole.svg", width: 50%),
+  caption: [An _embedding diagram_ of a wormhole.],
+) <wormhole>
+
+At the throat: $z = 0 => r = R$, so the throat has radius $R$. So the surface at $T=0$ connects regions I and III, meaning in principle there is a path between the two black hole exteriors. We'd like to determine the lifetime of this path. Nothing is special to $T = 0$ about the above procedure, all slices with $T = "const"$ gives a surface with $r_"throat" = r_"min" = r(X=0, T)$. We saw that $T = 0 => r_"min" = R$. For $T = 1$ we find $r_"min" = 0$ meaning the wormhole closes, and for $T > 1$ it pinches off ($r_"min" in CC$). This happens on a timescale
+$
+  dd(t, d: Delta) tilde R/c
+$
+which is less then the time it takes for light to travel from I $->$ III.

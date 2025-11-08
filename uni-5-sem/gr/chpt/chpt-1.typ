@@ -9,6 +9,7 @@
 Relativity is in short the idea that only relative motion is measurable, this can be stated as a symmetry---namely that our equations should be unchanged under coordinate transformations. Special relativity is the symmetry with respect to inertial frames, and general relativity extends this to general frames.
 
 #pagebreak()
+#text(size: 30pt, strong("Relativity"))
 = Special Relativity
 == Galileo and Lorentz
 If we consider a system of point particles interacting gravitationally we can write

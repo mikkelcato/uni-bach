@@ -7,6 +7,253 @@
 #show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
+#text(size: 35pt, strong("Elastic waves & Phonons"))
+= Crystal Binding and Elastic Constants
+What holds a crystal together?---in solids the electrostatic interaction between electrons and nuclei is entirely responsible for cohesion. There are four principal types of crystalline binding---van der Waals, ionic, metallic and covalent.
+
+== Inert gases
+These form the simplest crystals and the $e^-$ distribution is similar to the free atoms. In this case the atoms pack as tight as possible, so most are fcc. Tiny distortions of the $e^-$ distribution leads to the van der Waals interaction---small fluctuations lead to induced dipoles.
+
+To model this consider two identical harmonic oscillators separated by $R$. Each has charges $plus.minus e$ with separations $x_1$ and $x_2$---these oscillate along $x$, let $p_1$ and $p_2$ be their momenta. Then the Hamiltonian
+$
+  cal(H)_0 = 1/(2 m) p_1^2 + 1/2 C x_1^2 + 1/(2 m) p_2^2 + 1/2 C x_2^2
+$
+we assume each has $omega_0$, then $C = m omega_0^2$. Let $cal(H)_1$ be the Coulomb interaction then
+$
+  cal(H)_1 = e^2/R + e^2/(R+x_1-x_2) - e^2/(R+x_1) - e^2/(R-x_2)
+$
+in the point-dipole limit $abs(x_1), abs(x_2) << R$ we find to lowest order
+$
+  cal(H)_1 tilde.equiv - (2 e^2 x_1 x_2)/R^3
+$
+writing
+$
+  x_s equiv 1/sqrt(2) (x_1 + x_2)",  " x_a equiv 1/sqrt(2) (x_1 - x_2)
+$
+we can obtain
+$
+  x_1 = 1/sqrt(2) (x_s + x_a)",  " x_2 = 1/sqrt(2) (x_s - x_a)
+$
+and equivalent expressions for $p_1$ and $p_2$---subbing these in the total Hamiltonian is
+$
+  cal(H) = [1/(2 m) p_s^2 + 1/2 (C-(2 e^2)/R_3) x_s^2] + [1/(2 m) p_a^2 + 1/2 (C+ (2 e^2)/R^3) x_a^2]
+$
+so have two coupled modes $s$ and $a$, by inspection
+$
+  omega = [(C plus.minus (2 e^2)\/R^3)/m]^(1\/2) = omega_0 [1 plus.minus 1/2 ((2 e^2)/(C R^3)) - 1/8 ((2 e^2)/(C R^3))^2 + dots]
+$
+the zero-point energy is $hbar\/2 (omega_s + omega_a)$ which is lower than the uncoupled value $hbar omega_0$ by
+$
+  dd(U, d: Delta) = 1/2 hbar(dd(omega_s, d: Delta)+dd(omega_a, d: Delta)) = - hbar omega_0 1/8 ((2 e^2)/(C R^3))^2 = - A/R^6
+$
+this is the van der Waals interaction or London interaction or induced dipole-dipole interaction$dots$ It is the principle attractive interaction in crystals of inert gases---and is solely a product of the dipole-dipole coupling---one can approximate $A tilde hbar omega_0 alpha^2$.
+
+As two atoms get attracted they will begin to overlap, this lead to a repulsive force due to the Pauli exclusion principle---$e^-$ will be forced to higher states increasing the energy and leading to a repulsive interaction $tilde B\/R^12$. Combining these effects one can write the potential energy of two atoms as
+$
+  U(R) = 4 epsilon [(sigma/R)^12 - (sigma/R)^6]
+$
+this is the Lennard-Jones potential---other exponential forms $lambda exp(-R\/rho)$ with $rho$ being a measure of the interaction range can also be used and are usually easier to handle analytically.
+
+We can approximate the total energy of a crystal with $N$ atoms by summing over the Lennard-Jones potential
+$
+  U_"tot" = 1/2 N(4 epsilon) [sum_j ' (sigma/(p_(i j)R))^12 - sum_j ' (sigma/(p_(i j)R))^6]
+$
+with $p_(i j) R$ being the distance between atom $i$ and any other atom $j$ in terms of the nearest neighbor distance $R$---the sums are known. For fcc we can find the equilibrium distance
+$
+  dv(U_"tot", R) = 0 => R_0/sigma = 1.09
+$
+using this one can then obtain
+$
+  U_"tot" (R_0) = -(2.15)(4 N epsilon)
+$
+which should hold for all inert gases---this is the cohesive energy when the atoms are at rest---of course this is also very naive and ignores quantum effects which become more evident for smaller atoms.
+
+== Ionic crystals
+Ionic crystals consist of positive and negative ions---the ionic bond comes from the electrostatic interaction of oppositely charged ions---as with inert gas atoms we expect that the ions have symmetric charge distributions, but with distortions where they touch.
+
+The long range interaction between ions with $plus.minus q$ is the Coulomb interaction $plus.minus q^2\/r$---the ions will try to balance this with the repulsive interaction between ion cores, this is similar to the inert gas case. The van der Waals interaction is very weak for ionic bonds, instead the main contribution to the binding energy is the Madelung energy. We define
+$
+  U_i = sum_j ' U_(i j)
+$
+where we sum over all $j eq.not i$. We write $U_(i j)$ as a central field repulsive potential (instead of the Pauli potential) and a Coulomb interaction
+$
+  U_(i j) = lambda exp(- r_(i j)/rho) plus.minus q^2/r_(i j)
+$
+neglecting surface effects we write $U_"tot" = N U_i$ with $N$ being the amount of molecules---$2 N$ ions. We again use $r_(i j) equiv p_(i j) R$, only including the repulsive interaction for nearest neighbors we find
+$
+  U_(i j) = cases(
+    lambda exp(-R\/rho)- q^2\/R #h(10pt) & "nearest",
+    plus.minus 1\/p_(i j) q^2\/R & "else"
+  )
+$
+so
+$
+  U_"tot" = N U_i = N (z lambda e^(-R\/rho) - (alpha q^2)/R)
+$
+where $z$ is the number of nearest neighbors of any ion and
+$
+  alpha equiv sum_j ' ((plus.minus))/p_(i j) equiv "Madelung constant"
+$
+the equilibrium separation can be written as
+$
+  N dv(U_i, R) = - (N z lambda)/rho e^(-R\/rho) + (N alpha q^2)/R^2 = 0 => R_0^2 e^(-R_0\/rho) = (rho alpha q^2)/(z lambda)
+$
+using this we obtain
+$
+  U_"tot" = - (N alpha q^2)/R_0 (1- rho/R_0)
+$
+with the Madelung energy being
+$
+  - (N alpha q^2)/R_0
+$
+for a crystal to be stable we require that $alpha$ is positive. If we take our reference ion to be negative then the plus sign applies to all positive ions---an equivalent definition of $alpha$ is
+$
+  alpha/R = sum_j ' ((plus.minus))/r_j
+$
+with $r_j$ being the distance from the $j^"th"$ ion to the reference ion. As an example consider an infinite line of alternating ions---let $R$ be the distance between adjacent ions, then
+$
+  alpha/R = 2 [1/R - 1/(2 R) + 1/(3 R) - 1/(4 R) + dots] => alpha = 2 (1-1/2+1/3-dots) = 2 ln 2
+$
+this is obviously way harder for three-dimensional structures.
+
+== Other bonds
+Aside from the mentioned bonds we quickly mention covalent bonds, metallic bonds and hydrogen bonds.
+
+Covalent bonds are formed from two $e^-$---one from each atom. These tend to be partly localized between the two atoms and their spins when bonded are antiparallel. Notably this bond has strong directional properties and doesn't fill space as tightly as other bonds---it only allows four nearest neighbors. The binding energy depends on the spin orientation of the two $e^-$ due to the Pauli exclusion principle which will modify the charge distribution in accordance with the spin distribution. This spin-dependent Coulomb interaction is called the exchange interaction. The big point is that orbitals will hybridize, and sometimes this is favorably and a bond will form (bonding)---other times this is not at all favorably and a bond will not form (antibonding).
+
+Metals have a large number of free $e^-$ zooming around---conduction $e^-$---the valence $e^-$ of the atoms become the conduction $e^-$ of the metal. In a metallic bond the energy of these valence $e^-$ is lower as compared with the free atom.
+
+== Elasticity
+We briefly discuss elasticity since we'll eventually discuss elastic waves in crystals.
+
+We treat a crystal as a continuous homogeneous medium---this approximation is valid for elastic waves of $lambda$ longer that $tilde 10^(-8) "m"$. We'll only consider infinitesimal strains such that Hooke's law applies. Take three axis defined by $hat(bold(x))_i$ then after a small uniform deformation these get deformed
+$
+  bold(x)' &= (1 + epsilon.alt_(x x)) hat(bold(x)) + epsilon.alt_(x y) hat(bold(y)) + epsilon.alt_(x z) hat(bold(z)) \
+  bold(y)' &= epsilon.alt_(y x) hat(bold(x)) + (1 + epsilon.alt_(y y)) hat(bold(y)) + epsilon.alt_(y z) hat(bold(z)) \
+  bold(z)' &= epsilon.alt_(z x) hat(bold(x)) + epsilon.alt_(z y) hat(bold(y)) + (1 + epsilon.alt_(z z)) hat(bold(z))
+$
+the coefficients $epsilon.alt_(alpha beta)$ define the deformation---even though the old axes were of unit length this is no longer guaranteed. We define the displacement $bold(R)$ of the deformation as
+$
+  bold(R) equiv bold(r)'-bold(r) = x (bold(x)'-hat(bold(x))) + dots
+$
+or more generally
+$
+  bold(R) (bold(r)) = u(bold(r)) hat(bold(x)) + v(bold(r)) hat(bold(y)) + w(bold(r)) hat(bold(z))
+$
+with
+$
+  epsilon.alt_(x x) tilde.equiv pdv(u, x)",  " epsilon.alt_(y x) tilde.equiv pdv(u, y)",  etc."
+$
+we define the strain components by this
+$
+  e_(x x) equiv epsilon.alt_(x x) = pdv(u, x)
+$
+similarly for $e_(y y)$ and $e_(z z)$. For the other components we define
+$
+  e_(x y) equiv bold(x)' dot bold(y)' tilde.equiv epsilon.alt_(y x) + epsilon.alt_(x y) = pdv(u, y) + pdv(v, x)
+$
+
+We define the dilation by $V' = bold(x)' dot bold(y)' times bold(z)'$, and we obtain
+$
+  delta equiv (V'-V)/V tilde.equiv e_(x x)+e_(y y) + e_(z z)
+$
+we basically ignore terms of order $epsilon.alt^2$ in all of these.
+=== Constants
+We define the stress as the force acting on a unit area in the solid---we have nine components $X_x,X_y,X_z, dots$, with the capital letter denoting the direction, and the subscript denoting the normal to the plane to which the force is applied---we say that $Y_z = Z_y$ etc. giving us six stress components $X_x, Y_y, Z_z, Y_z, Z_x, X_y$. Assuming Hooke's law holds we can write
+$
+  e_(x x) = S_(1 1) X_x + S_(1 2) Y_y + S_(1 3) Z_z + S_(1 4) Y_z + S_(1 5) Z_x + S_(1 6) X_y
+$
+and so on for $e_(y y), e_(z z), e_(y z), e_(z x)$ and $e_(x y)$. Inversely we can write
+$
+  X_x = C_(11) e_(x x) + C_(12) e_(y y) + C_(13) e_(z z) + C_(14) e_(y z) + C_(15) e_(z x) + C_(16) e_(x y)
+$
+etc. etc. All the $S_(11) dots$ are called elastic compliance constants, and the $C_(11) dots$ are called elastic stiffness constants or moduli of elasticity.
+
+We can write the energy density as (Hooke's law)
+$
+  U = 1/2 sum_(lambda=1)^6 sum_(mu=1)^6 tilde(C)_(lambda mu) e_lambda e_mu
+$
+with $1 -> 6 = {x x, y y, z z, y z, z x, x y}$, with
+$
+  X_x = pdv(U, e_(x x)) equiv pdv(U, e_1) = tilde(C)_(1 1) e_1 + 1/2 sum_(beta = 2)^6 (tilde(C)_(1 beta) + tilde(C)_(beta 1)) e_beta
+$
+now we see that
+$
+  C_(alpha beta) = 1/2 (tilde(C)_(alpha beta) + tilde(C)_(beta alpha)) = C_(beta alpha)
+$
+i.e. they are symmetric meaning the $36$ constants reduce to $21$.
+
+If our crystal has some symmetry this number reduces further. We claim that for a cubic crystal
+$
+  U = 1/2 C_11 (e_(x x)^2 + e_(y y)^2 + e_(z z)^2) + 1/2 C_44 (e_(y z)^2 + e_(z x)^2 + e_(x y)^2) + C_12 (e_(y y)e_(z z) + e_(z z) e_(x x) + e_(x x) e_(y y))
+$
+for a cubic structure we require four three-fold rotation axes, this happens according to
+$
+  x -> y -> z -> x & "  " -x->z->y->-x \
+    x-> z-> -y-> x & "  " -x->y->z->-x
+$
+all terms are invariant under these in the posed $U$---if a term were odd we could find a rotation which would change the sign since $e_(x y) = - e_(x(-y))$. So we have found that for a cubic crystal we have merely three elastic stiffness constants.
+
+To conclude we can summarize all of this with Hooke's law
+$
+  bold(sigma) = bold(C) bold(epsilon)
+$
+with $bold(sigma)$ being all the $X_x dots$ the stress components, and $bold(epsilon)$ being the strain components $e_(x x) dots$. $bold(C)$ is then a tensor containing all the elastic constants.
+
+=== Bulk modulus
+Consider the case $e_(x x)=e_(y y)=e_(z z) = 1/3 delta$ then for a cubic crystal
+$
+  U = 1/6 (C_11 + 2 C_12) delta^2
+$
+we define the bulk modulus $B$ by
+$
+  U = 1/2 B delta^2
+$
+which is equivalent to
+$
+  B = - V dv(p, V)
+$
+so for a cubic crystal
+$
+  B = 1/3 (C_11+2C_12)
+$
+the compressibility $K$ is defined as $K = B^(-1)$.
+
+=== Elastic waves
+For a volume element in a crystal we can obtain
+$
+  rho pdv(u, t, 2) = pdv(X_x, x)+pdv(X_y, y)+pdv(X_z, z)
+$
+or plugging stuff in
+$
+  rho pdv(u, t, 2) &= C_11 pdv(e_(x x), x) + C_12 (pdv(e_(y y), x)+pdv(e_(z z), x)) + C_44 (pdv(e_(x y), y)+pdv(e_(z x), z)) \
+  &= C_11 pdv(u, x, 2) + C_44 (pdv(u, y, 2)+pdv(u, z, 2)) + (C_12+C_44) (pdv(v, x, y)+pdv(w, x, z))
+$
+by symmetry we have similar equations for $v$ and $w$. These equations are hell---we consider one simple solution
+$
+  u = u_0 exp[i(K x-omega t)]
+$
+with $u$ being the $x$-component of the particle displacement---with $K=2 pi\/lambda$ and $omega = 2pi nu$. Plugging this guy in gives
+$
+  omega^2 rho = C_11 K^2
+$
+so the velocity of a longitudinal wave in the $[1 0 0]$ direction is
+$
+  v_s = nu lambda = omega/K = (C_11/rho)^(1\/2)
+$
+take a transverse wave
+$
+  v = v_0 exp[i(K x- omega t)]
+$
+and we obtain the velocity of a transverse wave in the $[1 0 0]$ direction
+$
+  omega^2 rho = C_44 K^2 => v_s = (C_44/rho)^(1\/2)
+$
+similarly is obtained by $w$. So for $bold(K)$ parallel to $[1 0 0]$ the two shear waves have equal velocities---this is not generally true.
+
+To find the velocities one can also solve a system of equations see the problems---further note that for longitudinal wave the motion is parallel to $bold(K)$ and for transverse motion it is perpendicular to $bold(K)$---in general there are three modes, see problems.
+
+#pagebreak()
 = Phonons
 Phonons are essentially quantized elastic waves in a crystal, as we'll see later. These are really important for the heat capacity and heat conduction in a crystal which is why we care.
 
@@ -462,464 +709,4 @@ $
 $
 with $N_D$ being the density of defects.
 
-#pagebreak()
-= Free electron models
-Now we'll begin to discuss electrons and their properties---important for thermal/electrical conductivity, heat capacity etc. We proceed in the following way:
-$
-  "FEM" ->^"folding" "empty lattice" ->^"weak potential" "NFE" ->^"strong potential" "TB"
-$
-we'll see that the addition of a periodic crystal potential leads to interesting band structure, such as band gaps.
 
-The idea of free electron models is that valence electrons of the constituent atoms of metals become conduction electrons and move freely through the volume of the metal. This started as a classical model with great success, but changed with the introduction of quantum mechanics which explained many failures with the classical model. When we talk about a free electron Fermi gas, we mean a gas of free electrons subject to the exclusion principle.
-== Sommerfeld theory
-=== In one dimension
-Letting $V = 0$ in some box of length $L$ we have
-$
-  H psi_n = - hbar^2/(2 m) dv(psi_n, x, 2) = epsilon.alt_n psi_n
-$
-by orbital we mean a solution of the wave equation for a system with only one electron. In this way we distinguish between a system of $N$ interacting electrons, and some approximate system of $N$ eletroncs in $N$ different orbitals---this is exact assuming no interactions. Applying the usual $psi_n (0) = 0$ and $psi_n (L) = 0$. Then
-$
-  psi_n = A sin (2 pi x)/lambda_n " with " (n lambda_n)/2 = L
-$
-with energy
-$
-  epsilon.alt_n = hbar^2/(2 m) ((n pi)/L)^2
-$
-by the exclusion principle each orbital can only be occupied by at most one electron. In a linear solid the quantum numbers of interest for a conduction electorn are $n$ and $m_s$, with $n$ being any positive integer, and $m_s = plus.minus 1/2$---the spin. So a pair of orbitals labeled by $n$ can be occupied by at most two electrons. If multiple orbitals have the same energy we say they are degenerate.
-
-Define $n_F$ to be the topmost filled energy level, if we start filling from $n = 1$ and continue filling until all $N$ electrons occupy some orbital. Let $N$ be even for convenience then $2 n_F = N$. We define the Fermi energy $epsilon.alt_F$ to be the energy of $n_F$ (the ground state of the $N$ electron system),
-$
-  epsilon.alt_F = hbar^2/(2 m) ((n_F pi)/L)^2 = hbar^2/(2m) ((N pi)/(2 L))^2
-$
-
-=== With temperature
-The ground state is the state which the $N$ electron system takes at absolute zero. If we increase $T$ then we introduce kinetic energy and some previously empty energy levels can now be occupied by excited electrons. The Fermi-Dirac distribution gives the probability that an orbital with energy $epsilon.alt$ is occupied
-$
-  f(epsilon.alt) = 1/(exp[(epsilon.alt-mu)\/k_B T]+1)
-$
-this distribution is valid for all fermions---note the Bose-Einstein distribution valid for all bosons would have a minus sign.
-
-The chemical potential $mu$ is defined such that the total number of electrons to come out to $N$. At absoulute zero $mu = epsilon.alt_F$, since in the limit $T -> 0$ the distribution changes discontinuously from $1 -> 0$ (filled $->$ empty) at $epsilon.alt = epsilon.alt_F = mu$. In the limit $epsilon.alt - mu >> k_B T$ we rederive the Boltzmann distribution.
-
-=== In three dimensions
-The above easily generalizes to three dimensions giving
-$
-  psi_bold(k) (bold(r)) = exp(i bold(k) dot bold(r))
-$
-given that all components of $bold(k)$ satisfy
-$
-  k_i = 0, plus.minus (2 pi)/L, dots, (2 n pi)/L, dots
-$
-these ensure periodicity for a cube of length $L$, where $n$ is any integer. The components of $bold(k)$ act as our quantum numbers, alongside $m_s$. The energies are then
-$
-  epsilon.alt_bold(k) = hbar^2/(2 m) k^2 = hbar^2/(2m) (k_x^2 +k_y^2+ k_z^2 )
-$
-note that
-$
-  bold(p) psi_bold(k) (bold(r)) = - i hbar nabla psi_bold(k) (bold(r)) = hbar bold(k) psi_bold(k) (bold(r))
-$
-so $psi_bold(k)$ is an eigenfunction of $bold(p)$ with eigenvalue $hbar bold(k)$. In the ground state of a system of $N$ electrons, the occupied orbitals correspond to points inside a sphere in $bold(k)$ space. The energy at the surface of this sphere is the Fermi energy, the wavevectors at the Fermi surface have magnitude $k_F$ defined by
-$
-  epsilon.alt_F = hbar^2/(2 m) k_F^2
-$
-by the restrictions on the triplet $k_i$ we see there is one distinct triplet for each volume element $(2 pi\/L)^3$ of $bold(k)$ space. So in the sphere with volume $4 pi k_F^3\/3$ the total number of orbitals $N$ is
-$
-  2 (4 pi k_F^3\/3)/(2pi\/L)^3 = V/(3 pi^2) k_F^3 = N
-$
-so
-$
-  k_F = ((3 pi^2 N)/V)^(1\/3) => epsilon.alt_F = hbar^2/(2 m) ((3 pi^2 N)/V)^(2\/3)
-$
-depending only on $N\/V$, we can further define the electron velocity on the Fermi surface
-$
-  v_F = (hbar k_F)/m = hbar/m ((3 pi^2 N)/V)^(1\/3)
-$
-we could also define the Fermi temperature $T_F = epsilon.alt_F\/k_B$, which can be treated like the relevant temperature scale. From the expression for $epsilon.alt_F$ we can also find the density of states (strictly the density of orbitals)
-$
-  D(epsilon.alt) equiv dv(N, epsilon.alt) = V/(2 pi^2) ((2 m)/hbar^2)^(3\/2) epsilon.alt^(1\/2) = (3 N)/(2 epsilon.alt)
-$
-
-== Heat capacity
-Classically the predicted heat capacity should be $3/2 N k_B$ by the equipartition theorem, since we have $N$ free particles---the observed electronic contribution is much, much smaller. This problem is solved by the Fermi-Dirac distribution, when we heat a specimen not every electron gains energy $tilde k_B T$, but only those within $k_B T$ of the Fermi level can be excited thermally.
-
-We derive an expression valid for $k_B T << epsilon.alt_F$. The increase in energy $dd(U, d: Delta) equiv U(T)-U(0)$ for a system of $N$ electrons heated from $0 -> T$ is
-$
-  dd(U, d: Delta) = integral_0^oo dd(epsilon.alt) epsilon.alt D(epsilon.alt) f(epsilon.alt) - integral_0^epsilon.alt_F dd(epsilon.alt) epsilon.alt D(epsilon.alt)
-$
-with $f(epsilon.alt)$ being the Fermi-Dirac distribution. Consider
-$
-  N = integral_0^oo dd(epsilon.alt) D(epsilon.alt) f(epsilon.alt) = integral_0^epsilon.alt_F dd(epsilon.alt) D(epsilon.alt)
-$
-and multiply by $epsilon.alt_F$ then
-$
-  (integral_0^epsilon.alt_F + integral_(epsilon.alt_F)^oo) dd(epsilon.alt) epsilon.alt_F f(epsilon.alt) D(epsilon.alt) = integral_0^epsilon.alt_F dd(epsilon.alt) epsilon.alt_F D(epsilon.alt)
-$
-this gives
-$
-  dd(U, d: Delta) = integral_(epsilon.alt_F)^oo dd(epsilon.alt) (epsilon.alt-epsilon.alt_F) f(epsilon.alt) D(epsilon.alt) + integral_0^epsilon.alt_F dd(epsilon.alt) (epsilon.alt_F-epsilon.alt) [1-f(epsilon.alt)] D(epsilon.alt)
-$
-this gives the compact result
-$
-  C_"el" = dv(U, T) = integral_0^oo dd(epsilon.alt) (epsilon.alt-epsilon.alt_F) dv(f, T) D(epsilon.alt)
-$
-is should be clear that $(epsilon.alt-epsilon.alt_F) dd(f)\/dd(T)$ peaks sharply around $epsilon.alt_F$ for this reason we approximate
-$
-  C_"el" tilde.equiv D(epsilon.alt_F) integral_0^oo dd(epsilon.alt) (epsilon.alt - epsilon.alt_F) dv(f, T)
-$
-also when $k_B T << epsilon.alt_F$ we can ignore the $T$ dependence of $mu$, so we can replace $mu -> epsilon.alt_F$. Then with $x equiv (epsilon.alt-epsilon.alt_F)\/tau$ with $tau equiv k_B T$ we can write
-$
-  C_"el" = k_B^2 T D(epsilon.alt_F) integral_(-epsilon.alt_F\/tau)^oo dd(x) x^2 e^x/(e^x+1)^2
-$
-extending the lower limit to $- oo$, since the integrand is essentially zero for lower values we find
-$
-  C_"el" = 1/3 pi^2 D(epsilon.alt_F) k_B^2 T =^"f.e.g" (pi^2 N k_B)/(2) ( T/T_F )
-$
-
-Now for temperatures below both the Debye temperature $theta$ and the Fermi temperature $T_F$ then we can write the heat capacity as
-$
-  C = C_"lat" + C_"el" tilde.equiv gamma T + A T^3
-$
-it is convenient in experiment to use
-$
-  C/T tilde.equiv gamma + A T^2
-$
-and then treat the variable as $T^2$.
-
-== Electrical conductivity
-=== Drude model
-By the Lorentz force we have
-$
-  bold(F) = m dv(bold(v), t) = hbar dv(bold(k), t) = - e (bold(E) + 1/c bold(v) times bold(B))
-$
-if there are no collisions then the Fermi sphere moves in $bold(k)$ space at a uniform rate due to some applied constant electric field. Taking $bold(B)=0$ we can integrate this to obtain
-$
-  bold(k) (t) - bold(k) (0) = - e bold(E) t\/hbar
-$
-if $bold(F) = - e bold(E)$ is applied at $t = 0$ then at some later time the center of our Fermi sphere will be displace by $ dd(bold(k), d: delta) = - e bold(E) t\/hbar $
-If the collision time is given by $tau$ (we assume stopping is instanteneous as is typical in the Drude model)---typically dependent on impurities and phonons---then the displacement of the Fermi sphere in steady state is given by this with $t = tau$. The velocity is $bold(v) = dd(bold(k), d: delta)\/m = - e bold(E) tau\/m$. If in a constant $bold(E)$ we have $n$ electrons with charge $q = - e$ then the current density is
-$
-  bold(j) = n q bold(v) = n e^2 tau bold(E)\/m = sigma bold(E)
-$
-which is Ohm's law, and we've defined the electrical conductivity
-$
-  sigma = (n e^2 tau)/m
-$
-the resistivity is just the inverse $rho = sigma^(-1)$, experimentally we have $rho = rho_L + rho_i$ since this guy depends on thermal phonons $rho_L$ (through e.g. Umklapp-scattering) and impurities $rho_i$. Usually the first is independent of the number of defects, while the second is independent of temperature---Matthiessen's rule.
-
-=== Thermal conductivity
-We previously found $K = 1/3 C v cal(l)$. For a Fermi gas we use $epsilon.alt_F = 1/2 m v_F^2$, and using $cal(l) = v_F tau$ we find
-$
-  K_"el" = pi^2/3 (n k_B^2 T)/(m v_F^2) v_F cal(l) = (pi^2 n k_B^2 T tau)/(3 m)
-$
-
-==== Wiedemann-Franz law
-We find
-$
-  K/sigma = (pi^2 k_B^2 T n tau\/3 m)/(n e tau^2 \/m) = pi^2/3 (k_B/e)^2 T
-$
-where we use the $sigma$ and $K$ previously found. We define the Lorenz number
-$
-  L = K/(sigma T)
-$
-notably this doesn't depend on $n$ or $m$. So the ratio of thermal conductivity to electrical conductivity is $prop T$.
-
-== Magnetic fields
-We can write the equation of motion for $dd(bold(k), d: delta)$ acted on by a force $bold(F)$ and a friction represented by $1\/tau$
-$
-  hbar (dv(, t) + 1/tau) dd(bold(k), d: delta) = bold(F)
-$
-if $bold(F)$ is given by the Lorentz force with $m bold(v) = hbar dd(bold(k), d: delta)$ then
-$
-  m (dv(, t)+1/tau) bold(v) = -e (bold(E) + 1/c bold(v) times bold(B))
-$
-if we let $bold(B) = B hat(bold(z))$ and assume steady-state with a static $bold(E)$ then the drift velocities are
-$
-  v_x & = - (e tau)/m E_x - omega_c tau v_y \
-  v_y & = - (e tau)/m E_y + omega_c tau v_x \
-  v_z & = - (e tau)/m E_z
-$
-where we've defined the cyclotron frequency
-$
-  omega_c = (e B)/(m c)
-$
-
-=== Hall effect
-The Hall field is the electric field developed across two faces of a conductor in the direction $bold(j) times bold(B)$ when a current $bold(j)$ flows accros a magnetic field $bold(B)$. If we consider some rod-shaped object with a longitudinal electric field $E_x$ and a transverse magnetic field. We assume $dd(v_y, d: delta) = 0$ for this we require
-$
-  E_y = - omega_c tau E_x = - (e B tau)/(m c) E_x
-$
-so there is a transverse electric field. We define the Hall coefficient
-$
-  R_H = E_y/(j_x B)
-$
-then using Ohm's law $j_x = n e^2 tau E_x \/m$ then
-$
-  R_H = - 1/(n e c)
-$
-with CGS.
-
-#pagebreak()
-= Energy Bands
-== Nearly free $e^-$ model
-The previous free electron model is very naive, meaning we miss a lot of detail including band structure---so we'd like a more detailed model incorporating the crystal lattice.
-
-Before we found
-$
-  epsilon.alt_bold(k) = hbar^2/(2 m) (k_x^2 + k_y^2 + k_z^2)
-$
-where for periodicity over a cube of length $L$ we have
-$
-  k_i = 0; plus.minus (2pi)/L dots
-$
-with the free electron wavefunctions having the form
-$
-  psi_bold(k) (bold(r)) = exp(i bold(k) dot bold(r))
-$
-these represent free waves with $bold(p) = hbar bold(k)$.
-
-We extend this to the nearly free electron model, wherein band electrons are treated as being pertubed weakly by the periodic potential of the ion cores. Bragg reflection of electron waves then occurs, and causes the band gaps. As an example consider a linear lattice with lattice constant $a$, then the Bragg condition becomes
-$
-  k = plus.minus 1/2 G = plus.minus (n pi)/a
-$
-the first reflections (and energy gap) occur at $k = plus.minus pi\/a$. The wavefunctions at these $k$ are not travelling waves $exp(plus.minus i pi x \/a)$ of free electrons. Instead they consist of equal parts left and right travelling wave---it is a standing wave. These are
-$
-  psi(plus.minus) = exp((i pi x)/a) plus.minus exp((-i pi x)/a) = cases(2 cos pi x\/a, 2 i sin pi x\/a)
-$
-but why does this lead to an energy gap? The two wavefunctions gather electrons at different regions, leading to them having different potential energies---this difference is the energy gap. We can see this by
-$
-  rho(plus.minus) = abs(psi(plus.minus))^2 prop cases(cos^2 pi x\/a, sin^2 pi x\/a)
-$
-so $psi(+)$ gathers electrons preferably at the ion cores where the potential is smallest, oppositely for $psi(-)$. So we find that energetically $rho(+) < "free wave" < rho(-)$, we let the energy gap be $rho(-)-rho(+) = E_g$. Below $E_g$ the wavefunction is $psi(+)$ and above $E_g$ it is $psi(-)$.
-
-=== Zone schemes
-All $bold(k)$ live in reciprocal space as we've seen and any $bold(k)' = bold(k) + bold(G)$ can be translated back to the first Brillouin zone, so we can write
-$
-  epsilon.alt(bold(k)') = hbar^2/(2m) (bold(k)+bold(G))^2
-$
-so all energies out side the first Brillouin zone can be represented inside the it---this is the reduced zone scheme, and bands get folded within the first Brillouin zone, we basically still calculate free electron parabolas. Usually this is done using a direction e.g. from $Gamma:(0,0,0) -> X:(pi/a,0,0)$, so we'd only vary $k_x$.
-
-This is the main idea in the empty lattice approximation, in terms of later stuff this corresponds to setting $V=0$.
-
-== Bloch's theorem
-Bloch proved that solutions to the Schrödinger equation for a periodic potential takes the form
-$
-  psi_bold(k) (bold(r)) = u_bold(k) (bold(r)) exp(i bold(k) dot bold(r))
-$
-with $u_bold(k) (bold(r)) = u_bold(k) (bold(r)+bold(T))$. So any solution $psi_bold(k)$ takes the form of a free wave with some periodic modulation $u_bold(k)$---these are sometimes called Bloch functions. We'll prove a restatement of this later.
-
-=== Kronig-Penney
-We consider a simple periodic potential, the square-well array. We know
-$
-  - hbar^2/(2 m) dv(psi, x, 2) +U(x) psi = epsilon.alt psi
-$
-in $0 < x < a$ where $U = 0$ then
-$
-  psi = A exp(i K x) + B exp(-i K x)
-$
-with
-$
-  epsilon.alt = (hbar^2 K^2)/(2 m)
-$
-in $-b < x < 0$ (within the barrier) we have
-$
-  psi = C exp(Q x) + D exp(-Q x)
-$
-where
-$
-  U_0 - epsilon.alt = (hbar^2 Q^2)/(2 m)
-$
-this must be related to the solution in $a < x < a+b$ by Bloch's theorem
-$
-  psi(a < x < a +b) = psi(-b < x < 0) exp(i k (a+b)))
-$
-we pick ${A,B,C,D}$ such that $psi$ and its derivative are continuous at $x=0$ and $x = a$, at the first
-$
-     A + B & = C + D \
-  i K(A-B) & = Q(C-D)
-$
-and by the second (also using Bloch's theorem)
-$
-  A exp(i K a) + B exp(-i K a) &= (C exp(-Q b) + D exp(Q b)) exp(i k(a+b)) \
-  i K ( A exp(i K a) - B exp(-i K a)) &= Q (C exp(-Q b) - D exp(Q b)) exp(i k (a+b))
-$
-this gives
-$
-  [(Q^2-K^2)/(2 Q K)] sinh Q b sin K a + cosh Q b cos K a = cos k(a+b)
-$
-this is simpler if we write the potential as a periodic $delta$-function obtained by the limit $b -> 0$ and $U_0 -> oo$ keeping $P = Q^2 b a\/2$ finite. In this case $Q >> K$ and $Q b << 1$ giving
-$
-  P/(K a) sin K a + cos K a = cos k a
-$
-this only has solutions for certain $K a$ and these determine the possible energies and corresponding gaps---they must be between $plus.minus 1$ due to the $cos k a$ on the RHS.
-
-== Central equation
-We now treat the wave equation for a general potential, at general $k$. Let $U(x)$ be the energy of an electron in a linear lattice with lattice constant $a$, we know $U(x)=U(x+a)$. We can then expand it as
-$
-  U(x) = sum_G U_G exp(i G x)
-$
-the $U_G$ tend to decrease rapidly. We rewrite this to ensure $U(x) in RR$
-$
-  U(x) = sum_(G>0) U_G (exp(i G x) + exp(-i G x)) = 2 sum_(G>0) U_G cos G x
-$
-we assume $U(x)$ is symmetric about $x=0$ and $U_0 = 0$. The Schrödinger equation becomes
-$
-  (p^2/(2 m) + sum_G U_G exp(i G x)) psi(x) = epsilon.alt psi(x)
-$
-this described one electron in the potential of ion cores, and in the average potential of other electrons. We can similarly expand $psi$ as
-$
-  psi = sum_k C_k exp(i k x)
-$
-where $k$ ensure this satisfies boundary conditions, these have the form $2 pi n \/L$. Note that we claim nothing about the periodicity of $psi(x)$, the properties of $psi(x)$ with respect to translation are fully determined by Bloch's theorem. Further not all $k$ of the given form enter the expansion, since if any $k$ is in the expansion then all $k + G$ enter aswell---for this reason when labeling the Bloch functions we pick the $k$ within the first Brillouin zone.
-
-Substituting both expansions into the wave equation gives
-$
-  sum_k hbar^2/(2 m) k^2 C_k exp(i k x) + sum_(G,k) U_G C_k exp(i(k+G) x) = epsilon.alt sum_k C_k exp(i k x)
-$
-by matching we find
-$
-  (lambda_k - epsilon.alt) C_k + sum_G U_G C_(k-G) = 0
-$
-where
-$
-  lambda_k = (hbar^2 k^2)/(2 m)
-$
-this is called the central equation.
-
-Now we could write
-$
-  psi_k (x) & = sum_G C_(k-G) exp(i(k-G)x) \
-            & = (sum_G C_(k-G) exp(-i G x)) exp(i k x) = exp(i k x) u_k (x)
-$
-where
-$
-  u_k (x) equiv sum_G C_(k-G) exp(-i G x)
-$
-this satisfies $u_k (x + T) = u_k (x)$
-$
-  u_k (x + T) & = sum C_(k-G) exp(-i G (x+T)) \
-              & =exp(-i G T) [sum C_(k-G) exp(-i G x)] \
-              & = exp(-i G T) u_k (x)
-$
-and $exp(-i G T) = 1$ by definition. So we have proven Bloch's theorem.
-
-==== Properties of $bold(k)$
-We'll shortly state some properties of $bold(k)$ which acts as a label for the Bloch functions.
-
-Under a translation we have
-$
-  psi_bold(k) (bold(r)+bold(T)) = exp(i bold(k) dot bold(T)) psi_bold(k) (bold(r))
-$
-so $exp(i bold(k) dot bold(T))$ is the phase factor we multiply our Bloch functions by when we do a translation. If the lattice potential vanishes $U_G = 0$ then
-$
-  (lambda_bold(k) - epsilon.alt) C_bold(k) = 0
-$
-so all $C_(bold(k)-bold(G))$ vanish except for $C_bold(k)$, meaning $u_bold(k)$ is constant or $psi_bold(k) (bold(r)) = exp(i bold(k) dot bold(r))$. We recover the free electron.
-
-This $bold(k)$ also enters in all conservation laws, which is why $hbar bold(k)$ is called the crystal momentum in the first place. Take the example of an electron absorbing a phonon with momentum $bold(q)$, then
-$
-  bold(k)+ bold(q) = bold(k)' + bold(G)
-$
-
-=== Examples
-==== Kronig-Penney
-We use
-$
-  U(x) = 2 sum_(G > 0) U_G cos G x = A a sum_s delta(x - s a)
-$
-we sum over all integers $0 < s < a^(-1)$. We have periodicity over a ring of unit length ($a^(-1)$ atoms) so
-$
-  U_G = integral_0^1 dd(x) U(x) cos G x = A a sum_s integral_0^1 dd(x) delta(x-s a) cos G x = A a sum_s cos G s a = A
-$
-then the central equation becomes
-$
-  (lambda_k - epsilon.alt) C_k + A sum_n C(k - (2 pi n)/a) = 0
-$
-define
-$
-  f(k) = sum_n C(k - (2 pi n)/a)
-$
-then
-$
-  C_k = - ((2 m A\/hbar^2) f(k))/(k^2 - (2 m epsilon.alt\/hbar^2))
-$
-we sum over all $n$ so
-$
-  f(k) = f(k - (2 pi n)/a)
-$
-meaning we can write
-$
-  C(k - (2 pi n)/a) = - ((2 m A)/hbar^2) f(k) [(k-(2 pi n)/a)^2 - (2 m epsilon.alt)/hbar^2]^(-1)
-$
-and summing over all $n$ we obtain
-$
-  hbar^2/(2 m A) = - sum_n [(k-(2pi n)/a)^2 - ((2 m epsilon.alt)/hbar^2)]^(-1)
-$
-using
-$
-  "ctn" x = sum_n 1/(n pi + x)
-$
-and $K^2 = 2 m epsilon.alt\/hbar^2$ we finally get
-$
-  (m A a^2)/(2 hbar^2) 1/(K a) sin K a + cos K a = cos k a
-$
-agreeing with the previous result.
-
-==== Near zone boundary
-We take $U_G$ to be small relative to the kinetic energy of an electron at the zone boundary. We consider a wavevector at the boundary $1/2 G$ or $pi\/a$ then
-$
-  k^2 = (1/2 G)^2;"  "(k-G)^2 = (1/2 G-G)^2 = (1/2 G)^2
-$
-so at the boundary the kinetic energy of the two waves $k=plus.minus 1/2 G$ are equal.
-
-If $C(1/2 G)$ is important then so is $C(- 1/2 G)$, we take these to be the important ones---in NFE we assume the crystal potential is weak meaning other contributions are negligible. Then we find
-$
-  (lambda - epsilon.alt) C (1/2 G) + U C(-1/2 G) & = 0 \
-   (lambda - epsilon.alt) C(-1/2 G) + U C(1/2 G) & = 0
-$
-giving
-$
-  (lambda-epsilon.alt)^2 = U^2;"  "epsilon.alt = lambda plus.minus U = hbar^2/(2 m) (1/2 G)^2 plus.minus U
-$
-so the energy has two roots, and we've found an energy gap of $E_g = 2 U$ at the boundary. We find
-$
-  C(-1/2 G)/C(1/2 G) = (epsilon.alt - lambda)/U = plus.minus 1
-$
-so
-$
-  psi(x) = exp((i G x)/2) plus.minus exp((-i G x)/2)
-$
-these are identical to what we started with---one solution gives the wavefunction below $E_g$ and vice versa depending on the sign of $U$.
-
-Now we solve for these in terms of $k$ (to see behavior around the edge)
-$
-  psi(x) = C(k) exp(i k x) + C(k-G) exp(i(k-G)x)
-$
-by the central equation
-$
-    (lambda_k - epsilon.alt) C(k) + U C(k-G) & = 0 \
-  (lambda_(k-G)-epsilon.alt) C(k-G) + U C(k) & = 0
-$
-giving
-$
-  epsilon.alt = 1/2 (lambda_(k-G)+lambda_k) plus.minus [(lambda_(k-G)-lambda_k)^2/4 + U^2]^(1\/2)
-$
-each root describes a band. We expand this in terms of $tilde(K) equiv k - 1/2 G$ (assumed to be small) giving
-$
-  epsilon.alt_tilde(K) &= hbar^2/(2 m) (G^2/4 + tilde(K)^2) plus.minus [4 lambda ((hbar^2 tilde(K)^2)/(2 m)) + U^2]^(1\/2) \
-  &tilde.eq hbar^2/(2 m) (G^2/4 + tilde(K)^2) plus.minus U [1+2(lambda/U^2) (hbar^2 tilde(K)^2)/(2 m)]
-$
-for $hbar^2 G tilde(K)\/2 m << abs(U)$. We can write this as
-$
-  epsilon.alt_tilde(K) (plus.minus) = epsilon.alt(plus.minus) + (hbar^2 tilde(K)^2)/(2 m) ( 1 plus.minus (2 lambda)/U)
-$
-with $epsilon.alt (plus.minus)$ being the energies at the boundary.
-
-== Bands
-We consider a linear crystal constructed of an even number $N$ of primitive cells with lattice constant $a$. By periodicity
-$
-  k = 0; plus.minus (2 pi)/L; dots (N pi)/L
-$
-we cut this off at $N pi\/L = pi\/a$ being the zone boundary. Each primitive cell contributes one independent value of $k$ to each energy band. Taking into account spin there are $2 N$ independent orbitals in each band---which carries over to three dimensions. If there is a single atom of valence, one per primitive cell, then the band can be half filled. If each atom contributes two valence electrons, then the band can be exactly filled. Similarly if there are two atoms of valence, one in each primitive cell.
-
-=== Metals and insulators
-If one or more bands are exactly filled, then the crystal will be an insulator, provided there is some $E_g$ to the next higher (empty) band. This can only occur if the number of valence electrons in the primitive cell is even---and even then band overlap can lead to two partly filled bands, making the crystal a metal (or semimetal). Alkali metals and noble metals have one valence electron per primitive cell, and are thus always metals.

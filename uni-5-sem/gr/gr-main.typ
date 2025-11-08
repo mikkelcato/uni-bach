@@ -18,7 +18,7 @@
   ],
 )
 
-#include "chpt/chpt-1.typ"
-#include "chpt/chpt-2.typ"
-
+#include "chpt/chpt-1.typ" // Relativity
+#include "chpt/chpt-2.typ" // EFE
+#include "chpt/chpt-3.typ" // Cosmology
 
