@@ -746,3 +746,57 @@ $
   dd(t, d: Delta) tilde R/c
 $
 which is less then the time it takes for light to travel from I $->$ III.
+
+#pagebreak()
+=== A detour
+We quickly derive the Kruskal-Szekeres coordinates in terms of the Schwarzschild coordinates.
+
+Following the book we define
+$
+  p' equiv exp(p/(2 R))";  " q' equiv -exp(- q/(2 R))
+$
+where (Eddington-Finkelstein)
+$
+  p equiv c t + R ln abs(r-R) + r";  " q equiv c t - R ln abs(r-R) - r
+$
+then the Kruskal-Szekeres coordinates are given by
+$
+  T = 1/2 (p' + q')";  " X = 1/2 (p' - q')
+$
+so we compute
+$
+  T &= 1/2 (exp(p/(2R))-exp(-q/(2 R))) \
+  &= 1/2 [exp((c t + R ln abs(r-R)+r)/(2R))-exp((-c t + R ln abs(r-R)+r)/(2 R))] \
+  &= 1/2 exp(r/(2 R)) exp((ln abs(r-R))/2) [exp((c t)/(2 R))-exp(-(c t)/(2 R))] \
+  &= exp(r/(2 R)) sqrt(abs(r-R)) sinh((c t)/(2 R))
+$
+and
+$
+  X & = exp(r/(2 R)) sqrt(abs(r-R)) cosh((c t)/(2 R))
+$
+for $r > R$:
+$
+  T & = sqrt(r-R) exp(r/(2 R)) sinh ((c t)/(2 R)) \
+  X & = sqrt(r-R) exp(r/(2 R)) cosh((c t)/(2 R))
+$
+for $r < R$:
+$
+  T & = sqrt(R-r) exp(r/(2 R)) cosh ((c t)/(2 R)) \
+  X & = sqrt(R-r) exp(r/(2 R)) sinh((c t)/(2 R))
+$
+the $cosh$ and $sinh$ switch since by definition
+$
+  T^2 - X^2 & = p' q' \
+            & = - exp((p-q)/(2 R)) \
+            & = - exp((r+ R ln abs(r-R))/(R)) \
+            & = - exp(r/R) abs(r-R)
+$
+so for $r > R$
+$
+  T^2 - X^2 = (R-r) exp(r/R)
+$
+and for $r < R$
+$
+  T^2 - X^2 = -(R-r) exp(r/R)
+$
+which is satisfied by the above.

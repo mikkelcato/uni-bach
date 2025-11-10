@@ -408,5 +408,4 @@ $
   sigma = (epsilon V_0)/cal(l)_D
 $
 
-#pagebreak()
-= Liquid crystals
+
