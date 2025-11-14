@@ -1,1 +1,1 @@
-#text(size: 30pt, strong("Stellar structure and evolution"))
+= Stellar structure and evolution

@@ -8,7 +8,6 @@
 #show: chpt-note.with()
 
 #pagebreak()
-#text(size: 35pt, strong("Electrons"))
 = Free electron models
 Now we'll begin to discuss electrons and their properties---important for thermal/electrical conductivity, heat capacity etc. We proceed in the following way:
 $

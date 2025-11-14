@@ -220,13 +220,6 @@ $
   Delta_n = e^2 abs(bold(E))^2 sum_(k eq.not n) abs(z_(n k))^2/(E_n^((0))-E_k^((0))) underbrace(prop abs(bold(E))^2, "quadratic" #linebreak() "stark effect")
 $
 
-#pagebreak()
-== Variational methods
-Essentially just the principle
-$
-  expval(H) >= E_"gs"
-$
-for any trial state $ket(psi)$.
 
 #pagebreak()
 == Hydrogen-like atoms
@@ -389,3 +382,251 @@ $
 so $l$ drops out!
 
 There are other higher order corrections, e.g. Lamb shift ($cal(O)(alpha^5)$) due to virtual photons and hyperfine splitting due to the nucleus not being spherically symmetric.
+
+
+#pagebreak()
+== Variational methods
+Essentially just the principle
+$
+  expval(H) >= E_"gs"
+$
+for any trial state $ket(psi)$.
+
+We make a guess as to what the ground state looks like $ket(tilde(0)) eq.not ket(0)$ and define
+$
+  tilde(H) = braket(tilde(0), H, tilde(0))/braket(tilde(0))
+$
+then clearly $tilde(H) >= E_"gs"$. We can see this by writing
+$
+  ket(tilde(0)) = sum_k ket(k) braket(k, tilde(0))
+$
+with $H ket(k) = E_k ket(k)$. Then
+$
+  tilde(H) &= (sum_k abs(braket(k, tilde(0)))^2 E_k)/(sum_k abs(braket(k, tilde(0)))^2) \
+  &= underbrace((sum_k abs(braket(k, tilde(0)))^2 (E_k-E_0))/(sum_k abs(braket(k, tilde(0)))^2), >0 "since" E_k >= E_0) + E_0 \
+  & >= E_0
+$
+so $tilde(H) >= E_0$.
+
+If $ket(tilde(0)) = ket(0)$ then $braket(k, tilde(0)) = 0$ for all $k eq.not 0$. Assume $braket(k, tilde(0)) tilde cal(O)(epsilon)$ with $epsilon$ small, i.e. our guess is good. Then
+$
+  tilde(H) - E_0 tilde underbrace(cal(O)(epsilon^2), "from" Sigma)
+$
+which is relatively precise. We write our guess as
+$
+  ket(tilde(0)) = ket(0) + delta ket(tilde(0))
+$
+then $tilde(H) = 0 + cal(O) (delta^2)$ and then we can minimize with respect to $delta$.
+
+=== Infinite square well
+We consider a square well of width $2a$ centered at $x=0$. Then we know the solution
+$
+  braket(x, 0) = 1/sqrt(a) cos((pi x)/(2 a)) " and " E_n = hbar/(2 m) (pi^2/(4 a^2))
+$
+We try:
+$
+  braket(x, tilde(0)) = abs(a)^lambda - abs(x)^lambda
+$
+then we can find $tilde(H)$ and minimize to find $lambda$. We compute
+$
+  tilde(H) &= braket(tilde(0), H, tilde(0))/braket(tilde(0)) \
+  &= (integral_(-a)^a dd(x) braket(tilde(0), x) braket(x, H, x) braket(x, tilde(0)))/(integral_(-a)^a dd(x) abs(braket(tilde(0), x))^2) \
+  &= (- hbar^2/(2 m)) (integral_(-a)^a dd(x) (abs(a)^lambda-abs(x)^lambda) pdv(, x, 2) (abs(a)^lambda-abs(x)^lambda))/(integral_(-a)^a dd(x) (abs(a)^lambda - abs(x)^lambda)^2) \
+  &= [((lambda+2)(2 lambda+1))/(2 lambda -1)] hbar^2/(4 m a^2)
+$
+minimizing we obtain
+$
+  pdv(tilde(H), lambda) = 0 => lambda = (1+sqrt(6))/2 tilde.eq 1.72
+$
+giving the energy
+$
+  tilde(H)_"min" = (5 + 2 sqrt(6))/pi^2 E_0 tilde.eq 1.063 E_0
+$
+which is pretty close. One can also show that
+$
+  abs(braket(0, tilde(0)))^2 >= 0.99963
+$
+meaning
+$
+  braket(0, tilde(0)) = cos theta => theta <= 1.1 degree
+$
+from
+$
+  H_"min" = sum_k abs(braket(k, tilde(0)))^2 E_k^2 >= abs(braket(0, tilde(0)))^2 E_0 + dots
+$
+
+#pagebreak()
+== Time-dependent potentials
+We will only consider time-dependence in the form
+$
+  H = H_0 + V(t)
+$
+where we take the solution to $H_0$ as being known $H_0 ket(n) = E_n ket(n)$. Then we can write any state at $t = 0$ as
+$
+  ket(alpha) = sum_n c_n (t=0) ket(n)
+$
+since we take $V(t=0) = 0$. We want to know what happens for $t > 0$. We write
+$
+  ket(alpha\, t) = sum_n overbrace(c_n (t), "from perturbation") underbrace(exp[(-i E_n t)/h], "time-evolution" #linebreak() "of unperturbed") ket(n)
+$
+so all time-dependence from $V(t)$ is carried by $c_n (t)$ with $c_n (0)$ corresponding to $V(t=0)=0$. Then the problem we want to solve is finding these expansion coefficients.
+
+=== The interaction picture
+From the Schrödinger picture we have
+$
+  ket(alpha\, t)_S = exp[(-i H t)/hbar] ket(alpha\, t=0)_S
+$
+meaning the states evolve in time. Then
+$
+  braket(alpha\, t, A_S, alpha\, t)_S &= braket(alpha\, t=0, exp[(i H t)/hbar] A_S exp[(- i H t)/hbar], alpha\, t=0) \
+  &= braket(alpha, A_H (t), alpha)_H
+$
+meaning
+$
+  A_H = exp[(i H t)/hbar] A_S exp[(-i H t)/hbar]
+$
+and
+$
+  ket(alpha)_H = exp[(i H t)/hbar] ket(alpha\, t)_S
+$
+In the interaction picture we define
+$
+  ket(alpha\, t)_I = exp[(i H_0 t)/hbar] ket(alpha\, t)_S
+$
+if we have no interactions and $H = H_0$ then this state is the same as the Heisenberg state, but the interaction part lives in the Schrödinger picture. Then
+$
+  braket(alpha\, t, A_S, alpha\, t)_S &= braket(alpha\, t, exp[(- i H_0 t)/hbar] exp[(i H_0 t)/hbar] A_S exp[(-i H_0 t)/hbar] exp[(i H_0 t)/hbar], alpha\, t)_S \
+  &= braket(alpha\, t, A_I (t), alpha\,t)_I
+$
+where
+$
+  A_I (t) equiv exp[(i H_0 t)/hbar] A_S exp[(-i H_0 t)/hbar]
+$
+so the operators evolve under the free theory, while the states evolve under the interaction. This means we get two equations. Consider
+$
+  i hbar pdv(, t) ket(alpha\, t)_I &= i hbar pdv(, t) (exp[(i H_0 t)/hbar] ket(alpha\, t)_S) \
+  &= - H_0 exp[(i H_0 t)/hbar] ket(alpha\, t)_I + exp[(i H_0 t)/hbar] underbrace((i hbar pdv(, t) ket(alpha\,t)_S), "Schrödinger equation") \
+  &= - H_0 exp[(i H_0 t)/hbar] ket(alpha\, t)_S + exp[(i H_0 t)/hbar] (H_0 + V) ket(alpha\, t)_S \
+  &= exp[(i H_0 t)/hbar] V exp[(-i H_0 t)/hbar] exp[(i H_0 t)/hbar] ket(alpha\, t)_S \
+  &= V_I ket(alpha\,t)_I
+$
+so we obtain
+$
+  i hbar pdv(, t) ket(alpha\, t)_I = V_I ket(alpha\, t)_I
+$
+and by definition
+$
+  dv(A_I, t) = 1/(i hbar) [A_I, H_0]
+$
+
+Before we had
+$
+  ket(alpha\, t)_S = sum_n c_n (t) exp[(-i E_n t)/hbar] ket(n)
+$
+giving
+$
+  ket(alpha\, t)_I & = exp[(i H_0 t)/hbar] ket(alpha\, t)_S \
+                   & = sum_n c_n (t) ket(n)
+$
+which is nice. We act with $bra(n)$ on this guy and take the derivative
+$
+  i hbar pdv(, t) underbrace(braket(n, alpha\, t)_I, c_n (t)) &= sum_m braket(n, V_I, m) braket(m, alpha\, t)_I
+$
+consider
+$
+  braket(n, V_I, m) &= braket(n, exp[(i H_0 t)/hbar] V (t) exp[(-i H_0 t)/hbar], m) \
+  &= underbrace(braket(n, V, m), V_(n m)) exp[(i (E_n - E_m) t)/hbar] \
+  &= V_(n m) e^(i omega_(n m) t)
+$
+giving
+$
+  i hbar pdv(, t) c_n (t) & = sum_m V_(n m) e^(i omega_(n m) t) c_m (t)
+$
+=== Time-dependent two state problem
+We have the Hamiltonian
+$
+  H_0 = E_1 ketbra(1) + E_2 ketbra(2) " with " E_2 > E_1
+$
+we add the perturbation $ V(t) = gamma e^(i omega t) ketbra(1, 2)+gamma e^(-i omega t) ketbra(2, 1) $
+which acts to mix the states. We compute the four matrix elements:
+$
+  V_12 & = gamma e^(i omega t) => V_21 = gamma e^(- i omega t) \
+  V_11 & = V_22 = 0
+$
+we assume $c_1 (0) = 1$ and $c_2 (0) = 0$. This gives
+$
+  dot(c)_1 & = 1/(i hbar) V_12 e^(i omega_12 t) c_2 \
+  dot(c)_2 & = 1/(i hbar) V_21 e^(i omega_21 t) c_1
+$
+this can be solved to give
+$
+  abs(c_2 (t))^2 & = (gamma^2 \/hbar^2)/Omega^2 sin^2 (Omega t) \
+  abs(c_1 (t))^2 & = 1 - abs(c_2 (t))^2
+$
+with
+$
+  Omega^2 = gamma^2/hbar^2 + (omega - omega_21)/4
+$
+as  $omega -> omega_21$ we find $abs(c_2 (t))^2 -> 1$ which is resonance.
+
+=== Sudden approximation
+We turn on a perturbation so fast that the state does not have time to adjust, so we are still in the unperturbed state (e.g. a step-function).
+
+We define some characteristic time $T = Omega^(-1)$. Consider
+$
+  i hbar pdv(, t) U(t,t_0) = H U (t,t_0)
+$
+if we let $t = S Omega^(-1)$ then
+$
+  i pdv(, S) U(t,t_0) = H/(hbar Omega) U(t,t_0)
+$
+we take $T -> 0$ then $U(t,t_0) -> bb(1)$, so we are free to assume that the time-evolution becomes trivial. This is a fair approximation when $hbar Omega >> E_(n m) = hbar omega_(n m)$ or $T << 2 pi omega_(n m)^(-1)$.
+
+=== Adiabatic approximation
+This is the opposite of the sudden approximation, so a very slow time-variation meaning we are always in the perturbed state. The idea is to just use time-independent perturbation theory but make the coefficients time-dependent.
+
+Consider the Schrödinger equation
+$
+  i hbar pdv(, t) ket(alpha\, t) = H (t) ket(alpha\, t)
+$
+we make the ansatz
+$
+  ket(alpha\, t) = sum_n c_n (t) e^(i theta_n) ket(n\, t)
+$
+with
+$
+  theta_n (t) equiv - 1/hbar integral_0^t E_n (t') dd(t')
+$
+which reduces to the time-independent case. Substituting this guy gives
+$
+  sum_n e^(i theta_n) [dot(c)_n (t) + c_n (t) pdv(, t)] ket(n\, t) = 0
+$
+acting with $bra(m\, t)$ we find
+$
+  dot(c)_m (t) &= - sum_n c_n (t) e^(i(theta_m - theta_n)) braket(m\,t, pdv(, t), n\, t)
+$
+Consider
+$
+  H(t) ket(n\, t) = E_n (t) ket(n\, t)
+$
+taking the derivative and acting with $bra(m\, t)$ we find
+$
+  braket(m\, t, dot(H), n\, t) = (E_n (t)-E_m (t)) braket(m\, t, pdv(, t), n\, t)
+$
+for $n eq.not m$ where $braket(m, dot(E), n)=0$. Combining the above we find
+$
+  dot(c)_m (t) = underbrace(c_m (t) braket(m\, t, pdv(, t), m\, t), "diagonal term") + sum_(m eq.not n) c_n (t) e^(i (theta_m-theta_n)) braket(m\, t, dot(H), n\, t)/(E_n - E_m)
+$
+we take $dot(H)$ to be small, or the first term should be larger then the sum:
+$
+  E_m >> expval(dot(H))/E_(n m) equiv 1/tau
+$
+then we can write
+$
+  c_n (t) = e^(i gamma_n (t)) c_n (0)
+$
+where
+$
+  gamma_n (t) equiv i integral_0^t braket(n\, t', pdv(, t'), n\, t') dd(t')
+$
+is the Berry phase.

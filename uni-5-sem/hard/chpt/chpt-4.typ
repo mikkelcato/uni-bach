@@ -8,9 +8,6 @@
 #show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
-#text(size: 35pt, [#strong("Semiconductors") #linebreak() #strong(
-    "& The Fermi Surface",
-  )])
 = Semiconductor crystals
 Semiconductors are very important materials and lay the groundwork for all modern electronics. Qualitatively we can define semiconductors as materials with electrical resistivity $10^(-2) -> 10^9 "ohm-cm"$, with strong temperature dependence. We define the band gap as the energy difference between the bottom of the conduction band and top of the valence band. At $T = 0"K"$ the conduction band is vacant, while the valence band is filled. As the temperature increases electrons can be thermally excited to the conduction band, leaving holes in the valence band. This is called intrinsic conductivity, since it occurs in pure semiconductors, and is largely proportional to $E_g\/k_B T$---where $E_g$ can be deduced using optical absorption\*.
 

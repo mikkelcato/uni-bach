@@ -7,7 +7,6 @@
 #show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
-#text(size: 35pt, strong("Elastic waves & Phonons"))
 = Crystal Binding and Elastic Constants
 What holds a crystal together?---in solids the electrostatic interaction between electrons and nuclei is entirely responsible for cohesion. There are four principal types of crystalline binding---van der Waals, ionic, metallic and covalent.
 

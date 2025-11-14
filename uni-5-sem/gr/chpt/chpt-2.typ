@@ -274,6 +274,139 @@ $
 this is allowed since the covariant derivative of $g_(mu nu)$ vanishes. Moving $Lambda g_(mu nu)$ to the RHS it can be interpreted as an energy density present even if $T_(mu nu)$ vanishes---vacuum energy or dark energy.
 
 #pagebreak()
+= Einstein-Hilbert action
+We briefly discuss an alternate derivation of the EFE since it is nice.
+
+== Without matter
+The simplest action we can create using only the metric is
+$
+  S = integral dd(x, 4) sqrt(-g) R
+$
+writing $R = g^(mu nu) R_(mu nu)$ we vary the metric to find
+$
+  dd(S, d: delta) = integral dd(x, 4) [(dd(sqrt(-g), d: delta))g^(mu nu) R_(mu nu) + sqrt(-g) (dd(g^(mu nu), d: delta))R_(mu nu) + sqrt(-g) g^(mu nu) dd(R_(mu nu), d: delta)]
+$
+note that
+$
+  g_(rho mu) g^(mu nu) = tensor(delta, -rho, nu) => dd(g^(mu nu), d: delta) = - g^(mu rho) g^(nu sigma) dd(g_(rho sigma), d: delta)
+$
+we claim
+$
+  dd(sqrt(-g), d: delta) = - 1/2 sqrt(-g) g_(mu nu) dd(g^(mu nu), d: delta)
+$
+this follows from the Jacobi formula $log det A = tr log A$. The second term already has a nice form now we show
+$
+  dd(R_(mu nu), d: delta) = nabla_rho dd(tensor(Gamma, rho, -mu nu), d: delta) - nabla_nu dd(tensor(Gamma, rho, -mu rho), d: delta)
+$
+(it is a total derivative) where
+$
+  dd(tensor(Gamma, rho, -mu nu), d: delta) = 1/2 g^(rho sigma) (nabla_mu dd(g_(sigma nu), d: delta) + nabla_nu dd(g_(sigma mu), d: delta)- nabla_sigma dd(g_(mu nu), d: delta))
+$
+note $dd(tensor(Gamma, rho, -mu nu), d: delta)$ is a tensor due to it being a difference between two Christoffel symbols. This enables us to work in a freely-falling elevator where $tensor(Gamma, rho, -mu nu) = 0$, giving to linear order
+$
+  dd(tensor(Gamma, rho, -mu nu), d: delta) &= 1/2 g^(rho sigma) (partial_mu dd(g_(sigma nu), d: delta) + partial_nu dd(g_(sigma mu), d: delta)-partial_sigma dd(g_(mu nu), d: delta)) \
+  &= 1/2 g^(rho sigma) (nabla_mu dd(g_(sigma nu), d: delta) + nabla_nu dd(g_(sigma mu), d: delta)-nabla_sigma dd(g_(mu nu), d: delta))
+$
+and since the LHS is a tensor the RHS is also a tensor meaning this is valid everywhere not only in the freely-falling elevator.
+
+Next consider in a freely-falling elevator:
+$
+  tensor(R, sigma, -rho mu nu) = partial_mu tensor(Gamma, sigma, -nu rho) - partial_nu tensor(Gamma, sigma, -mu rho)
+$
+giving
+$
+  dd(tensor(R, sigma, -rho mu nu), d: delta) &= partial_mu dd(tensor(Gamma, sigma, -nu rho), d: delta) - partial_nu dd(tensor(Gamma, sigma, -mu rho), d: delta) \
+  &=^"everywhere" nabla_mu dd(tensor(Gamma, sigma, -nu rho), d: delta) - nabla_nu dd(tensor(Gamma, sigma, -mu rho), d: delta)
+$
+then to leading order
+$
+  dd(R_(rho nu), d: delta) = nabla_mu dd(tensor(Gamma, mu, -nu rho), d: delta)-nabla_nu dd(tensor(Gamma, mu, -rho mu), d: delta)
+$
+this is nice because
+$
+  g^(mu nu) dd(R_(mu nu), d: delta) = nabla_mu X^mu "with" X^mu = g^(rho nu) dd(tensor(Gamma, mu, -rho nu), d: delta) - g^(mu nu) dd(tensor(Gamma, rho, -nu rho), d: delta)
+$
+then combining results
+$
+  dd(S, d: delta) = integral dd(x, 4) sqrt(-g) [(R_(mu nu)-1/2 R g_(mu nu))dd(g^(mu nu), d: delta) + underbrace(nabla_mu X^mu, "total derivative")]
+$
+requiring $dd(S, d: delta) = 0$ then gives
+$
+  G_(mu nu) equiv R_(mu nu) - 1/2 R g_(mu nu) = 0
+$
+contracting with $g^(mu nu)$ gives $R = 0$ so the vacuum EFE are
+$
+  R_(mu nu) = 0
+$
+we can get a slightly more non-trivial action by multiplying the volume form by a constant
+$
+  S = 1/(16 pi G) integral dd(x, 4) sqrt(-g) (R - 2 Lambda)
+$
+varying the action then gives an additional term
+$
+  R_(mu nu) - 1/2 R g_(mu nu) = - Lambda g_(mu nu)
+$
+now contracting with $g^(mu nu)$ gives $R = 4 Lambda$ meaning
+$
+  R_(mu nu) = Lambda g_(mu nu)
+$
+these are the vacuum EFE in the presence of a cosmological constant.
+
+== With matter
+Recall in Minkowski space a scalar field has the action
+$
+  S_"scalar" = integral dd(x, 4) (-1/2 eta^(mu nu) partial_mu phi.alt partial_nu phi.alt - V(phi.alt))
+$
+this trivially generalizes to curved space by
+$
+  S_"scalar" = integral dd(x, 4) sqrt(-g) (-1/2 g^(mu nu) nabla_mu phi.alt nabla_nu phi.alt - V(phi.alt))
+$
+of course here $partial_mu -> nabla_mu$ is redundant since $phi.alt$ is a scalar field. However, curved space enables us to add new terms e.g.
+$
+  S_"scalar" = integral dd(x, 4) sqrt(-g) (-1/2 g^(mu nu) nabla_mu phi.alt nabla_nu phi.alt - V(phi.alt) - 1/2 xi R phi.alt^2)
+$
+for a constant $xi$, and the new term vanishes for $g_(mu nu) = eta_(mu nu)$. We find
+$
+  dd(S_"scalar", d: delta) &= integral dd(x, 4) sqrt(-g) (-g^(mu nu) nabla_mu dd(phi.alt, d: delta) nabla_nu phi.alt - pdv(V, phi.alt) dd(phi.alt, d: delta)- xi R phi.alt dd(phi.alt, d: delta)) \
+  &= integral dd(x, 4) sqrt(-g) [underbrace((g^(mu nu) nabla_mu nabla_nu phi.alt - pdv(V, phi.alt) - xi R phi.alt), = 0)dd(phi.alt, d: delta)-nabla_mu (dd(phi.alt, d: delta) nabla^mu phi.alt)]
+$
+the Maxwell action also generalizes
+$
+  S_"maxwell" = -1/4 integral dd(x, 4) sqrt(-g) F_(mu nu) F^(mu nu)
+$
+with
+$
+  F_(mu nu) = nabla_mu A_nu - nabla_nu A_mu
+$
+giving
+$
+  nabla_mu F^(mu nu) = 0
+$
+as expected.
+
+The Einstein-Hilbert action becomes
+$
+  S = 1/(16 pi G) integral dd(x, 4) sqrt(-g) (R-2 Lambda) + underbrace(S_M, "matter")
+$
+we define
+$
+  T_(mu nu) = - 2/sqrt(-g) dv(S_M, g^(mu nu), d: delta)
+$
+then
+$
+  dd(S, d: delta) = 1/(16 pi G) integral dd(x, 4) sqrt(-g) (G_(mu nu)+Lambda g_(mu nu)) dd(g^(mu nu), d: delta) - 1/2 integral dd(x, 4) sqrt(-g) T_(mu nu) dd(g^(mu nu), d: delta)
+$
+immediately giving the full EFE
+$
+  G_(mu nu) + Lambda g_(mu nu) = 8 pi G T_(mu nu)
+$
+or just
+$
+  G_(mu nu) = 8 pi G T_(mu nu)
+$
+
+
+#pagebreak()
 = A detour
 == Geodesic as minimal curve
 We'd like a geometric interpretation of the geodesic, as we shall see it is the shortest path between two points in spacetime. Consider the line element $dd(s^2) = g_(mu nu) dd(x^mu) dd(x^nu)$, then the total line length is
@@ -698,13 +831,13 @@ where the exponential and hyperbolic tangent act to make our infinities finite. 
 $
   dd(tau^2) = (32 R^3)/(r^2) exp(- r/R) (dd(T^2) - dd(X^2)) - r^2 dd(Omega^2)
 $
-where $r equiv r(X,T)$. Now there are no problems at the horizon, but the singularity at $r = 0$ persists. Many things about these coordinates are nicely summarized by a Kruskal-Szekeres chart (in this case $R equiv 1$) as in @kruskal:
-
+where $r equiv r(X,T)$. Now there are no problems at the horizon, but the singularity at $r = 0$ persists. Many things about these coordinates are nicely summarized by a Kruskal-Szekeres chart (in this case $R equiv 1$) as in kruskal:
+/*
 #figure(
   image("Kruskal_diagram_of_Schwarzschild_chart.svg", width: 100%),
   caption: [A Kruskal-Szekeres chart.],
 ) <kruskal>
-
+*/
 We see that for $t -> plus.minus oo => T = plus.minus X$ which corresponds to the two dashed lines. We also see that for $r = R => X^2 = T^2 => X = plus.minus T$ so the dashed line seperating I (exterior of black hole) and II (interior of black hole) is the horizon. The various lines drawn for constant $r$ are all hyperbolic due to $X^2 - T^2 = "const"$, with their direction depending on if $r < R$ or $r > R$. The limit is at $r = 0$ where $X^2 - T^2 = -1$ so for $X = 0 => T = 1$, meaning the singularity is a hyperbola with the minimum at $T = 1$. The two respective mirror regions are denoted III (mirror exterior) and IV (mirror interior or white hole). When $t=0 => T = 0 => X"-axis"$. To see how light moves we know that for light $ dd(tau^2)=0 =>^"no angular part" dd(X^2)=dd(T^2) $
 so light moves along $45 degree$ lines. This is important because it means one can't travel from I $->$ III (they are causally disconnected), one can also never escape II (trap), but one is forced to escape IV (anti-trap). However, there seems to be a point connecting I and III, this is what we'll analyze next. But at $T=0$ region I and III appear connected?
 
@@ -734,13 +867,13 @@ which can be solved
 $
   z^2 (r) = 4 R(r-R)
 $
-plotting this gives an embedding diagram as in @wormhole:
-
+plotting this gives an embedding diagram as in wormhole:
+/*
 #figure(
   image("Lorentzian_Wormhole.svg", width: 50%),
   caption: [An _embedding diagram_ of a wormhole.],
 ) <wormhole>
-
+*/
 At the throat: $z = 0 => r = R$, so the throat has radius $R$. So the surface at $T=0$ connects regions I and III, meaning in principle there is a path between the two black hole exteriors. We'd like to determine the lifetime of this path. Nothing is special to $T = 0$ about the above procedure, all slices with $T = "const"$ gives a surface with $r_"throat" = r_"min" = r(X=0, T)$. We saw that $T = 0 => r_"min" = R$. For $T = 1$ we find $r_"min" = 0$ meaning the wormhole closes, and for $T > 1$ it pinches off ($r_"min" in CC$). This happens on a timescale
 $
   dd(t, d: Delta) tilde R/c
@@ -761,28 +894,45 @@ $
 $
 then the Kruskal-Szekeres coordinates are given by
 $
-  T = 1/2 (p' + q')";  " X = 1/2 (p' - q')
+  p' = T+X
 $
-so we compute
 $
-  T &= 1/2 (exp(p/(2R))-exp(-q/(2 R))) \
+  q' = plus.minus (T - X)
+$
+with $+$ (outside $r > R$):
+$
+  T_+ = 1/2 (p' + q')";  " X_+ = 1/2 (p' - q')
+$
+with $-$ (inside $r < R$):
+$
+  q' = X - T
+$
+$
+  X_- = 1/2 (p' + q') ";  " T_- = 1/2 (p' - q')
+$
+so the roles switch.
+
+
+We compute
+$
+  T_+ &= 1/2 (exp(p/(2R))-exp(-q/(2 R))) \
   &= 1/2 [exp((c t + R ln abs(r-R)+r)/(2R))-exp((-c t + R ln abs(r-R)+r)/(2 R))] \
   &= 1/2 exp(r/(2 R)) exp((ln abs(r-R))/2) [exp((c t)/(2 R))-exp(-(c t)/(2 R))] \
   &= exp(r/(2 R)) sqrt(abs(r-R)) sinh((c t)/(2 R))
 $
 and
 $
-  X & = exp(r/(2 R)) sqrt(abs(r-R)) cosh((c t)/(2 R))
+  X_+ & = exp(r/(2 R)) sqrt(abs(r-R)) cosh((c t)/(2 R))
 $
 for $r > R$:
 $
-  T & = sqrt(r-R) exp(r/(2 R)) sinh ((c t)/(2 R)) \
-  X & = sqrt(r-R) exp(r/(2 R)) cosh((c t)/(2 R))
+  T_+ & = sqrt(r-R) exp(r/(2 R)) sinh ((c t)/(2 R)) \
+  X_+ & = sqrt(r-R) exp(r/(2 R)) cosh((c t)/(2 R))
 $
 for $r < R$:
 $
-  T & = sqrt(R-r) exp(r/(2 R)) cosh ((c t)/(2 R)) \
-  X & = sqrt(R-r) exp(r/(2 R)) sinh((c t)/(2 R))
+  T_- & = sqrt(R-r) exp(r/(2 R)) cosh ((c t)/(2 R)) \
+  X_- & = sqrt(R-r) exp(r/(2 R)) sinh((c t)/(2 R))
 $
 the $cosh$ and $sinh$ switch since by definition
 $

@@ -11,7 +11,6 @@
 This course is split up in three-four parts with the first covering the mathematical description of crystal, in terms of the lattice and reciprocal lattice. The second part covers elastic waves and phonons in crystals. The third part covers electrons and energy bands. And the last part covers semiconductors and the Fermi surface.
 
 #pagebreak()
-#text(size: 35pt, strong("The Lattice"))
 
 = Crystal structure
 Everything in solid state physics is basically a crystal, this part of the course describes the basic mathematical description of these.

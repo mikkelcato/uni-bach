@@ -5,8 +5,7 @@
 #show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
-#text(size: 35pt, strong("Cosmology"))
-
+= Cosmology
 Cosmology is the study of the universe, and given the universe is quite complicated we rely on many simplifications. Ignoring small things like galaxies, allows us to try to answer very fundamental questions about the universe as a whole.
 
 Cosmology deals with very large and very small scales. For large scales we generally use the megaparsec and the Sun as a reference---like we're used to. For very small scales we can use the fundamental constants $G, c, k_B "and" hbar$ to construct the Planck scale:

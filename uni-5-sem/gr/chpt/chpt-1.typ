@@ -9,7 +9,6 @@
 Relativity is in short the idea that only relative motion is measurable, this can be stated as a symmetry---namely that our equations should be unchanged under coordinate transformations. Special relativity is the symmetry with respect to inertial frames, and general relativity extends this to general frames.
 
 #pagebreak()
-#text(size: 30pt, strong("Relativity"))
 = Special Relativity
 == Galileo and Lorentz
 If we consider a system of point particles interacting gravitationally we can write
@@ -253,7 +252,7 @@ where we define the Christoffel symbol (or affine connection) as
 $
   tensor(Gamma, lambda, -mu nu) = pdv(x^lambda, y^alpha) pdv(y^alpha, x^mu, x^nu)
 $
-which is zero for flat space. This is our equation of motion in general relativity, and it is just the geodesic equation---see appendix.
+which is zero for flat space. This is our equation of motion in general relativity, and it is just the geodesic equation---as we see later.
 
 Since the Christoffel symbol is zero for flat space it in some way encodes gravity, meaning there must be some relation between $Gamma tilde g$. To this end note that
 $
