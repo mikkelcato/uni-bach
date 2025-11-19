@@ -160,23 +160,93 @@ due to $F$ having a minima at $S=0$. We also know the cubic term is necessary, e
 $
   F = F_0 + a (T-T^*) S^2 - b S^3 + c S^4
 $
-where the $-$ sign is for convenience (since we want maxima and minima)---this is the free energy in Landau-de Gennes theory. We can try to find the maxima and minima of this
-$
-  0 & = dv(F, S) \
-  0 & = 2 a (T-T^*) S - 3 b S^2 + 4 c S^3 \
-  0 & = 2 a (T-T^*) - 3 b S + 4 c S^2 \
-  0 & = S^2 - (3 b)/(4 c) S + (2 a)/(4 c) (T-T^*) \
-    & => S = (3 b)/(8 c) plus.minus 1/2 sqrt((9 b^2)/(16 c^2)-(2 a)/c (T-T^*))
-$
-rewriting
-$
-  S - (3 b)/(8 c) & = (9 b^2)/(64 c^2) - (a)/(2c) (T-T^*) \
-                T & = T^* + b/a [(9 b)/(32 c)+3/4-S]
-$
-\* minima/maxima
+where the $-$ sign is for convenience (since we want maxima and minima)---this is the free energy in Landau-de Gennes theory.
 
-\* second minima start
+Consider
+$
+  0 & = pdv(F, S) \
+  0 & = (2 a (T-T^*) - 3 b S + 4 c S^2) S \
+$
+so it is minimal for $S_"I" = 0$. The other physical extrema is
+$
+  S_"N" = (3b)/(8 c) [1 plus sqrt(1 - (32 a c)/(9 b^2) (T-T^*))]
+$
+this extrema appears at
+$
+  1 - (32 a c)/(9 b^2) (T-T^*) = 0 => T_C = T^* + (9 b^2)/(32 a c)
+$
+Before this $T > T_C$ and the only physical solution is $S_"I" = 0$. For $T=T_C$ we have solutions
+$
+  S = {S_"I" = 0, S_C= (3 b)/(8 c)}
+$
+To see if it these are minima or maxima consider
+$
+  pdv(F, S, 2) = 2 a (T-T^*) - 6 b S + 12 c S^2
+$
+For $S_"I" = 0$
+$
+  pdv(F, S, 2) = 2 a (T-T^*) cases(> 0 "for " T > T^*, < 0 "for " T < T^*)
+$
+so it is a minima for $T > T^*$ and becomes a maxima for $T < T^*$---meaning at $T < T^*$ it is very unlikely that the system is in the isotropic phase. For $S_C = 3 b \/ 8 c$
+$
+  pdv(F, S, 2) & = 2 a (T_C-T^*) - (9 b^2)/( 16 c) \
+               & = 2 a (T^* + (9 b^2)/(32 a c) - T^*) - (9 b^2)/(16 c) \
+               & = 0
+$
+so it is a saddle point.
 
-\* transition temp ($F(S_+) = F(S_-)$)
+At the nematic-isotropic transition the free energy of the two minima are the same $F_"I" = F_"N"$ so
+$
+  0 & = a(T-T^*) S^2 - b S^3 + c S^4 \
+    & = (a(T-T^*) - b S + c S^2 ) S^2
+$
+so it is minimal for $S_"I" = 0$. For the quadratic
+$
+  a(T-T^*) &= b S_"N" - c S_"N"^2 \
+  &= (12 b^2)/(32 c) + (12 b^2)/(32 c) sqrt(1-(32 a c)/(9 b^2) (T-T^*))] - (9 b^2)/(64 c) [1 + sqrt(1-(32 a c)/(9 b^2) (T-T^*))]^2
+$
+the second term
+$
+  -[dots]^2 &= -(9 b^2)/(64 c) [2 - (32 a c)/(9 b^2) (T-T^*) + 2 sqrt(1-(32 a c)/(9 b^2) (T-T^*))] \
+  &= -(9 b^2)/(32 c) + a/2 (T-T^*) - (9 b^2)/(32 c) sqrt(1 - (32 a c)/(9 b^2) (T-T^*))
+$
+so we obtain
+$
+  [(16 a c)/(3 b^2) (T - T^*) -1 ]^2 & = 1 - (32 a c)/(9 b^2) (T-T^*) \
+                              T_"NI" & = T^* + b^2/(4 a c)
+$
+in this case
+$
+  S_"NI" & = (3 b)/(8 c) [1 + sqrt(1 - (32 a c)/(9 b^2) (b^2/(4 a c)))] \
+         & = (3 b)/(8 c) (1 + 1/3) \
+         & = (b)/(2 c)
+$
 
-\* when $S=0$ not minima (only one solution, determinant zero)
+We could also say
+$
+  S^2 (a(T-T^*) - b S + c S^2) = 0
+$
+and require we only have two solutions having $F-F_0 = 0$, with one being $S = 0$. Consider then
+$
+  S_plus.minus = (b plus.minus sqrt(b^2 - 4 a c(T-T^*)))/(2 c)
+$
+for this to have one solution (meaning $F-F_0$ has two zeroes) the determinant must vanish giving
+$
+  0 & = b^2 - 4 a c (T-T^*) => T = T^* + b^2/(4 a c)
+$
+which is the same as above.
+
+At the beginning we could have also written
+$
+  F = F_0 + A Tr Q + B/2 Tr Q^2 + C/3! Tr Q^3 + D/4! Tr Q^4
+$
+since $Tr Q = 0$ this term vanishes as before. The other terms are $prop S^2$, $prop S^3$, etc. just with different constants.
+
+We can also apply Landau-de Gennes to other phase transitions. Consider for example a smectic-nematic transition. We define some order parameter describing this and denote it by $Psi$, one can show that $Psi = - Psi$ meaning we must have
+$
+  F = F_0 + a (T-T^*) Psi^2 + b Psi^4
+$
+then one could proceed as before.
+
+== Onsager theory
+Here we consider $F = - T S$ and rod-shaped particles, with the entropy being given by translational entropy (through depletion) and rotational entropy.

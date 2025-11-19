@@ -109,3 +109,161 @@ $
   - bold(x)^2 + z^2 = R^2
 $
 then $k <^! 0$, and obviously for $k = 0$ the FRW metric is spatially flat.
+
+#pagebreak()
+== Hubble's law
+Above we found
+$
+  dd(tau^2) = dd(t^2) - a^2 (t) [dd(r^2)/(1-k r^2) + r^2 dd(Omega^2)]
+$
+Consider an observer standing far away from a galaxy. Light follows null geodesics $dd(tau)= 0$. We can choose coordinates such that $dd(Omega^2) = 0$ so
+$
+  dd(t^2) = a^2 (t) dd(r^2)/(1-k r^2) => integral dd(t)/a(t) = integral dd(r)/sqrt(1-k r^2)
+$
+We take the light to leave the galaxy at radial distance $r_1$ and time $t_1$ and arrive at $r = 0$ and time $t_0$ (so observer is at the origin). We can then integrate to find
+$
+  integral_(t_1)^(t_0) dd(t)/a(t) = integral_0^(r_1) dd(r)/sqrt(1-k r^2) = cases(sin^(-1) r_1 #h(2em) &"for" k = +1, r_1 &"for" k = 0, sinh^(-1) r_1 &"for" k=-1)
+$
+We now consider two crests of light emitted at $(t_1, r_1)$ and $(t_1 + dd(t_1, d: delta), r_1)$, the observer would observe these at $(t_0, r=0)$ and $(t_0+dd(t_0, d: delta), r=0)$. So we have
+$
+  integral_(t_1+dd(t_1, d: delta))^(t_0+dd(t_0, d: delta)) dd(t)/(a(t)) = integral_(t_1)^(t_0) dd(t)/a(t)
+$
+taking $dd(t_i, d: delta)$ to be small so we treat $a(t_i)$ as a constant (our main assumption!),
+$
+  (t_0+dd(t_0, d: delta))/a(t_0) - (t_1 + dd(t_1, d: delta))/a(t_1) = t_0/a(t_0) - t_1/a(t_1) => dd(t_0, d: delta)/a(t_0) = dd(t_1, d: delta)/a(t_1)
+$
+so we have a redshift! In terms of frequencies
+$
+  lambda_1/lambda_0 = nu_0/nu_1 = dd(t_1, d: delta)/dd(t_0, d: delta) = a(t_1)/a(t_0)
+$
+and if the Universe is expanding $a(t_1) > a(t_0)$ so $lambda_1 > lambda_0$. We define the redshift
+$
+  z & equiv (lambda_0 - lambda_1)/lambda_1 \
+  & = a(t_0)/a(t_1) -1 \
+  & tilde.eq^"small time" underbrace((dot(a) (t_0))/a(t_0), equiv H_0) (t_0-t_1)
+$
+with $H_0$ being the Hubble rate today. We can relate this to a distance
+$
+  r_1 = integral_(t_1)^(t_0) dd(t)/a(t) tilde.eq (t_0-t_1)/a(t_0)
+$
+The physical distance is defined as $L = a(t_0) r$, so we can write
+$
+  z = H_0 L
+$
+taking the derivative of $L$ then gives
+$
+  v_r = dot(a) (t_0) r_1 = (dot(a) (t_0))/a(t_0) underbrace(a(t_0) r_1, t_0-t_1) = z
+$
+this is Hubble's law
+$
+  z = v_r = H_0 L
+$
+the observational verification of this essentially proves the Universe is expanding.
+
+#pagebreak()
+== Friedmann equations
+We want an equation for the scale factor $a(t)$. To do this we use the EFEs
+$
+  tensor(R, mu, - nu) = 8 pi G (tensor(T, mu, - nu) - 1/2 T tensor(delta, mu, -nu))
+$
+with
+$
+  T_(mu nu) = p g_(mu nu) + (p + rho) U_mu U_nu
+$
+and $U^t = 1$, $U^i = 0$. We can find
+$
+  tensor(T, t, -t) = p-(p+rho)";  " tensor(T, r, -r) = p
+$
+and
+$
+  tensor(R, t, -t) = -3 dot.double(a)/a";  " tensor(R, r, -r) = - dot.double(a)/a - 2 dot(a)/a - (2 k)/a^2
+$
+we find two equations
+$
+                     3 dot.double(a) & = - 4 pi G (rho+3 p) a \
+  a dot.double(a) + 2 dot(a)^2 + 2 k & = 4 pi G ( rho -p) a^2
+$
+these can be rewritten slightly
+$
+     (dot(a)/a)^2 & = (8 pi G)/3 rho - k/a^2 \
+  dot.double(a)/a & = - 4 pi G (p + 1/3 rho)
+$
+these are the Friedmann equations. We can also use $D_mu T^(mu nu) = 0$ (but does not give new information) to find
+$
+               a^3 dv(p, t) & = dv(, t) [a^3 (p+rho)] \
+          dv(, a) (rho a^3) & = - 3 p a^2 \
+  dot(a) pdv(, t) (rho a^3) & = - 3 p a^2
+$
+The Friedmann equations are used to find how a Universe with a given composition will evolve.
+
+We still need an equation of state $p = p(rho)$:
+
+1. $p << rho$ (pressure-less matter). By the above we immediately find
+$
+  rho prop 1/a^3
+$
+this is also called non-relativistic matter.
+
+2. $p = 1/3 rho$ (radiation). By the above
+$
+  rho prop 1/a^4
+$
+this is also called relativistic matter.
+
+3. $p = - rho$. By the above
+$
+  rho prop "const"
+$
+as we would expect for a cosmological constant $Lambda$.
+
+All of the above have the form $p = w rho$ (ideal fluid) with $w = \{0, 1/3, -1}$.
+
+=== Age of the Universe
+Consider $p >= 0$ then from
+$
+  dot.double(a)/a = - 4 pi G (p + 1/3 rho)
+$
+we can see $dot.double(a)\/a < 0$ and $dot(a)\/a < 0$. Meaning at some point $a$ was zero. We define the time of the beginning of the Universe (the Big Bang) as $a(t=0)=0$.
+
+We can then compute the age of the Universe by
+$
+  t_0 = integral dv(t, a) dd(a) = integral dd(a)/dot(a) < integral_0^(a(t_0)) dd(a)/(dot(a) (t_0))
+$
+since $dot(a) (t_0) < dot(a) (t)$. Then we find
+$
+  t_0 < 1/H_0
+$
+so the Hubble rate is the upper-bound for the age of the Universe (if we have non-relativistic and relativistic matter with $p >= 0$)---using modern values we find $t_0 lt.tilde 13.8 "Gyr"$.
+
+Consider
+$
+  dv(, a) (rho a^3) = - 3 p a^2 " for " p >= 0
+$
+so $rho a^3$ decreases, meaning for $a -> oo$ we have
+$
+  rho a^2 -> 0
+$
+Then
+$
+  (dot(a)/a)^2 = (8 pi G)/3 rho - k/a^2 => dot(a)^2 = (8 pi G)/3 rho a^2 - k
+$
+so $dot(a)^2 -> - k$. Which is physical for $k = - 1$ (keeps expanding) or $k = 0$ (asymptotic slow down). For $k = +1$ we have $dot(a) -> 0$ for $a -> a_"max"$ with
+$
+  rho a_"max"^2 = 3/(8 pi G)
+$
+and then the Universe would collapse on itself.
+
+=== Critical density
+For $k=0$ we have
+$
+  H^2 =(dot(a)/a)^2 = (8 pi G)/3 rho => rho_c equiv (3 H^2)/(8 pi G)
+$
+so the critical density is the density of energy in the universe if it were flat. We then define
+$
+  Omega = rho/rho_c
+$
+for $k eq.not 0$ we can then write
+$
+  k/a^2 = H^2 (Omega-1)
+$
+meaning for $k = 0$ we have $Omega = 1$.

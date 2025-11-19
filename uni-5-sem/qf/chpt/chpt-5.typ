@@ -630,3 +630,93 @@ $
   gamma_n (t) equiv i integral_0^t braket(n\, t', pdv(, t'), n\, t') dd(t')
 $
 is the Berry phase.
+
+=== Berry phase
+We assume the time-dependence of $H(t)$ lies in $bold(R) (t)$. Then $E_n (t) = E_n (bold(R)(t))$ and $ket(n\, t) = ket(n(bold(R)(t)))$. Then
+$
+  braket(n\, t, pdv(, t), n\, t) & = braket(n\,t, nabla_R, n\, t) dv(bold(R), t)
+$
+and the Berry phase becomes
+$
+  gamma_n (t) &= i integral_0^T dd(t) dv(bold(R), t) braket(n\,t, nabla_R, n\, t) \
+  &= i integral_(t=0)^(t=T) dd(bold(R)) braket(n\,t, nabla_R, n\, t) \
+  &=^"periodicity" i integral.cont_C dd(bold(R)) braket(n\,t, nabla_R, n\,t)
+$
+we define
+$
+  bold(A)_n (bold(R)) equiv i underbrace(braket(n\,t, nabla_R, n\, t), "a vector")
+$
+then by Stokes'
+$
+  gamma_n (C) &= integral.cont_C dd(bold(R)) dot bold(A)_n (bold(R)) \
+  &=^"Stokes'" integral_A dd(bold(a)) dot underbrace((nabla_R times bold(A)_n (bold(R))), equiv bold(B)_n (bold(R))) \
+  &= integral_A bold(B)_n dot dd(bold(a)) \
+  &= integral_A bold(B)_n dot bold(n) dd(a) equiv underbrace(Phi_B, "flux")
+$
+with $A$ being defined by how $bold(R) (t)$ evolves.
+
+An example of this is the Aharanov-Bohm effect. Here $bold(R)$ is the position of the particle so it is clearly periodic. Though $bold(B) eq 0$ outside the flux tube it leads to a magnetic vector potential $bold(A) (bold(R))$ giving rise to a phase, which we can then observe---in this case $phi_B = B A_"tube"$.
+
+Since $nabla_R times nabla_R ket(n\,t) = 0$ we can find
+$
+  bold(B)_n & = i nabla_R bra(n\, t) times nabla_R ket(n\, t) \
+  &= i sum_m (nabla_R bra(n\,t)) ket(m\,t) times braket(m\,t, nabla_R, n\,t) \
+  &= i sum_(m eq.not n) (nabla_R bra(n\,t)) ket(m\,t) times braket(m\,t, nabla_R, n\, t)
+$
+these terms are annoying, so consider
+$
+  nabla_R (H(t) ket(n\,t)) & = nabla_R (E_n (t) ket(n\,t)) \
+  bra(m\,t) nabla_R (H(t) ket(n\,t)) & = E_n braket(m\,t, nabla_R, n\,t) \
+  braket(m\,t, (nabla_R H)+ H nabla_R, n\,t) & = E_n braket(m\,t, nabla_R, n\,t) \
+  braket(m\,t, nabla_R H, n\, t) &= (E_n-E_m) braket(m\,t, nabla_R, n\,t) \
+  &=> braket(m\,t, nabla_R, n\,t) = braket(m\,t, nabla_R H, n\,t)/(E_n-E_m)
+$
+we use this to replace both terms in $bold(B)_n$
+$
+  bold(B)_n &= i sum_(m eq.not n) (braket(m\,t, nabla_R H, n\,t)^dagger times braket(m\,t, nabla_R H, n\,t))/(E_n-E_m)^2
+$
+then
+$
+  gamma_n (C) = integral.cont bold(B) dot dd(bold(a)) = Phi_B
+$
+and the solution would be (under the adiabatic approximation)
+$
+  c_n (t) = e^(i gamma_n (t)) c_n (0)
+$
+
+As an example consider a spin-$1\/2$ system.
+$
+  H(t) equiv H(bold(R) (t)) = -(2 mu)/hbar bold(S) dot overbrace(bold(R) (t), "magnetic field")
+$
+we take the magnetic field to be along the $z$-axis ($R_x = R_y = 0$). Then
+$
+             E & = - (2 mu)/hbar expval(S_z) R_z (t) \
+  E_plus.minus & = minus.plus mu R_z (t)
+$
+with $ket(n) = {ket(+), ket(-)}$. Now we need
+$
+                        nabla_R H & = - (2 mu)/hbar bold(S) \
+  (E_plus.minus - E_minus.plus)^2 & = 4 mu^2 R^2_z
+$
+Then
+$
+  bold(B)_+ & = i (braket(+, bold(S), -)times braket(-, bold(S)+))/(hbar^2 R_z^2)
+$
+we use
+$
+  bold(S) = 1/2 (S_+ + S_-) hat(x) + 1/(2 i) (S_+ - S_-) hat(y) + S_z hat(z)
+$
+to find
+$
+  braket(plus.minus, bold(S), minus.plus) &= hbar/2 (hat(x) minus.plus i hat(y)) \
+  &=> braket(+, bold(S), -) times braket(-, bold(S), +) = hbar^2/2 i hat(z)
+$
+giving
+$
+  bold(B)_plus.minus = minus.plus hat(z)/(2 R_z^2)
+$
+then the Berry phase is
+$
+  gamma_plus.minus (C) &= minus.plus integral.cont (hat(z) dot dd(bold(a)))/(2 R_z^2) \
+  &= minus.plus integral.cont dd(a_z)/(2 R^2) = minus.plus 1/2 integral.cont (hat(R) dot dd(bold(a)))/(R^2)
+$
