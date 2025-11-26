@@ -262,8 +262,137 @@ so the critical density is the density of energy in the universe if it were flat
 $
   Omega = rho/rho_c
 $
-for $k eq.not 0$ we can then write
+for $k eq.not 0$ we can then write the curvature as
 $
   k/a^2 = H^2 (Omega-1)
 $
 meaning for $k = 0$ we have $Omega = 1$.
+
+We can write the Friedmann equation as (see cosmology notes)
+$
+  H^2/H_0^2 = Omega_(m,0)/a^3 + Omega_(r,0)/a^4 + Omega_(Lambda,0) + (1- Omega_0)/a^2
+$
+
+#pagebreak()
+= Evolution of the Universe
+Above we had
+$
+  D_mu T^(mu nu) = 0 => dv(, a) (rho a^3) = - 3 p a^2
+$
+and we consider three types of matter: non-relativistic, relativistic and the cosmological constant. For these we found
+$
+       rho_m & prop a^(-3) \
+       rho_r & prop a^(-4) \
+  rho_Lambda & prop "const"
+$
+then plotting $(ln a, ln rho)$ gives the usual diagram highlighting periods where one type of matter dominated the rest. At some time $rho_m = rho_r$ and at some later time $rho_m = rho_Lambda$ by interpolating the above---periods of equality. At late enough times $rho_Lambda$ dominates completely.
+
+== Big Bang
+Going backwards in time it is clear that the energy density of the Universe increases, so early in the Universe everything was very hot and dense. Then it is natural to assume that particles through interactions would be in thermal equilibrium at early times.
+
+The number density of bosons (fermions) would then be given by
+$
+  dd(n) = (4 pi g)/(h^3 c^3) (E^2 dd(E))/(e^(E\/k_B T) plus.minus 1)
+$
+and this is naturally related to $rho$. We compute
+$
+  n & = (4 pi g)/(h^3 c^3) integral (E^2 dd(E))/(e^(E\/k_B T) plus.minus 1) \
+  n & prop cases(3/2 T^3 zeta(3) "for fermions", 2 T^3 zeta(3) "for bosons")
+$
+or we can write
+$
+  n_b = 4/3 n_f = 2.404 g/(2 pi^2) ((k_B T)/(h c))^3
+$
+so in the non-relativistic case when $rho prop n$ we find $T prop a^(-1)$. We can also compute the energy density
+$
+  rho = integral E dd(n) prop T^4
+$
+so in the relativistic case we also have $T prop a^(-1)$. In this case one can show by solving the Friedmann equation that $a prop sqrt(t)$.
+
+Combining these we find for a radiation-dominated universe
+$
+  k_B T tilde.eq 0.46 E_(p l) (t/t_(p l))^(-1\/2)
+$
+with $E_(p l)$ and $t_(p l)$ being the Planck energy and time respectively. At these scales relativity breaks down, our description only makes sense for time scales longer than $t_(p l)$. The point $t = t_(p l)$ is what we mean by Big Bang.
+
+=== BBN
+At temperatures $T > "MeV"$ we had equilibrium with
+$
+  p^+ + n <--> D^+ + dots
+$
+at lower temperatures $T < "MeV"$ the formed nuclei could no longer be ripped apart so we have reactions like
+$
+  p^+ + n --> D^+ --> "He" --> "Li"
+$
+etc. This is the formation of the light elements.
+
+#pagebreak()
+== The cosmic microwave background
+At temperatures $T gt.tilde 13.6 "eV"$ we had
+$
+  e^- + p^+ <--> H + gamma
+$
+at lower temperatures $T lt.tilde "eV"$ the free electrons and protons combine to form neutral hydrogen
+$
+  e^- + p^+ --> H + gamma
+$
+this process is called recombination. (recombination $z tilde 1370$ $->$ photon decoupling $->$ last scattering $z tilde 1100$ or $t tilde 380 "kyr"$)
+
+Before recombination photons scatter with free electrons and protons forming a coupled plasma. At this point the Universe is opaque to photons. After recombination photons can move more freely since they do not scatter with neutral hydrogen making the Universe transparent to photons. These photons are what we call the CMB. The temperature of the CMB photons today is $T = 2.73 "K"$, this is found by fitting to a blackbody, since the CMB is a blackbody. Since we know the energy at which recombination happens we can also predict the temperature, and this is in agreement with the measured value.
+
+=== Anisotropies
+When we observe the CMB we observe the last scattering surface, through some angle. One of the primary observations are temperature anisotropies on the scale of $delta T\/T tilde 10^(-5)$. This in part confirms that the Univserse is isotropic, but at small scales we observe anisotropies.
+
+This is done by essentially doing a Fourier transform on a sphere, where the Fourier basis are the spherical harmonics $Y_l^m$. The multipole $l$ is what we really care about in this case. For the monopole $l = 1$ we essentially just have the mean $T = T_"mean"$. For the dipole $l = 2$ we observe $delta T\/T tilde 10^(-3)$ which is caused by our relative motion to the CMB. For higher multipoles we observe the very small fluctuations. The higher multipoles correspond to smaller angular separations on the last scattering surface $delta theta$.
+
+Considering a length $cal(l)$ on the last scattering surface we can write
+$
+  sin(delta theta) = cal(l)/d_A => delta theta = cal(l)/d_A
+$
+By the FRW-metric we have
+$
+  dd(s) = a (t_e) r delta theta =>^"small angles" cal(l) tilde.eq a (t_e) r delta theta
+$
+we can rewrite this as
+$
+  cal(l) & = a(t_e)/a(t_0) a(t_0) r delta theta \
+         & = (a(t_0) r delta theta)/(1+z)
+$
+We define the horizon $d_"hor"$ to be the distance a photon could have travelled since the Big Bang
+$
+  d_"hor" & = a(t_0) integral_0^(t_0) dd(t)/(a(t)) \
+          & = a(t_0) r
+$
+using this we can rewrite $cal(l)$
+$
+  cal(l) = (d_"hor" delta theta)/(1+z) =>^(z >> 1) d_A = d_"hor"/z
+$
+we can also compute $d_"hor"$ giving
+$
+  d_"hor" tilde.eq 1.4 times 10^(4) "Mpc"
+$
+this is approximately what one would find ignoring the expansion of the Universe. Then we can find the physical distance at last scattering by
+$
+  d_A tilde.eq 13 "Mpc" => cal(l) = d_A delta theta tilde.eq 0.22 "Mpc" ((delta theta)/(1 degree))
+$
+Fluctuations with $delta theta > 7 degree$ have been observed. At last scattering these correspond to length scales $cal(l) > 1.6 "Mpc"$. Today these correspond to the length scale $cal(L) > 1700 "Mpc"$ which is comparable to the size of the Universe. Therefore the fluctuations appear to be an initial condition of the Universe.
+
+As written before we can write the fluctuations as a Fourier transform
+$
+  (delta T)/T (theta,phi) = sum_(l=0)^oo sum_(m=-l)^(m=l) a_(l m) Y_(l m) (theta, phi)
+$
+we are interested in the correlation function
+$
+  C(theta) = evaluated(expval((delta T)/T (hat(n)_1) (delta T)/T (hat(n)_1)))_(hat(n)_1 dot hat(n)_2 = cos theta)
+$
+this is essentially the average of the correlation between all pairs of points seperated by an angle $theta$. Given the fluctuations are Gaussian one can show that
+$
+  expval(a_(l m))=0";  " expval(a_(l m)^* a_(l' m')) = overbrace(C_(l), "power") delta_(l l') delta_(m m')
+$
+then we can write
+$
+  C(theta) = 1/(4 pi) sum_(l=0)^oo (2 l + 1) C_l P_l (cos theta)
+$
+so we have removed the $m$-dependence. From this one can construct the power-spectrum by plotting $l(l+1) C_l$ against $l$. The angle is related to a length scale since for smaller angles (or higher $l$) we can measure smaller lengths. As an example for $l = 2$ we can only split the sky in two, and we only have one Universe. For this reason the uncertainty for low $l$ is massive since we just have less points (cosmic variance). For higher multipoles we can take many different measurements, allowing us to decrease or eliminate the variance.
+
+\* $-dd(f) = underbrace(f(r), "fraction uncovered") dd(Omega)$

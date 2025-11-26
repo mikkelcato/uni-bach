@@ -720,3 +720,99 @@ $
   gamma_plus.minus (C) &= minus.plus integral.cont (hat(z) dot dd(bold(a)))/(2 R_z^2) \
   &= minus.plus integral.cont dd(a_z)/(2 R^2) = minus.plus 1/2 integral.cont (hat(R) dot dd(bold(a)))/(R^2)
 $
+
+#pagebreak()
+== Time-dependent perturbation theory
+We will now attempt to do time-dependent perturbation theory in a systematic way. This will lead to us deriving the Dyson series.
+
+The problem we want to solve is
+$
+  H = H_0 + V(t)
+$
+where $H_0 ket(n) = E_n ket(n)$. We can write
+$
+  ket(alpha\, t)_I = sum_n c_n (t) ket(n)
+$
+now we also assume that we can write
+$
+  c_n (t) = c_n^((0)) + c_n^((1)) + dots
+$
+Consider
+$
+  ket(alpha\, t)_I = U_I (t,t_0) ket(alpha\, t_0)_I
+$
+and in the interaction picture we have
+$
+  i hbar pdv(, t) ket(alpha\,t)_I = V_I ket(alpha\,t)_I
+$
+this becomes
+$
+  i hbar pdv(, t) U_I (t,t_0) = V_I (t) U_I (t,t_0)
+$
+We integrate this to obtain
+$
+  U_I (t,t_0) = - i/hbar integral_(t_0)^t V_I (t') U_I (t',t_0) dd(t') + K
+$
+with $K$ being some integration constant. By $t_0 = t$ we can find $K = 1$. Then we have
+$
+  U_I (t,t_0) = 1 - i/hbar integral_(t_0)^t V_I (t') U_I (t',t_0) dd(t')
+$
+We now solve this perturbatively. What we obtain is the Dyson series
+$
+  U_I (t,t_0) &= 1 - i/hbar integral_(t_0)^t dd(t') V_I (t') [1 - i/hbar integral_(t_0)^t' V_I (t'') U(t'',t_0) dd(t'')] \
+  &= 1 - i/hbar integral_(t_0)^t dd(t)' V_I (t') + (-i/hbar)^2 integral_(t_0)^t dd(t') integral_(t_0)^(t') dd(t'') V_I (t') V_I (t'') + cal(O)(V_I^3)
+$
+This is nice, but we want the $c_n (t)$. Consider
+$
+  ket(i\,t)_I & = U_I (t,t_0) ket(i) \
+              & = sum_n c_n (t) ket(n)
+$
+acting with $bra(n)$ gives
+$
+  c_n (t) & = braket(n, i\,t) \
+          & = braket(n, U_I (t,t_0), i)
+$
+Then from the Dyson series we obtain
+$
+  c_n^((0)) (t) &= delta_(n i) \
+  c_n^((1)) (t) &= -i/hbar integral_(t_0)^t braket(n, V_I, i) dd(t') = - i/hbar integral_(t_0)^t V_(n i) (t') e^(i omega_(n i) t') dd(t')
+$
+where $V_(n i) (t) = braket(n, V(t), i)$ and $omega_(n i) = (E_n-E_i)\/hbar$.
+
+We can then find the probability for a state to do $ket(i) -> ket(n)$ by
+$
+  P(i->n) & = abs(braket(n, i\,t))^2 \
+          & = abs(c_n (t))^2 \
+          & = abs(c_n^((0)) (t) + c_n^((1)) (t) + dots)^2
+$
+
+As an example consider a constant perturbation enabled at $t_0 = 0$
+$
+  V(t) = cases(0 #h(1.5em) &"for" t < 0, V &"for" t >= 0)
+$
+we compute
+$
+  c_n^((1)) & = - i/hbar V_(n i) integral_0^t e^(i omega_(n i) t') dd(t') \
+            & = V_(n i)/(E_n-E_i) (1 - e^(i omega_(n i) t)) \
+$
+then
+$
+  abs(c_n^((1)))^2 & = abs(V_(n i))^2/abs(E_n-E_i)^2 (2 - 2 cos omega_(n i) t) \
+                   & = (4abs(V_(n i))^2)/abs(E_n-E_i)^2 sin^2 (omega_(n i) t)/2
+$
+
+Now consider
+$
+  P_(i -> n) &tilde sum_(n, E_n tilde.eq E_i) abs(c_n^((1)))^2 \
+  &tilde integral dd(E_n) rho(E_n) abs(c_n^((1)))^2 \
+  &= 4 integral sin^2 (((E_n-E_i) t)/(2 hbar)) abs(V_(n i))^2/abs(E_n-E_i)^2 rho(E_n) dd(E_n) \
+$
+in the limit of large $t$ we get a $delta$-function giving
+$
+  lim_(t->oo) P_(i->n) & tilde evaluated((2 pi)/hbar abs(V_(n i))^2 rho(E_n) t)_(E_n tilde.eq E_i)
+$
+Then the rate of transitioning from $i -> n$ is
+$
+  omega_(i->n) = evaluated(dv(P_(i-> n), t))_(t-> oo) = evaluated((2 pi)/hbar abs(V_(n i))^2 rho(E_n))_(E_n tilde.eq E_i)
+$
+this is an example of Fermi's golden rule---it tells us that it is rare to jump to states with very different energies (to first order at very large times, but it is still possible due to $Delta t Delta E gt.tilde hbar$).

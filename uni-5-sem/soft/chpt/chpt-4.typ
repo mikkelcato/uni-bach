@@ -42,6 +42,7 @@ $
 $
 for an isotropic distribution $S = 0$ and for perfect alignment with $psi(u) = delta(0)$ we find $(hat(n) dot hat(u))^2 = 1 => S = 1$. Somewhere in between we have the nematic phase with $S tilde 0.5$ and $phi prop "Gaussian"$. The least possible value is for $psi = delta(pi/2)$ where $S=-1/2$.
 
+#pagebreak()
 == Maier-Saupe theory
 We want to find the free energy $F = U - T S$.
 
@@ -143,6 +144,7 @@ here there is clear temperature dependence since it determines the slope of $f_2
 
 We find that at high temperatures $S tilde 0$ as we lower the temperature we reach metastability (essentially a non-continuous region) before $S$ smoothly increases to $S tilde 1$. In principle we can also go back and find the free energy $F(S)$---at high temperature this exhibits one minima (at $S = 0$) and at lower temperatures it exhibits two minima (at $S = 0$ and at $S_"transition"$) (if they are equal minima) with a barrier between them, if we keep lowering the temperature the minima at $S=0$ will eventually vanish with the other minima becoming deeper.
 
+#pagebreak()
 == Landau-de Gennes theory
 There is a smarter way to do the above.
 
@@ -248,5 +250,118 @@ $
 $
 then one could proceed as before.
 
+#pagebreak()
 == Onsager theory
-Here we consider $F = - T S$ and rod-shaped particles, with the entropy being given by translational entropy (through depletion) and rotational entropy.
+Here we consider $F = - T S$ with the entropy being given by translational entropy (through depletion) and rotational entropy.
+
+We consider spherical particles with volume $v_p$ enclosed in a box of volume $V$. Evidently
+$
+  v_p = (4 pi r^3)/3
+$
+with $r$ being the radius of the spherical particles. The excluded volume due to any particle is
+$
+  u = (4 pi (2 r)^3)/3
+$
+If we have a single particle the volume available to it is $V$, if we add a second particle the volume available to it is $V-u$. Continuing like this the volume available for the $n$th particle is $V - (n-1) u$. Then the number of states can be written as
+$
+  W & = 1/n! product_(i=1)^n underbrace(A, "some constant") V (1-((i-1) u)/V) \
+    & = (A^n V^n)/n! product_(i=0)^(n-1) (1-(i u)/V)
+$
+taking the logarithm eventually gives the entropy
+$
+  ln W =^"Stirling" n ln A + n ln V - n ln n + n + sum_(i=1)^n ln(1-(i u)/V)
+$
+the sum can be computed
+$
+  Sigma & = sum_(i=1)^n ln(1- (i u)/V) \
+        & tilde.eq sum_(i=1)^n (- (i u)/V) \
+        & = - u/V sum_(i=1)^n i \
+        & tilde.eq^"Gauss" - (u n^2)/(2 V)
+$
+Then
+$
+  S & = k_B ln W \
+    & = k_B [n ln (A V) - n ln n+n - (u n^2)/(2 V)] \
+    & equiv underbrace(S(n,V), "mixing entropy")
+$
+We compare this to the completely seperated system,
+$
+  S_"mix" (n,V) - S_"unmixed" = Delta S_"mix"
+$
+and then let $F = - T Delta S_"mix"$. We have
+$
+  Delta S_"mix" & = S_"mix" (n,V) - [underbrace(S_"mix" (0,V), "no particles" #linebreak() = 0) + underbrace(S_"mix" (n,n v_p), "all clumped")] \
+  &= k_B (n ln A V - n ln n+n - (u n^2)/(2 V)) - k_B (n ln (A n v_p) - n ln n + n - (u n^2)/(2 n v_p)) \
+  &= k_B (n ln V/(n v_p) - (u n^2)/(2 V) + (u n^2)/(2 n v_p)) \
+  &= k_B (n ln V/(n v_p) - u/2 (n^2/V - n/v_p))
+$
+so we obtain
+$
+  F = k_B T [- n ln V/(n v_p) + u/2 (n^2/V-n/v_p)]
+$
+we let $c equiv n\/V$ and consider
+$
+  F/n & = k_B T [ln c v_p + (u c)/2 + "constant"]
+$
+so we find a free energy which depends on the concentration and excluded volume, notably the second term is positive.
+
+For rod-shaped particles this quantity is more complicated, but the terms are analogous. The difference between spheres and rods is that the orientation now matters with respect to the excluded volume. In the two-dimensional case consider rectangles of width $d$ and length $l$. If they are parallel the excluded area is $a = 4 d l$. If they are perpendicular the excluded area is $a = (d+l)^2 = d^2 + l^2 + 2 d l$. So we find
+$
+  Delta a = a_"perp"-a_"para" = (l-d)^2
+$
+so the excluded area for parallel rods is smaller.
+
+Going back we find for three-dimensional rods
+$
+  ln c v_p & --> integral ln(4 pi v_p c) psi(u) dd(u) \
+  (u c)/2 & --> integral c underbrace(beta(u, u'), prop "alignment") psi(u) psi(u') \
+  &underbrace(+ integral psi(u) ln psi(u) dd(u), "same as Maier-Saupe")
+$
+the RHS $u$ are orientations as in Maier-Saupe theory, so we essentially introduce integrals to weigh over orientations (and introduce rotational entropy). Onsager used
+$
+  beta = 2 d l^2 sin theta
+$
+with $theta$ being the angle between two rods. In principle this can be used for any shape of crystal the $beta$ will just be a different function. Using this leads one to find a nematic phase transition at some critical concentration, since $c$ is our control parameter---this looks similar to the Maier-Saupe theory, just dependent of concentration and not temperature.
+
+So entropy alone leads to liquid crystal formation. If they did not pack like a crystal one would lose entropy since many particles would becomes stuck at higher concentrations, while the crystal structure leaves wiggle room.
+
+#pagebreak()
+== Properties of nematic phase
+Liquid crystals have elasticity, if we try to distort some particles in the nematic phase then there will be a restoring force. But we are able to globally rotate a liquid crystal without using energy. This is quantified by the Frank elastic energy. This is defined to have certain properties: if $hat(n) -> - hat(n)$ then it should be invariant, it should depend on $nabla n$ and it should be invariant under global rotations. Under these condition the terms that survive are
+$
+  underbrace((div hat(n))^2, "3D splay") " and " (curl hat(n))^2 = underbrace((hat(n) dot (curl hat(n)))^2, "3D twist") + underbrace((hat(n) times (curl hat(n)))^2, "in-plane bend")
+$
+We can then write the Frank energy density as
+$
+  cal(f) equiv 1/2 [k_1 (div hat(n))^2 + k_2 (hat(n) dot (curl hat(n)))^2 + k_3 (hat(n) times (curl hat(n)))^2]
+$
+with the $k_i tilde^"usual" 10 "pN"$ being elastic constants setting the scale.
+
+Liquid crystals can also interact with external fields. The energy of an electric field in a medium is
+$
+  "Energy" prop bold(E) dot bold(D) "with" bold(D) = epsilon_0 epsilon bold(E)
+$
+due to anisotopy liquid crystals have two different dielectric constants $epsilon_parallel$ and $epsilon_perp$. So we can write
+$
+  bold(D) = epsilon_0 epsilon_parallel bold(E)_parallel + epsilon_0 epsilon_perp bold(E)_perp
+$
+we now define the dielectric anisotropy $Delta epsilon equiv epsilon_parallel - epsilon_perp$ then
+$
+  epsilon_0 epsilon_parallel bold(E)_parallel &= epsilon_0 (Delta epsilon + epsilon_perp) bold(E)_parallel \
+  &= epsilon_0 Delta epsilon bold(E)_parallel + epsilon_0 epsilon_perp bold(E)_parallel
+$
+so we can write
+$
+  bold(D) &= epsilon_0 Delta epsilon bold(E)_parallel + epsilon_0 epsilon_perp (bold(E)_parallel + bold(E)_perp) \
+  &= epsilon_0 Delta epsilon bold(E)_parallel + epsilon_0 epsilon_perp bold(E)
+$
+The energy density is then
+$
+  "Energy density" &= - 1/2 bold(E) dot bold(D) \
+  &= -1/2 epsilon_0 Delta epsilon (bold(E) dot bold(E)_parallel) - 1/2 epsilon_0 epsilon_perp E^2
+$
+we can write $bold(E)_parallel = (bold(E) dot hat(n)) hat(n)$ giving
+$
+  "Energy density" &= underbrace(- 1/2 epsilon_0 Delta epsilon (bold(E) dot hat(n))^2, "all" hat(n) "dependence") + g(E^2)
+$
+if $Delta epsilon > 0$ then this contribution is negative in the free energy if the electric field is parallel with the crystal and vanishing if they are perpendicular.
