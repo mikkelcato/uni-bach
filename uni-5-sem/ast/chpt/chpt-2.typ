@@ -5,7 +5,6 @@
 #show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
-= Structures and formation
 = Baryons and photons
 Baryons can interact with photons through emission, absorption, scattering etc. which complicates structure formation---especially before and after decoupling.
 

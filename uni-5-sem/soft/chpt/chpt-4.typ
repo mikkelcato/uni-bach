@@ -144,6 +144,202 @@ here there is clear temperature dependence since it determines the slope of $f_2
 
 We find that at high temperatures $S tilde 0$ as we lower the temperature we reach metastability (essentially a non-continuous region) before $S$ smoothly increases to $S tilde 1$. In principle we can also go back and find the free energy $F(S)$---at high temperature this exhibits one minima (at $S = 0$) and at lower temperatures it exhibits two minima (at $S = 0$ and at $S_"transition"$) (if they are equal minima) with a barrier between them, if we keep lowering the temperature the minima at $S=0$ will eventually vanish with the other minima becoming deeper.
 
+=== Small $tilde(S)$ expansion
+Above we found
+$
+  S &= (k_B T tilde(S))/(tilde(U) z) \
+  S &= (integral_0^1 dd(u_z) 3/2 (u_z^2 - 1/3) exp(tilde(S) u_z^2))/(integral_0^1 dd(u_z) exp(tilde(S) u_z^2) )
+$
+we expand Taylor expand this
+$
+  S &tilde.eq (integral_0^1 dd(u_z) 3/2 (u_z^2 - 1/3) [1+u_z^2 tilde(S) + (u_z^2 tilde(S))^2\/2 + (u_z^2 tilde(S))^3\/6 + dots])/(integral_0^1 dd(u_z) [1+u_z^2 tilde(S) + (u_z^2 tilde(S))^2\/2 + (u_z^2 tilde(S))^3\/6 + dots])
+$
+the numerator is
+$
+  N &= 3/2 integral_0^1 dd(u_z) [u_z^2 - 1/3] [1+tilde(S) u_z^2 + tilde(S)^2/2 u_z^4 + tilde(S)^3/6 u_z^6] \
+  &= 3/2 integral_0^1 dd(u_z) [u_z^2 + tilde(S) u_z^4 + tilde(S)^2/2 u_z^6 + tilde(S)^3/6 u_z^8-1/3-tilde(S)/3 u_z^2 - tilde(S)^2/6 u_z^4 - tilde(S)^3/18 u_z^6] \
+  &= 1/2 integral_0^1 dd(u_z) [-1 + (3-tilde(S)) u_z^2 + (3 tilde(S) - tilde(S)^2/2)u_z^4 + (3/2 tilde(S)^2 - tilde(S)^3/6)u_z^6 + tilde(S)^3/2 u_z^8] \
+  &= 1/2 [-1 +1/3 (3-tilde(S)) +1/5 (3 tilde(S) - tilde(S)^2/2) +1/7 (3/2 tilde(S)^2 - tilde(S)^3/6) + tilde(S)^3/18] \
+  &= 2/15 tilde(S) + 2/35 tilde(S)^2 + 1/63 tilde(S)^3
+$
+the denominator is
+$
+  D &= integral_0^1 dd(u_z) [1+tilde(S) u_z^2 + tilde(S)^2/2 u_z^4 + tilde(S)^3/6 u_z^6 ] \
+  &= 1 + tilde(S)/3 + tilde(S)^2/10 + tilde(S)^3/42
+$
+so we have
+$
+  I(tilde(S)) &tilde.eq (2/15 tilde(S) + 2/35 tilde(S)^2 + 1/63 tilde(S)^3)/(1+1/3 tilde(S) + 1/10 tilde(S)^2+1/42 tilde(S)^3)
+$
+we write the numerator as
+$
+  a_1 tilde(S) + a_2 tilde(S)^2 + a_3 tilde(S)^3
+$
+and the denominator as
+$
+  1 + b_1 tilde(S) + b_2 tilde(S)^2 + b_3 tilde(S)^3
+$
+we want
+$
+  c_1 tilde(S)+c_2 tilde(S)^2+c_3 tilde(S)^3
+$
+by
+$
+  a_1 tilde(S) + a_2 tilde(S)^2 + a_3 tilde(S)^3&= (c_1 tilde(S)+c_2 tilde(S)^2+c_3 tilde(S)^3) (1 + b_1 tilde(S) + b_2 tilde(S)^2 + b_3 tilde(S)^3) \
+  &= c_1 tilde(S) + (c_1 b_1 + c_2) tilde(S)^2 + (c_1 b_2 + c_2 b_1 + c_3) tilde(S)^3 + cal(O) (tilde(S)^4)
+$
+so
+$
+  c_1 = a_1";  " c_2 = a_2 - a_1 b_1";  " c_3 = a_1 b_2 + (a_2 - a_1 b_1) b_1 -a_3
+$
+numerically
+$
+  c_1 & = 2/15 \
+  c_2 & = 4/315 \
+  c_3 & = - 8/4725
+$
+so we find
+$
+  I(tilde(S)) = 2/15 tilde(S) + 4/315 tilde(S)^2 - 8/4725 tilde(S)^3 + cal(O)(tilde(S)^4)
+$
+
+Then the solution is given by
+$
+  S &= I(tilde(S)) \
+  S &= 2/15 (tilde(U) z)/(k_B T) S + 4/315 ((tilde(U) z)/(k_B T))^2 S^2 - 8/4725 ((tilde(U) z)/(k_B T))^3 S^3
+$
+so
+$
+  0 &= S [1 - 2/15 (tilde(U) z)/(k_B T) + 4/315 ((tilde(U) z)/(k_B T))^2 S - 8/4725 ((tilde(U) z)/(k_B T))^3 S^2]
+$
+the trivial solution is $S_"iso" = 0$. Consider $S -> 0$ then we only care about the linear term
+$
+  S tilde.eq 2/15 (tilde(U) z)/(k_B T) S
+$
+this is non-trivial for
+$
+  2/15 (tilde(U) z)/(k_B T) = 1 => T_(c) = (2 tilde(U) z)/(15 k_B)
+$
+we can write
+$
+  (T-T_c)/T_c - c_2 ((tilde(U) z)/(k_B T_c))^2 S - c_3 ((tilde(U) z)/(k_B T_c))^3 S^2 tilde.eq 0
+$
+to linear order
+$
+  S & tilde.eq T_c/c_2 (k_B/(tilde(U) z))^2 (T-T_c) \
+    & = 21/2 k_B/(tilde(U) z) (T-T_c)
+$
+
+=== Free energy of polar molecules
+We consider a free energy of the form
+$
+  F(psi) = N [k_B T integral dd(u) psi(u) ln psi(u) - U/2 integral dd(u) integral dd(u') (u dot u') psi(u) psi(u')]
+$
+we seek the distribution $psi(u)$ which minimizes this. We use
+$
+  cal(L) = F - lambda (integral psi(u) dd(u) - 1)
+$
+we can write
+$
+  cal(L) &= N integral dd(u) [k_B T psi(u) ln psi(u) - U/2 integral dd(u') (u dot u') psi(u) psi(u') - lambda psi(u)] + lambda
+$
+we now minimize
+$
+  dv(cal(L), psi, d: delta) = 0
+$
+The constant term vanishes the others become
+$
+  pdv(, psi, d: delta) [k_B T psi(u) ln psi(u)] &= k_B T (ln psi + 1) \
+  pdv(, psi, d: delta) (-lambda psi(u)) &= - lambda \
+  pdv(, psi, d: delta) U/2 integral dd(u') (u dot u') psi(u) psi(u') &= U integral dd(u') (u dot u') psi(u')
+$
+so we have
+$
+  0 &= integral dd(u) underbrace([k_B T (ln psi + 1) - U integral dd(u') (u dot u') psi(u') - lambda], =^! 0)
+$
+Then
+$
+  ln psi & = U/(k_B T) integral dd(u') (u dot u') psi(u') + lambda/(k_B T) - 1 \
+     psi & = C exp(U/(k_B T) integral dd(u') (u dot u') psi(u')) \
+         & = C exp(U/(k_B T) [integral dd(u') u' psi(u')] dot u) \
+         & = C exp(U/(k_B T) bold(P) dot bold(u))
+$
+where $bold(P) = expval(bold(u))$.
+
+We now define
+$
+  x equiv U/(k_B T) abs(bold(P)) => (k_B T)/U x = abs(bold(P))
+$
+so we can write
+$
+  psi = C e^(x cos theta)
+$
+with $bold(hat(P)) dot bold(u) = cos theta$. The constant is determined by normalizing
+$
+  C^(-1) &= integral dd(u) e^(x cos theta) \
+  &= integral_0^(2 pi) dd(phi) integral_0^pi dd(theta) sin theta e^(x cos theta) \
+  &=^(u = cos theta) (4 pi sinh x)/x
+$
+so
+$
+  psi = x/(4 pi sinh x) e^(x cos theta)
+$
+Now we can find $abs(bold(P))$ by
+$
+  abs(bold(P)) &= hat(bold(P)) dot bold(P) \
+  &= integral dd(u) psi(u) (hat(bold(P))dot bold(u)) \
+  &= integral dd(u) psi(u) cos theta \
+  &= integral_0^(2 pi) dd(phi) integral_0^pi dd(theta) sin theta cos theta psi(u) \
+  &= x/(2 sinh x) integral_0^pi dd(theta) cos theta sin theta e^(x cos theta) \
+  &=^(u = cos theta) x/(2 sinh x) integral_(-1)^1 dd(u) u e^(x u) \
+  &= x/(2 sinh x) dv(, x) integral_(-1)^1 e^(x u) dd(u) \
+  &= x/(2 sinh x) dv(, x) [(e^(x)-e^(-x))/x] \
+  &= x/(2 sinh x) dv(, x) (2 sinh x)/x \
+  &= 1/(sinh x) [cosh x - (sinh x)/x] \
+  &= coth x - 1/x
+$
+We obtain the self-consistent equation
+$
+  (k_B T)/U x = coth x - 1/x
+$
+We define
+$
+  f(x) equiv coth x - 1/x
+$
+so
+$
+  (k_B T)/U x = f(x) => g(x) equiv f(x) - (k_B T)/U x = 0
+$
+for small $x$
+$
+  f(x) tilde.eq x/3 - x^3/45 + dots
+$
+so
+$
+  g(x) = x (1/3 - (k_B T)/U) - x^3/45 +dots
+$
+the linear term vanishes when
+$
+  T= T_c equiv U/(3 k_B)
+$
+by the above expansion it is clear that $x = 0$ is always a solution. For $T > T_c$ consider the functions
+$
+  f_1 = (k_B T)/U x";  " f_2 = coth x - 1/x
+$
+at $x = 0$ we have $f'_2 (0) = 1\/3$ and obviously $f'_1 = k_B T\/U$ everywhere. Now if $T > T_c$ we have
+$
+  T > U/(3 k_B) => (k_B T)/U > 1/3 => f'_1 > f'_2
+$
+at $x = 0$. But $f''_2 < 0$ for all $x > 0$ so they will never cross after $x= 0$. If instead $T < T_c$ then at $x = 0$
+$
+  (k_B T)/U < 1/3
+$
+so $f_2$ increases faster but we still have $f''_2 < 0$ so at some point it must be beat by $f_1$ leading to a solution $x_*$. By symmetry there is also a solution at $-x_*$. At small $T$ be can compute
+$
+  1/3 - (k_B T)/U - x^2/45 = 0 => x_* tilde.eq sqrt(15 (1 - T/T_c))
+$
+this can also be used to find $T_c$ since $1-T\/T_c = 0$ at the critical temperature, and also shows there is only one solution for $T > T_c$.
+
 #pagebreak()
 == Landau-de Gennes theory
 There is a smarter way to do the above.
@@ -333,7 +529,7 @@ $
 $
 We can then write the Frank energy density as
 $
-  cal(f) equiv 1/2 [k_1 (div hat(n))^2 + k_2 (hat(n) dot (curl hat(n)))^2 + k_3 (hat(n) times (curl hat(n)))^2]
+  cal(f)_"elastic" equiv 1/2 [k_1 (div hat(n))^2 + k_2 (hat(n) dot (curl hat(n)))^2 + k_3 (hat(n) times (curl hat(n)))^2]
 $
 with the $k_i tilde^"usual" 10 "pN"$ being elastic constants setting the scale.
 
@@ -341,7 +537,7 @@ Liquid crystals can also interact with external fields. The energy of an electri
 $
   "Energy" prop bold(E) dot bold(D) "with" bold(D) = epsilon_0 epsilon bold(E)
 $
-due to anisotopy liquid crystals have two different dielectric constants $epsilon_parallel$ and $epsilon_perp$. So we can write
+due to anisotopy liquid crystals have two different dielectric constants $epsilon_parallel$ and $epsilon_perp$. This anisotropy also changes the refractive index $n$, the magnetic susceptibility $chi$, the viscosity $eta$, etc.. So we can write
 $
   bold(D) = epsilon_0 epsilon_parallel bold(E)_parallel + epsilon_0 epsilon_perp bold(E)_perp
 $
@@ -362,6 +558,60 @@ $
 $
 we can write $bold(E)_parallel = (bold(E) dot hat(n)) hat(n)$ giving
 $
-  "Energy density" &= underbrace(- 1/2 epsilon_0 Delta epsilon (bold(E) dot hat(n))^2, "all" hat(n) "dependence") + g(E^2)
+  cal(f)_"field" &= underbrace(- 1/2 epsilon_0 Delta epsilon (bold(E) dot hat(n))^2, "all" hat(n) "dependence") + g(E^2)
 $
 if $Delta epsilon > 0$ then this contribution is negative in the free energy if the electric field is parallel with the crystal and vanishing if they are perpendicular.
+
+Now consider a liquid crystal trapped between two glass slides coated with a conductive material. Given the liquid crystal is aligned in parallel with the slides we now apply an electric field across the crystal. When this is done the liquid crystal would like to rotate and align with the field. This necessarily requires energy due to boundary effects. To combat this the slides are coated with a polymer layer. The liquid crystals preferentially want to be aligned with the polymers. With this the liquid crystal is essentially fixed near the slides, but in the bulk of the liquid crystal it will align. So you gain energy by alignment with the electric field, but require elastic energy to fix the boundaries. For this reason if the field is turned off then the liquid crystal will again be parallel with the slides, since energy is needed to be perpendicular to the slides. Now due to the changing refractive index $n$, applying an electric field makes the liquid crystal opaque---this is one way to make a display.
+
+The light we use must be polarized. To do this a cross polarizor is used. Now let the director $hat(n)$ make an angle $beta$ with one of the polarizers---in-plane angle. In this case the intensity is given by
+$
+  I = I_0 sin^2 (2 beta) sin^2 underbrace(Delta n, "barofringent")
+$
+so it is maximal for $beta = pi\/4$ and minimal for $beta = 0, pi\/2$. The director $hat(n)$ also has an out-of-plane angle or tilt-angle $phi$ with respect to the cross polarizer. This is what determines the size of $Delta n$, changing the electric field changes $phi$. One can make display with $phi = 0$, but in this case the electric field needs to be applied differently.
+
+Assuming $k_i = k$ (one constant approximation) we can write the total energy density as
+$
+  cal(f) = 1/2 k [(div hat(n))^2 + (curl hat(n))^2] - 1/2 epsilon_0 Delta epsilon (hat(n) dot bold(E))^2
+$
+we want to minimize this under the constraint $abs(hat(n))=1$. This is done by writing
+$
+  hat(n) = vec(sin theta cos phi, sin theta sin phi, cos theta)
+$
+We consider the case described above: a liquid crystal parallel to two glass slides over which we apply an electric field. This is a two-dimensional problem and the angle only depends on $z$. Then $(phi = pi\/2)$
+$
+  hat(n) = vec(0, sin theta(z), cos theta(z))
+$
+The $cal(f)_"elastic"$ then becomes
+$
+  cal(f)_"elastic" = 1/2 k (dv(theta, z))^2
+$
+and $cal(f)_"field"$ becomes
+$
+  cal(f)_"field" = -1/2 epsilon_0 Delta epsilon E^2 cos^2 theta
+$
+so we obtain
+$
+  cal(f) = 1/2 k (dv(theta, z))^2 - 1/2 epsilon_0 Delta epsilon E^2 cos^2 theta
+$
+We minimize this using the Euler-Lagrange equation
+$
+  dv(cal(f), theta, d: delta) - dv(, z) dv(cal(f), dot(theta), d: delta) = 0
+$
+giving
+$
+  k dv(theta, z, 2) - epsilon_0 Delta epsilon E^2 cos theta sin theta = 0
+$
+or introducing
+$
+  xi^2 equiv k/(epsilon_0 Delta epsilon E^2)
+$
+we can write
+$
+  xi^2 dv(theta, z, 2) - cos theta sin theta = 0
+$
+this is solved by
+$
+  tan(theta/2 - pi/4) = exp(plus.minus z/xi)
+$
+so $xi$ sets the length scale. The above derivation ignores the energy loss in differing from the boundary condition, and completely ignores ions in the liquid crystal. We also completely ignore the isotropic-nematic phase transition---this assumes we are far from the transition.
