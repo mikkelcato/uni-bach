@@ -340,7 +340,6 @@ this process is called recombination. (recombination $z tilde 1370$ $->$ photon 
 
 Before recombination photons scatter with free electrons and protons forming a coupled plasma. At this point the Universe is opaque to photons. After recombination photons can move more freely since they do not scatter with neutral hydrogen making the Universe transparent to photons. These photons are what we call the CMB. The temperature of the CMB photons today is $T = 2.73 "K"$, this is found by fitting to a blackbody, since the CMB is a blackbody. Since we know the energy at which recombination happens we can also predict the temperature, and this is in agreement with the measured value.
 
-=== Anisotropies
 When we observe the CMB we observe the last scattering surface, through some angle. One of the primary observations are temperature anisotropies on the scale of $delta T\/T tilde 10^(-5)$. This in part confirms that the Univserse is isotropic, but at small scales we observe anisotropies.
 
 This is done by essentially doing a Fourier transform on a sphere, where the Fourier basis are the spherical harmonics $Y_l^m$. The multipole $l$ is what we really care about in this case. For the monopole $l = 1$ we essentially just have the mean $T = T_"mean"$. For the dipole $l = 2$ we observe $delta T\/T tilde 10^(-3)$ which is caused by our relative motion to the CMB. For higher multipoles we observe the very small fluctuations. The higher multipoles correspond to smaller angular separations on the last scattering surface $delta theta$.
@@ -395,4 +394,114 @@ $
 $
 so we have removed the $m$-dependence. From this one can construct the power-spectrum by plotting $l(l+1) C_l$ against $l$. The angle is related to a length scale since for smaller angles (or higher $l$) we can measure smaller lengths. As an example for $l = 2$ we can only split the sky in two, and we only have one Universe. For this reason the uncertainty for low $l$ is massive since we just have less points (cosmic variance). For higher multipoles we can take many different measurements, allowing us to decrease or eliminate the variance.
 
-\* $-dd(f) = underbrace(f(r), "fraction uncovered") dd(Omega)$
+We divide the power-spectrum into three regions: I for $l < 100$, II for $100 < l < 1000$ and III for $l > 1000$.
+
+Region I corresponds to large angular scales and is called the Sachs-Wolfe plateau. These scales are larger than the sound horizon at last scattering. The speed of sound is given by
+$
+  c_s tilde.eq sqrt(p/rho) = 1/sqrt(3)
+$
+then we can compute how far a sound wave could have travelled at last scattering. From this the sound horizon at last scattering corresponds to $l tilde 200$. This is what the first peak of the power-spectrum gives, it corresponds to the fundamental mode. At the same time this means that for $l < 100$ the density and pressure fluctuations must be initial conditions, since they can not have interacted and changed. At higher $l$ the density and pressure fluctuations are amplified due to gravity. The initial overdensities lead to potential wells containing more baryonic- and dark matter. Since baryons and photons are tightly coupled this gives rise to radiation pressure. This pressure makes photons try to escape the potential wells, pulling baryons with them. The dark matter does not interact with photons, but acts to pull the baryons back. This leads to oscillations and pressure waves. The various modes of this oscillation (these density waves lead to BAO, sound horizon can be measured using galaxies) are what we see as the first peaks of last scattering (since photons decouple and the CMB photons give a representative picture of these oscillations at last scattering). At higher $l$ we see exponential damping due to the last scattering surface having a thickness.
+
+The size of the sound horizon is given by
+$
+  lambda = integral_0^(t_0) c_s/(a(t)) dd(t)
+$
+and
+$
+  alpha = lambda/d_A
+$
+with $a(t) prop t^(2\/3)$ to find
+$
+  alpha = (c_s (1+z_gamma)^(-1\/2))/(c[(1+z_0)^(-1\/2)-(1+z_gamma)^(-1\/2)]) tilde.eq 1 degree
+$
+which correspond to $l tilde 200$.
+
+== Inflation
+The Big Bang model has multiple problems, including the _flatness problem_. The Big Bang model just assumes the Universe is flat. Recall the Friedmann equation
+$
+  H^2 = (8 pi G)/3 rho - k/a^2
+$
+so curvature scales as $a^(-2)$. To explain why we do not observe it by measuring $Omega$ and using $Omega-1$, then it would have to be very, very small. So the flatness problem is explainable, but still problematic.
+
+Another problem is the _horizon problem_, which is unexplainable. We have
+$
+  d_H (a) = a(t) integral_0^t dd(t')/(a(t')) tilde H^(-1)
+$
+we can also consider
+$
+  underbrace(lambda_H (t_"LS"), "distance by" #linebreak() "redshifting size now") &= d_H (t_0) (a_"LS"/a_0) = d_H (t_0) (T_0/T_"LS") \
+  underbrace(H_"LS"^(-1), "particle distance" #linebreak() "size at LS") &= d_H (t_"LS") = d_H (t_0) (T_"LS"/T_0)^(-3\/2)
+$
+these are not the same and $H_"LS"^(-1) << lambda_H (t_"LS")$ with $lambda_H^3\/d_H^3 tilde 10^6$, meaning the Universe consisted of many small causaully disconnected volumes. The problem is that from the CMB we see very, very small temperature fluctuations---implying that everything was in near temperature equilibrium. This is obviously not possible since the small volumes are causaully disconnected. For this to make sense there must have been some causal mechanism to establish equilibrium. This is not explained by the Big Bang model.
+
+Consider the FRW metric
+$
+  dd(s^2) & = - dd(t)^2 + a^2 dd(bold(x)^2) \
+          & =^"conform time" a^2 (- dd(eta^2) + dd(bold(x)^2))
+$
+in this metric light travels at $45 degree$. Then plotting $(eta, x)$ one clearly sees that two seperate points have non-interacting lightcones. But, moving Big Bang backwards in time one could causaully connect them.
+
+Another way to see this is by plotting $(cal(l)_"phys",a)$. On this diagram the horizon is $H^(-1) prop a^2$ while $lambda_H prop a$. Today $lambda_H$ has dropped below the horizon, the problem is at early times $lambda_H$ was above the horizon (see above scaling). This would be solved if at some point $H^(-1)$ was constant. Then there would be some previous time where $lambda_H$ again dropped below the horizon. This period of constant $H^(-1)$ is what we call inflation. Then by definition $a prop e^(H t)$. We need a period where
+$
+  0 < dv(, t) (lambda/(abs(H)^(-1))) = dv(, t) (a abs(dot(a)/a)) = dv(, t) abs(dot(a))
+$
+if $dot(a) > 0$ this implies $dot.double(a) > 0$ (inflation), if $dot(a) < 0$ this implies $dot.double(a) < 0$ (big bounce). The first is generally thought to be more reasonable.
+
+=== Inflaton field
+We consider a scalar field (inflaton field) with action
+$
+  S & = integral dd(x, 4) sqrt(-g) cal(L) \
+    & = integral dd(x, 4) sqrt(-g) [1/2 partial_mu phi partial^mu phi + V(phi)]
+$
+solving the Euler-Lagrange equation then gives
+$
+  dot.double(phi) + underbrace(3 H dot(phi), "friction") - (nabla^2 phi)/a^2 + V_phi (phi) = 0
+$
+and consider the energy-momentum tensor (assuming homogeneity)
+$
+  T_(mu nu) = partial_mu phi partial_nu phi - g_(mu nu) cal(L)
+$
+this gives
+$
+  rho = dot(phi)^2/2 + V(phi)";  " p= dot(phi)^2/2 - V(phi)
+$
+if $V(phi) >> dot(phi)^2$ then $p = - rho$ which is just the condition for a cosmological constant, so this leads to accelerated expansion. Define
+$
+  N = ln((a(t_R))/(a(t_i))) gt.tilde underbrace(70, "length of inflation")
+$
+with $R ->$ _reheating_. Where $tilde 70$ comes from requiring that $lambda_H (t_i) lt.tilde H^(-1)$ meaning $lambda_H$ drops below $H^(-1)$ due to inflation. This puts requirements on $V(phi)$ since our field has to be stuck for sufficiently long determined by $+3 H dot(phi)$. We imagine the inflaton starts high up on some gently sloped potential, and then slowly rolls downhill.
+
+For slow-roll inflation we assume $dot(phi)^2 << V(phi)$ and $dot.double(phi)$ small---this ensures the above requirement. Then we find
+$
+  H^2 tilde.eq (8 pi G)/3 V(phi)";  " 3 H dot(phi) = - V_phi
+$
+which is called the slow-roll equation. We define the slow-roll parameters
+$
+  epsilon.alt = 4 pi G dot(phi)^2/H^2";  " eta = 1/(8 pi G) (V''/V)
+$
+both of these must be $<< 1$ since
+$
+  eta - epsilon.alt = - dot.double(phi)/(H phi)
+$
+Then
+$
+  underbrace(N, "e-folds") & = integral_(t_i)^(t_R) H dd(t) \
+  & tilde 8 pi G integral_(phi_R)^(phi_i) V/V_phi dd(phi) gt.tilde^! 70
+$
+we have seen that the acceleration is exponential if $H$ is constant, when $V(phi)$ drops sufficiently $H$ eventually stops being constant and the exponential acceleration stops---we only require it be $tilde$ constant for long enough to generate the required amount of e-folds. If we assume the field is inhomogeneous
+$
+  phi = phi_c (t) + underbrace(dd(phi(t, bold(x)), d: delta), "small")
+$
+then we can find an equation for $dd(phi, d: delta)$ with
+$
+  dd(phi_k, d: delta) = integral dd(x, 3)/(2 pi)^(3\/2) dd(phi, d: delta) e^(-i bold(k) dot bold(x))
+$
+giving
+$
+  dd(dot.double(phi)_k, d: delta) + 3 H dd(dot(phi)_k, d: delta) + k^2/a^2 dd(phi_k, d: delta) + V_(phi phi) dd(phi_k, d: delta) = 0
+$
+for $k < a H$ (super-horizon scales, the in-between bit) we find
+$
+  dd(phi_k, d: delta) tilde H/(2 pi) (k/k_*)^(n_s-1)";  " n_s - 1 = -6 epsilon.alt + 2 eta
+$
+these perturbations lead to $dd(T, d: delta)\/T$ so they determine the initial conditions of the Universe, and using the CMB for $l < 100$ we can measure them.

@@ -116,7 +116,7 @@ $
 $
 so the electron would respond to forces as if it had mass $m^*$---this happens due to Bragg reflections affecting the momentum.
 
-== Intrinsic carrier concentration
+== Intrinsic carriers
 Assuming $epsilon.alt-mu >> k_B T$ we can write the probability that an orbital is occupied as
 $
   f_e tilde.eq exp[(mu-epsilon.alt)/(k_B T)]
@@ -172,15 +172,22 @@ $
   sigma = e^2 (tau_e/m_e n + tau_h/m_h p)
 $
 
-== Impurity conductivity
+== Impurities
+SEE SLIDES
+
 Impurities change the electrical properties of semiconductors---the process of adding impurities is called doping---these can add electrons (donors or n-type) or take electrons (acceptors or p-type) and leave holes.
 
 For a donor state the extra electron moves in the Coulomb potential $e\/epsilon r$ of the impurity ion. Using the Bohr model one can find ionization energy
 $
-  E_d = (e^4 m_e)/(2 epsilon^2 hbar^2)
+  E_d = (e^4 m_e)/(2 epsilon^2 hbar^2) -> "extra band"
 $
+
+\* tunneling $->$ conductivity
+
 when ionized the electron is _donated_ to the conduction band. An acceptor state takes an electron leaving a hole. When an acceptor is ionized a hole is freed---requiring energy $E_a$.
 
+== pn-junction
+Thermal + recombination or Drift
 
 #pagebreak()
 = Fermi Surfaces
@@ -211,8 +218,7 @@ and these are understood to both refer to the same band---this is the _periodic 
 
 The last common scheme is the _extended zone scheme_, here you essentially just plot $epsilon.alt_bold(k)$.
 
-== Fermi surfaces & electron orbits
-=== Construction
+== Fermi surfaces
 We go through an example construction of the Fermi surface for a square lattice:
 
 We start by finding just the first three Brillouin zones. This is done by using $bold(G)_1$, $bold(G)_2$ and $bold(G)_3$ in Figure ...

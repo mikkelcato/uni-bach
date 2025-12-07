@@ -69,6 +69,10 @@ Luminosity classification: $\{"I" "II" "III" "IV" "V" "VI"}$, based on the width
 
 HR-diagrams.
 
+$L tau = E => tau = E/L prop M/L$
+
+$tau/tau_dot.circle = (M\/M_dot.circle)/(L\/L_dot.circle)$
+
 #pagebreak()
 = The equation of state
 At any given point in a star we assume the gas is in thermodynamic equilibrium, this assumption allows us to just consider average properties of the gas. These are described by local state variables, e.g. temperature $T$ and density $rho$, and their relations. The relations between various state variables define the _equation of state_ for the gas. Due to the high temperatures of stars we can assume that our gas is fully ionized. Under this assumption we can fully ignore internal degrees of freedom. To a first approximation we can also neglect interactions between particles. This is what we call an ideal gas.
@@ -439,4 +443,7 @@ Initially the element is identical to its surroundings $P_1^* = P_1$ and $rho_1^
 $
   f_"buoy" = - g (rho_2^* - rho_2) equiv -g Delta rho
 $
-if $f_"buoy" > 0$ the motion is accelerated, hence it is unstable. So we want to determine $Delta rho$.
+if $f_"buoy" > 0$ the motion is accelerated, hence it is unstable. So we want to determine $Delta rho$. To do this we make to assumptions: the motion is so slow that there is pressure balance between the element and its surroundings, the motion is so fast that there is no heat loss to the surroundings. By the first we have $P_2^* = P_2$ the second says that the motion is adiabatic meaning
+$
+  dd(rho^*)/rho^* = 1/Gamma_1 dd(P^*)/P^* = 1/Gamma_1 dd(P)/P
+$

@@ -816,3 +816,190 @@ $
   omega_(i->n) = evaluated(dv(P_(i-> n), t))_(t-> oo) = evaluated((2 pi)/hbar abs(V_(n i))^2 rho(E_n))_(E_n tilde.eq E_i)
 $
 this is an example of Fermi's golden rule---it tells us that it is rare to jump to states with very different energies (to first order at very large times, but it is still possible due to $Delta t Delta E gt.tilde hbar$).
+
+#pagebreak()
+== Energy shifts & decay width
+Above we had
+$
+  ket(i\,t)_I = sum_n c_n (t) ket(n)";  " c_n (t) = braket(n, U(t,t_0), i)
+$
+and from the Dyson series we found
+$
+  c_n^((0)) &= delta_(n i) \
+  c_n^((1)) &= - i/hbar integral_(t_0)^t e^(i omega_(n i) t') V_(n i) (t') dd(t') \
+  c_n^((2)) &= (- i/hbar)^2 sum_m integral_(t_0)^(t) dd(t') integral_(t_0)^(t') dd(t'') e^(i omega_(n m) t') V_(n m) (t') e^(i omega_(m i) t'') V_(m i) (t'')
+$
+For $n eq.not i$ then $c_n$ gives the transition probability, and for $n = i$ we find the decay rate. We assume a perturbation of the form
+$
+  V(t) = e^(eta t) V";  " V(t) -> 0 " for " t-> - oo
+$
+this is essentially forcing our perturbation to turn on slowly, at the end we will let $eta -> 0$---regularization.
+
+Then for $n eq.not i$
+$
+  c_n^((0)) &= 0 \
+  c_n^((1)) &= - i /hbar V_(n i) lim_(t_0 -> -oo) integral_(t_0)^t e^(eta t') e^(i omega_(n i) t') dd(t') \
+  &= - i/hbar V_(n i) e^(eta t + i omega_(n i) t)/(eta + i omega_(n i))
+$
+for the probability
+$
+  abs(c_n^((1)))^2 & = abs(V_(n i))^2/hbar^2 e^(2 eta t)/(eta^2 + omega_(n i)^2)
+$
+giving the transition rate
+$
+  omega_(i -> n) tilde.eq dv(abs(c_n^((1)))^2, t) eq (2 abs(V_(n i))^2)/hbar^2 ((eta e^(2 eta t))/(eta^2 + omega_(n i)^2))
+$
+now in the limit $eta -> 0$ we use
+$
+  lim_(eta -> 0) eta/(eta^2 + omega_(n i)^2) = pi delta(omega_(n i)) = pi hbar delta(E_n-E_i)
+$
+to find
+$
+  omega_(i -> n) tilde.eq (2 pi)/hbar abs(V_(n i))^2 delta(E_n-E_i)
+$
+which is again Fermi's golden rule.
+
+For $n = i$ we have
+$
+  c_i^((0)) &= 1 \
+  c_i^((1)) &= -i/hbar V_(i i) lim_(t_0 -> -oo) integral_(t_0)^t e^(eta t') dd(t') \
+  &= - i/(hbar eta) V_(i i) e^(eta t) \
+  c_i^((2)) &= (- i/hbar)^2 sum_m abs(V_(m i))^2 lim_(t_0 -> -oo) integral_(t_0)^t dd(t') e^(i omega_(i m) t' + eta t') underbrace((e^(i omega_(m i) t' + eta t'))/(i(omega_(m i)-i eta)), "from first" integral) \
+  &= (- i/hbar)^2 abs(V_(i i))^2 e^(2 eta t)/(2 eta^2) + (- i/hbar) sum_(m eq.not i) (abs(V_(m i))^2 e^(2 eta t))/(2 eta (E_i - E_m + i hbar eta))
+$
+we find
+$
+  lim_(eta -> 0) dot(c) &= -i/hbar V_(i i) + (- i/hbar)^2 abs(V_(i i))^2/eta + (-i/hbar) sum_(m eq.not i) abs(V_(m i))^2/(E_i-E_m + i hbar eta) + dots
+$
+and
+$
+  c eq 1 - i/hbar V_(i i)/eta + dots
+$
+Now consider
+$
+  dot(c)/c &eq - i/hbar V_(i i) + (-i/hbar) sum_(m eq.not i) abs(V_(m i))^2/(E_i-E_m + i hbar eta) + cal(O)(V^3)
+$
+since the term with $eta^(-1)$ cancels. We have found
+$
+  dot(c)_i/c_i prop "const"
+$
+so
+$
+  c_i prop exp(-(i Delta_i t)/hbar)
+$
+This looks like decay, and if we take $c(0) = 1$ then
+$
+  c_i = exp(- (i Delta_i t)/hbar)
+$
+giving the decay rate
+$
+  dot(c)_i/c_i = -i/hbar Delta_i
+$
+In the interaction picture we had
+$
+  ket(i\,t)_I = c_i (t) ket(i) + sum_(n eq.not i) c_n (t) ket(n)
+$
+the first term becomes by the above
+$
+  exp(- (i Delta_i t)/hbar) ket(i) -->^"Schrödinger" exp[- (i (E_i+Delta_i) t)/hbar] ket(i)
+$
+From our expression for $Delta_i$ we see it has both real and imaginary parts. The real part acts to shift the energy, while the imaginary part gives something similar to decay. We expand $Delta_i$ giving
+$
+  Delta_i = Delta_i^((1)) + Delta_i^((2)) + dots
+$
+we can read of the linear term as
+$
+  Delta_i^((1)) & = V_(i i)
+$
+which makes sense. For the second order term consider
+$
+  1/(Delta E + i eta) &= (Delta E - i eta)/((Delta E + i eta)(Delta E - i eta)) \
+  &= (Delta E)/(Delta E^2 + eta^2) - (i eta)/(Delta E^2 + eta^2)
+$
+in the limit $eta -> 0$ we get a $delta$-function
+$
+  1/(Delta E + i eta) & = "P.V"(1/(Delta E)) - i pi delta (Delta E)
+$
+since
+$
+  lim_(eta -> 0) eta/(Delta E^2+ eta^2) = pi delta (Delta E)
+$
+and
+$
+  lim_(eta -> 0) (Delta E)/(Delta E^2 + eta^2) = "P.V"(1/(Delta E))
+$
+where the principal values is defined by
+$
+  x "P.V"(1/x) = 1
+$
+in the distributional sense. So
+$
+  F(x) = "P.V"(1/x) + c delta(x) => x F(x) = 1
+$
+integrating this gives $1$.
+
+Consider
+$
+  1/(x plus.minus i eta) = "P.V"(1/x) minus.plus i pi delta(x)
+$
+by in the distributional sense we mean
+$
+  lim_(eta -> 0) integral_(-oo)^oo dd(x) phi(x)/(x plus.minus i eta) = "P.V" integral_(-oo)^oo dd(x) phi(x)/x minus.plus i pi phi(0)
+$
+where $phi(x)$ is any test-function vanishing sufficiently fast. We integrate over $RR$ but for $x=0$ this diverges. The principal value is then defined as the integral over $RR$ without including $x=0$
+$
+  I_"P.V" = integral_(-oo)^oo dd(x) phi(x)/x = lim_(epsilon -> 0) (integral_(-oo)^(-epsilon) dd(x) phi(x)/x + integral_(-epsilon)^oo dd(x) phi(x)/x)
+$
+We consider a contour along $RR$ circling around $x=0$ (by $C_epsilon$) and closing in the upper-half plane (by $C_R$)
+$
+  I_c &= integral.cont_C phi(x)/x dd(x) \
+  &= lim_(epsilon -> 0 #linebreak() R -> oo) (integral_(-R)^(-epsilon) + integral_(epsilon)^R + integral_(C_epsilon) + integral_(C_r)) \
+  &= I_"P.V" + lim_(epsilon -> 0 #linebreak() R -> oo) (integral_(C_epsilon) + integral_(C_R))
+$
+by $x = epsilon e^(i theta)$ the first gives
+$
+  lim_(epsilon -> 0) integral_(C_epsilon) phi(x)/x dd(x) &= lim_(epsilon -> 0) integral_"half circle" i phi(x) dd(theta) \
+  &= minus.plus i pi phi(0)
+$
+where the sign depends on whether we shift the down (or up) with $x plus.minus i eta$. By $x = R e^(i alpha)$ the second gives
+$
+  lim_(R -> oo) integral_(C_R) phi(x)/x dd(x) &= lim_(R->oo) integral_0^pi i phi(R e^(i alpha)) dd(theta) \
+  &=^(phi -> 0) 0
+$
+this shows
+$
+  lim_(eta -> 0) integral_(-oo)^oo dd(x) phi(x)/(x plus.minus i eta) = "P.V" integral_(-oo)^oo dd(x) phi(x)/x minus.plus i pi phi(0)
+$
+so the principal values is the integral over $RR$ without $x=0$.
+
+This is why
+$
+  lim_(eta -> 0) 1/(Delta E + i eta) = "P.V" (1/(Delta E)) - i pi delta(Delta E)
+$
+and we finally obtain
+$
+  Re (Delta_i^((2))) & = "P.V" (sum_(m eq.not i) abs(V_(m i))^2/(E_i-E_m)) \
+  Im (Delta_i^((2))) & = - pi sum_(m eq.not i) abs(V_(m i))^2 delta(E_i-E_m)
+$
+We can now write
+$
+  sum_(m eq.not i) omega_(i -> m) &= (2 pi)/hbar sum abs(V_(m i))^2 delta(E_i-E_m) \
+  &= -2/hbar Im (Delta_i^2)
+$
+and
+$
+  c_i (t) & = exp(- (i Delta_i t)/hbar) \
+          & = exp[- i/hbar (Re (Delta_i) t) + 1/hbar (Im (Delta_i) t)]
+$
+If we define the decay width by
+$
+  Gamma_i/hbar equiv - 2/hbar Im(Delta_i)
+$
+then
+$
+  abs(c_i (t))^2 = exp((2 Im(Delta_i) t)/hbar) = exp((-Gamma_i t)/ hbar)
+$
+if $tau_i equiv hbar Gamma_i^(-1)$ we identify $tau_i tilde Delta t$ and $Gamma_i tilde Delta E$ then
+$
+  Delta t Delta E = hbar
+$

@@ -13,10 +13,10 @@ This course is split up in three-four parts with the first covering the mathemat
 #pagebreak()
 
 = Crystal structure
-Everything in solid state physics is basically a crystal, this part of the course describes the basic mathematical description of these.
+Everything in solid state physics is basically a crystal. This part of the course covers the mathematical description of these.
 
-== The Lattice
-An ideal crystal consists of the infinite repetition of identical groups of atoms---this group is referred to as the basis. The set to which the basis is attached is called the lattice. This lattice can be defined by three translation vectors $bold(a)_1, bold(a)_2$ and $bold(a)_3$, such that our crystal looks the same when viewed from $bold(r)$ and $bold(r)'$ related by
+== The lattice
+An ideal crystal consists of the infinite repetition of identical groups of atoms (the basis). The set to which the basis is attached is called the lattice. This lattice can be defined by three translation vectors $bold(a)_1, bold(a)_2$ and $bold(a)_3$ such that the crystal looks the same at $bold(r)$ and $bold(r)'$ related by
 $
   bold(r)' = bold(r) + bold(T) " with " bold(T) = u_1 bold(a)_1 + u_2 bold(a)_2 + u_3 bold(a)_3", " u_1, u_2, u_3 in ZZ
 $<lattice-translation>
@@ -61,10 +61,10 @@ all $bold(r)'$ give the lattice.
 
 #figure(
   scale(100%, latt1),
-  caption: [example of (primitive) lattice, here $bold(r)' = bold(r) + 2 bold(a)_1 + bold(a)_2$.],
+  caption: [example of (primitive) lattice. (here $bold(r)' = bold(r) + 2 bold(a)_1 + bold(a)_2$)],
 ) <oblique-latt>
 
-To add the basis we can write the position of the $j^"th"$ atom in the basis relative to some associated lattice point as
+To add the basis we can write the position of the $j$th atom in the basis relative to some associated lattice point as
 $
   bold(r)_j = x_j bold(a)_1 + y_j bold(a)_2 + z_j bold(a)_3
 $ <basis-coord>
@@ -140,7 +140,7 @@ it should be clear that we can pick this point such that $0 <= x_j,y_j,z_j <= 1$
 
 #figure(scale(100%, basis1), caption: [example of (primitive) basis])
 
-We can define primitive translation vectors $bold(a)_i$ such that every point on the lattice $bold(r)'$ can be written as $bold(r) + bold(T)$---so all points $bold(r)_1, bold(r)_2$ where the crystal looks the same satisfy @lattice-translation. The $bold(a)_i$ also define the primitive cell, or unit cell with minimum-volume $V_"cell" = abs(bold(a)_1 dot bold(a)_2 times bold(a)_3)$.
+We can define primitive translation vectors $bold(a)_i$ such that every point on the lattice $bold(r)'$ can be written as $bold(r) + bold(T)$. So all points $bold(r)_1, bold(r)_2$ where the crystal looks the same satisfy @lattice-translation. The $bold(a)_i$ also define the primitive cell or unit cell with minimum-volume $V_"cell" = abs(bold(a)_1 dot bold(a)_2 times bold(a)_3)$.
 #let latt2 = cetz.canvas({
   import cetz.draw: *
   // lattice
@@ -187,492 +187,104 @@ We can define primitive translation vectors $bold(a)_i$ such that every point on
 })
 #figure(
   scale(100%, latt2),
-  caption: [example of non-primitive (conventional) $bold(a)'_i$, here $bold(r)_2 eq.not bold(r)_1 + bold(T)$ since the required $bold(T)$ doesn't exist.],
+  caption: [example of non-primitive (conventional) $bold(a)'_i$. Here $bold(r)_2 eq.not bold(r)_1 + bold(T)$ since the required $bold(T)$ doesn't exist.],
 )
 
 The $bold(a)_i$ are not unique so we can have different types of primitive cells, but the number of atoms in a primitive cell, the primitive basis, is the same, and is minimal---there is one lattice point per primitive cell. Any of these will fill all space by repetition of suitable $bold(T)$. Another type of primitive cell is the Wigner-Seitz cell---essentially a Voronoi cell.
-== Symmetries and types
-=== Point groups
-Lattices can be mapped onto themselves by translations $bold(T)$ (the space group) and other symmetry operations. The lattice (crystallographic) point group is the collection of symmetries which when applied to a lattice point returns the lattice. This group includes rotations about an axis and reflections about a plane---an inversion would be a combination of these. For rotations we can find lattices with one-, two-, three-, four-, and sixfold rotational symmetry---others are not possible since our lattice is infinite due to translational symmetry.
 
+=== Symmetries
+As described above lattices can be mapped onto themselves using translations $bold(T)$ (by definition). We can also imagine other symmetry operations leaving the lattice invariant. The lattice point group is the collection of these symmetries. This group includes rotations about a point and reflections about a plane (and inversions). For rotations we can find lattices with one-, two-, three-, four-, and sixfold rotational symmetry. Others are not possible since the lattice must have translational symmetry. A lattice type with some specific symmetry(ies) is called a Bravais lattice.
 
+In two dimensions we have five different Bravais lattices. A general lattice is oblique and has one- and twofold rotational symmetry as in @oblique-latt. To get lattices with nice symmetries we impose restrictions on our lattice vectors $bold(a)_1$ and $bold(a)_2$ (see Kittel).
 
-=== Two dimensions
-A lattice type is called a Bravais lattice, in two dimensions we have five different Bravais lattices. A general lattice is oblique and has one- and twofold rotational symmetry---see @oblique-latt. To get lattices with nice symmetries we impose restrictions on $bold(a)_1$ and $bold(a)_2$. Here we have four special lattices---see @spec-latt.
-#let latt-spec-1 = cetz.canvas({
-  import cetz.draw: *
-  // square lattice
-  let n = 0
-  while n < 3 {
-    circle((2 * n, 0), radius: 1pt, fill: rgb(black))
-    circle((2 * n, 2), radius: 1pt, fill: rgb(black))
-    circle((2 * n, 4), radius: 1pt, fill: rgb(black))
-    n = n + 1
-  }
-  line(
-    (0, 4),
-    (0, 2),
-    mark: (end: ">"),
-    fill: rgb(black),
-    name: "a1-1",
-    stroke: 1.3pt,
-  )
-  line(
-    (0, 4),
-    (2, 4),
-    mark: (end: ">"),
-    fill: rgb(black),
-    name: "a2-1",
-    stroke: 1.3pt,
-  )
+In three dimensions the point symmetry group requires 14 different lattice types. These are all grouped into systems according to the type of cells they have. The one we care about the most is the cubic system with three different lattices, with restrictions: $a_1 = a_2 = a_3$ and $alpha = beta = gamma = 90 degree$. These are the simple-, body-centered-, and the face-centered-cubic (see Kittel).
 
-  arc(
-    "a2-1.20%",
-    start: 0deg,
-    stop: -90deg,
-    radius: 12pt,
-    mark: (end: ">", stroke: 1pt),
-    name: "arc-1",
-  )
+=== Miller indices
+As an aside we are typically interested in certain planes of a given crystal. The orientation of these planes is given by the Miller indices $(h k l)$. These are based on how the lattice vectors $bold(a)_i$ intercept with the plane. To determine the indices we find the intercepts as follows: if the plane intercepts the $bold(a)_1$ axis at the midpoint we take the intercept to be $1/2 bold(a)_1$. Take the same plane to never intercept $bold(a)_2$ and $bold(a)_3$ (intercept at infinity) then the Miller indices would simply be $\(h = (1/2)^(-1), k=0, l=0) = (2 0 0)$. For a negative index we denote it by $\(h overline(k) l)$. The indices $[u v w]$ indicate a direction and can be thought of as a vector. For the cubic system $(h k l) perp [h k l]$ so the direction is normal to the corresponding plane.
 
-  content("a1-1.40%", anchor: "east", padding: .3em, [$bold(a)_1$])
-  content("a2-1.40%", anchor: "south", padding: .3em, [$bold(a)_2$])
-  content("a2-1.25%", anchor: "north", padding: .3em, [$phi$])
-})
-
-#let latt-spec-3 = cetz.canvas({
-  import cetz.draw: *
-  // square lattice
-  let n = 0
-  while n < 3 {
-    circle((2 * n, 0), radius: 1pt, fill: rgb(black))
-    circle((2 * n, 1), radius: 1pt, fill: rgb(black))
-    circle((2 * n, 2), radius: 1pt, fill: rgb(black))
-    n = n + 1
-  }
-  line(
-    (0, 2),
-    (0, 1),
-    mark: (end: ">"),
-    fill: rgb(black),
-    name: "a1-1",
-    stroke: 1.3pt,
-  )
-  line(
-    (0, 2),
-    (2, 2),
-    mark: (end: ">"),
-    fill: rgb(black),
-    name: "a2-1",
-    stroke: 1.3pt,
-  )
-
-  arc(
-    "a2-1.20%",
-    start: 0deg,
-    stop: -90deg,
-    radius: 12pt,
-    mark: (end: ">", stroke: 1pt),
-    name: "arc-1",
-  )
-
-  content("a1-1.40%", anchor: "east", padding: .3em, [$bold(a)_1$])
-  content("a2-1.40%", anchor: "south", padding: .3em, [$bold(a)_2$])
-  content("a2-1.25%", anchor: "north", padding: .4em, [$phi$])
-})
-
-#let latt-spec-2 = cetz.canvas({
-  import cetz.draw: *
-  // square lattice
-  let n = 0
-  while n < 4 {
-    circle((2 * n, 0), radius: 1pt, fill: rgb(black))
-    circle((2 * n + 1, 1), radius: 1pt, fill: rgb(black))
-    circle((2 * n, 2), radius: 1pt, fill: rgb(black))
-    n = n + 1
-  }
-  line(
-    (0, 2),
-    (1, 1),
-    mark: (end: ">"),
-    fill: rgb(black),
-    name: "a2-1",
-    stroke: 1.3pt,
-  )
-  line(
-    (0, 2),
-    (2, 2),
-    mark: (end: ">"),
-    fill: rgb(black),
-    name: "a1-1",
-    stroke: 1.3pt,
-  )
-
-  line(
-    (4, 2),
-    (4, 0),
-    mark: (end: ">"),
-    fill: rgb(black),
-    name: "a2-2",
-    stroke: 1.3pt,
-  )
-  line(
-    (4, 2),
-    (6, 2),
-    mark: (end: ">"),
-    fill: rgb(black),
-    name: "a1-2",
-    stroke: 1.3pt,
-  )
-
-
-  arc(
-    "a1-2.22%",
-    start: 0deg,
-    stop: -90deg,
-    radius: 12pt,
-    mark: (end: ">", stroke: 1pt),
-    name: "arc-1",
-  )
-
-  content("a2-1.50%", anchor: "east", padding: .3em, [$bold(a)_2$])
-  content("a1-1.50%", anchor: "south", padding: .3em, [$bold(a)_1$])
-
-  content("a2-2.50%", anchor: "east", padding: .3em, [$bold(a)_2$])
-  content("a1-2.50%", anchor: "south", padding: .3em, [$bold(a)_1$])
-
-  content("a1-2.30%", anchor: "north", padding: .4em, [$phi$])
-})
-
-#let latt-spec-4 = cetz.canvas({
-  import cetz.draw: *
-  // square lattice
-  let n = 0
-  while n < 3 {
-    circle((2 * n + 1, 0), radius: 1pt, fill: rgb(black))
-    circle((2 * n, 2), radius: 1pt, fill: rgb(black))
-    circle((2 * n + 1, 4), radius: 1pt, fill: rgb(black))
-    n = n + 1
-  }
-  line(
-    (0 + 1, 4),
-    (0, 2),
-    mark: (end: ">"),
-    fill: rgb(black),
-    name: "a2-1",
-    stroke: 1.3pt,
-  )
-  line(
-    (0 + 1, 4),
-    (3, 4),
-    mark: (end: ">"),
-    fill: rgb(black),
-    name: "a1-1",
-    stroke: 1.3pt,
-  )
-
-  arc(
-    "a1-1.12%",
-    start: 0deg,
-    stop: -90deg,
-    radius: 12pt,
-    mark: (end: ">", stroke: 1pt),
-    name: "arc-1",
-  )
-
-  content("a2-1.30%", anchor: "east", padding: .3em, [$bold(a)_2$])
-  content("a1-1.30%", anchor: "south", padding: .3em, [$bold(a)_1$])
-  content("a1-1.19%", anchor: "north", padding: .4em, [$phi$])
-})
-
-#subpar.grid(
-  figure(
-    scale(100%, latt-spec-1),
-    caption: [square with $abs(bold(a)_1) = abs(bold(a)_2)$; $phi = 90 degree$],
-  ),
-  <a>,
-
-  figure(
-    scale(100%, latt-spec-4),
-    caption: [hexagonal with $abs(bold(a)_1) = abs(bold(a)_2)$; $phi = 120 degree$],
-  ),
-  <b>,
-
-  figure(
-    scale(100%, latt-spec-3),
-    caption: [rectangular with $abs(bold(a)_1) eq.not abs(bold(a)_2)$; $phi = 90 degree$],
-  ),
-  <c>,
-
-  figure(
-    scale(100%, latt-spec-2),
-    caption: [centered rectangular, with primitive $bold(a)_i$, and unit cell with $phi=90 degree$],
-  ),
-  <d>,
-
-  columns: (1fr, 1fr),
-  caption: [special lattices in two dimensions],
-  label: <spec-latt>,
-)
-
-=== Three dimensions
-In three dimensions the point symmetry group requires 14 different lattice types. The generel lattice is called triclinic, the other 13 are special. These are all grouped into systems according to seven types of cells---see @latt3d.
-#figure(
-  table(
-    columns: (auto, auto, auto),
-    table.hline(stroke: 2pt),
-    table.header(
-      [system], [$hash$ of lattices], [restrictions on conventional cell]
-    ),
-    stroke: 0pt,
-    table.hline(stroke: 1.5pt + gray),
-    [triclinic],
-    $1$,
-    [$a_1 eq.not a_2 eq.not a_3$; $alpha eq.not beta eq.not gamma$],
-
-    [monoclinic],
-    $2$,
-    [$a_1 eq.not a_2 eq.not a_3$; $alpha = gamma = 90 degree eq.not beta$],
-
-    [orthorhombic],
-    $4$,
-    [$a_1 eq.not a_2 eq.not a_3$; $alpha eq beta eq gamma eq 90 degree$],
-
-    [tetragonal],
-    $2$,
-    [$a_1 eq a_2 eq.not a_3$; $alpha eq beta eq gamma eq 90 degree$],
-
-    [cubic], $3$, [$a_1 eq a_2 eq a_3$; $alpha eq beta eq gamma eq 90 degree$],
-    [trigonal],
-    $1$,
-    [$a_1 eq a_2 eq a_3$; $alpha eq beta eq gamma < 120 degree"," eq.not 90 degree$],
-
-    [hexagonal],
-    $1$,
-    [$a_1 eq a_2 eq.not a_3$; $alpha eq beta eq 90 degree", " gamma = 120 degree$],
-    table.hline(stroke: 2pt),
-  ),
-  caption: [all 14 lattice types],
-) <latt3d>
-
-The cubic system is very important, the three lattices are called the simple cubic, body-centered cubic, and the face-centered cubic---what they look like should be obvious. Note that the position of a point within a cell is denoted using @basis-coord.
-
-/*
-#let latt-cubic = cetz.canvas({
-  import cetz.draw: *
-  // cubic lattice
-  let n = 0
-  while n < 3 {
-    circle((5 * n, 0), radius: 1pt, fill: rgb(black))
-    circle((5 * n, 2), radius: 1pt, fill: rgb(black))
-    line((5 * n, 0), (5 * n, 2))
-    line((5 * n, 0), (5 * n + 2, -0.4))
-    line((5 * n, 0), (5 * n + 1, 1))
-    line((5 * n, 2), (5 * n + 1, 3))
-    line((5 * n, 2), (5 * n + 2, 1.6))
-    line((5 * n + 1, 3), (5 * n + 3, 2.6))
-    line((5 * n + 3, 2.6), (5 * n + 2, 1.6))
-    line((5 * n + 3, .6), (5 * n + 2, -0.4))
-    line((5 * n + 3, .6), (5 * n + 1, 1))
-
-    circle((5 * n + 2, 0 - 0.4), radius: 1pt, fill: rgb(black))
-    circle((5 * n + 2, 2 - 0.4), radius: 1pt, fill: rgb(black))
-    line((5 * n + 2, -0.4), (5 * n + 2, 2 - 0.4))
-
-    circle((5 * n + 1, 0 + 1), radius: 1pt, fill: rgb(black))
-    circle((5 * n + 1, 2 + 1), radius: 1pt, fill: rgb(black))
-    line((5 * n + 1, 1), (5 * n + 1, 3))
-
-    circle((5 * n + 2 + 1, 0 - 0.4 + 1), radius: 1pt, fill: rgb(black))
-    circle((5 * n + 2 + 1, 2 - 0.4 + 1), radius: 1pt, fill: rgb(black))
-    line((5 * n + 3, 0.6), (5 * n + 3, 2.6))
-
-
-    n = n + 1
-  }
-  circle((6.5, 1.2), radius: 2pt, fill: rgb(black), name: "bcc")
-  line((6, 1), "bcc")
-  line((5, 0), "bcc")
-  line((7, -0.4), "bcc")
-  line((7, 1.6), "bcc")
-  line((8, 0.6), "bcc")
-  line((8, 2.6), "bcc")
-  line((5, 2), "bcc")
-  line((6, 3), "bcc")
-  content((6.3, -0.6), anchor: "north", [bcc])
-  content((1.3, -0.6), anchor: "north", [sc])
-  content((11.3, -0.6), anchor: "north", [fcc])
-
-  circle((11, 0.75), radius: 2pt, fill: rgb(black), name: "1")
-  circle((10.6, 1.4), radius: 2pt, fill: rgb(black), name: "2")
-  circle((12.6, 1.1), radius: 2pt, fill: rgb(black), name: "3")
-  circle((11.4, 2.2), radius: 2pt, fill: rgb(black), name: "4")
-  circle((11.4, 0.3), radius: 2pt, fill: rgb(black), name: "5")
-  circle((11.9, 1.7), radius: 2pt, fill: rgb(black), name: "6")
-
-  line("1", (10, 0))
-  line("1", (10, 2))
-  line("1", (12, -.4))
-  line("1", (12, 1.6))
-  line("2", (10, 0))
-  line("2", (10, 2))
-  line("2", (11, 1))
-  line("2", (11, 3))
-  line("3", (13, 0.6))
-  line("3", (13, 2.6))
-  line("3", (12, -.4))
-  line("3", (12, 1.6))
-  line("4", (10, 2))
-  line("4", (11, 3))
-  line("4", (12, 1.6))
-  line("4", (13, 2.6))
-  line("5", (10, 0))
-  line("5", (12, -.4))
-  line("5", (13, .6))
-  line("5", (11, 1))
-  line("6", (11, 1))
-  line("6", (11, 3))
-  line("6", (13, 0.6))
-  line("6", (13, 2.6))
-})
-
-#figure(scale(100%, latt-cubic), caption: [all cubic lattices])<cubic-latt>
-*/
-
-=== Crystal planes
-The orientation of a crystal plane is given by Miller indices. This is done by finding the intercepts with the crystal axes in terms of $a_i$. Then we take the reciprocals and reduce to the smallest three integers having the same ratio, and if an intercept is a infinity we let that index be zero. The result is $(h k l)$, a negative index gets a minus sign like $(h overline(k) l)$. Many planes will be parallel e.g. $(001)$ and $(002)$. We denote equivalent planes by ${h k l}$, so the set of cube faces would be ${1 0 0}$. The indices $[u v w]$ indicates a direction and is basically a vector. In the cubic system $(h k l) perp [h k l]$. Here $expval(u v w)$ is a family of equivalent directions. In this course we only use $(h k l)$ and $[h k l]$.
-
-
-In hexagonal crystals we introduce a fourth index $i = -(h + k)$ to get the Miller-Bravais indices $(h k i l)$, similarly we have $[U V T w]$ with $ U = 1/3 (2 u - v)", " V = 1/3 (2 v - u)", and" T = -(u + v) $
-
-
-== Examples
-=== Sodium chloride
-The lattice is a fcc, with a basis consisting of one $"Na"^+$ and one $"Cl"^-$ seperated by one-half the body diagonal of the cube. Each unit cube contains four of these with $"Cl"^-$ at ${000; 1/2 1/2 0; 1/2 0 1/2; 0 1/2 1/2}$.
-
-=== Cesium chloride
-The lattice is a sc, with a basis consisting of one $"Cs"^+$ at $000$ and one $"Cl"^-$ at $1/2 1/2 1/2$. Either of these can however be treated as the center, therefore both have eight opposing neighbors.
-
-=== Packings
-There is an infinite number of ways to maximize the packing fraction for identical spheres. One is fcc (ABCABC$dots$), another is the hexagonal close-packed structure (ABABAB$dots$).
-
-#pagebreak()
-= Wave Diffraction and the Reciprocal Lattice
-== Diffraction & Fourier
-Crystal structure can be studied using diffraction, one way is using Bragg's law. Here we suppose incident waves are reflected from parallel planes of atoms in the crystal, these will then interfere destructively and constructively. If parallel lattice planes have spacing $d$, then the path difference is $2 d sin theta$ with $theta$ being measured with respect to the plane. If the path difference is $n lambda$ with $n in NN$ then we have constructive interference
+== The reciprocal lattice
+Crystal structure can be studied using diffraction. For example by using the Bragg condition. Here we suppose incident waves are reflected from parallel planes of atoms with spacing $d$. These will interfere destructively and constructively, with constructive interference when the Bragg condition
 $
-  2 d sin theta = n lambda
+  2 d sin theta = n lambda " for " n in NN
 $
-this is a result of the lattice periodicity, note that if the planes were perfectly reflecting then we would only see radiation from the first plane and therefore a perfect reflection, instead what we actually see is the reflection from many, many planes. This also means that we don't get any information about the intensity or basis---the electron distribution---which we want.
+is satisfied. This is a result of lattice periodicity.
 
-We know the crystal structure is invariant under $bold(T)$, so any local property must also be invariant under $bold(T)$---we want the electron density $n(bold(r))$, so we require $n(bold(r)+bold(T)) = n(bold(r))$. This screams Fourier series---so we write $n(bold(r))$ as
+As we will see crystal periodicity is naturally described using the reciprocal lattice.
+
+=== Fourier expansion
+We know the crystal structure is invariant under $bold(T)$. Then any local property must be invariant under $bold(T)$.
+
+As an example for the electron density $n(bold(r))$ we require $n(bold(r)+bold(T)) = n(bold(r))$. This hints at a Fourier series of the form
 $
-  n(bold(r)) = sum_bold(G) n_bold(G) exp[i bold(G) dot bold(r)]
+  n(bold(r)) = sum_bold(G) n_bold(G) e^(i bold(G) dot bold(r))
 $
-where $bold(G)$ is a set of vectors such that all $bold(T)$ leave the crystal invariant---reciprocal lattice vectors---$n_bold(G)$ determines the scattering amplitude. We can do the inverse Fourier transform to get the amplitudes
+where $bold(G)$ is a set of vectors we have yet to define. We can do the inverse Fourier transform to get the amplitudes
 $
-  n_bold(G) = V_c^(-1) integral_"cell" dd(V) n(bold(r)) exp[-i bold(G) dot bold(r)]
+  n_bold(G) = V_c^(-1) integral_"cell" dd(V) n(bold(r)) e^(-i bold(G) dot bold(r))
 $
 
-Now we just need to find $bold(G)$---we essentially proceed by construction. The reciprocal lattice axis vectors are given by
+To determine $bold(G)$ we proceed by construction and define the reciprocal lattice basis vectors by
 $
-  bold(b)_1 = 2pi (bold(a)_2 times bold(a)_3)/(bold(a)_1 dot bold(a)_2 times bold(a)_3)",  " bold(b)_2 = 2pi (bold(a)_3 times bold(a)_1)/(bold(a)_1 dot bold(a)_2 times bold(a)_3)",  " bold(b)_3 = 2pi (bold(a)_1 times bold(a)_2)/(bold(a)_1 dot bold(a)_2 times bold(a)_3)
+  bold(b)_1 = 2pi (bold(a)_2 times bold(a)_3)/(bold(a)_1 dot bold(a)_2 times bold(a)_3)";  " bold(b)_2 = 2pi (bold(a)_3 times bold(a)_1)/(bold(a)_1 dot bold(a)_2 times bold(a)_3)";  " bold(b)_3 = 2pi (bold(a)_1 times bold(a)_2)/(bold(a)_1 dot bold(a)_2 times bold(a)_3)
 $
-if the $bold(a)_i$ are primitive, then so are the $bold(b)_i$. Then
+given the $bold(a)_i$ are primitive then so are the $bold(b)_i$ and $bold(b)_i dot bold(a)_j = 2 pi delta_(i j)$. Using these we can define the reciprocal lattice by
 $
-  bold(b)_i dot bold(a)_j = 2 pi delta_(i j)
+  bold(G) = h bold(b)_1 + k bold(b)_2 + l bold(b)_3
 $
-and
+with $h, k, l in ZZ$. Now consider
 $
-  bold(G) = v_1 bold(b)_1 + v_2 bold(b)_2 + v_3 bold(b)_3
+  e^(i bold(G) dot bold(T)) = e^(i [h u_1 2 pi + k u_2 2 pi + l u_3 2 pi]) = e^(2pi i[h u_1+k u_2+ l u_3]) = e^(2 m pi i) = 1
 $
-with $v_i in ZZ$---typically these are denoted $h k l$. With this definition we have the required invariance
+meaning we have
 $
-  n(bold(r) + bold(T)) &= sum_bold(G) n_bold(G) exp[i bold(G) dot bold(r)] exp[i bold(G) dot bold(T)] \
-  &= sum_bold(G) n_bold(G) exp[i bold(G) dot bold(r)]
+  n(bold(r) + bold(T)) = sum_bold(G) n_bold(G) e^(i bold(G) dot bold(r)) e^(i bold(G) dot bold(T)) = sum_bold(G) n_bold(G) e^(i bold(G) dot bold(r)) = n (bold(r))
 $
-since $exp[i bold(G) dot bold(T)]=1$ by construction. So every crystal has two lattices associated with it the crystal lattice (physical lattice) and the reciprocal lattice (diffraction lattice).
+this is quite nice! And tells us that $bold(G)$ is exactly the set of vectors for which plane waves respect crystal periodicity.
 
-== Conditions
-#thm[
-  The set of reciprocal lattice vectors $bold(G)$ determines the possible x-ray reflections.
-]
+=== Laue condition
+We now show that the set $bold(G)$ determine possible reflections. We consider an incoming wavevector $bold(k)$ and outgoing wavevector $bold(k)'$. The scattering vector is then $dd(bold(k), d: Delta) = bold(k)' - bold(k)$. Then
+$
+  "amplitude at detector" tilde sum_"waves" e^(- i dd(bold(k), d: Delta) dot bold(r))
+$
+in the continuous limit $sum -> integral dd(r, 3) n(bold(r))$, this gives the definition of the scattering amplitude
+$
+  F(dd(bold(k), d: Delta)) equiv integral dd(r, 3) n(bold(r)) e^(-i dd(bold(k), d: Delta) bold(r))
+$
+using the expansion for $n(bold(r))$ we can write
+$
+  F(dd(bold(k), d: Delta)) &= sum_bold(G) n_bold(G) integral dd(r, 3) e^(i (bold(G)-Delta bold(k)) dot bold(r)) \
+  &=^"ideal crystal" sum_bold(G) n_bold(G) (2pi)^3 delta^((3)) (dd(bold(k), d: Delta)-bold(G))
+$
+this is obviously only non-zero for $bold(G) = dd(bold(k), d: Delta)$. This is called the Laue condition, and shows why $bold(G)$ determine possible reflections. Equivalently we have the Laue equations
+$
+  bold(a)_i dot Delta bold(k) = 2 pi v_i " with " v_i in ZZ
+$
+To recover the Bragg condition we consider elastic scattering with $abs(bold(k)')=abs(bold(k))$ giving
+$
+  bold(k)^2 & = overbracket(abs(bold(k)+bold(G))^2, "by Laue") = bold(k)^2 + bold(G)^2 + 2 bold(k) dot bold(G) \
+  0 & = bold(G)^2 + 2 bold(k) dot bold(G) = bold(G)^2 - 2 abs(bold(k)) abs(bold(G)) sin theta \
+  abs(bold(G)) & = 2 abs(bold(k)) sin theta = (4 pi)/lambda sin theta \
+  lambda & = 2 d_"hkl" sin theta
+$
+which becomes the general Bragg condition with integer multiples of $bold(G)$. To understand why $abs(bold(G)) = 2 pi\/d_"hkl"$ consider
+$
+  e^(i bold(G) dot bold(T)) = 1 => bold(G) dot bold(T) = 2 pi times "integer"
+$
+picking $bold(T) = d hat(n)$ then gives $bold(G) dot (d hat(n)) = 2 pi$ if we take $d$ to be the spacing between planes.
 
-We consider two beams scattered from volume elements $bold(r)$ apart---the incoming and outgoing wavevectors are $bold(k)$ and $bold(k)'$ and the difference in phase factors will be $exp[i(bold(k)-bold(k)') dot bold(r)]$. We define the scattering amplitude as
-$
-  F equiv integral dd(V) n(bold(r)) exp[i(bold(k)-bold(k)') dot bold(r)] = integral dd(V) n(bold(r)) exp[- i Delta bold(k) dot bold(r)]
-$
-where $bold(k)+Delta bold(k) = bold(k)'$ is the scattering vector. Using the expansion for $n(bold(r))$ we obtain
-$
-  F = sum_bold(G) integral dd(V) n_bold(G) exp[i (bold(G)-Delta bold(k)) dot bold(r)]
-$
-so we get the diffraction condition $ Delta bold(k) = bold(G) => F = V n_G $ it can be shown that $F$ is very small when $Delta bold(k) eq.not bold(G)$---so $bold(G)$ determines the possible reflections. Another way to express $Delta bold(k) = bold(G)$ are the Laue equations
-$
-  bold(a)_i dot Delta bold(k) = 2 pi v_i
-$
-If the scattering is elastic $hbar bold(omega)$ is conserved so $k^2 = k'^2$, so $bold(k)+bold(G) = bold(k)'$ becomes
-$
-  2 bold(k) dot bold(G) + G^2 = 0 <=> 2 bold(k) dot bold(G) = G^2
-$
-this is equivalent to Bragg's law---one can show that the spacing $d(h k l)$ between parallel lattice planes normal to $bold(G) = h bold(b)_1 + k bold(b)_2 + l bold(b)_3$ is $d(h k l) = 2 pi \/abs(bold(G))$, with these the condition becomes
-$
-  2 (2pi)/lambda sin theta = (2 pi)/d(h k l)
-$
-or $2 d(h k l) sin theta = lambda => 2 d sin theta = n lambda$. This can also be interpreted in terms of Brillouin zones, which are Wigner-Seitz primitive cells in the reciprocal lattice---this can be done to higher orders, notably $bold(k)$ touching the _edge_ of the Brillouin zones give diffraction.
-
-== Examples of Lattices
-=== sc Lattice
-We have the primitive translation vectors
-$
-  bold(a)_1 = a hat(bold(x))",  " bold(a)_2 = a hat(bold(y))",  " bold(a)_3 = a hat(bold(z))
-$
-the volume of a cell is $bold(a)_1 dot bold(a)_2 times bold(a)_3 = a^3$ so
-$
-  bold(b)_1 = (2 pi)/(a) hat(bold(x))",  " bold(b)_2 = (2 pi)/a hat(bold(y))",  " bold(b)_3 = (2 pi)/a hat(bold(z))
-$
-
-=== bcc Lattice
-We have the primitive translation vectors
-$
-  bold(a)_1 & = a/2 (-hat(bold(x))+hat(bold(y))+hat(bold(z))) \
-  bold(a)_2 & = a/2 (hat(bold(x))-hat(bold(y))+hat(bold(z))) \
-  bold(a)_3 & = a/2 (hat(bold(x))+hat(bold(y))-hat(bold(z)))
-$
-the volume is $a^3\/2$, so
-$
-  bold(b)_1 = (2pi)/a (hat(bold(y))+hat(bold(z)))",  " bold(b)_2 = (2pi)/a (hat(bold(x))+hat(bold(z)))",  " bold(b)_3 = (2pi)/a (hat(bold(x))+hat(bold(y)))
-$
-
-=== fcc Lattice
-We have the primitive translation vectors
-$
-  bold(a)_1 = a/2 (hat(bold(y))+hat(bold(z)))",  " bold(a)_2 = a/2 (hat(bold(x))+hat(bold(z)))",  " bold(a)_3 = a/2 (hat(bold(x))+hat(bold(y)))
-$
-the volume is $a^3\/4$, so
-$
-  bold(b)_1 & = (2pi)/a (- hat(bold(x))+hat(bold(y))+hat(bold(z))) \
-  bold(b)_2 & = (2pi)/a (hat(bold(x))-hat(bold(y))+hat(bold(z))) \
-  bold(b)_3 & = (2pi)/a (hat(bold(x))+hat(bold(y))-hat(bold(z)))
-$
-
-== Factors
+=== The form factor
 When $Delta bold(k) = bold(G)$ we can write
 $
-  F_bold(G) = N integral_"cell" dd(V) n(bold(r)) exp[-i bold(G) dot bold(r)] = N S_bold(G)
+  F_bold(G) = N integral_"cell" dd(r, 3) n(bold(r)) e^(-i bold(G) dot bold(r)) equiv N S_bold(G)
 $
-where $S_bold(G)$ is the structure factor---note it's the integral over a single cell. We can also write
+where $S_bold(G)$ is the structure factor. We can also write
 $
   n(bold(r)) = sum_(j-1)^s n_j (bold(r)-bold(r)_j)
 $
-where $n_j (bold(r)-bold(r)_j)$ is the contribution to $n(bold(r))$ from the $j^"th"$ atom (of $s$) in the basis. We obtain
+where $n_j (bold(r)-bold(r)_j)$ is the contribution to $n(bold(r))$ from the $j$th atom (of $s$) in the basis. We obtain
 $
-  S_bold(G) &= sum_j integral dd(V) n_j (bold(r)-bold(r)_j) exp[-i bold(G) dot bold(r)] \
-  &= sum_j exp[-i bold(G) dot bold(r)_j] integral dd(V) n_j (bold(rho)) exp[-i bold(G) dot bold(rho)] \
-  &= sum_j f_j exp[- i bold(G) dot bold(r)_j]
+  S_bold(G) &= sum_j integral dd(V) n_j (bold(r)-bold(r)_j) e^(-i bold(G) dot bold(r)) \
+  &= sum_j e^(-i bold(G) dot bold(r)_j) integral dd(V) n_j (bold(rho)) e^(-i bold(G) dot bold(rho)) \
+  &= sum_j f_j e^(- i bold(G) dot bold(r)_j)
 $
-with $bold(rho) = bold(r)-bold(r)_j$ and $f_j$ being the atomic form factor and $S_bold(G)$ now being called the structure factor of the basis---note $bold(G) dot bold(r)_j = 2 pi (v_1 x_j + v_2 y_j + v_3 z_j)$.
-
-\*Oxford splits this chapter in two, and does some delta-function business but the end result should be the same.
-
-#pagebreak()
-
+with $bold(rho) = bold(r)-bold(r)_j$ and $f_j$ being the atomic form factor.
