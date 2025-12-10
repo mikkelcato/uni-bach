@@ -1,5 +1,5 @@
 //**** init-ting
-#import "@preview/physica:0.9.5": *
+#import "@preview/physica:0.9.7": *
 #import "chpt-temp.typ": *
 
 #show: thmrules.with(qed-symbol: $square$)

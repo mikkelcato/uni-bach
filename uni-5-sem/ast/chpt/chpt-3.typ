@@ -73,6 +73,54 @@ $L tau = E => tau = E/L prop M/L$
 
 $tau/tau_dot.circle = (M\/M_dot.circle)/(L\/L_dot.circle)$
 
+Ideal gas
+$
+  P = (rho k_B T)/(mu m_u)
+$
+some write
+$
+  rho = rho_H + rho_"He" + rho_"metal"
+$
+and define
+$
+  X equiv rho_H/rho";  " Y equiv rho_"He"/rho";  " Z equiv rho_"metal"/rho = 1-X-Y
+$
+then the number density for a fully ionized gas is
+$
+  n_"ionized" tilde.eq X ((2 rho)/m_p) + Y ((3 rho)/(4 m_p)) + Z (rho/(2 m_p))
+$
+Hydrostatic equilibrium and mass continuity
+$
+  dv(P, r) = - (G m rho)/r^2";  " dv(m, r) = 4 pi r^2 rho
+$
+For isothermal atmosphere
+$
+  dv(P, r) = - g rho = - P/H";  " H equiv (k_B T)/(g mu m_u)
+$
+
+GMC
+$
+  rho_"GMC" tilde 10^(-15) "kg" "m"^(-3) "versus" expval(rho_dot.circle) tilde 10^3 "kg" "m"^(-3)
+$
+need to compress $R_"GMC" tilde 10^6 R_dot.circle$.
+
+$
+  t_"ff" = P/2 = sqrt((3 pi)/(32 G rho_0)) tilde 10^4 "yrs"
+$
+with
+$
+  P^2 = (4 pi^2 a^3)/(G M)";  " M = 4/3 pi r_0^3 rho_0
+$
+define $t_"pressure"$
+$
+  t_"pressure" = r_0/c_s";  " c_s = sqrt((gamma k_B T)/(mu m_H)) = sqrt((n gamma k_B T)/rho)
+$
+if $t_"pressure" > t_"ff"$ then GMC collapses. We find upper size
+$
+  R > sqrt((3 pi n gamma k_B T)/(32 G rho_0^2)) = R_J
+$
+this is the Jeans length.
+
 #pagebreak()
 = The equation of state
 At any given point in a star we assume the gas is in thermodynamic equilibrium, this assumption allows us to just consider average properties of the gas. These are described by local state variables, e.g. temperature $T$ and density $rho$, and their relations. The relations between various state variables define the _equation of state_ for the gas. Due to the high temperatures of stars we can assume that our gas is fully ionized. Under this assumption we can fully ignore internal degrees of freedom. To a first approximation we can also neglect interactions between particles. This is what we call an ideal gas.

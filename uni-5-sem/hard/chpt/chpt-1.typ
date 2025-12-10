@@ -1,5 +1,5 @@
 //**** init-ting
-#import "@preview/physica:0.9.5": *
+#import "@preview/physica:0.9.7": *
 #import "chpt-temp.typ": *
 #import "@preview/cetz:0.4.1" // drawings
 #import "@preview/subpar:0.2.2" // subfigures
@@ -272,6 +272,12 @@ $
 $
 picking $bold(T) = d hat(n)$ then gives $bold(G) dot (d hat(n)) = 2 pi$ if we take $d$ to be the spacing between planes.
 
+The Bragg condition is only satisfied by $bold(k)$ lying on the edge of any Brillouin zone. This follows from
+$
+  1/2 bold(G)^2 = - bold(k) dot bold(G)
+$
+so $bold(k)$ must lie in a plane that is the perpendicular bisector of a line joining the origin to a reciprocal lattice point $bold(G)$. This is exactly how the Brillouin zones are defined.
+
 === The form factor
 When $Delta bold(k) = bold(G)$ we can write
 $
@@ -288,3 +294,5 @@ $
   &= sum_j f_j e^(- i bold(G) dot bold(r)_j)
 $
 with $bold(rho) = bold(r)-bold(r)_j$ and $f_j$ being the atomic form factor.
+
+These are useful because $f_j$ contains all information about the electron distribution within a cell, while the rest contains information about where the basis is located.

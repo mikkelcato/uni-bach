@@ -5,478 +5,367 @@
 #show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
-= Elasticity
-Elastic soft matter could be rubber or gel. The main property of these materials is that we can deform them, and after they'll recover they shape---these typically consist of polymers, in solution (cross-links) or not in solution.
-
-== Stress and Strain
-To deform a body we can use uniaxial tension and shear deformations---plus any combination of these. To capture this we define the Cauchy stress tensor $sigma_(alpha beta)$
-$
-  sigma_(alpha beta)^((d)) = F_alpha/A_beta
-$
-with $alpha, beta in {x,y,z}$ and $d<->"deviation"$---with the definition being fairly obvious, tension could be $sigma_(x x)$ while shear could be $sigma_(x y)$. Including ambient pressure the stress tensor becomes
-$
-  sigma_(alpha beta) equiv - P delta_(alpha beta) + sigma_(alpha beta)^((d))
-$
-what is the response to the applied stress---how does $r_alpha -> r'_alpha equiv r'_alpha (r_beta)$ due to the deformation? If we do a simple stretching of a body then
-$
-  r'_alpha = Lambda_(alpha alpha) r_alpha
-$
-where $Lambda_(alpha alpha)$ is some scaling---in the simplest case $Lambda_(alpha alpha) = L_alpha'\/L_alpha = lambda$ with $L_alpha$ being the length of our body before and after the deformation. For an incompressible material $V = V'$, if we're pulling along $x$ then
-$
-  L_x L_y L_z = L'_x L'_y L'_z
-$
-but $L'_y = L'_z$, so
-$
-  1 = V'/V = L'_x/L_x (L'_y/L_y)^2 = lambda_(parallel) (lambda_perp)^2 => lambda_perp = lambda_parallel^(-1\/2)
-$
-so in this case (volume preserving uniaxial deformation) $Lambda_(x x) = lambda => Lambda_(y y) = Lambda_(z z) = lambda^(-1\/2)$. For a simple shear deformation we can define $gamma = tan theta$---with $theta$ characterizing the deformation. If we shear along $x$ then $r'_z = r_z$ and $r'_y = r_y$, but $r'_x = r_x + gamma r_y$.
-
-To generalize this we use the deformation gradient tensor $E_(alpha beta)$ defined by
-$
-  E_(alpha beta) equiv pdv(r'_alpha, r_beta)
-$
-so these are basically just the transformation coefficients. By definition we have
-$
-  dd(r'_alpha) = E_(alpha beta) dd(r_beta)
-$
-and
-$
-  dd(s^2) = dd(r_alpha, r_alpha)
-$
-so
-$
-  (dd(s)')^2 = dd(r'_alpha, r'_alpha) &= E_(alpha gamma) dd(r_gamma) E_(alpha delta) dd(r_delta) \
-  &= E_(alpha gamma) E_(alpha delta) dd(r_gamma, r_delta) \
-  &equiv C_(gamma delta) dd(r_gamma, r_delta)
-$
-with $C_(alpha beta)$ being the right Cauchy-Green tensor---note that $C_(alpha beta)=(E^T E)_(alpha beta) =E^T_(alpha gamma) E_(gamma beta)$. The previous examples give
-$
-  C_(alpha beta)^"scale" & = mat(Lambda_(x x)^2, 0, 0; 0, Lambda_(y y)^2, 0; 0, 0, Lambda_(z z)^2) \
-  C_(alpha beta)^"shear" & = mat(1, gamma, 0; gamma, 1+ gamma^2, 0; 0, 0, 1)
-$
-
-We can now consider the extension
-$
-  (dd(s'))^2-(dd(s))^2 &= (C_(alpha beta)-delta_(alpha beta)) dd(r_alpha, r_beta) \
-  &= 2 cal(E)_(alpha beta) dd(r_alpha, r_beta)
-$
-with $cal(E)_(alpha beta)$ being the Lagrangian strain tensor
-$
-  cal(E)_(alpha beta) equiv 1/2 (E_(gamma alpha) E_(gamma beta) - delta_(alpha beta))
-$
-this is nice because doing nothing gives $cal(E)_(alpha beta) = 0$ whereas $C_(alpha beta) = delta_(alpha beta)$.
-
-Now we wan't to connect the Cauchy stress tensor (the force we apply) and the Lagrangian strain tensor (the response)---we assume a linear relationship, giving Hooke's law
-$
-  sigma_(alpha beta)^((d)) = K_(alpha beta gamma delta) cal(E)_(gamma delta)
-$
-so in the extreme case $K_(alpha beta gamma delta)$ is a four-index tensor---in what we're doing our material is typically homogeneous and isotropic such that
-$
-  K_(alpha beta gamma delta) = K delta_(alpha beta) delta_(gamma delta) + G (delta_(alpha beta) delta_(beta gamma) + delta_(alpha delta) delta_(beta gamma) - 2/3 delta_(alpha beta) delta_(gamma delta))
-$
-with $K$ being the bulk modulus and $G$ being the shear modulus---now we just have two material parameters instead of $81$. $K$ represents compressibily and is typically very large, meaning we assume our material is incompressible---any deformation is represented by $G$. For a simple shear
-$
-  sigma_(x y)^((d)) = sigma_(x y) = G gamma
-$
-and for simple uniaxial tension
-$
-  sigma_(x x) = - P + F_x/A_x => sigma_(x x) - 1/2 (sigma_(y y)+sigma_(z z)) = F_x/A_x = sigma_N &= G(lambda^2 - lambda^(-1)) \
-  &tilde.eq^(lambda = 1 + epsilon) 3 G epsilon = Y epsilon
-$
-note $sigma_N = lambda dd(f)\/dd(lambda)$---with $Y$ being Young's modulus. For an isotropic compression $V -> V'$ we have
-$
-  sigma_(x x) = sigma_(y y) = sigma_(z z) = -P +F/A = -P + Delta P
-$
-and we define
-$
-  Delta P = - K dd(V, d: Delta)/V = - 3 K epsilon_V
-$
-we'll treat $K -> oo$, but $G$ is important since soft matter can be deformed not compressed.
-
-== Free energy
-We can also look at the free energy density $f(E_(alpha beta))$ which should be invariant under coordinate transformations---given $B_(alpha beta) = (E E^T)_(alpha beta)$ the left Cauchy-Green tensor
-$
-  det (B_(alpha beta) - lambda delta_(alpha beta)) &= - lambda^3 + I_1 lambda^2 + I_2 lambda + I_3
-$
-with
-$
-  I_1 &= tr B = lambda_x^2 + lambda_y^2 + lambda_z^2 \
-  I_2 &= 1/2 (tr (B)^2 - tr(B^2)) = lambda_x^2 lambda_y^2 + lambda_y^2 lambda_z^2 + lambda_x^2 lambda_z^2 \
-  I_3 &= det B = lambda_x^2 lambda_y^2 lambda_z^2
-$
-these are all invariants by definition. So all dependence must lie in these
-$
-  f(E_(alpha beta)) = f(I_1,I_2,I_3)
-$
-for an incompressible body $I_3 = 1$ and drops out. We can Taylor expand this guy and find to lowest order
-$
-  f(I_1, I_2) = C_1 (I_1 - 3) + C_2 (I_2 - 3)
-$
-this is what characterizes a Mooney-Rivlin solid.
-
-== Kuhn theory
-We want to derive $G$ for rubber---polymer (random walk) $+$ crosslinks gives a network (liquid $->$ elastic solid), and acts like a material we can deform. After the deformation strands have $R'_alpha = E_(alpha beta) R_beta$. To see how the material responds we find the free energy difference
-$
-  f(E_(alpha beta)) = tilde(f) (E_(alpha beta)) - tilde(f)_0
-$
-we denote the probability of a strand having $bold(R)$ with $N$ by $psi(bold(R), N)$. Then
-$
-  f(E_(alpha beta)) &= rho_s integral dd(N) integral dd(bold(R)) psi(bold(R), N) {F'_"strand"-F_"strand"} \ &= rho_s integral dd(N) integral dd(bold(R)) psi(bold(R), N) {3/2 (k_B T)/(b^2 N) bold(R') dot bold(R') -3/2 (k_B T)/(b^2 N) bold(R) dot bold(R)}
-$
-with $rho_s$ being the density of strands---we can then say $psi(bold(R), N) = P(bold(R),N) Phi_0 (N)$, so the probability of generating a given polymer multiplied by the probability of then making a given strand after cross-linking. We obtain
-$
-  f(E_(alpha beta)) &= rho_s 3/2 (k_B T)/b^2 integral dd(N) (Phi_0(N))/N integral dd(bold(R)) P(bold(R),N) (bold(R)' dot bold(R)'- bold(R) dot bold(R))
-$
-the $bold(R)$ integrand can be rewritten
-$
-  bold(R)' dot bold(R)' - bold(R) dot bold(R) &= E_(alpha beta) R_beta E_(alpha gamma) R_gamma - delta_(beta gamma) R_beta R_gamma \
-  &= (E_(alpha beta) E_(alpha gamma) - delta_(beta gamma)) R_beta R_gamma \
-  &= (C_(beta gamma) - delta_(beta gamma)) R_beta R_gamma \
-  &= 2 cal(E)_(beta gamma) R_beta R_gamma
-$
-so the integral becomes
-$
-  integral dd(bold(R)) (dots) &= integral dd(x, y, z) (3/(2 pi b^2 N))^(3\/2) exp(- (3(x^2+y^2+z^2))/(2b^2 N)) (E_(alpha beta) E_(alpha gamma) - delta_(beta gamma)) R_beta R_gamma
-$
-with an implicit sum over $alpha, beta, gamma$, let $beta = x = gamma$ then
-$
-  I_(beta, gamma) &= sum_(beta, gamma) integral dd(x, y, z) (3/(2 pi b^2 N))^(3\/2) exp(- (3(x^2+y^2+z^2))/(2 b^2 N)) sum_alpha (E_(alpha beta) E_(alpha gamma) - delta_(beta gamma)) R_beta R_gamma \
-  I_(x,x) &= [integral dd(y) (3/(2 pi b^2 N))^(1\/2) exp(- (3 y^2)/(2 b^2 N))]^2 \ & times integral dd(x) (3/(2 pi b^2 N))^(1\/2) exp(- (3 x^2)/(2b^2 N)) (E_(alpha x) E_(alpha x) - delta_(x x)) x^2 \
-  &= integral dd(x) (3/(2 pi b^2 N))^(1\/2) exp(- (3 x^2)/(2b^2 N)) (E_(alpha x) E_(alpha x) - delta_(x x)) x^2 \
-  &= (E_(alpha x) E_(alpha x) - delta_(x x)) integral dd(x) x^2 (3/(2 pi b^2 N))^(1\/2) exp(- (3 x^2)/(2 b^2 N)) \
-  &= (E_(alpha x) E_(alpha x) - delta_(x x)) (b^2 N)/3
-$
-with $beta = y = gamma$ and $beta = z = gamma$ we get symmetric results. Take $beta = x, gamma = y$ then
-$
-  I_(x,y) &= integral dd(z) (dots) integral dd(y) (3/(2 pi b^2 N))^(1\/2) exp(- (3 y^2)/(2 b^2 N)) y integral dd(x) dots \
-  &=^(integral dd(y)) 0
-$
-similarly for all other off-diagonal terms. So
-$
-  f(E_(alpha beta)) &= rho_s 3/2 (k_B T)/b^2 integral dd(N) (Phi_0 (N))/N {(E_(alpha beta) E_(alpha gamma) - delta_(beta gamma)) delta_(beta gamma) (b^2 N)/3} \
-  &= (rho_s k_B T)/2 integral dd(N) Phi_0 (N) {E_(alpha beta) E_(alpha gamma)-delta_(beta gamma)) delta_(beta gamma)} \
-  &= (rho_s k_B T)/2 (E_(alpha beta) E_(alpha gamma) - delta_(beta gamma)) delta_(beta gamma) integral dd(N) Phi_0 (N) \
-  &= (rho_s k_B T)/2 (E_(alpha beta) E_(alpha gamma) - delta_(beta gamma) delta_(beta gamma)) \
-  &= (k_B T rho_s)/2 (E_(alpha beta) E_(alpha beta) - 3)
-$
-for shear
-$
-  E_(alpha beta) = mat(1, gamma, 0; 0, 1, 0; 0, 0, 1)
-$
-we get
-$
-  f(E_(alpha beta)) = (k_B T rho_s gamma^2)/2
-$
-We apply a work when we shear
-$
-  dd(W) = sigma_( x y ) dd(gamma) = dd(f) => sigma_(x y) = k_B T rho_s gamma => G = k_B T rho_s
-$
-which is what we wanted to find---which is the obvious energy density one would guess.
-
-\* percolation transition (liquid $->$ elastic solid $->$ solid), Kuhn theory assumes every strand is an entropic strand but in real life polymers are more constrained since they can't cross$-> G = G_K + G_E$.
-
 #pagebreak()
-= Surfaces and Interfaces
-Surfactants---head (hydrophillic) and tail (hydrophobic) group, Colloids---small molecules in solution.
+= Polymers
+Before discussing polymers and polymer solutions proper we discuss _normal_ solutions.
 
-== Surface tension
-Consider a water-air interface, or any liquid-air interface: water molecules in the bulk will be more content since it is energetically favorable---due to molecular interactions. Water molecules at the interface are less content since this is less energetically favorable, this leads to a surface tension $gamma = dd(E)\/dd(A)$. We can also consider a thin film with surface tension $gamma$, now we try to pull on this film increasing its length by $dd(x)$ using some force $F$. We obtain
+== Regular solution theory
+We want to compute $f(phi)$. We model our solution as a lattice. Any point on this lattice is then either occupied by a solute or solvent molecule. Assuming both molecules have the same volume $v_c$ then
 $
-  dd(W) = F dd(x) = 2 gamma a dd(x)
+  V = v_c N_"tot"",  " phi = N_p/N_"tot"
 $
-with $a$ being the width of our film and the factor two appearing since our film has two sides---so $gamma = F\/2 a$, and the surface tension counteracts our applied force. Similarly pressing liquid out of a syringe into air using some $P_0 + Delta P$, with $P_0$ being ambient pressure, will lead to an increased surface area, so $dd(W) = Delta P dd(V) = gamma dd(A)$. If the formed droplet is assumed spherical then
+with $N_"tot" = N_p+N_s$. The energy for some specific configuration $i$ can be written as
 $
-  dd(V) = 4 pi r^2 dd(r)",  " dd(A) = 8 pi r dd(r)
+  E_i = epsilon_"pp" N_i^(("pp")) + epsilon_"ss" N_i^(("ss")) + epsilon_"ps" N_i^(("ps"))
 $
-giving the Laplace pressure
+where the $epsilon$ and $N_i$ have obvious meanings. The partition function is by definition
 $
-  Delta P = (2 gamma)/r
+  Z & = sum_i exp((-E_i)/(k_B T)) \
+    & tilde.eq^"mean field" W exp((- expval(Delta E_c))/(k_B T))
 $
-for real droplets this is given by the more general Young-Laplace equation---but we won't cover this.
+with $W$ being the total number of configurations.
 
-=== Wetting
-Consider some surface and a droplet on the surface. In this case we have three different interfaces and three corresponding surface tensions: $gamma$ (liquid-vapor), $gamma_"SV"$ (solid-vapor) and $gamma_"SL"$ (solid-liquid). We want to know whether or not this droplet spreads. If the droplet has initial area $A$ then the energy before placing the droplet is $E_"before" = gamma_"SV" A$. Assuming the curvature ($A$ with $gamma$ same as $A$ with $gamma_"SL"$) of the drop is negligible we likewise have $E_"after" = (gamma + gamma_"SL") A$. Then we define the spreading coefficient
+We can find $expval(Delta E_c)$ by
 $
-  gamma_"S" = (E_"before"-E_"after")/A = gamma_"SV" - gamma - gamma_"SL"
+  expval(Delta E_c) = epsilon_"pp" expval(N_"pp") + epsilon_"ss" expval(N_"ss") + epsilon_"ps" expval(N_"ps") - underbracket(E_"pure", "background energy")
 $
-which is the energy difference per unit area---if $gamma_"S">0$ then the energy after is smaller and the droplet will spread as much as possible, if $gamma_"S" < 0$ the energy increases and the droplet stays.
+Taking any cell to have $z$ neighbors then $z phi$ of these are solute while $z (1-phi)$ are solvent. So we obtain
+$
+  expval(N_"pp") = z phi underbracket(N_p/2, "amount of pairs") = (z N_"tot" phi^2)/2
+$
+similarly
+$
+  expval(N_"ss") = (z N_"tot" (1-phi)^2)/2";  " expval(N_"ps") = z N_"tot" phi(1-phi)
+$
+The pure energy is given by
+$
+  E_"pure" = underbrace(epsilon_"pp" expval(N^"pure"_"pp"), "all solute") + underbrace(epsilon_"ss" expval(N^"pure"_"ss"), "all solvent")
+$
+these are trivial
+$
+  expval(N^"pure"_"pp") = (N_p z)/2";  " expval(N^"pure"_"ss") = (N_s z)/2
+$
+We obtain
+$
+  expval(Delta E_c) &= epsilon_"pp" (N_p z phi )/2 + epsilon_"ps" N_p z (1-phi) + epsilon_"ss" (N_s z (1-phi))/2 - epsilon_"pp" (N_p z)/2 - epsilon_"ss" (N_s z)/2 \
+  &= (N_"tot" z)/2 (2 epsilon_"ps" - epsilon_"pp" - epsilon_"ss") phi (1-phi) \ &= N_"tot" k_B T chi phi(1-phi)
+$
+where we define $chi$ as
+$
+  chi equiv z/(2 k_B T) (2 epsilon_"ps"-epsilon_"pp"-epsilon_"ss")
+$
+this is a unitless measure of the interaction.
 
-Another measure that describes what happens is the contact angle $theta$. We consider what happens when our drop gets extended by $dd(x)$, this lengthens the liquid-vapor interface by $cos theta dd(x)$ and changes some solid-vapor to solid-liquid, and we obtain
+We still need $W$. We compute
 $
-  dd(E) = cos theta dd(x) gamma + (gamma_"SL"-gamma_"SV") dd(x)
+  ln W & = ln (N_p + N_s)!/(N_p! N_s!) tilde.eq^"stirling" - N_p ln N_p/(N_p + N_s) - N_s ln N_s/(N_p+N_s) \
+  & = -N_"tot" ( phi ln phi + (1-phi) ln (1-phi) )
 $
-in equilibrium
+Finally we find
 $
-  dv(E, x) = 0 => gamma cos theta + gamma_"SL" - gamma_"SV" = 0
+  F & = - k_B T ln Z = - k_B T ln W + expval(Delta E_c) \
+    & = N_"tot" k_B T (phi ln phi + (1- phi) ln(1-phi) + chi phi(1-phi))
 $
-giving Young's equation
+or as a density
 $
-  cos theta = (gamma_"SV"-gamma_"SL")/gamma = (gamma_"S"+gamma)/gamma
+  f(phi,T) = F/(N_"tot" v_c) = (k_B T)/v_c [underbracket(phi ln phi, "translational entropy") + underbracket((1-phi) ln(1-phi), "mixing entropy") + underbracket(chi phi(1-phi), "enthalpy")]
 $
-what happens when we introduce gravity? The energy of the surface area is given by
+which is quite nice! The term in $[dots]$ is unitless and $k_B T v_c^(-1)$ is an energy density. The first two terms correspond to the Gibbs entropy. To see this write
 $
-  G_A = 4 pi gamma r^2
+  F =^(H = 0) - k_B T underbracket(sum P_i ln P_i, "Gibbs'")
 $
-and the gravitational potential energy is
+The $chi$ term is the interaction or enthalpy term. We can write
 $
-  E_"pot" = m g h = (4 pi rho g)/3 r^4
+  chi = chi_H - T chi_S tilde H - T S
 $
-obviously $r^4 > r^2$ so for larger drops gravity wins and it will spread, but for small drops surface tension wins and it will keep its shape. They are equal at the scale
-$
-  G_A = E_"pot" => r^* tilde sqrt((gamma)/(rho g))
-$
-giving something like $r^*_"water" tilde 1.4 "mm"$.
+Then at low temperatures the interaction between molecules dominates. As one would expect.
 
-Now consider placing a drop on a surface and letting it spread until it reaches equilibrium with height $h$. We assume that the volume $V$ of the drop is known, as well as all the surface tensions. Then ignoring curvature and using $h\/2$ as the height of the center of mass we obtain
+=== Flory-Huggins theory
+The above derivation can be extended to polymer solutions.
+
+We assume polymers are random walks. Then a single polymer corresponds to $p$ solute molecules connected and moving together as a random walk. Given each polymer has $N$ steps we reduce the translational entropy by $N^(-1)$ to obtain
 $
-  E_"pot" = V rho g h/2
+  f(phi, T) = (k_B T)/v_c [phi/N ln phi + (1-phi) ln(1 - phi) + chi phi(1-phi)]
 $
-and using $A = V\/h$
+this is the Flory-Huggins free energy.
+
+The typical size of a polymer is
 $
-  G_A = (gamma + gamma_"SL") V/h - gamma_"SV" V/h = - gamma_"S" V/h
+  R_g^2 = (b^2 N)/6
 $
-at equilibrium
+We can then define a critical density $rho^* = R_g^(-3)$. For $rho >= rho^*$ the above is a fair approximation, since the mean field approximation is valid. As $rho -> oo$ the polymers drown out and we get back a regular solution.
+
+== As a random walk
+As mentioned we assume polymers are random walks. We now show this is a useful assumption.
+
+For a random walk we assume individual steps $bold(b)_n$ are statistically independent. Meaning
 $
-  dv(E_"tot", h) = 0 => (V rho g)/2 + (gamma_S V)/(h^*)^2 = 0
+  expval(bold(b)_n) & = 0";  " expval(bold(b)_n dot bold(b)_m) & = expval(b^2) delta_(n m)
+$
+We define the contour length of a polymer to be
+$
+  L_"contour" equiv N b
+$
+The end-to-end length of a polymer is given by $bold(R)$. We would like some measure of this. Consider the average
+$
+  expval(bold(R)) = expval(sum_(n=1)^N bold(b)_n) = sum_(n=1)^N expval(bold(b)_n) = 0
+$
+so this is a bad quantity. Consider instead the variance
+$
+  expval(bold(R)dot bold(R)) &= expval(sum_(n=1)^N bold(b)_n dot sum_(m=1)^N bold(b)_m) = sum_(n=1)^N expval(b^2) =^(expval(b^2)=b^2) N b^2
+$
+so the size of a polymer is $d tilde b sqrt(N)$. We can relate this to $L_"contour"$ by
+$
+  d/L_"contour" = 1/(sqrt(N))
+$
+
+We are interested in the probability distribution for $bold(R)$. Treating each step as a spring with spring constant $k$ the Hamiltonian of a step is
+$
+  H_"step" = 1/2 k (x^2 + y^2 + z^2) = 1/2 k (bold(b)_n dot bold(b)_n)
+$
+with $bold(b)_n = x hat(x) + y hat(y) + z hat(z)$. Then by the equipartition theorem
+$
+  3/2 k_B T & = 1/2 k expval(bold(b)_n dot bold(b)_n) = 1/2 k expval(b^2)
+$
+meaning
+$
+  k = (3 k_B T)/expval(b^2) = (3 N k_B T )/(expval(bold(R) dot bold(R)))
+$
+using this spring constant we get the same step size as for the random walk! We use springs since they incorporate dynamics and are easy to work with.
+
+Assuming the Boltzmann distribution is valid then the probability distribution for $bold(b)_n$ is
+$
+  P(bold(b)_n) & prop exp((-H_"step")/(k_B T)) = exp(-3/2(bold(b)_n dot bold(b)_n)/(expval(b^2)))
+$
+Similarly the Hamiltonian of a full polymer is
+$
+  H_"chain" & = 1/2 k_"chain" (bold(R)dot bold(R)) \
 $
 giving
 $
-  h^* = sqrt((-2gamma_S)/(rho g))
+  k_"chain" = (3 k_B T)/expval(bold(R) dot bold(R)) = k/N
 $
-relating this to $r^*$ can be done, and it simply gives $h^* tilde.eq r^* theta$.
+and by the Boltzmann distribution
+$
+  P(bold(R)) & prop exp(- H_"chain"/(k_B T)) = exp(- k_"chain"/2 (bold(R) dot bold(R))/(k_B T)) = exp(- 3/2 (bold(R) dot bold(R))/(expval(bold(R)dot bold(R))))
+$
+normalizing we find
+$
+  P(bold(R)) &= (3/(2 pi expval(bold(R) dot bold(R))))^(3\/2) exp(- 3/2 (bold(R) dot bold(R))/(expval(bold(R) dot bold(R))))
+$
+so both individual steps, and the entire chain are Gaussian!
 
-=== Capillary effects
-What happens when inserting a tube into some liquid? We denote the diameter of our tube by $2 a$, and the liquid rises within the tube to a height $h$ above the liquid outside. The volume within the tube is then $V_"tube"=pi a^2 h$, with center of mass $h\/2$, so
+We can now find the free energy of a polymer by
 $
-  E_"pot" = (pi a^2 rho g h^2)/2
+  F_"polymer" =^"ideal polymer" - T S
 $
-and
+since the chain is fully entropic. The entropy is $prop ln W$ with
 $
-  G_A = 2 pi a h (gamma_"SL"-gamma_"SV") = - 2 pi a h gamma cos theta
+  W prop P(bold(R))
 $
-since it happens outside and inside, this then gives
+so we find
 $
-  h^* = (2 gamma cos theta)/(a rho g) = (2 (r^*)^2 cos theta)/a
+  S(bold(R)) &= k_B ln W(bold(R)) \
+  &= -(3 k_B)/2 (bold(R) dot bold(R))/(expval(bold(R) dot bold(R))) + S_0 \
+$
+and we obtain
+$
+  F_"polymer" &= (3 k_B T)/2 (bold(R) dot bold(R))/(expval(bold(R) dot bold(R))) + F_0 \
+  &= (3 k_B T)/(2 N b^2) (bold(R) dot bold(R)) + F_0
 $
 
-== Thermodynamics
-=== The grand potential
-The grand potential is a thermodynamic quantity depending on volume, temperature and the chemical potential. Importantly volume is extensive while temperature and the chemical potential are intensive so we can write
+Consider pulling a polymer with some external force $f_"ext"$ then the total free energy of the system becomes
 $
-  G(V,T,mu) = V g(T,mu)
+  F_"system" & = F_"polymer" - f_"ext" dot bold(R)
 $
-with $g(T,mu)$ being the grand potential volume density. Similarly
+At equilibrium we have
 $
-  G_A (A,T,mu) = A g_A (T,mu)
+  0 & = grad_bold(R) F_"system" \
+  0 & = (3 k_B T)/(N b^2) bold(R)- f_"ext" => f_"ext" & = (3 k_B T)/(N b^2) bold(R)
 $
-with $g_A (T,mu)$ being the grand potential surface density. One can show
+so the polymer resists with an entropic force given by $f_"polymer" = - f_"ext"$.
+
+
+== Elasticity
+Why we care about elasticity in relation to soft matter should be fairly obvious. Typical examples of elastic soft matter are rubbers and gels. These materials recover their shape after being deformed. We specifically care about elasticity of polymer networks. To describe these materials we need to define stress and strain.
+
+=== Stress and strain
+When deforming a body we consider two types of deformations. These are uniaxial tension and shear deformation. Any general deformation can be treated as a superposition of these. To describe deformations we define the Cauchy stress tensor $sigma_(alpha beta)$
 $
-  g = G/V = - P (T,mu)
+  sigma_(alpha beta)^((d)) = F_alpha/A_beta
 $
+with the meaning being obvious. As an example tension could be $sigma_(x x)$ while shear could be $sigma_(x y)$. For the full stress tensor we include ambient pressure
+$
+  sigma_(alpha beta) equiv - P delta_(alpha beta) + sigma_(alpha beta)^((d))
+$
+We would like to describe the response of a material upon applying stress. So we want some relation between some old coordinates and the deformed coordinates $r'_alpha (r_beta)$.
+
+Under a simple stretching we would have
+$
+  r'_alpha = Lambda_(alpha alpha) r_alpha
+$
+where $Lambda_(alpha alpha)$ is some scaling. The simplest case has $Lambda_(alpha alpha) = L_alpha'\/L_alpha = lambda$ with $L_alpha$ being the length of the body we stretch. Consider stretching an incompressible body along $hat(x)$ then $L'_y =L'_z$ and $V = V'$ giving
+$
+  1 =^! L'_x/L_x [L'_y/L_y]^2 = lambda_(parallel) (lambda_perp)^2 => lambda_perp = lambda_parallel^(-1\/2)
+$
+this is is called a volume preserving uniaxial deformation. We obtain $Lambda_(x x) = lambda$ and $Lambda_(y y) = Lambda_(z z) = lambda^(-1\/2)$.
+
+Under a simple shear we define $gamma = tan theta$ with $theta$ being the _shear angle_. Consider shearing along $x$ then $r'_z = r_z$ and $r'_y = r_y$, but $r'_x = r_x + gamma r_y$.
+
+We generalize the above by the deformation gradient tensor $E_(alpha beta)$
+$
+  E_(alpha beta) equiv pdv(r'_alpha, r_beta)";  " dd(r'_alpha) = E_(alpha beta) dd(r_beta)
+$
+in the examples
+$
+  E_(alpha beta)^"stretch" = diagonalmatrix(lambda, lambda^(-1\/2), lambda^(-1\/2))";  " E_(alpha beta)^"shear" = mat(1, gamma, ; , 1, ; , , 1)
+$
+Consider $dd(s^2) = dd(r_alpha, r_alpha)$ after a deformation
+$
+  (dd(s)')^2 & = dd(r'_alpha, r'_alpha) \
+             & = E_(alpha gamma) E_(alpha delta) dd(r_gamma, r_delta) \
+             & equiv C_(gamma delta) dd(r_gamma, r_delta)
+$
+where we define the right Cauchy-Green tensor $C_(alpha beta)$
+$ C_(alpha beta) equiv (E^T E)_(alpha beta) =E^T_(alpha gamma) E_(gamma beta) $
+as an example the above give
+$
+  C_(alpha beta)^"stretch" = mat(lambda^2, 0, 0; 0, lambda, 0; 0, 0, lambda)";  " C_(alpha beta)^"shear" = mat(1, gamma, 0; gamma, 1+ gamma^2, 0; 0, 0, 1)
+$
+
+Consider the extension
+$
+  (dd(s'))^2-(dd(s))^2 &= (C_(alpha beta)-delta_(alpha beta)) dd(r_alpha, r_beta) \
+  &equiv 2 cal(E)_(alpha beta) dd(r_alpha, r_beta)
+$
+where we define the Lagrangian strain tensor $cal(E)_(alpha beta)$
+$
+  cal(E)_(alpha beta) equiv 1/2 (E_(gamma alpha) E_(gamma beta) - delta_(alpha beta))
+$
+this is nice because doing nothing gives $cal(E)_(alpha beta) = 0$.
+
+=== Hooke's law
+We want a relationship between the stress we apply $sigma_(alpha beta)$ and the strain $cal(E)_(alpha beta)$. We assume they are linearly dependent giving Hooke's law
+$
+  sigma_(alpha beta)^((d)) = K_(alpha beta gamma delta) cal(E)_(gamma delta)
+$
+with $K_(alpha beta gamma delta)$ being a four-index elasticity tensor. Assuming the material is homogeneous and isotropic then we can write
+$
+  K_(alpha beta gamma delta) = K delta_(alpha beta) delta_(gamma delta) + G (delta_(alpha beta) delta_(beta gamma) + delta_(alpha delta) delta_(beta gamma) - 2/3 delta_(alpha beta) delta_(gamma delta))
+$
+with $K$ being the bulk modulus and $G$ being the shear modulus. These two moduli fully describe how a given material will deform when we apply stress. $K$ represents compressibility and is typically very large. Usually we take $K -> oo$. Any deformation is then characterized by $G$.
+
+For a simple shear
+$
+  sigma_(x y)^((d)) = sigma_(x y) = G gamma
+$
+For a simple stretch
+$
+  sigma_(x x) = - P + F_x/A_x => sigma_N equiv sigma_(x x) underbracket(- 1/2 (sigma_(y y)+sigma_(z z)), P) &= G(lambda^2 - lambda^(-1)) \
+  &tilde.eq^(lambda = 1 + epsilon) 3 G epsilon equiv Y epsilon
+$
+where $Y$ is the Young modulus.
+
+For an isotropic compression
+$
+  sigma_(x x) = sigma_(y y) = sigma_(z z) = -P +F/A = -P + Delta P
+$
+we define
+$
+  Delta P = - K dd(V, d: Delta)/V = - 3 K underbracket(epsilon_V, "volumetric strain")
+$
+so $sigma_(alpha alpha) = - P - 3 K epsilon_V$.
+
+=== The free energy
+Consider the free energy $f(E_(alpha beta))$. This guy should be invariant under coordinate transformations. Meaning all dependence on $E_(alpha beta)$ must lie in invariant quantities.
+
+We define the left Cauchy-Green tensor of finger tensor $B_(alpha beta) equiv (E E^T)_(alpha beta)$. Consider the determinant
+$
+  det (B_(alpha beta) - lambda delta_(alpha beta)) &= - lambda^3 + I_1 lambda^2 - I_2 lambda + I_3
+$
+with $I_i$ being the invariants
+$
+  I_1 &= tr B = sum_i lambda_i^2 \
+  I_2 &= 1/2 (tr (B)^2 - tr(B^2)) = lambda_1^2 lambda_2^2 + lambda_2^2 lambda_3^2 + lambda_1^2 lambda_3^2 \
+  I_3 &= det B = product_i lambda_i^2
+$
+where $lambda_i$ are the principal stretches and $lambda_i^2$ are the eigenvalues of $B_(alpha beta)$.
+
 #proof[
-  We do a Legendre transform to get the free energy (Gibbs $->$ Helmholz)
+
+  By definition $B_(alpha beta)$ is symmetric so we can diagonalize it
   $
-    G(V,T,mu_i) = F(V,T,N_i) - sum_i N_i mu_i
+    B = Q diag(lambda_1^2, lambda_2^2, lambda_3^2) Q^TT
   $
-  note
+  with $Q Q^TT = 1$.
+
+  Then we can find
   $
-    dd(F) = - P dd(V) - S dd(T) + sum mu_i dd(N_i)
+    det(B - lambda bb(1)) &= det(diag(lambda_1^2, lambda_2^2, lambda_3^2) - lambda bb(1)) \
+    &= (lambda_1^2-lambda)(lambda_2^2-lambda)(lambda_3^2-lambda) \
+    &= - lambda^3 + underbracket((lambda_1^2 +lambda_2^2 + lambda_3^2), I_1) lambda^2 -underbracket((lambda_1^2 lambda_2^2 + lambda_1^2 lambda_3^2+lambda_2^2 lambda_3^2), I_2) lambda+ underbracket(lambda_1^2 lambda_2^2 lambda_3^2, I_3)
   $
-  then
+
+  Lastly we show
   $
-    dd(G) & = dd(F) - sum dd(N_i) mu_i - sum_i N_i dd(mu_i) \
-          & = - P dd(V) - S dd(T) - sum_i N_i dd(mu_i)
+    I_2 &= 1/2 (tr (B)^2 - tr (B^2)) \
+    &= 1/2 (lambda_1^2 lambda_2^2 + lambda_1^2 lambda_3^2 + lambda_2^2 lambda_1^2 + lambda_2^2 lambda_3^2 + lambda_3^2 lambda_1^2 + lambda_3^2 lambda_2^2) \
+    &= lambda_1^2 lambda_2^2 + lambda_1^2 lambda_3^2 + lambda_2^2 lambda_3^2
   $
-  but we also have
-  $
-    dd(G) = g dd(V) + V pdv(g, T) dd(T) + V sum_i pdv(g, mu_i) dd(mu_i)
-  $
-  with the obvious things being held constant. It immediately follows by comparison that
-  $
-        g & = - P \
-        S & = V pdv(P, T) \
-    N_i/V & = pdv(P, mu_i)
-  $
+
 ]
 
-Similarly we can write
+So we can write
 $
-  g_A = gamma(T, mu)
+  f(E_(alpha beta)) equiv f(I_1,I_2,I_3)
 $
-with a positive sign since surface tension is contractile.
-#proof[
-  For an area we have
-  $
-    G_A (A, T, mu_i) = A g_A (T, mu_i)
-  $
-  with
-  $
-    dd(G_A) & = gamma dd(A) -S_A dd(T) - sum_i^A N_i^A dd(mu_i) \
-    dd(G_A) & = g_A dd(A) + A pdv(g_A, T) dd(T) + A sum_i pdv(g_A, mu_i) dd(mu_i)
-  $
-  everything follows as before giving
-  $
-        g_A & = gamma \
-        S_A & = - A pdv(gamma, T) \
-    N_i^A/A & = - pdv(gamma, mu_i)
-  $
-]
-The sign difference stem from the surface wanting to contract $+gamma$, while both volume want to expand $-P$.
+For an incompressible body $I_3 = 1$ and drops out and we can Taylor expand around the undeformed state (with $I_1 = I_2 = 3$) to find
+$
+  f(I_1, I_2) = C_1 (I_1 - 3) + C_2 (I_2 - 3)
+$
+this is called a Mooney-Rivlin solid.
 
-Using $G = - P V(T,mu_i)$ we can quickly find the Gibbs-Duhem relation
+== Kuhn theory
+We consider a solution of polymers. These will crosslink and create a network turning the liquid solution into an elastic solid. We consider deforming this network. After a deforming free strands have $R'_alpha = E_(alpha beta) R_beta$. We find the change in free energy due to this deformation by
 $
-  dd(G) = - V dd(P) - P dd(V)
+  f(E_(alpha beta)) = tilde(f) (E_(alpha beta)) - tilde(f)_0
 $
-recall we had
+We denote the probability of any strand having $bold(R)$ with $N$ by $psi(bold(R), N)$. Then
 $
-  dd(G) = - S dd(T) - P dd(V) - sum_i N_i dd(mu_i)
+  f(E_(alpha beta)) &= rho_s integral dd(N) integral dd(bold(R)) psi(bold(R), N) {F'_"strand"-F_"strand"}
 $
-subtracting these give
+with $rho_s$ being the density of strands. We assume the probability of any strand having $bold(R)$ with $N$ is the probability of having a polymer with $bold(R)$ and $N$ multiplied by the probability of then making a strand with $N$ after cross-linking $psi(bold(R), N) = P(bold(R),N) Phi_0 (N)$. We obtain
 $
-  sum_i N_i dd(mu_i) & = - S dd(T) + V dd(P)
+  f(E_(alpha beta)) &= (3 rho_s k_B T)/(2N b^2) integral dd(N) Phi_0(N) integral dd(bold(R)) P(bold(R),N) (bold(R)' dot bold(R)'- bold(R) dot bold(R)) \
+  &= (3 rho_s k_B T)/(2 N b^2) integral dd(N) Phi_0 (N) integral dd(bold(R)) P(bold(R),N) (E_(alpha beta) E_(alpha gamma) - delta_(beta gamma)) R_(beta) R_gamma
 $
-we can do the same for $G_A = A gamma(T, mu_i)$ giving
+The $bold(R)$ integral can be computed. For $beta eq.not gamma$ is vanishes since the integral becomes $expval(R)$ which vanishes. So we only get something when $beta = gamma$ where it equals $expval(R^2) = N b^2\/3$. Therefore we obtain
 $
-  sum_i N_i^A dd(mu_i) = -S_A dd(T) - A dd(gamma)
+  f(E_(alpha beta)) &= (3 rho_s k_B T)/(2N b^2) integral dd(N) Phi_0 (N) [(E_(alpha beta) E_(alpha gamma) - delta_(beta gamma)) delta_(beta gamma) (b^2 N)/3] \
+  &= (rho_s k_B T)/2 (E_(alpha beta) E_(alpha beta) - delta_(beta beta)) \
+  &= (rho_s k_B T)/2 (E_(alpha beta) E_(alpha beta) - 3)
 $
+or in terms of $lambda_i$
+$
+  f(lambda_i) & = (rho_s k_B T)/2 (sum_i lambda_i^2 - 3)
+$
+For a shear we find
+$
+  f(E_(alpha beta)) = (k_B T rho_s gamma^2)/2
+$
+and when we increase the shear strain from $gamma -> gamma + dd(gamma)$ we do work $sigma_(x y) dd(gamma)$ leading to a change $dd(f)$ meaning
+$
+  sigma_(x y) = pdv(f, gamma) = underbracket(rho_s k_B T, G) gamma
+$
+this is the obvious guess one might make.
 
-=== Surfactants
-We now consider a system with some air(I)-liquid(II) interface---in this case molecules can move freely (in principle) between the three (open) systems. We assume we know $V_I$, $V_(I I)$ and the interface area $A$. Then assuming thermal equilibrium we have
+For a stretch we find
 $
-  G = G^I (V^I, T, mu^I) + G^(I I) (V^(I I), T, mu^(I I)) + G_A (A, T, mu^A)
+  f(lambda_i) = (rho_s k_B T)/2 (lambda^2 + 2/lambda - 3) = 1/2 G (lambda^2 + 2/lambda - 3)
 $
-We'd like to know how to determine $N_i^A$, to this end we define the surface excess
+and when we stretch a unit volume by $lambda$ we do work $sigma_(x x) lambda^(-1) dd(lambda)$ due to the surface area changing by $lambda^(-1)$ meaning
 $
-  Gamma_i = N_i^A/A
+  sigma_(x x) = lambda pdv(f, lambda) = G (lambda^2 - lambda^(-1))
 $
-In the air phase the density of liquid molecules is obviously low, then around the interface we have some continuous gradient, but we want to define some zero---this is done by counting liquid in the air phase, and air in the liquid phase. This is an equivalent definition of the surface excess
-$
-  Gamma_0 = integral_(-oo)^0 dd(z) (n_0 (z)-n_(I I)) + integral_0^oo dd(z) (n_0 (z) - n_I)
-$
-with $i = 0$, and $n(z)$ being the number density. We define the zero by requiring this vanishes: $Gamma_0 = 0$, this is where the surface is.
+both of these are consistent with the previous expressions we found.
 
-If we add some surfactants (any molecule with hydrophillic head-group and hydrophobic tail-group) then $n_s (z)$ would be highly concentrated around the interface, since it is energetically favorable, then
-$
-  Gamma_s = integral_(-oo)^0 dd(z) (n_s (z) - n_(I I)) + integral_0^oo dd(z) (n_s (z) - n_I)
-$
-and $Gamma_s > 0$, an anti-surfactant would have $Gamma_(! s) < 0$, e.g. ions since it is energetically favorable to not be close to air. So we can write $N_i^A = A Gamma_i$.
-
-Due to entropy there'll still be surfactants in the bulk, since they want to maximize their translational entropy. And at sufficient saturation, when the interface becomes _crowded_ then additional surfactants will start forming micelles, which begin to act like a single molecule---so entropy hates this, but it is energetically (lower enthalpy) favorable since the tails aren't exposed to liquid (water). Also consider some surface which is divided in two parts using some movable membrane. We add surfactant to one part of the surface leading to some surface tension $gamma$, while the part without surfactants has surface tension $gamma_0$, with $gamma < gamma_0$ since the surfactants disrupt the surface. This means that the surface with $gamma$ wants to expand and gives rise to some pressure.
-
-We want to see what happens when we add surfactants to some liquid. So consider some surface with surfactant density $n$, this can be treated as a lattice since the surfactant molecules take up physical space, denote the fraction of occupied states by $theta$. We now imagine a surfactant molecule from the bulk hitting the surface, if the site is empty then it is absorbed, and if the site is filled then it bounces back. We denote the rate of _hitting_ the surface by $v_a$ (absorbance), explicitly $v_d = K_a (1- theta)$ with $K_a$ being the number of attempts per unit time. Similarly we have the rate of leaving the surface (desorbing) $v_d = K_d theta$ with $K_d$ being the number of attempts per unit time. In equilibrium these are equal since the rate of absorbtion and desorbtion should equal, $v_d = v_a$. This gives
-$
-  theta_"eq" = K/(1+K)",   " K=K_a/K_d
-$
-but the fraction of occupied sites is also
-$
-  theta_"eq" = Gamma/Gamma_s
-$
-and we can write
-$
-  K = n/n_s
-$
-with $s$ denoting saturation, so $Gamma_s$ is when every site is occupied and $n_s$ is the corresponding bulk density. Then
-$
-  Gamma = n/(n+n_s) Gamma_s
-$
-this is also called the Langmuir isotherm. Then what happens to the surface tension? We'd like to find $gamma(n)$ at constant $T$, from the Gibbs-Duhem relation we then obtain
-$
-              N^A dd(mu) & = -A dd(gamma) \
-        => dv(gamma, mu) & = - Gamma = - (n Gamma_s)/(n+n_s) \
-  dv(gamma, n) dv(n, mu) & = - (n Gamma_s)/(n+n_s)
-$
-now we need some $mu(n)$, since we want to be rid of the chemical potential. We can write
-$
-  mu(n) = mu_0 + k_B T ln n
-$
-
-#proof[
-  Consider a gas with $n = N\/V$, we assume each molecule has some zero-energy $mu_0$. The partition function is
-  $
-    Z = (Z_"trans" Z_"part")^N/N!
-  $
-  each molecule has
-  $
-    E = 1/2 m v^2 + mu_0
-  $
-  the first term enters in $Z_"trans"$ and the second enters in $Z_"part"$. We know
-  $
-    Z_"trans" = V/lambda_"th"^3
-  $
-  and we can easily obtain
-  $
-    Z_"part" = exp(- mu_0/(k_B T))
-  $
-  then the free energy is
-  $
-    F & = - k_B T ln Z \
-      & = - k_B T (- N ln N + N - (mu_0 N)/(k_B T) + N ln (V)/lambda_"th"^3)
-  $
-  by definition
-  $
-    mu = pdv(F, N) & = dots = mu_0 + k_B T ln (N lambda_"th"^3)/V \
-                   & = mu_0 + k_B T ln(n lambda_"th"^3) \
-                   & =^(lambda_"th" = "const") mu_0 + k_B T ln n
-  $
-  with the second term just being translational entropy.
-]
-
-Then we easily obtain
-$
-  dv(mu, n) = (k_B T)/n => dv(n, mu) = n/(k_B T)
-$
-so
-$
-  dv(gamma, n) = - (k_B T Gamma_s)/(n+n_s)
-$
-this can then be integrated to get $gamma(n)$ giving
-$
-  gamma(n) = gamma_0 - Gamma_s k_B T ln(1+n/n_s)
-$
-at low $n$ this is heavily dominated by $gamma_0$ as we'd expect and as $n$ increases $gamma$ lowers.
-
-=== Micelles
-Now we'd like to see what happens if we keep adding surfactants, since we'll eventually saturate the surface completely. Consider $m$ surfactant molecules in a box, either they'll stay apart or they'll form a micelle---this is a equilibrium process, meaning the chemical potential for both is equivalent. For a single surfactant we have
-$
-  mu_1 = mu_1^0 + k_B T ln n_1
-$
-and for the micelle we have
-$
-  mu_m = mu_m^0 + k_B T ln n_m
-$
-in equilibrium
-$
-  m mu_1 = mu_m => k_B T ln n_m/n_1^m & = m mu_1^0-mu_m^0 \
-                            n_m/n_1^m & = exp((m mu_1^0-mu_m^0)/(k_B T))
-$
-this is essentially just the Boltzmann factor. We define
-$
-  n_c^(1-m) = exp((m mu_1^0-mu_m^0)/(k_B T)) => n_c = exp((m mu_1^0-mu_m^0)/((1-m)k_B T))
-$
-we can then write
-$
-  n_m/n^m_1 = n_c^(1-m) => n_m & = n_1^(m) n_c^(1-m) = (n_1/n_c)^m n_c \
-$
-now we use $n = n_1 + m n_m$ so
-$
-      n & = n_1 + m (n_1/n_c)^m n_c \
-  n/n_c & = n_1/n_c + m (n_1/n_c)^m
-$
-we consider the case $n_1 < n_c$, then since $m$ is somewhat large we get
-$
-  n tilde.eq n_1
-$
-so below this critical value $n_c$ we have essentially no micelles. Consider also $n_1 > n_c$, then for a similar reason the second term now dominates
-$
-  n/n_c & tilde.eq m(n_1/n_c)^m \
-        & => n_1 tilde.eq n_c (n/(m n_c))^(1\/m) tilde.eq n_c
-$
-since the $m$'th root for large $m$ just gives $1$. So $n_1 tilde.eq n_c$ with this we can obtain $n_m tilde.eq n_c$ aswell. Therefore $n_c$ is essentially the maximal concentration, for this reason we can't really take the limit $n_1\/n_c > 1$, since we just find $n_1\/n_c = 1$. We can also find
-$
-  n_m = n_c = n/m => n/m = n_c
-$
-by using
-$
-  n/n_c tilde.eq m (n_1/n_c)^m = m
-$
-so at $n_c$ micelles emerge, and all surfactant contribute to making micelles---after $n_1 = n_c$ then $n_1$ can't increase further forcing all surfactants to become micelles.

@@ -5,613 +5,246 @@
 #show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
-#pagebreak()
-= Liquid crystals
-Liquid crystals can be though of a new liquid phase between solids (crystals) and usual liquids. In a solid a material has both fixed (or uniform) orientation and position while a liquid has neither. In a liquid crystal we just have fixed orientation. We'd like to be able to describe the transition from solid $->$ liquid crystal $->$ liquid.
+= Colloids
+A simple qualitative definition of a colloid are particles in solution that are relatively small with sizes from $tilde 10 "nm"$ to $tilde 1 mu"m"$. At this small scale thermal motion becomes highly relevant. As an example consider a $1 mu"m"$ spherical particle of some typical density. We can compute that $E_g tilde 5 E_"th"$ for such a particle. Given these are comparable we would call this particle a colloid.
 
-There are two main types of classification for liquid crystals. The first is based on how the transition liquid crystal $<->$ liquid is induced---we care about thermotropic (temperature) and lyotropic (concentration) liquid crystals. The second is based on the symmetry of the liquid crystal phase. The one we care about the most are nematic liquid crystals whose symmetry is purely orientational---one can also have other types e.g. smectic, cholestric, columnar, etc.
+As physicists we are interested in interactions between colloids. We now describe the typical repulsive and attractive interactions between colloids. We will find that combining these lead to a complex potential landscape that can be probed by experiment.
 
-== Q-tensor
-We want a number to quantify the _ordered-ness_ of a liquid crystal. To do this we assign a unit vector $hat(u)$ to each molecule. Consider the average
+== Dispersion forces
+Dispersion forces are forces between electrically symmetric particles caused by fluctuations in their electron distributions. Typically dispersion forces refer to the induced dipole-dipole interaction. We refer to this as the van der Waals interaction
 $
-  expval(hat(u)) = integral_Omega u psi(u) dd(Omega)
+  V_"Waals" = - C (a_0/r)^6
 $
-where $psi(u)$ an angular probability distribution
-$
-  integral_Omega psi(u) dd(Omega) = 1
-$
-however we always have $expval(u) = 0$ due to apolar symmetry. Instead consider the second moment
-$
-  expval(u_alpha u_beta) "with" alpha, beta in {x,y,z}
-$
-for an isotropic distribution---as in a pure liquid---we have $psi(u) = (4 pi)^(-1)$, and it is easy to see that
-$
-  expval(u_alpha u_beta) = 1/3 delta_(alpha beta)
-$
-since the directions are independent and $sum abs(u_i)^2 = 1$. This leads us to construct the $Q$-tensor:
-$
-  Q_(alpha beta) = expval(u_alpha u_beta - 1/3 delta_(alpha beta))
-$
-so for an isotropic distribution $Q_(alpha beta) = 0$ by definition. To make our lives easier we write this in terms of the nematic director $hat(n)$ which is the average direction of the molecules. We do
-$
-  n_alpha n_beta Q_(alpha beta) = n_alpha n_beta expval(u_alpha u_beta - 1/3 delta_(alpha beta)) => Q_(alpha beta) = S (n_alpha n_beta - 1/3 delta_(alpha beta))
-$
-where we define the order parameter
-$
-  S = 3/2 expval(underbrace((hat(n) dot hat(u))^2, cos^2 theta)-1/3)
-$
-for an isotropic distribution $S = 0$ and for perfect alignment with $psi(u) = delta(0)$ we find $(hat(n) dot hat(u))^2 = 1 => S = 1$. Somewhere in between we have the nematic phase with $S tilde 0.5$ and $phi prop "Gaussian"$. The least possible value is for $psi = delta(pi/2)$ where $S=-1/2$.
+with $C$ and $a_0$ being constants. As a pair-potential this is quite weak due to the $r^(-6)$ scaling. We now show this scales as $h^(-1)$ for colloids.
 
-#pagebreak()
-== Maier-Saupe theory
-We want to find the free energy $F = U - T S$.
+We consider two spherical colloids with radii $R$ separated by a distance $h << R$. This assumption allows us to approximate the colloids as being planes. We now consider the interaction between all volumes $dd(V)$ in each colloid and find
+$
+  W = - integral underbracket(dd(bold(r)_1) n, "#molecules" #linebreak() "at" bold(r)_1) integral dd(bold(r)_2) n underbracket((C a_0^6)/abs(bold(r)_1-bold(r)_2)^6, "van der Waals" #linebreak() "interaction")
+$
+with $n$ being the number density within a colloid. We compute the integral using cylindrical coordinates
+$
+  abs(bold(r)_1-bold(r)_2)^2 = rho^2 + (z_1-z_2)^2
+$
+also defining $tilde(rho) equiv rho^2$ we find
+$
+  W/A &= -n^2 C a_0^6 integral_(-oo)^0 dd(z_1) integral_h^oo dd(z_2) integral_0^oo (pi dd(tilde(rho)))/[tilde(rho) + (z_1-z_2)^2]^3 \
+  &= (n^2 C a_0^6 pi)/6 integral_(-oo)^0 dd(z_1) 1/(z_1-h)^3 \
+  &= - (n^2 C a_0^6 pi)/(12 h^2) equiv w(h)
+$
+We define the Hamaker constant $A_H equiv n^2 C a_0^6 pi^2$ then
+$
+  w(h) = - A_H/(12 pi h^2)
+$
+so in the plane-plane approximation the potential scales as $h^(-2)$.
 
-We define the inter-molecular potential
+We can generalize the above to spherical colloids. Let $h$ be the minimal distance between two spherical colloids. The distance for any $rho$ is then
 $
-  w (hat(u),hat(u)') equiv - underbrace(tilde(U), "sets scale") underbrace((hat(u) dot hat(u)')^2, "favors" #linebreak() "alignment")
+  tilde(h) (rho) & = h + 2(R-sqrt(R^2-rho^2)) \
+                 & tilde.equiv h + rho^2/R
 $
-then the total potential energy is
+Each value of $rho$ defines an annulus with area $dd(A) = 2 pi rho dd(rho)$. Then the total potential is given by sweeping the surface
 $
-  U = underbrace((N z)/2, "all pairs") underbrace(integral dd(u, u') psi(u) psi(u') w(hat(u),hat(u)'), "weighted energy")
+  U(tilde(h)) & = integral w(tilde(h)) dd(A) = pi R integral_h^(h+R) w (tilde(h)) dd(tilde(h)) tilde.eq^"Derjaguin" - R/12 A_H/h
 $
-the parameter $z$ is a measure of how many interactions we include. For the entropy we use $ S = k_B ln Omega $ with
+so the potential scales as $h^(-1)$! The last step uses the Derjaguin approximation $h + R -> oo$.
+
+== Depletion forces
+Depletion forces are forces caused by smaller things in solution. A typical example would be polymers. Generally $n_"small" >> n_"big"$ for these types of interactions.
+
+Consider small particles in solution with big colloids. Let  the size of the colloids be $tilde R$ and the size of the small particles $tilde r$. Clearly if two colloids are within a distance $d$ less than $r$ then small particles are depleted from the region between them. This depletion creates a density imbalance leading to an osmotic pressure since
 $
-  Omega = N!/(N_1 ! N_2 ! dots N_M !)
+  p prop N/V
 $
-where we think of each $1, 2, dots, M$ being a region of orientations---this is analogous to the usual translational entropy. Then we obtain
+so $dd(p, d: Delta) = n_"small" k_B T$. This pressure forces the colloids together.
+
+Entropically this is also obvious. The small particles want to maximize their entropy and this is done by maximizing their available volume. For spherical colloids we define the excluded volume
 $
-  S &tilde.eq^"Stirling's" k_B [N ln N - N - sum_(i=1)^M N_i (ln N_i - 1)] \
-  &tilde.eq N k_B [ln N - 1 - sum_(i=1)^M N_i/N (ln N_i - 1)] \
-  &tilde.eq N k_B (- sum_(i=1)^M N_i/N ln N_i/N) \
-  &tilde.eq^("in limit" N_i\/N -> psi(u)) -N k_B integral dd(u) psi(u) ln psi(u)
+  V_"excluded" = (4 pi)/3 (R + r)^3
 $
-so the free energy is
+Two separated colloids would have excluded volume $2 V_"excluded"$. But if the colloids come together and touch, then their exluded volumes will overlap leading to an effective excluded volume less than $2 V_"excluded"$. This makes it favorable for colloids to clump.
+
+== Hard sphere interaction
+The hard sphere interaction aries since colloids can not overlap.
+
+The naive hard sphere potential is
 $
-  F = - (tilde(U) N z)/2 integral dd(u, u') psi(u) psi(u') (hat(u)dot hat(u)')^2 + N k_B T integral dd(u) psi(u) ln psi(u)
+  V = cases(oo"," #h(10pt) & r <= 2R, 0"," & "otherwise")
 $
-we seek to minimize this with respect to $psi(u)$ under the constraint
+so an infinite barrier.
+
+A more realistic potential would be
 $
-  integral dd(u) psi(u) = 1
+  V_"Pauli" prop 1/R^12
 $
-so we minimize
+or
 $
-  cal(L) = F - lambda (integral dd(u) psi(u)-1)
+  V_"exp" prop e^(-r rho^(-1))
 $
-with respect to $psi$:
+these allow for overlap between colloids. Though making it very unfavorable.
+
+== Grafting
+We can coat colloids with polymers. This process is called grafting.
+
+Consider attaching polymers to a colloid. At sufficient polymer density the individual polymers get squished and we obtain a _brush_. We would like to determine the height of this brush.
+
+We define the _grafting density_ $Gamma_p$ as the number of polymers per unit area. This defines a length scale $cal(l) = Gamma_p^(1\/2)$. We imagine each polymer occupies a cylinder of radius $cal(l)$ being a random walk inside it. We want to determine the height $h_p$ of these cylinders. Using these we write the volume fraction $phi$ as
 $
-  dv(cal(L), psi, d: delta)= 0
+  phi equiv V_"polymer"/(V_"cylinder") = (N v_c)/(cal(l)^2 h_p) = (N v_c Gamma_p)/h_p
+$
+with $N$ being the number of monomers in a polymer and $v_c$ being the volume of a monomer.
+
+The free energy due to the polymers is
+$
+  f_E (h_p) = underbracket((3 k_B T h_p^2)/(2 N b^2), "single polymer") Gamma_p
+$
+with $b$ being the monomer length.
+
+The free energy of mixing is
+$
+  F_"mix"/A &= underbracket(f_"mix", "by Flory-Huggins") h_p \
+  &= (k_B T)/v_c [(1-phi) ln(1-phi) + underbracket(chi (1-phi) phi, "polymer solvent" #linebreak() "interaction")] h_p
+$
+assuming $phi$ is small we find
+$
+  f_"mix" (h_p) & = (k_B T h_p)/v_c [phi^2/2 -phi+ chi(phi-phi^2)] \
+                & = (k_B T h_p phi)/v_c [(chi-1) + (1/2-chi) phi]
+$
+We find the total free energy
+$
+  f(h_p) = (3 k_B T Gamma_p)/(2 N b^2) h_p^2 + N k_B T Gamma_p [(chi-1) + (1/2 - chi) (N v_c Gamma_p)/h_p]
+$
+giving the brush height in equilibrium
+$
+  h_("eq",p)^3 = (N^3 v_c b^2 Gamma_p)/3 (1/2-chi)
+$
+which is nice! We see it depends on the length of the polymers, the grafting density, and their interaction with the solvent.
+
+Consider two grafted colloids. Let the distance between them be $d$ and define $h = d\/2$. Then for $d$ less than $2 h_p^"eq"$ their polymer brushes will begin compressing. We compute the interaction potential as
+$
+  w(h) &= 2 [f(h) - f(h_p^"eq")] \
+  & tilde.eq^"Taylor" 2 [f(h_p^"eq") + overbracket(evaluated(dv(f, h))_(h=h_p^"eq"), 0) (h-h_p^"eq") + 1/2 evaluated(dv(f, h, 2))_(h=h_p^"eq") (h-h_p^"eq")^2 + dots - f(h_p^"eq")] \
+  &tilde.eq evaluated(dv(f, h, 2))_(h=h_p^"eq") (h-h_p^"eq")^2
+$
+we compute
+$
+  dv(f, h, 2) = (3 k_B T Gamma_p)/(N b^2) + (2 N k_B T v_c Gamma_p^2)/(h^3) (1/2-chi)
 $
 so
 $
-  dv(, psi, d: delta) {integral dd(u) [(N tilde(U)z)/2 integral dd(u') (u dot u')^2 psi(u) psi(u') - N k_B T psi(u) ln psi(u) - lambda psi(u)] - lambda} = 0
+  evaluated(dv(f, h, 2))_(h=h_p^"eq") = (9 k_B T Gamma_p)/(N b^2)
 $
-the seperate parts evaluate to
+The interaction potential is then
 $
-        dv(, psi, d: delta) [lambda] & = 0 \
-  dv(, psi, d: delta) [- lambda psi] & = - lambda \
-    dv(, psi, d: delta) [psi ln psi] & = ln psi + 1
+  w(h) tilde.eq (9 k_B T Gamma_p)/(N b^2) (h-h_p^"eq")^2
 $
-$
-  dv(, psi, d: delta) [integral dd(u') (u dot u')^2 psi(u) psi(u')] &= integral dd(u') (u dot u')^2 2 psi(u')
-$
-requiring the integrand vanishes then gives
-$
-  0 &= N tilde(U) z integral dd(u') (u dot u')^2 psi(u') - N k_B T ln (psi+1) - lambda \
-  ln (psi + 1) &= 1/(N k_B T) [N tilde(U) z integral dd(u') (u dot u')^2 psi(u') - lambda] \
-  psi &= exp[(tilde(U) z)/(k_B T) underbrace(integral dd(u') (u dot u')^2 psi(u'), u "in mean field of" u')] underbrace(C, "not dependent on" psi)
-$
-we define
-$
-  w_"mf" (u) equiv - tilde(U) z integral dd(u') (u dot u')^2 psi(u')
-$
-since it is a mean-field we can write (assuming $expval(u'_alpha u'_beta) = expval(u_alpha u_beta)$)
-$
-  integral dd(u') (u dot u')^2 psi(u') = u_alpha u_beta underbrace(expval(u_alpha u_beta), Q_(alpha beta) + 1/3 delta_(alpha beta))
-$
-this can be rewritten using the scalar order parameter
-$
-  S = 3/2 expval((u dot n)^2 - 1/3)
-$
-consider
-$
-  u_alpha u_beta expval(u_alpha u_beta) &= u_x^2 (Q_(x x)+1/3) + u_y^2 (Q_(y y)+1/3) + u_z^2 (Q_(z z)+1/3) \
-  &= u_x^2 (-1/3 S +1/3) + u_y^2 (-1/3 S + 1/3) + u_z^2 (2/3 S +1/3) \
-  &=^(abs(u)=1) 1/3 [(1-u_z^2) (-S+1) + u_z^2 (2 S + 1)] \
-  &= S u_z^2 + 1 - S
-$
-so we can write
-$
-  psi(u) = overbrace(C, "constants") exp[(tilde(U) z S)/(k_B T) u_z^2]
-$
-we can determine $C$ by the constraint
-$
-  integral psi(u) dd(u) = 1 => C^(-1) = integral exp[(tilde(U) z S)/(k_B T) u_z^2] dd(u)
-$
-now consider
-$
-  S & = integral 3/2 (u_z^2 - 1/3) psi(u) dd(u) \
-    & = (integral dd(u_z) 3/2 (u_z^2 -1/3) exp[(tilde(U) z S)/(k_B T) u_z^2]) 1/C
-$
-here we integrate over $u_z in [0,1]$ since the $u_x, u_y$ directions would just cancel. Now define
-$
-  tilde(S) equiv (S tilde(U) z)/(k_B T) => I(tilde(S)) = (integral_0^1 3/2 (u_z^2-1/3) exp(tilde(S) u_z^2) dd(u_z))/(integral_0^1 exp(tilde(S) u_z^2) dd(u_z))
-$
-now $S$ has to fulfill both of these so we try to find an intersection between the functions $f_1$ and $f_2$ defined by
-$
-  f_1 equiv I (tilde(S)) "and" f_2 equiv S(tilde(S)) = (tilde(S) k_B T)/(tilde(U) z)
-$
-here there is clear temperature dependence since it determines the slope of $f_2$. They always coincide at $tilde(S)=0$ but at high temperatures this is the only solution, while at lower temperatures we can find two solutions.
+which is nice! We find a spring-like interaction depending on the grafting density.
 
-We find that at high temperatures $S tilde 0$ as we lower the temperature we reach metastability (essentially a non-continuous region) before $S$ smoothly increases to $S tilde 1$. In principle we can also go back and find the free energy $F(S)$---at high temperature this exhibits one minima (at $S = 0$) and at lower temperatures it exhibits two minima (at $S = 0$ and at $S_"transition"$) (if they are equal minima) with a barrier between them, if we keep lowering the temperature the minima at $S=0$ will eventually vanish with the other minima becoming deeper.
+== Charges
+We can charge colloids and typically most colloids are negatively charged when made.
 
-=== Small $tilde(S)$ expansion
-Above we found
+Recall the Coulomb force
 $
-  S &= (k_B T tilde(S))/(tilde(U) z) \
-  S &= (integral_0^1 dd(u_z) 3/2 (u_z^2 - 1/3) exp(tilde(S) u_z^2))/(integral_0^1 dd(u_z) exp(tilde(S) u_z^2) )
+  bold(f) = (q_1 q_2)/(4 pi epsilon) bold(hat(r))_(1 2)/abs(bold(r)_(1 2))^2
 $
-we expand Taylor expand this
-$
-  S &tilde.eq (integral_0^1 dd(u_z) 3/2 (u_z^2 - 1/3) [1+u_z^2 tilde(S) + (u_z^2 tilde(S))^2\/2 + (u_z^2 tilde(S))^3\/6 + dots])/(integral_0^1 dd(u_z) [1+u_z^2 tilde(S) + (u_z^2 tilde(S))^2\/2 + (u_z^2 tilde(S))^3\/6 + dots])
-$
-the numerator is
-$
-  N &= 3/2 integral_0^1 dd(u_z) [u_z^2 - 1/3] [1+tilde(S) u_z^2 + tilde(S)^2/2 u_z^4 + tilde(S)^3/6 u_z^6] \
-  &= 3/2 integral_0^1 dd(u_z) [u_z^2 + tilde(S) u_z^4 + tilde(S)^2/2 u_z^6 + tilde(S)^3/6 u_z^8-1/3-tilde(S)/3 u_z^2 - tilde(S)^2/6 u_z^4 - tilde(S)^3/18 u_z^6] \
-  &= 1/2 integral_0^1 dd(u_z) [-1 + (3-tilde(S)) u_z^2 + (3 tilde(S) - tilde(S)^2/2)u_z^4 + (3/2 tilde(S)^2 - tilde(S)^3/6)u_z^6 + tilde(S)^3/2 u_z^8] \
-  &= 1/2 [-1 +1/3 (3-tilde(S)) +1/5 (3 tilde(S) - tilde(S)^2/2) +1/7 (3/2 tilde(S)^2 - tilde(S)^3/6) + tilde(S)^3/18] \
-  &= 2/15 tilde(S) + 2/35 tilde(S)^2 + 1/63 tilde(S)^3
-$
-the denominator is
-$
-  D &= integral_0^1 dd(u_z) [1+tilde(S) u_z^2 + tilde(S)^2/2 u_z^4 + tilde(S)^3/6 u_z^6 ] \
-  &= 1 + tilde(S)/3 + tilde(S)^2/10 + tilde(S)^3/42
-$
-so we have
-$
-  I(tilde(S)) &tilde.eq (2/15 tilde(S) + 2/35 tilde(S)^2 + 1/63 tilde(S)^3)/(1+1/3 tilde(S) + 1/10 tilde(S)^2+1/42 tilde(S)^3)
-$
-we write the numerator as
-$
-  a_1 tilde(S) + a_2 tilde(S)^2 + a_3 tilde(S)^3
-$
-and the denominator as
-$
-  1 + b_1 tilde(S) + b_2 tilde(S)^2 + b_3 tilde(S)^3
-$
-we want
-$
-  c_1 tilde(S)+c_2 tilde(S)^2+c_3 tilde(S)^3
-$
-by
-$
-  a_1 tilde(S) + a_2 tilde(S)^2 + a_3 tilde(S)^3&= (c_1 tilde(S)+c_2 tilde(S)^2+c_3 tilde(S)^3) (1 + b_1 tilde(S) + b_2 tilde(S)^2 + b_3 tilde(S)^3) \
-  &= c_1 tilde(S) + (c_1 b_1 + c_2) tilde(S)^2 + (c_1 b_2 + c_2 b_1 + c_3) tilde(S)^3 + cal(O) (tilde(S)^4)
-$
-so
-$
-  c_1 = a_1";  " c_2 = a_2 - a_1 b_1";  " c_3 = a_1 b_2 + (a_2 - a_1 b_1) b_1 -a_3
-$
-numerically
-$
-  c_1 & = 2/15 \
-  c_2 & = 4/315 \
-  c_3 & = - 8/4725
-$
-so we find
-$
-  I(tilde(S)) = 2/15 tilde(S) + 4/315 tilde(S)^2 - 8/4725 tilde(S)^3 + cal(O)(tilde(S)^4)
-$
+here $epsilon$ is important since $epsilon_"water"$ is relatively large meaning the interaction is weak.
 
-Then the solution is given by
+We might expect ions in solution stick to colloids. However, this is not favorable due to entropy. Instead an ionic cloud develops around all colloids. At the surface we have
 $
-  S &= I(tilde(S)) \
-  S &= 2/15 (tilde(U) z)/(k_B T) S + 4/315 ((tilde(U) z)/(k_B T))^2 S^2 - 8/4725 ((tilde(U) z)/(k_B T))^3 S^3
+  E = sigma/epsilon
 $
-so
+where we use the plane approximation. And in the bulk we have
 $
-  0 &= S [1 - 2/15 (tilde(U) z)/(k_B T) + 4/315 ((tilde(U) z)/(k_B T))^2 S - 8/4725 ((tilde(U) z)/(k_B T))^3 S^2]
+  nabla dot bold(E) = rho/epsilon;"  "bold(E) = - grad V
 $
-the trivial solution is $S_"iso" = 0$. Consider $S -> 0$ then we only care about the linear term
-$
-  S tilde.eq 2/15 (tilde(U) z)/(k_B T) S
-$
-this is non-trivial for
-$
-  2/15 (tilde(U) z)/(k_B T) = 1 => T_(c) = (2 tilde(U) z)/(15 k_B)
-$
-we can write
-$
-  (T-T_c)/T_c - c_2 ((tilde(U) z)/(k_B T_c))^2 S - c_3 ((tilde(U) z)/(k_B T_c))^3 S^2 tilde.eq 0
-$
-to linear order
-$
-  S & tilde.eq T_c/c_2 (k_B/(tilde(U) z))^2 (T-T_c) \
-    & = 21/2 k_B/(tilde(U) z) (T-T_c)
-$
+This gets complicated since charges generate some potential and move under the mean field due to all other charges. This movement changes the charge density which changes the potential. We seek a steady state solution.
 
-=== Free energy of polar molecules
-We consider a free energy of the form
+In one dimension we have
 $
-  F(psi) = N [k_B T integral dd(u) psi(u) ln psi(u) - U/2 integral dd(u) integral dd(u') (u dot u') psi(u) psi(u')]
+  dv(E, x) = - dv(V, x, 2) = rho/epsilon
 $
-we seek the distribution $psi(u)$ which minimizes this. We use
+where $rho = c_"ions" q_"ions"$. The concentration is determined by Boltzmann statistics
 $
-  cal(L) = F - lambda (integral psi(u) dd(u) - 1)
+  c_"ions" = c_0 exp(- (q_"ions" V)/(k_B T))
 $
-we can write
+as usual. A short proof is given below.
+
+#proof[
+
+  Consider a system with some potential difference. This gives rise to a flux
+  $
+    j_E = (q E)/zeta c
+  $
+  where $zeta$ is some friction coefficient. By Fick's law we also have a diffusive flux
+  $
+    j_D = - D dv(c, x)
+  $
+  By Einstein we have $D= k_B T zeta^(-1)$ so
+  $
+    j_"tot" = j_E + j_D = D (- dv(c, x) + (q E c)/(k_B T)) =^! 0
+  $
+  giving
+  $
+    integral 1/c dv(c, x) dd(x) & = integral (q E)/(k_B T) dd(x) \
+                       ln c/c_0 & = - (q V)/(k_B T) \
+                              c & = c_0 exp(- (q V)/(k_B T))
+  $
+  and we are done.
+
+]
+Let $q_"ions" = e$ and substitute to find
 $
-  cal(L) &= N integral dd(u) [k_B T psi(u) ln psi(u) - U/2 integral dd(u') (u dot u') psi(u) psi(u') - lambda psi(u)] + lambda
+         dv(V, x, 2) & = - (e c_0)/epsilon exp(- (e V)/(k_B T)) \
+  dv(tilde(V), x, 2) & = - 4 pi cal(l)_B c_0 e^(-tilde(V))
 $
-we now minimize
+this is the Boltzmann-Poisson equation. We have defined $tilde(V)$ and the Bjerrum length $cal(l)_B$ by
 $
-  dv(cal(L), psi, d: delta) = 0
+  tilde(V) equiv (e V)/(k_B T)";  " cal(l)_B equiv e^2/(4 pi epsilon k_B T)
 $
-The constant term vanishes the others become
+$cal(l)_B$ is the length scale at which entropic and electrical contributions are similar.
+
+Consider a colloid in a neutral solution with many ions. Away from the colloid we have $n_(+0) = n_(-0) = n_0$ and generally we have $rho = e (n_+ - n_-)$. These densities are given by the Boltzmann distribution
 $
-  pdv(, psi, d: delta) [k_B T psi(u) ln psi(u)] &= k_B T (ln psi + 1) \
-  pdv(, psi, d: delta) (-lambda psi(u)) &= - lambda \
-  pdv(, psi, d: delta) U/2 integral dd(u') (u dot u') psi(u) psi(u') &= U integral dd(u') (u dot u') psi(u')
+  n_plus.minus = n_0 exp(minus.plus (e V)/(k_B T))
 $
-so we have
+substituting we find
 $
-  0 &= integral dd(u) underbrace([k_B T (ln psi + 1) - U integral dd(u') (u dot u') psi(u') - lambda], =^! 0)
+  rho & = - 2 e n_0 sinh (e V)/(k_B T)
 $
 Then
 $
-  ln psi & = U/(k_B T) integral dd(u') (u dot u') psi(u') + lambda/(k_B T) - 1 \
-     psi & = C exp(U/(k_B T) integral dd(u') (u dot u') psi(u')) \
-         & = C exp(U/(k_B T) [integral dd(u') u' psi(u')] dot u) \
-         & = C exp(U/(k_B T) bold(P) dot bold(u))
+  dv(V, x, 2) & = (2 e n_0)/epsilon sinh (e V)/(k_B T) \
+              & tilde.eq^(e V\/k_B T << 1) (2 e n_0)/epsilon (e V)/(k_B T)
 $
-where $bold(P) = expval(bold(u))$.
+where we use the Debye-Hueckel approximation $e V << k_B T$. We see $V$ is an exponential and physically we require the minus solution
+$
+  V = V_0 e^(- kappa x)
+$
+where we define
+$
+  kappa eq sqrt((2 e^2 n_0)/(epsilon k_B T)) equiv cal(l)_D^(-1)
+$
+with $cal(l)_D$ being the Debye length. This is a measure of the distance before the colloid appears neutral due to screening. By changing $n_0$ we can tune $cal(l)_D$!
 
-We now define
+Consider two colloids. Assuming they are far apart each will have an ionic cloud. We want to describe what happens when we bring them together and their ionic clouds combine. We seek the concentration of ions between the colloids when this happens. Taking the midpoint to be $x = 0$ we look for symmetric solutions to the Boltzmann-Poisson equation. Someone has already done this and a family of solutions of the form
 $
-  x equiv U/(k_B T) abs(bold(P)) => (k_B T)/U x = abs(bold(P))
+  tilde(V) = B ln cos beta x
 $
-so we can write
+exists. We require
 $
-  psi = C e^(x cos theta)
+  B = 2";  " beta = sqrt(2 pi cal(l)_B c_0)
 $
-with $bold(hat(P)) dot bold(u) = cos theta$. The constant is determined by normalizing
-$
-  C^(-1) &= integral dd(u) e^(x cos theta) \
-  &= integral_0^(2 pi) dd(phi) integral_0^pi dd(theta) sin theta e^(x cos theta) \
-  &=^(u = cos theta) (4 pi sinh x)/x
-$
-so
-$
-  psi = x/(4 pi sinh x) e^(x cos theta)
-$
-Now we can find $abs(bold(P))$ by
-$
-  abs(bold(P)) &= hat(bold(P)) dot bold(P) \
-  &= integral dd(u) psi(u) (hat(bold(P))dot bold(u)) \
-  &= integral dd(u) psi(u) cos theta \
-  &= integral_0^(2 pi) dd(phi) integral_0^pi dd(theta) sin theta cos theta psi(u) \
-  &= x/(2 sinh x) integral_0^pi dd(theta) cos theta sin theta e^(x cos theta) \
-  &=^(u = cos theta) x/(2 sinh x) integral_(-1)^1 dd(u) u e^(x u) \
-  &= x/(2 sinh x) dv(, x) integral_(-1)^1 e^(x u) dd(u) \
-  &= x/(2 sinh x) dv(, x) [(e^(x)-e^(-x))/x] \
-  &= x/(2 sinh x) dv(, x) (2 sinh x)/x \
-  &= 1/(sinh x) [cosh x - (sinh x)/x] \
-  &= coth x - 1/x
-$
-We obtain the self-consistent equation
-$
-  (k_B T)/U x = coth x - 1/x
-$
-We define
-$
-  f(x) equiv coth x - 1/x
-$
-so
-$
-  (k_B T)/U x = f(x) => g(x) equiv f(x) - (k_B T)/U x = 0
-$
-for small $x$
-$
-  f(x) tilde.eq x/3 - x^3/45 + dots
-$
-so
-$
-  g(x) = x (1/3 - (k_B T)/U) - x^3/45 +dots
-$
-the linear term vanishes when
-$
-  T= T_c equiv U/(3 k_B)
-$
-by the above expansion it is clear that $x = 0$ is always a solution. For $T > T_c$ consider the functions
-$
-  f_1 = (k_B T)/U x";  " f_2 = coth x - 1/x
-$
-at $x = 0$ we have $f'_2 (0) = 1\/3$ and obviously $f'_1 = k_B T\/U$ everywhere. Now if $T > T_c$ we have
-$
-  T > U/(3 k_B) => (k_B T)/U > 1/3 => f'_1 > f'_2
-$
-at $x = 0$. But $f''_2 < 0$ for all $x > 0$ so they will never cross after $x= 0$. If instead $T < T_c$ then at $x = 0$
-$
-  (k_B T)/U < 1/3
-$
-so $f_2$ increases faster but we still have $f''_2 < 0$ so at some point it must be beat by $f_1$ leading to a solution $x_*$. By symmetry there is also a solution at $-x_*$. At small $T$ be can compute
-$
-  1/3 - (k_B T)/U - x^2/45 = 0 => x_* tilde.eq sqrt(15 (1 - T/T_c))
-$
-this can also be used to find $T_c$ since $1-T\/T_c = 0$ at the critical temperature, and also shows there is only one solution for $T > T_c$.
+with $c_0 = c_+ (x=0)$. This is easily shown by substitution.
 
-#pagebreak()
-== Landau-de Gennes theory
-There is a smarter way to do the above.
-
-By Landau we can always write the free energy near a phase transition as a Taylor expansion in the order parameter---de Gennes applied this to liquid crystals. So we consider
+We also have the boundary condition
 $
-  F = F_0 + A S + B/2 S^2 + C/3! S^3 + dots
+  evaluated(dv(V, x))_(x=D) = - sigma/epsilon
 $
-here we do not know what $A, B, dots$ or $S$ is. We will now try to determine what the terms correspond to.
-
-Consider the linear term $A S$, this must vanish, since:
+which gives the relation
 $
-  evaluated(dv(F, S))_(S=0) = A =^! 0
+  2 beta tan D beta = 4 pi cal(l)_B sigma/epsilon
 $
-due to $F$ having a minima at $S=0$. We also know the cubic term is necessary, else $F$ would be even meaning $S=-S$ would correspond to the same physics. We assume all temperature dependence is $prop S^2$, so we write
+this is nice! Since $beta prop sqrt(c_0)$ this is a function of the concentration which we can then solve for. We also have
 $
-  F = F_0 + a (T-T^*) S^2 - b S^3 + c S^4
+  c = c_0 e^(- tilde(V)) = c_0/(cos beta x)^2
 $
-where the $-$ sign is for convenience (since we want maxima and minima)---this is the free energy in Landau-de Gennes theory.
-
-Consider
-$
-  0 & = pdv(F, S) \
-  0 & = (2 a (T-T^*) - 3 b S + 4 c S^2) S \
-$
-so it is minimal for $S_"I" = 0$. The other physical extrema is
-$
-  S_"N" = (3b)/(8 c) [1 plus sqrt(1 - (32 a c)/(9 b^2) (T-T^*))]
-$
-this extrema appears at
-$
-  1 - (32 a c)/(9 b^2) (T-T^*) = 0 => T_C = T^* + (9 b^2)/(32 a c)
-$
-Before this $T > T_C$ and the only physical solution is $S_"I" = 0$. For $T=T_C$ we have solutions
-$
-  S = {S_"I" = 0, S_C= (3 b)/(8 c)}
-$
-To see if it these are minima or maxima consider
-$
-  pdv(F, S, 2) = 2 a (T-T^*) - 6 b S + 12 c S^2
-$
-For $S_"I" = 0$
-$
-  pdv(F, S, 2) = 2 a (T-T^*) cases(> 0 "for " T > T^*, < 0 "for " T < T^*)
-$
-so it is a minima for $T > T^*$ and becomes a maxima for $T < T^*$---meaning at $T < T^*$ it is very unlikely that the system is in the isotropic phase. For $S_C = 3 b \/ 8 c$
-$
-  pdv(F, S, 2) & = 2 a (T_C-T^*) - (9 b^2)/( 16 c) \
-               & = 2 a (T^* + (9 b^2)/(32 a c) - T^*) - (9 b^2)/(16 c) \
-               & = 0
-$
-so it is a saddle point.
-
-At the nematic-isotropic transition the free energy of the two minima are the same $F_"I" = F_"N"$ so
-$
-  0 & = a(T-T^*) S^2 - b S^3 + c S^4 \
-    & = (a(T-T^*) - b S + c S^2 ) S^2
-$
-so it is minimal for $S_"I" = 0$. For the quadratic
-$
-  a(T-T^*) &= b S_"N" - c S_"N"^2 \
-  &= (12 b^2)/(32 c) + (12 b^2)/(32 c) sqrt(1-(32 a c)/(9 b^2) (T-T^*))] - (9 b^2)/(64 c) [1 + sqrt(1-(32 a c)/(9 b^2) (T-T^*))]^2
-$
-the second term
-$
-  -[dots]^2 &= -(9 b^2)/(64 c) [2 - (32 a c)/(9 b^2) (T-T^*) + 2 sqrt(1-(32 a c)/(9 b^2) (T-T^*))] \
-  &= -(9 b^2)/(32 c) + a/2 (T-T^*) - (9 b^2)/(32 c) sqrt(1 - (32 a c)/(9 b^2) (T-T^*))
-$
-so we obtain
-$
-  [(16 a c)/(3 b^2) (T - T^*) -1 ]^2 & = 1 - (32 a c)/(9 b^2) (T-T^*) \
-                              T_"NI" & = T^* + b^2/(4 a c)
-$
-in this case
-$
-  S_"NI" & = (3 b)/(8 c) [1 + sqrt(1 - (32 a c)/(9 b^2) (b^2/(4 a c)))] \
-         & = (3 b)/(8 c) (1 + 1/3) \
-         & = (b)/(2 c)
-$
-
-We could also say
-$
-  S^2 (a(T-T^*) - b S + c S^2) = 0
-$
-and require we only have two solutions having $F-F_0 = 0$, with one being $S = 0$. Consider then
-$
-  S_plus.minus = (b plus.minus sqrt(b^2 - 4 a c(T-T^*)))/(2 c)
-$
-for this to have one solution (meaning $F-F_0$ has two zeroes) the determinant must vanish giving
-$
-  0 & = b^2 - 4 a c (T-T^*) => T = T^* + b^2/(4 a c)
-$
-which is the same as above.
-
-At the beginning we could have also written
-$
-  F = F_0 + A Tr Q + B/2 Tr Q^2 + C/3! Tr Q^3 + D/4! Tr Q^4
-$
-since $Tr Q = 0$ this term vanishes as before. The other terms are $prop S^2$, $prop S^3$, etc. just with different constants.
-
-We can also apply Landau-de Gennes to other phase transitions. Consider for example a smectic-nematic transition. We define some order parameter describing this and denote it by $Psi$, one can show that $Psi = - Psi$ meaning we must have
-$
-  F = F_0 + a (T-T^*) Psi^2 + b Psi^4
-$
-then one could proceed as before.
-
-#pagebreak()
-== Onsager theory
-Here we consider $F = - T S$ with the entropy being given by translational entropy (through depletion) and rotational entropy.
-
-We consider spherical particles with volume $v_p$ enclosed in a box of volume $V$. Evidently
-$
-  v_p = (4 pi r^3)/3
-$
-with $r$ being the radius of the spherical particles. The excluded volume due to any particle is
-$
-  u = (4 pi (2 r)^3)/3
-$
-If we have a single particle the volume available to it is $V$, if we add a second particle the volume available to it is $V-u$. Continuing like this the volume available for the $n$th particle is $V - (n-1) u$. Then the number of states can be written as
-$
-  W & = 1/n! product_(i=1)^n underbrace(A, "some constant") V (1-((i-1) u)/V) \
-    & = (A^n V^n)/n! product_(i=0)^(n-1) (1-(i u)/V)
-$
-taking the logarithm eventually gives the entropy
-$
-  ln W =^"Stirling" n ln A + n ln V - n ln n + n + sum_(i=1)^n ln(1-(i u)/V)
-$
-the sum can be computed
-$
-  Sigma & = sum_(i=1)^n ln(1- (i u)/V) \
-        & tilde.eq sum_(i=1)^n (- (i u)/V) \
-        & = - u/V sum_(i=1)^n i \
-        & tilde.eq^"Gauss" - (u n^2)/(2 V)
-$
-Then
-$
-  S & = k_B ln W \
-    & = k_B [n ln (A V) - n ln n+n - (u n^2)/(2 V)] \
-    & equiv underbrace(S(n,V), "mixing entropy")
-$
-We compare this to the completely seperated system,
-$
-  S_"mix" (n,V) - S_"unmixed" = Delta S_"mix"
-$
-and then let $F = - T Delta S_"mix"$. We have
-$
-  Delta S_"mix" & = S_"mix" (n,V) - [underbrace(S_"mix" (0,V), "no particles" #linebreak() = 0) + underbrace(S_"mix" (n,n v_p), "all clumped")] \
-  &= k_B (n ln A V - n ln n+n - (u n^2)/(2 V)) - k_B (n ln (A n v_p) - n ln n + n - (u n^2)/(2 n v_p)) \
-  &= k_B (n ln V/(n v_p) - (u n^2)/(2 V) + (u n^2)/(2 n v_p)) \
-  &= k_B (n ln V/(n v_p) - u/2 (n^2/V - n/v_p))
-$
-so we obtain
-$
-  F = k_B T [- n ln V/(n v_p) + u/2 (n^2/V-n/v_p)]
-$
-we let $c equiv n\/V$ and consider
-$
-  F/n & = k_B T [ln c v_p + (u c)/2 + "constant"]
-$
-so we find a free energy which depends on the concentration and excluded volume, notably the second term is positive.
-
-For rod-shaped particles this quantity is more complicated, but the terms are analogous. The difference between spheres and rods is that the orientation now matters with respect to the excluded volume. In the two-dimensional case consider rectangles of width $d$ and length $l$. If they are parallel the excluded area is $a = 4 d l$. If they are perpendicular the excluded area is $a = (d+l)^2 = d^2 + l^2 + 2 d l$. So we find
-$
-  Delta a = a_"perp"-a_"para" = (l-d)^2
-$
-so the excluded area for parallel rods is smaller.
-
-Going back we find for three-dimensional rods
-$
-  ln c v_p & --> integral ln(4 pi v_p c) psi(u) dd(u) \
-  (u c)/2 & --> integral c underbrace(beta(u, u'), prop "alignment") psi(u) psi(u') \
-  &underbrace(+ integral psi(u) ln psi(u) dd(u), "same as Maier-Saupe")
-$
-the RHS $u$ are orientations as in Maier-Saupe theory, so we essentially introduce integrals to weigh over orientations (and introduce rotational entropy). Onsager used
-$
-  beta = 2 d l^2 sin theta
-$
-with $theta$ being the angle between two rods. In principle this can be used for any shape of crystal the $beta$ will just be a different function. Using this leads one to find a nematic phase transition at some critical concentration, since $c$ is our control parameter---this looks similar to the Maier-Saupe theory, just dependent of concentration and not temperature.
-
-So entropy alone leads to liquid crystal formation. If they did not pack like a crystal one would lose entropy since many particles would becomes stuck at higher concentrations, while the crystal structure leaves wiggle room.
-
-#pagebreak()
-== Properties of nematic phase
-Liquid crystals have elasticity, if we try to distort some particles in the nematic phase then there will be a restoring force. But we are able to globally rotate a liquid crystal without using energy. This is quantified by the Frank elastic energy. This is defined to have certain properties: if $hat(n) -> - hat(n)$ then it should be invariant, it should depend on $nabla n$ and it should be invariant under global rotations. Under these condition the terms that survive are
-$
-  underbrace((div hat(n))^2, "3D splay") " and " (curl hat(n))^2 = underbrace((hat(n) dot (curl hat(n)))^2, "3D twist") + underbrace((hat(n) times (curl hat(n)))^2, "in-plane bend")
-$
-We can then write the Frank energy density as
-$
-  cal(f)_"elastic" equiv 1/2 [k_1 (div hat(n))^2 + k_2 (hat(n) dot (curl hat(n)))^2 + k_3 (hat(n) times (curl hat(n)))^2]
-$
-with the $k_i tilde^"usual" 10 "pN"$ being elastic constants setting the scale.
-
-Liquid crystals can also interact with external fields. The energy of an electric field in a medium is
-$
-  "Energy" prop bold(E) dot bold(D) "with" bold(D) = epsilon_0 epsilon bold(E)
-$
-due to anisotopy liquid crystals have two different dielectric constants $epsilon_parallel$ and $epsilon_perp$. This anisotropy also changes the refractive index $n$, the magnetic susceptibility $chi$, the viscosity $eta$, etc.. So we can write
-$
-  bold(D) = epsilon_0 epsilon_parallel bold(E)_parallel + epsilon_0 epsilon_perp bold(E)_perp
-$
-we now define the dielectric anisotropy $Delta epsilon equiv epsilon_parallel - epsilon_perp$ then
-$
-  epsilon_0 epsilon_parallel bold(E)_parallel &= epsilon_0 (Delta epsilon + epsilon_perp) bold(E)_parallel \
-  &= epsilon_0 Delta epsilon bold(E)_parallel + epsilon_0 epsilon_perp bold(E)_parallel
-$
-so we can write
-$
-  bold(D) &= epsilon_0 Delta epsilon bold(E)_parallel + epsilon_0 epsilon_perp (bold(E)_parallel + bold(E)_perp) \
-  &= epsilon_0 Delta epsilon bold(E)_parallel + epsilon_0 epsilon_perp bold(E)
-$
-The energy density is then
-$
-  "Energy density" &= - 1/2 bold(E) dot bold(D) \
-  &= -1/2 epsilon_0 Delta epsilon (bold(E) dot bold(E)_parallel) - 1/2 epsilon_0 epsilon_perp E^2
-$
-we can write $bold(E)_parallel = (bold(E) dot hat(n)) hat(n)$ giving
-$
-  cal(f)_"field" &= underbrace(- 1/2 epsilon_0 Delta epsilon (bold(E) dot hat(n))^2, "all" hat(n) "dependence") + g(E^2)
-$
-if $Delta epsilon > 0$ then this contribution is negative in the free energy if the electric field is parallel with the crystal and vanishing if they are perpendicular.
-
-Now consider a liquid crystal trapped between two glass slides coated with a conductive material. Given the liquid crystal is aligned in parallel with the slides we now apply an electric field across the crystal. When this is done the liquid crystal would like to rotate and align with the field. This necessarily requires energy due to boundary effects. To combat this the slides are coated with a polymer layer. The liquid crystals preferentially want to be aligned with the polymers. With this the liquid crystal is essentially fixed near the slides, but in the bulk of the liquid crystal it will align. So you gain energy by alignment with the electric field, but require elastic energy to fix the boundaries. For this reason if the field is turned off then the liquid crystal will again be parallel with the slides, since energy is needed to be perpendicular to the slides. Now due to the changing refractive index $n$, applying an electric field makes the liquid crystal opaque---this is one way to make a display.
-
-The light we use must be polarized. To do this a cross polarizor is used. Now let the director $hat(n)$ make an angle $beta$ with one of the polarizers---in-plane angle. In this case the intensity is given by
-$
-  I = I_0 sin^2 (2 beta) sin^2 underbrace(Delta n, "barofringent")
-$
-so it is maximal for $beta = pi\/4$ and minimal for $beta = 0, pi\/2$. The director $hat(n)$ also has an out-of-plane angle or tilt-angle $phi$ with respect to the cross polarizer. This is what determines the size of $Delta n$, changing the electric field changes $phi$. One can make display with $phi = 0$, but in this case the electric field needs to be applied differently.
-
-Assuming $k_i = k$ (one constant approximation) we can write the total energy density as
-$
-  cal(f) = 1/2 k [(div hat(n))^2 + (curl hat(n))^2] - 1/2 epsilon_0 Delta epsilon (hat(n) dot bold(E))^2
-$
-we want to minimize this under the constraint $abs(hat(n))=1$. This is done by writing
-$
-  hat(n) = vec(sin theta cos phi, sin theta sin phi, cos theta)
-$
-We consider the case described above: a liquid crystal parallel to two glass slides over which we apply an electric field. This is a two-dimensional problem and the angle only depends on $z$. Then $(phi = pi\/2)$
-$
-  hat(n) = vec(0, sin theta(z), cos theta(z))
-$
-The $cal(f)_"elastic"$ then becomes
-$
-  cal(f)_"elastic" = 1/2 k (dv(theta, z))^2
-$
-and $cal(f)_"field"$ becomes
-$
-  cal(f)_"field" = -1/2 epsilon_0 Delta epsilon E^2 cos^2 theta
-$
-so we obtain
-$
-  cal(f) = 1/2 k (dv(theta, z))^2 - 1/2 epsilon_0 Delta epsilon E^2 cos^2 theta
-$
-We minimize this using the Euler-Lagrange equation
-$
-  dv(cal(f), theta, d: delta) - dv(, z) dv(cal(f), dot(theta), d: delta) = 0
-$
-giving
-$
-  k dv(theta, z, 2) - epsilon_0 Delta epsilon E^2 cos theta sin theta = 0
-$
-or introducing
-$
-  xi^2 equiv k/(epsilon_0 Delta epsilon E^2)
-$
-we can write
-$
-  xi^2 dv(theta, z, 2) - cos theta sin theta = 0
-$
-this is solved by
-$
-  tan(theta/2 - pi/4) = exp(plus.minus z/xi)
-$
-so $xi$ sets the length scale. The above derivation ignores the energy loss in differing from the boundary condition, and completely ignores ions in the liquid crystal. We also completely ignore the isotropic-nematic phase transition---this assumes we are far from the transition.
+so the concentration is minimal at $x=0$. But at $x = 0$ we  have $dd(tilde(V))\/dd(x) = 0$ so they feel no electric field! We define $dd(c, d: Delta) = c_0 - c_oo$. This leads to an osmotic pressure keeping the colloids apart.
