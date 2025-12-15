@@ -279,7 +279,7 @@ so $sigma_(alpha alpha) = - P - 3 K epsilon_V$.
 === The free energy
 Consider the free energy $f(E_(alpha beta))$. This guy should be invariant under coordinate transformations. Meaning all dependence on $E_(alpha beta)$ must lie in invariant quantities.
 
-We define the left Cauchy-Green tensor of finger tensor $B_(alpha beta) equiv (E E^T)_(alpha beta)$. Consider the determinant
+We define the left Cauchy-Green tensor or finger tensor $B_(alpha beta) equiv (E E^T)_(alpha beta)$. Consider the determinant
 $
   det (B_(alpha beta) - lambda delta_(alpha beta)) &= - lambda^3 + I_1 lambda^2 - I_2 lambda + I_3
 $

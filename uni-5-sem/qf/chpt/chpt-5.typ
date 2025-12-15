@@ -78,7 +78,6 @@ $
 $
 this is the basic setup. So far everything is exact.
 
-=== Pertubative solution
 To solve this we assume that we can expand $ket(n)$ and $Delta_n$ in power series of $lambda$
 $
   ket(n) &= ket(n^((0))) + lambda ket(n^((1))) + lambda^2 ket(n^((2))) + dots \
@@ -133,7 +132,6 @@ which are easy to work with.
 
 Now it is obvious why this fails in the degenerate case, since then $E_n^((0)) = E_k^((0))$ making both of these ill-defined. This is why we want degenerate pertubation theory.
 
-#pagebreak()
 == Degenerate time-independent pertubation theory
 To solve the problem above we seek a diagonal basis for $V$ such that $V_(n k) = 0$ for $n eq.not k$, thereby circumventing degeneracy.
 
@@ -172,7 +170,6 @@ $
   Delta_l^((1)) = braket(l^((0)), V, l^((0)))
 $
 
-=== Linear Stark effect
 We consider the hydrogen atom with energies
 $
   E_n = - (alpha e^2 hbar c)/(2a_0) 1/n^2
@@ -221,11 +218,9 @@ $
 $
 
 
-#pagebreak()
 == Hydrogen-like atoms
 We consider a nucleus with $Z$ protons orbited by a single electron $e^-$.
 
-=== Relativistic correction
 The non-relativistic Hamiltonian is
 $
   H_0 = p^2/(2 m_e) - (Z e^2)/r
@@ -304,7 +299,6 @@ $
   &= -1/2 m_e c^2 Z^4 alpha^4 [- 3/(4 n^4) + 1/(n^3 (l+1/2))]
 $
 
-=== Spin-orbit coupling
 We consider a nucleus of $Z$ protons with a single electron $e^-$ in the outermost shell.
 
 This electron lives in a potential which is no longer a pure Coulomb potential:
@@ -360,7 +354,6 @@ $
 $
 
 
-=== Summary of corrections
 Due to relativistic effects we had
 $
   Delta_(n l)^((1)) = E_n [(Z^2 alpha^2)/n^2 (-3/4 + n/(l+1/2))] prop cal(O)(alpha^4)
@@ -384,7 +377,6 @@ so $l$ drops out!
 There are other higher order corrections, e.g. Lamb shift ($cal(O)(alpha^5)$) due to virtual photons and hyperfine splitting due to the nucleus not being spherically symmetric.
 
 
-#pagebreak()
 == Variational methods
 Essentially just the principle
 $
@@ -418,8 +410,7 @@ $
 $
 then $tilde(H) = 0 + cal(O) (delta^2)$ and then we can minimize with respect to $delta$.
 
-=== Infinite square well
-We consider a square well of width $2a$ centered at $x=0$. Then we know the solution
+Consider a square well of width $2a$ centered at $x=0$. Then we know the solution
 $
   braket(x, 0) = 1/sqrt(a) cos((pi x)/(2 a)) " and " E_n = hbar/(2 m) (pi^2/(4 a^2))
 $
@@ -455,7 +446,6 @@ $
   H_"min" = sum_k abs(braket(k, tilde(0)))^2 E_k^2 >= abs(braket(0, tilde(0)))^2 E_0 + dots
 $
 
-#pagebreak()
 == Time-dependent potentials
 We will only consider time-dependence in the form
 $
@@ -471,7 +461,6 @@ $
 $
 so all time-dependence from $V(t)$ is carried by $c_n (t)$ with $c_n (0)$ corresponding to $V(t=0)=0$. Then the problem we want to solve is finding these expansion coefficients.
 
-=== The interaction picture
 From the Schrödinger picture we have
 $
   ket(alpha\, t)_S = exp[(-i H t)/hbar] ket(alpha\, t=0)_S
@@ -542,8 +531,9 @@ giving
 $
   i hbar pdv(, t) c_n (t) & = sum_m V_(n m) e^(i omega_(n m) t) c_m (t)
 $
-=== Time-dependent two state problem
-We have the Hamiltonian
+
+
+Consider the Hamiltonian
 $
   H_0 = E_1 ketbra(1) + E_2 ketbra(2) " with " E_2 > E_1
 $
@@ -569,8 +559,7 @@ $
 $
 as  $omega -> omega_21$ we find $abs(c_2 (t))^2 -> 1$ which is resonance.
 
-=== Sudden approximation
-We turn on a perturbation so fast that the state does not have time to adjust, so we are still in the unperturbed state (e.g. a step-function).
+Consider turning on a perturbation so fast that the state does not have time to adjust, so we are still in the unperturbed state (e.g. a step-function).
 
 We define some characteristic time $T = Omega^(-1)$. Consider
 $
@@ -582,8 +571,7 @@ $
 $
 we take $T -> 0$ then $U(t,t_0) -> bb(1)$, so we are free to assume that the time-evolution becomes trivial. This is a fair approximation when $hbar Omega >> E_(n m) = hbar omega_(n m)$ or $T << 2 pi omega_(n m)^(-1)$.
 
-=== Adiabatic approximation
-This is the opposite of the sudden approximation, so a very slow time-variation meaning we are always in the perturbed state. The idea is to just use time-independent perturbation theory but make the coefficients time-dependent.
+Consider the opposite of the sudden approximation, so a very slow time-variation meaning we are always in the perturbed state. The idea is to just use time-independent perturbation theory but make the coefficients time-dependent.
 
 Consider the Schrödinger equation
 $
@@ -631,7 +619,6 @@ $
 $
 is the Berry phase.
 
-=== Berry phase
 We assume the time-dependence of $H(t)$ lies in $bold(R) (t)$. Then $E_n (t) = E_n (bold(R)(t))$ and $ket(n\, t) = ket(n(bold(R)(t)))$. Then
 $
   braket(n\, t, pdv(, t), n\, t) & = braket(n\,t, nabla_R, n\, t) dv(bold(R), t)
@@ -721,7 +708,6 @@ $
   &= minus.plus integral.cont dd(a_z)/(2 R^2) = minus.plus 1/2 integral.cont (hat(R) dot dd(bold(a)))/(R^2)
 $
 
-#pagebreak()
 == Time-dependent perturbation theory
 We will now attempt to do time-dependent perturbation theory in a systematic way. This will lead to us deriving the Dyson series.
 
@@ -817,7 +803,6 @@ $
 $
 this is an example of Fermi's golden rule---it tells us that it is rare to jump to states with very different energies (to first order at very large times, but it is still possible due to $Delta t Delta E gt.tilde hbar$).
 
-#pagebreak()
 == Energy shifts & decay width
 Above we had
 $

@@ -13,6 +13,8 @@ $
 $
 We have two ways to classify liquid crystals. The first is based on how the liquid crystal $<-->$ liquid phase transition is induced. We care about thermotropic and lyotropic liquid crystals, which are based on temperature and concentration respectively. The second is based on which symmetries the liquid crystal has. We mostly care about nematic liquid crystals whose symmetry is purely orientational. Examples of other types could be smectic, cholestric, columnar etc.
 
+Moving forward any liquid crystal is assumed to be nematic.
+
 == Q-tensor
 We want a to quantify the _orderedness_ of a liquid crystal. To this end we assign a unit vector $hat(u)$ to each molecule.
 
@@ -247,9 +249,9 @@ so we obtain
 $
   F = k_B T [- n ln V/(n v_p) + v_e/2 (n^2/V-n/v_p)]
 $
-We let $c equiv n\/V$ and consider
+We let $c equiv n V^(-1)$ and consider
 $
-  F/n & = k_B T [ln c v_p + (v_e c)/2 + "constant"]
+  F/n & = k_B T [ln v_p c + (v_e c)/2 + "constant"]
 $
 so this free energy only depends on the concentration and excluded volume! With the second term being is positive.
 
@@ -269,98 +271,74 @@ $
 $
 with $theta$ being the angle between two rods. This can be used for any liquid crystal shape with $beta$ depending on the shape. Using this free energy one finds an isotropic-nematic phase transition as some critical $c_"NI"$. Entropy alone leads to liquid crystals!
 
-== Frank elastic energy
-Liquid crystals have elasticity, if we try to distort some particles in the nematic phase then there will be a restoring force. But we are able to globally rotate a liquid crystal without using energy. This is quantified by the Frank elastic energy. This is defined to have certain properties: if $hat(n) -> - hat(n)$ then it should be invariant, it should depend on $nabla n$ and it should be invariant under global rotations. Under these condition the terms that survive are
+== Frank elastic energy and external fields
+Liquid crystals have elasticity. The nematic phase does not like being distorted and doing so leads to a restoring force. Globally however we can rotate the nematic phase without doing work. The Frank elastic energy quantitifies this. We define it to have certain properties. Under the exchange $hat(n) -> - hat(n)$ it should be invariant. We also require it depends on $nabla n$ and is invariant under global rotations. The terms that survive are
 $
-  underbrace((div hat(n))^2, "3D splay") " and " (curl hat(n))^2 = underbrace((hat(n) dot (curl hat(n)))^2, "3D twist") + underbrace((hat(n) times (curl hat(n)))^2, "in-plane bend")
+  underbracket((div hat(n))^2, "splay") " and " (curl hat(n))^2 = underbracket((hat(n) dot (curl hat(n)))^2, "twist") + underbracket((hat(n) times (curl hat(n)))^2, "in-plane bend")
 $
-We can then write the Frank energy density as
+Then we write
 $
-  cal(f)_"elastic" equiv 1/2 [k_1 (div hat(n))^2 + k_2 (hat(n) dot (curl hat(n)))^2 + k_3 (hat(n) times (curl hat(n)))^2]
+  f_"elastic" equiv 1/2 k_1 (div hat(n))^2 + 1/2 k_2 (hat(n) dot (curl hat(n)))^2 + 1/2 k_3 (hat(n) times (curl hat(n)))^2
 $
-with the $k_i tilde^"usual" 10 "pN"$ being elastic constants setting the scale.
+with $k_i tilde^"usual" 10 "pN"$ being elasticity constants.
 
-Liquid crystals can also interact with external fields. The energy of an electric field in a medium is
-$
-  "Energy" prop bold(E) dot bold(D) "with" bold(D) = epsilon_0 epsilon bold(E)
-$
-due to anisotopy liquid crystals have two different dielectric constants $epsilon_parallel$ and $epsilon_perp$. This anisotropy also changes the refractive index $n$, the magnetic susceptibility $chi$, the viscosity $eta$, etc.. So we can write
+Liquid crystals also interact with external fields and due to anisotropy liquid crystals have two dielectric constants $epsilon_parallel$ and $epsilon_perp$. We write $bold(D) = epsilon_0 epsilon bold(E)$ as
 $
   bold(D) = epsilon_0 epsilon_parallel bold(E)_parallel + epsilon_0 epsilon_perp bold(E)_perp
 $
-we now define the dielectric anisotropy $Delta epsilon equiv epsilon_parallel - epsilon_perp$ then
+defining the dielectric anisotropy $Delta epsilon equiv epsilon_parallel - epsilon_perp$ we find
 $
-  epsilon_0 epsilon_parallel bold(E)_parallel &= epsilon_0 (Delta epsilon + epsilon_perp) bold(E)_parallel \
-  &= epsilon_0 Delta epsilon bold(E)_parallel + epsilon_0 epsilon_perp bold(E)_parallel
+  epsilon_0 epsilon_parallel bold(E)_parallel &= epsilon_0 Delta epsilon bold(E)_parallel + epsilon_0 epsilon_perp bold(E)_parallel
 $
-so we can write
+so
 $
-  bold(D) &= epsilon_0 Delta epsilon bold(E)_parallel + epsilon_0 epsilon_perp (bold(E)_parallel + bold(E)_perp) \
-  &= epsilon_0 Delta epsilon bold(E)_parallel + epsilon_0 epsilon_perp bold(E)
+  bold(D) &= epsilon_0 Delta epsilon bold(E)_parallel + epsilon_0 epsilon_perp bold(E)
 $
-The energy density is then
+Then
 $
-  "Energy density" &= - 1/2 bold(E) dot bold(D) \
+  f_"field" &= - 1/2 bold(E) dot bold(D) \
   &= -1/2 epsilon_0 Delta epsilon (bold(E) dot bold(E)_parallel) - 1/2 epsilon_0 epsilon_perp E^2
 $
-we can write $bold(E)_parallel = (bold(E) dot hat(n)) hat(n)$ giving
+writing $bold(E)_parallel = (bold(E) dot hat(n)) hat(n)$ we obtain
 $
-  cal(f)_"field" &= underbrace(- 1/2 epsilon_0 Delta epsilon (bold(E) dot hat(n))^2, "all" hat(n) "dependence") + g(E^2)
+  f_"field" &= underbracket(- 1/2 epsilon_0 Delta epsilon (bold(E) dot hat(n))^2, "all" hat(n) "dependence") + g(E^2)
 $
-if $Delta epsilon > 0$ then this contribution is negative in the free energy if the electric field is parallel with the crystal and vanishing if they are perpendicular.
+which is nice!
 
-Now consider a liquid crystal trapped between two glass slides coated with a conductive material. Given the liquid crystal is aligned in parallel with the slides we now apply an electric field across the crystal. When this is done the liquid crystal would like to rotate and align with the field. This necessarily requires energy due to boundary effects. To combat this the slides are coated with a polymer layer. The liquid crystals preferentially want to be aligned with the polymers. With this the liquid crystal is essentially fixed near the slides, but in the bulk of the liquid crystal it will align. So you gain energy by alignment with the electric field, but require elastic energy to fix the boundaries. For this reason if the field is turned off then the liquid crystal will again be parallel with the slides, since energy is needed to be perpendicular to the slides. Now due to the changing refractive index $n$, applying an electric field makes the liquid crystal opaque---this is one way to make a display.
+Consider a liquid crystal between two glass slides coated by a conductive material. Take the liquid crystal to be parallel with the slides. We now apply an electric field across it. The liquid crystal would like to rotate and align with the applied field. This requires energy due to boundary effects. To combat this the slides are coated with polymers. The liquid crystal preferentially wants to be aligned with the polymers. So the liquid crystal is fixed near the slides, but the bulk is free to align with the applied field. As seen above it if favorable to align with the applied field, but does require elastic energy to fix the boundaries. Meaning if we turn off the applied field then the liquid crystal will relax and again become parallel to the slides. Since the refractive index $n$ is anisotropic the liquid crystal becomes opaque when applying a field.
 
-The light we use must be polarized. To do this a cross polarizor is used. Now let the director $hat(n)$ make an angle $beta$ with one of the polarizers---in-plane angle. In this case the intensity is given by
+With the above setup we shine polarized light through our liquid crystal. This is achieved using a cross-polarizer. Let the director $hat(n)$ make a _in-plane_ angle $beta$ with one of the polarizers. Then the intensity of light is given by
 $
   I = I_0 sin^2 (2 beta) sin^2 underbrace(Delta n, "birefringent")
 $
-so it is maximal for $beta = pi\/4$ and minimal for $beta = 0, pi\/2$. The director $hat(n)$ also has an out-of-plane angle or tilt-angle $phi$ with respect to the cross polarizer. This is what determines the size of $Delta n$, changing the electric field changes $phi$. One can make display with $phi = 0$, but in this case the electric field needs to be applied differently.
+The director $hat(n)$ also has an _out-of-plane_ angle $phi$ with respect to the cross polarizer. This determines the size of $Delta n$ since changing the applied field changes $phi$.
 
-Assuming $k_i = k$ (one constant approximation) we can write the total energy density as
+As an example assume $k_i = k$ and consider the case described above. We write
 $
-  cal(f) = 1/2 k [(div hat(n))^2 + (curl hat(n))^2] - 1/2 epsilon_0 Delta epsilon (hat(n) dot bold(E))^2
+  f = underbracket(1/2 k [(div hat(n))^2 + (curl hat(n))^2], "Frank elastic energy") - underbracket(1/2 epsilon_0 Delta epsilon (hat(n) dot bold(E))^2, "electric energy")
 $
-we want to minimize this under the constraint $abs(hat(n))=1$. This is done by writing
+this is what we want to minimize under the constraint $abs(hat(n))=1$. Generally we can write
 $
   hat(n) = vec(sin theta cos phi, sin theta sin phi, cos theta)
 $
-We consider the case described above: a liquid crystal parallel to two glass slides over which we apply an electric field. This is a two-dimensional problem and the angle only depends on $z$. Then $(phi = pi\/2)$
+For the case described above we have a two-dimensional problem where $phi = pi\/2$ and $theta$ only depends on $z$. Then
 $
-  hat(n) = vec(0, sin theta(z), cos theta(z))
+  f = 1/2 k (dv(theta, z))^2 - 1/2 epsilon_0 Delta epsilon E^2 cos^2 theta
 $
-The $cal(f)_"elastic"$ then becomes
+By the Euler-Lagrange equation
 $
-  cal(f)_"elastic" = 1/2 k (dv(theta, z))^2
+  dv(f, theta, d: delta) - dv(, z) dv(f, dot(theta), d: delta) = 0
 $
-and $cal(f)_"field"$ becomes
-$
-  cal(f)_"field" = -1/2 epsilon_0 Delta epsilon E^2 cos^2 theta
-$
-so we obtain
-$
-  cal(f) = 1/2 k (dv(theta, z))^2 - 1/2 epsilon_0 Delta epsilon E^2 cos^2 theta
-$
-We minimize this using the Euler-Lagrange equation
-$
-  dv(cal(f), theta, d: delta) - dv(, z) dv(cal(f), dot(theta), d: delta) = 0
-$
-giving
-$
-  k dv(theta, z, 2) - epsilon_0 Delta epsilon E^2 cos theta sin theta = 0
-$
-or introducing
-$
-  xi^2 equiv k/(epsilon_0 Delta epsilon E^2)
-$
-we can write
+we find
 $
   xi^2 dv(theta, z, 2) - cos theta sin theta = 0
 $
-this is solved by
+where we define $xi$ by
+$
+  xi^2 equiv k/(epsilon_0 Delta epsilon E^2)
+$
+the solution is
 $
   tan(theta/2 - pi/4) = exp(plus.minus z/xi)
 $
-so $xi$ sets the length scale. The above derivation ignores the energy loss in differing from the boundary condition, and completely ignores ions in the liquid crystal. We also completely ignore the isotropic-nematic phase transition---this assumes we are far from the transition.
-
-
+which can easily be checked.

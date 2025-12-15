@@ -429,7 +429,6 @@ $
 $
 we treat this as the _spherical Fourier transform_. We can do something analogously in quantum mechanics.
 
-=== Free states
 Consider a free particle with
 $
   H_0 = K
@@ -450,17 +449,17 @@ $
 $
 this is nice because now we can find any $ket(bold(k))$ by rotating this guy
 $
-  ket(bold(k)) = cal(D) (phi, theta) ket(k hat(z))
+  ket(bold(k)) = D (phi, theta) ket(k hat(z))
 $
 We find
 $
   braket(E\,l\,m, bold(k)) &= sum_l' integral dd(E') braket(E\,l\,m, D(phi,theta), E'\,l'\,m'=0) braket(E'\,l'\,m'=0, k hat(z)) \
-  &= sum_l' integral dd(E') cal(D)_(m 0)^((l')) (phi,theta) delta_(l l') delta(E-E') braket(E'\,l'\,m'=0, k hat(z)) \
-  &= cal(D)_(m 0)^((l)) (phi,theta) braket(E\,l\, m = 0, k hat(z))
+  &= sum_l' integral dd(E') D_(m 0)^((l')) (phi,theta) delta_(l l') delta(E-E') braket(E'\,l'\,m'=0, k hat(z)) \
+  &= D_(m 0)^((l)) (phi,theta) braket(E\,l\, m = 0, k hat(z))
 $
 recall
 $
-  cal(D)_(m 0)^((l)) (theta, phi) = sqrt((4 pi)/(2 l+1)) Y_(l m)^* (theta, phi)
+  D_(m 0)^((l)) (theta, phi) = sqrt((4 pi)/(2 l+1)) Y_(l m)^* (theta, phi)
 $
 so
 $
@@ -509,7 +508,6 @@ $
   &= (i^l)/hbar sqrt((2 m k)/pi) j_l (k x) Y_(l m) \(hat(x))
 $
 
-=== The expansion
 We assume the potential is spherically symmetric meaning $T$ commutes with $L^2$ and $bold(L)$. Then we can write
 $
   braket(E'\,l'\,m', T, E\,l\,m) = T_l (E) delta_(l l') delta_(m m') delta(E-E')
@@ -664,4 +662,86 @@ $
 which is four times the geometric cross-section!
 
 == Eikonal approximation
+We take the wavelength $lambda$ of the incoming wavepacket to be much smaller than the _size_ of our potential. This allows us to use the semi-classical approximation
+$
+  psi^((+)) tilde e^(i S hbar^(-1))
+$
+where $S$ satisfies the Hamilton-Jacobi equation
+$
+  (nabla S)^2/(2 m) + V = underbracket((hbar^2 k^2)/(2 m), E)
+$
+we essentially treat the wavepacket like a bullet.
 
+We easily find
+$
+  S/hbar = integral_(-oo)^z dd(z') [k^2-(2 m V(sqrt(b^2+z'^2)))/hbar^2]^(1\/2) + "constant"
+$
+with $bold(x) = overbracket(bold(b), "impact parameter") + bold(z)$. For $V = 0$ we have $S hbar^(-1) = k z$. We can write the above as
+$
+  S/hbar &= k z + integral_(-oo)^z {[k^2 - (2 m V(sqrt(b^2+z^2)))/hbar^2]^(1\/2) - k} dd(z') \
+  &tilde.eq^(E >> V) k z - m/(hbar^2 k) integral_(-oo)^z V(sqrt(b^2+z'^2)) dd(z')
+$
+Then the scattering state becomes
+$
+  psi^((+)) (bold(x)) &= 1/(2 pi)^(3\/2) e^(i k z) exp((-i m)/(hbar^2 k) integral_(-oo)^z V(sqrt(b^2+z'^2))dd(z'))
+$
+then
+$
+  f(bold(k),bold(k)') &= - (2m)/(4 pi) L^3/hbar^2 braket(bold(k)', V, psi^((+))) \
+  &= - 1/(4 pi) (2 m)/hbar^2 (2 pi)^3 integral dd(bold(x)', 3) e^(-i bold(k)' dot bold(x)')/(2 pi)^(3\/2) V(bold(x)') braket(bold(x)', psi^((+))) \
+  &= - (2 m)/(4 pi hbar^2) integral dd(bold(x)', 3) e^(-i bold(k)' dot bold(x)') V(bold(x)') e^(i k z) exp((-i m)/(hbar^2 k) integral_(-oo)^z V(sqrt(b^2+z'^2)) dd(z'))
+$
+we take the scattering to happen in the $x z$-plane. We have $(bold(k)-bold(k)') dot bold(x) eq - bold(k)' dot bold(b) + cal(O)(theta^2)$ and $bold(k)' dot bold(b) tilde.eq k b theta cos phi_b$. Then
+$
+  f(bold(k)',bold(k)) &= - 1/(4 pi) (2 m)/hbar^2 integral_0^oo b dd(b) underbracket(integral_0^(2 pi) dd(phi_b) e^(-i k b theta cos phi_b), 2 pi J_0 (k b theta)) integral_(-oo)^oo dd(z) V exp((-i m)/(hbar^2 k) integral_(-oo)^z V dd(z')) \
+  &= - m/hbar^2 integral_0^oo dd(b) b J_0 (k b theta) evaluated([(i hbar^2 k)/m exp((-i m)/(hbar^2 k) integral_(-oo)^z V dd(z'))])_(z=-oo)^(z=oo) \
+  &= - i k integral_0^oo dd(b) b J_0 (k b theta) (e^(2 i Delta (b))-1)
+$
+where
+$
+  Delta (b) equiv (-m)/(2 k hbar^2) integral_(-oo)^oo V(sqrt(b^2+z^2)) dd(z)
+$
+Before we had found
+$
+  f(theta) = 1/k sum_l (2 l +1) e^(i delta_l) sin delta_l P_l (cos theta)
+$
+Take $hbar l = b p = b hbar k$ so $l = b k$ with $l_"max" = k R$ then
+$
+  sum_l -> k integral dd(b)";  " P_l (cos theta) tilde.eq^"large l" J_0 (l theta) = J_0 (k b theta)
+$
+let $delta_l -> evaluated(Delta(b))_(b = l k^(-1))$ and we find
+$
+  f(theta) tilde.eq - i k integral_0^oo dd(b) b J_0 (k b theta) (e^(2 i Delta(b))-1)
+$
+this is quite nice!
+
+For hard sphere scattering
+$
+  sigma_"tot" = (4 pi)/k^2 sum_(l=0)^l_"max" (2 l + 1) sin^2 delta_l
+$
+for $evaluated(A_l (r))_(r=R) = 0$ we found
+$
+  tan delta_l = (j_l (k R))/(n_l (k R)) -> sin^2 delta_l tilde.eq sin^2 (k R - (pi l)/2)
+$
+meaning $sin^2 delta_l + sin^2 delta_(l+1) = 1$. Then
+$
+  sigma_"tot" & = (4 pi)/k^2 sum_(l=0)^(l=k R) (2 l +1) 1/2 \
+              & tilde.eq (4 pi)/k^2 (k R)^2 1/2 \
+              & = 2 pi R^2
+$
+which is twice the geometric cross-section!
+
+We write
+$
+  f(theta) &= underbracket(1/(2 i k) sum_l (2 l +1) e^(2 i delta_l) P_l (cos theta), f_"reflection") + underbracket(i/(2 k) sum_l (2 l +1) P_l (cos theta), f_"shadow")
+$
+$f_"reflection"$ contains the actual scattering while $f_"shadow"$ is independent of scattering. Clearly for $delta_l = 0$ they cancel. Since $f_"shadow"$ is purely imaginary it contributes to the optical theorem while $f_"reflection"$ oscillates wildly leaving no contribution. We have
+$
+  (4 pi)/k Im f(0) & = (4 pi)/k Im f_"shadow" (0) \
+                   & = (4 pi)/k Im (i/(2 k) sum_l (2l + 1)) \
+                   & = 2 pi R^2 equiv sigma_"tot"
+$
+so the optical theorem is satisfied. Which can be written as
+$
+  sigma_"tot" = sigma_"reflection" + sigma_"shadow" = pi R^2 + pi R^2
+$

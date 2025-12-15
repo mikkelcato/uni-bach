@@ -1,5 +1,5 @@
 //**** init-ting
-#import "@preview/physica:0.9.5": *
+#import "@preview/physica:0.9.7": *
 #import "chpt-temp.typ": *
 
 #show: thmrules.with(qed-symbol: $square$)
@@ -7,22 +7,12 @@
 
 #pagebreak()
 = Symmetry and Quantum Mechanics
-== Symmetries and Degeneracies
-We start by quickly reviewing some stuff from classical physics. In Lagrangian mechanics we work with the Lagrangian which is a function of $q_i$ and $dot(q)_i$. If $L$ is invariant under translation $q_i -> q_i + dd(q_i, d: delta)$ then we must have
-$
-  pdv(L, q_i) = 0 =>^"E.L.eq" dv(p_i, t) = 0
-$
-so the conjugate momentum $p_i$ to $q_i$ is conserved. Similarly in Hamiltonian mechanics then
-$
-  pdv(H, q_i) = 0 => dv(p_i, t) = 0
-$
-so if there is no explicit dependence on $q_i$ then either the Hamiltonian or Lagrangian has a symmetry under translation, and therefore also a conserved quantity.
-
-In quantum mechanics we associate a unitary operator $cal(I)$ with some operation like translation---some call these symmetry operators for this reason even if the system itself doesn't have the corresponding symmetry. We've also seen that for infinitesimal operations we can write
+== Symmetries
+We associate a unitary operator $cal(I)$ with some operation like translation. By convention we call these symmetry operators. We have seen that for infinitesimal operations we can write
 $
   cal(I) = 1 - (i epsilon)/hbar G
 $
-with $G$ being the Hermitian generator of $cal(I)$. We suppose $H$ is invariant under $cal(I)$, then
+with $G$ being the Hermitian generator of $cal(I)$. We suppose $H$ is invariant under $cal(I)$. Then
 $
   cal(I)^dagger H cal(I) = H <=> [G, H] = 0
 $
@@ -30,68 +20,63 @@ by the Heisenberg equation of motion then
 $
   dv(G, t) = 0
 $
-so $G$ is an invariant quantity. So if $H$ is invariant under translations, then the invariant quantity is momentum, and if $H$ is invariant under rotations, then the invariant quantity is angular momentum.
+so $G$ is an invariant quantity.
 
-As an instructive connection consider an eigenket of $G$, our system is in this eigenket at $t_0$. The ket at a later time is
+Consider an eigenket of $G$ and let the system be in this eigenket at $t_0$. Then at a later time
 $
-  ket(g'","t_0";"t) = U(t,t_0) ket(g')
+  ket(g'\,t_0\;t) = U(t,t_0) ket(g')
 $
-and this is also an eigenket of $G$. To see this note that $G$ and the time-evolution operator commute since $[G,H] = 0$, so
-$
-  G [U(t,t_0) ket(g')] = U(t,t_0) G ket(g') = g' [U(t,t_0) ket(g')]
-$
-so the time-evolved ket has the same eigenvalue aswell.
+with this also being an eigenket of $G$ since $[G,H] = 0$.
 
-Now we'll turn to degeneracies. We suppose $[H,cal(I)] = 0$ for some symmetry operator and $ket(n)$ is an energy eigenket with eigenvalue $E_n$. Then $cal(I) ket(n)$ is also an energy eigenket with the same energy since
+Assume $[H,cal(I)] = 0$ for some symmetry operator. Let $ket(n)$ be an energy eigenket with eigenvalue $E_n$. Then $cal(I) ket(n)$ is also an energy eigenket with the same eigenvalue since
 $
   H (cal(I) ket(n)) = cal(I) H ket(n) = E_n (cal(I) ket(n))
 $
-if $ket(n)$ and $cal(I) ket(n)$ are different states, then we evidently have degeneracy. Typically $cal(I)$ is continuous meaning $cal(I) (lambda)$ then all $cal(I) (lambda) ket(n)$ have the same energy. Consider a rotationally invariant Hamiltonian $[cal(D)(R),H]=0$ implying $[bold(J),H]=0$ and $[bold(J)^2,H]=0$. Then we can form simultaneous eigenkets of $H, bold(J)^2, J_z$ denoted by $ket(n";"j","m)$, then as before all states $cal(D)(R) ket(n";"j","m)$ have the same energy. This necessarily implies that all $ket(n";"j","m)$ with different $m$ values have the same energy since we can mix $m$ by rotation---so we have degeneracy $d_m = 2 j + 1$.
+when $ket(n)$ and $cal(I) ket(n)$ are different states we have degeneracy. Typically $cal(I)$ is continuous meaning all $cal(I) (lambda) ket(n)$ have the same energy.
 
-=== $"SO"(4)$ symmetry for $r^(-1)$ potentials
-Classically the invariant for motion in $r^(-1)$ potentials is the Runge-Lenz vector
+Consider $[D(R),H]=0$ implying $[bold(J),H]=0$ and $[bold(J)^2,H]=0$. Then we have simultaneous eigenkets $ket(n\;j\,m)$ and as before all states $D(R) ket(n\;j\,m)$ have the same energy. This implies that all $ket(n\;j\,m)$ with different $m$ have the same energy since we can mix $m$ by rotation. Then we have degeneracy $d_m = 2 j + 1$.
+
+== $"SO"(4)$ and $r^(-1)$
+The invariant for motion in $r^(-1)$ potentials is the Runge-Lenz vector
 $
   bold(M) = (bold(p) times bold(L))/m - (Z e^2)/r bold(x)
 $
-we won't show this. The symmetry responsible for this invariant is $"SO"(4)$ so the group of $4 times 4$ orthogonal matrices with unit determinant. To show this we start by modifiying the invariant to make it Hermitian
+The symmetry responsible for this invariant is $"SO"(4)$. To show this we start by making the invariant Hermitian
 $
   bold(M) = 1/(2 m) (bold(p) times bold(L) - bold(L) times bold(p)) - (Z e^2)/r bold(x)
 $
-which is Hermitian since $(bold(A) times bold(B))^dagger = -bold(B) times bold(A)$. With the Hamiltonian
+With the Hamiltonian
 $
   H = bold(p)^2/(2 m) - (Z e^2)/r
 $
-it is easily shown that
+we can show
 $
   [bold(M), H] = 0
 $
-so $bold(M)$ is indeed invariant. We can also show
+so $bold(M)$ is actually invariant. We can also show
 $
-  bold(L) dot bold(M) = 0 = bold(M) dot bold(L)";  " bold(M)^2 = 2/m H (bold(L)^2 + hbar^2) + Z^2 e^4
+  bold(L) dot bold(M) = 0";  " bold(M)^2 = 2/m H (bold(L)^2 + hbar^2) + Z^2 e^4
 $
-to find the underlying symmetry, we'd like to know the algebra of the generators of the symmetry. We already know part of it
+To find the symmetry we need to know the algebra of the generators of the symmetry. We already know part of it
 $
   [L_i, L_j] = i hbar epsilon_(i j k) L_k
 $
-we can show
+and we can show
 $
-  [M_i, L_j] = i hbar epsilon_(i j k) M_k
+  [M_i, L_j] & = i hbar epsilon_(i j k) M_k \
+  [M_i, M_j] & = - i hbar epsilon_(i j k) 2/m H L_k
 $
-and
-$
-  [M_i, M_j] = - i hbar epsilon_(i j k) 2/m H L_k
-$
-the algebra is not closed since $H$ appears in the final commutator---this makes our job harder. We can consider just specific bound states. Then the vector space is truncated to only those that are eigenstates of $H$ with $E < 0$. This lets us replace $H$ by $E$ and the algebra becomes closed. It is useful to write
+so the algebra is not closed which makes our lives harder. We consider specific bound states. Then the vector space is truncated to only those that are eigenstates of $H$ with $E < 0$. This allows us to replace $H$ by $E$ and the algebra becomes closed. We introduce
 $
   bold(N) equiv (- m/(2 E))^(1\/2) bold(M)
 $
-which gives the algebra
+giving the algebra
 $
   [L_i,L_j] & = i hbar epsilon_(i j k) L_k \
   [N_i,L_j] & = i hbar epsilon_(i j k) N_k \
   [N_i,N_j] & = i hbar epsilon_(i j k) L_k
 $
-which symmetry operation is then generated by $bold(L)$ and $bold(N)$? The first hint that this corresponds to rotation in four spatial dimension is that we have six generators. To show it is correct we essentially generalize our treatment of $bold(L)$ in three dimensions. We associate $(x, y, z) -> (x_1, x_2, x_3)$ and similarly for $p_i$. Then we rewrite the three dimensional generators
+Which symmetry operation is then generated by $bold(L)$ and $bold(N)$? The first hint that this corresponds to rotation in four spatial dimension is that we have six generators. To show it is correct we essentially generalize our treatment of $bold(L)$ in three dimensions. We associate $(x, y, z) -> (x_1, x_2, x_3)$ and similarly for $p_i$. We rewrite the three dimensional generators
 $
   L_3 & = tilde(L)_(1 2) = x_1 p_2 - x_2 p_1 \
   L_2 & = tilde(L)_(1 3) = x_1 p_3 - x_3 p_1 \
@@ -105,7 +90,7 @@ $
 $
 these $N_i$ obey the previous algebra.
 
-For the degeneracies we define
+We can define
 $
   bold(I) & equiv (bold(L)+bold(N))/2 \
   bold(K) & equiv (bold(L)-bold(N))/2
@@ -116,7 +101,7 @@ $
   [K_i,K_j] & = i hbar epsilon_(i j k) K_k \
   [I_i,K_j] & = 0
 $
-so they obey independent angular momentum algebras. We also have $[bold(I),H] = [bold(K),H] = 0$, so they are conserved, and we denote the eigenvalues of $bold(I)^2$ and $bold(K)^2$ by $i(i+1)hbar^2$ and $k(k+1)hbar^2$ respectively, with $i,k$ half-integer. Since $bold(I)^2 - bold(K)^2 = bold(L) dot bold(N) = 0$ then $i = k$. And
+so they obey independent angular momentum algebras! We also have $[bold(I),H] = [bold(K),H] = 0$ so they are conserved. We denote the eigenvalues of $bold(I)^2$ and $bold(K)^2$ by $i(i+1)hbar^2$ and $k(k+1)hbar^2$ respectively. Since $bold(I)^2 - bold(K)^2 = bold(L) dot bold(N) = 0$ then $i = k$ and
 $
   bold(I)^2 + bold(K)^2 = 1/2 (bold(L)^2 - m/(2 E) bold(M)^2) => 2 k(k+1) hbar^2 = 1/2 (- hbar^2 - m/(2 E) Z^2 e^4)
 $
@@ -124,15 +109,12 @@ giving the energy
 $
   E = - (m Z^2 e^4)/(2 hbar^2) 1/(2 k +1 )^2
 $
-which is just the Bohr energy with $n -> 2 k + 1$, so the degeneracy lies in both rotational symmetries from $bold(I)$ and $bold(K)$---$d_n = (2 i +1)(2 k +1) = (2 k +1)^2 = n^2$.
+which is just the Bohr energy with $n -> 2 k + 1$! The degeneracy then lies in both rotational symmetries from $bold(I)$ and $bold(K)$ meaning $d_n = (2 i +1)(2 k +1) = (2 k +1)^2 = n^2$.
 
-The algebra we found corresponds to $"SO"(4)$ and we've seen that we can decompose it as $"SO"(4) tilde.equiv "SO"(2) times "SO"(2)$.
+The algebra we found corresponds to $"SO"(4)$ and we have seen we can decompose it as $"SO"(4) tilde.equiv "SO"(2) times "SO"(2)$!
 
-== Discrete symmetries
-So far we've consider continuous symmetries, now we'll consider the important discrete symmetries we meet in quantum mechanics.
-
-=== Parity & operators
-Parity is the transformation $"RH-system" <-> "LH-system"$. In this course we treat is like
+== Parity
+Parity is the transformation $"RH-system" <--> "LH-system"$. We treat it like
 $
   ket(alpha) -> pi ket(alpha)
 $
@@ -140,27 +122,27 @@ with $pi$ being the parity operator. We require this satisfies
 $
   braket(alpha, pi^dagger bold(x) pi, alpha) = - braket(alpha, bold(x), alpha)
 $
-this happens if
+which happens when
 $
   pi^dagger bold(x) pi = - bold(x) => bold(x) pi = - pi bold(x)
 $
-so $bold(x)$ and $pi$ anticommute.
+so when $bold(x)$ and $pi$ anticommute!
 
-We claim that
+We claim
 $
   pi ket(bold(x)') = e^(i delta) ket(- bold(x)')
 $
-with $delta in RR$. To show this note
+with $delta in RR$. To see this consider
 $
   bold(x) pi ket(bold(x)') = - pi bold(x) ket(bold(x)') = (- bold(x)') pi ket(bold(x)')
 $
-so $pi ket(bold(x)')$ is an eigenket of $bold(x)$ with eigenvalue $- bold(x)'$---so it must be the same as $ket(-bold(x)')$ up to phase. Usually we take $e^(i delta) = 1$. With this convention $pi^2 ket(bold(x)') = ket(bold(x'))$ so $pi^2 = 1$, meaning
+so $pi ket(bold(x)')$ is an eigenket of $bold(x)$ with eigenvalue $- bold(x)'$. So it must be $ket(-bold(x)')$ up to a phase. By convention we take $e^(i delta) = 1$. With this convention $pi^2 ket(bold(x)') = ket(bold(x'))$ so $pi^2 = 1$ meaning
 $
   pi^(-1) = pi^dagger = pi
 $
-so it's Hermitian with eigenvalue $plus.minus 1$.
+so it is Hermitian with eigenvalues $plus.minus 1$.
 
-To see how it interacts with the momentum operator consider
+Consider
 $
   pi cal(J) (dd(bold(x)')) &= cal(J) (- dd(bold(x)')) pi \
   pi (1 - (i bold(p) dot dd(bold(x)'))/hbar) pi^dagger &= 1 + (i bold(p) dot dd(bold(x)'))/hbar
@@ -169,30 +151,31 @@ meaning
 $
   {pi, bold(p)} = 0 "or" pi^dagger bold(p) pi = - bold(p)
 $
-this also means that
+so they anticommute! We also find
 $
   [pi, bold(L)] = 0
 $
-since both $bold(x)$ and $bold(p)$ are odd under parity. To show this is general for $bold(J)$, we note that for $3 times 3$ orthogonal matrices
+since both $bold(x)$ and $bold(p)$ are odd under parity. To show this is general for $bold(J)$ we note that for $3 times 3$ orthogonal matrices
 $
   R^"parity" R^"rotation" = R^"rotation" R^"parity"
 $
-so they commute, due to $pi = - II$ in Euclidean space. We postulate the same relation
+so they commute due to $pi = - bb(1)$ in Euclidean space. We postulate the same relation
 $
-  pi cal(D) (R) = cal(D) (R) pi
+  pi D (R) = D (R) pi
 $
 with
 $
-  cal(D) = 1 - (i bold(J) dot hat(bold(n)) epsilon)/hbar
+  D = 1 - (i bold(J) dot hat(bold(n)) epsilon)/hbar
 $
-then it follows that
+Then it follows that
 $
   [pi, bold(J)] = 0 "or" pi^dagger bold(J) pi = bold(J)
 $
-this implies with the previous that $[pi, bold(S)] = 0$. Everthing odd under parity, like $bold(x)$, is a vector, while pseudovectors are even under parity. Similarly scalars are even since they don't transform, while pseudoscalars are odd.
+this implies with the previous that $[pi, bold(S)] = 0$!
 
-=== Parity & wavefunctions
-We consider a spinless particle described by $ket(alpha)$
+To summarize $bold(x)$ and $bold(p)$ are odd while $bold(J)$ is even!
+
+Consider a spinless particle described by $ket(alpha)$ with
 $
   psi(bold(x)') = braket(bold(x)', alpha)
 $
@@ -200,7 +183,7 @@ the space-inverted state is
 $
   braket(bold(x)', pi, alpha) = braket(-bold(x)', alpha) = psi(- bold(x)')
 $
-if $ket(alpha)$ is an eigenket of $pi$ then
+Assuming $ket(alpha)$ is an eigenket of $pi$ then
 $
   pi ket(alpha) = plus.minus ket(alpha)
 $
@@ -208,56 +191,47 @@ so
 $
   braket(bold(x)', pi, alpha) = plus.minus braket(bold(x)', alpha)
 $
-this with the previous immediately gives
+We find
 $
   psi(-bold(x)') = plus.minus psi(bold(x)') cases("even parity", "odd parity")
 $
-this is of course not true for all wavefunctions.
 
-We now prove
 #thm[
-  Suppose $ [H,pi] = 0 $ and $ket(n)$ is a non-degenerate eigenket of $H$ with eigenvalue $E_n$
-  $
-    H ket(n) = E_n ket(n)
-  $
-  then $ket(n)$ is also a parity eigenket.
+  Assume $[H,pi] = 0$ and let $ket(n)$ be a non-degenerate eigenket of $H$ with eigenvalue $E_n$. Then $ket(n)$ is also a parity eigenket.
 ]
-So if the Hamiltonian commutes with the parity operator then all non-degenerate energy eigenkets are parity eigenkets.
-
 #proof[
   Consider
   $
     ket(alpha) equiv 1/2 (1 plus.minus pi) ket(n)
   $
-  then $pi ket(alpha) = plus.minus ket(alpha)$, so $ket(alpha)$ is a parity eigenket. And since $H pi = pi H$ we have $H ket(alpha) = E_n ket(alpha)$, so $ket(alpha)$ is also an energy eigenket with eigenvalue $E_n$. We assumed non-degeneracy so these must be the same up to a constant. Therefore $ket(n)$ must be a parity eigenket with $pi ket(n) = plus.minus ket(n)$.
-
+  then $pi ket(alpha) = plus.minus ket(alpha)$ so $ket(alpha)$ is a parity eigenket. Since $[H,pi]=0$ we have $H ket(alpha) = E_n ket(alpha)$ meaning $ket(alpha)$ is also an energy eigenket with eigenvalue $E_n$. We assumed non-degeneracy so these are the same up to a constant. So $ket(n)$ must be a parity eigenket with $pi ket(n) = plus.minus ket(n)$.
 ]
 
-This more simply follows immediately since $[H,pi] = 0$, so they have simultaneous eigenkets.
+This more simply follows immediately since $[H,pi] = 0$ meaning they have simultaneous eigenkets.
 
-Consider two partiy eigenstates $ket(alpha)$ and $ket(beta)$
+Consider two parity eigenstates $ket(alpha)$ and $ket(beta)$ with
 $
   pi ket(alpha) & = epsilon_alpha ket(alpha) \
    pi ket(beta) & = epsilon_beta ket(beta)
 $
-with $epsilon_alpha, epsilon_beta in {plus.minus 1}$. Then
+Then
 $
   braket(beta, bold(x), alpha) = 0
 $
-unless $epsilon_alpha = - epsilon_beta$, this is easily shown
+unless $epsilon_alpha = - epsilon_beta$. This is easily shown
 $
   braket(beta, bold(x), alpha) = braket(beta, pi^(-1) pi bold(x) pi^(-1) pi, alpha) = epsilon_alpha epsilon_beta (- braket(beta, bold(x), alpha))
 $
-so operators of odd-parity connect states of opposite parity. This is the reason why Laporte's rule is valid
+so operators of odd parity connect states of opposite parity. This is the reason why Laporte's rule is valid
 $
   integral psi_beta^* bold(x) psi_alpha dd(tau) = 0
 $
-if $psi_beta$ and $psi_alpha$ have the same parity (due to Wigner). If $[H,pi] = 0$ with non-degenerate eigenvalues then $braket(n, bold(x), n) = 0$ since $ket(n)$ has parity identical to itself. Now the dipole moment defined as $bold(p) equiv q bold(d) prop bold(x)$ so $braket(n, bold(p), n) = 0$ meaning these states can't hold a dipole moment.
+if $psi_beta$ and $psi_alpha$ have the same parity (due to Wigner).
 
-Note that parity is not conserved in the weak interaction---symmetry breaking (spontaneous: ground states don't satisfy the symmetry, even though the Hamiltonian does, e.g. double well with $V_0 -> oo$).
+Assuming $[H,pi] = 0$ with non-degenerate eigenvalues then $braket(n, bold(x), n) = 0$ since $ket(n)$ has parity identical to itself. The dipole moment is defined as $bold(p) equiv q bold(d) prop bold(x)$ so $braket(n, bold(p), n) = 0$ meaning these states can not hold a dipole moment.
 
-== Double well potential & symmetry breaking (& Bloch's theorem)
-We consider a double well (I & III) potential with a barrier of $V_0$ (II). We let the middle of the barrier be $x=0$, the width of the barrier is $2 a$ so III starts at $x = a$ and each well has a width $b$ meaning III ends at $x = a +b$. In I and III we have
+== Symmetry breaking
+Consider a double well potential (I & III) with a barrier of $V_0$ (II). We let the middle of the barrier be $x=0$ and the width of the barrier is $2 a$ so III starts at $x = a$. We let each well have width $b$ meaning III ends at $x = a +b$. In I and III we have
 $
   - hbar^2/(2 m) dv(psi, x, 2) = E psi => dv(psi, x, 2) = - k^2 psi
 $
@@ -273,11 +247,11 @@ with
 $
   kappa = sqrt(2 m (V_0-E))/hbar
 $
-then in III we have
+Then in III we have
 $
   psi_"III" (x) = A sin[k (x-a-b)]
 $
-then
+which satisfies
 $
   psi_"III" (a+b) = 0
 $
@@ -285,36 +259,35 @@ while due to the finite barrier
 $
   psi_"III" (a) = A sin(-k b) eq.not 0
 $
-in I we use parity (since $V(x)$ is symmetric)
+For I we use parity since $V(x)$ is symmetric
 $
   psi_"I" = plus.minus psi_"III" (-x)
 $
-in II for we have solutions
+For II we have solutions
 $
   "even parity" -> psi_"II"^"s" & = C_s cosh(kappa x) \
    "odd parity" -> psi_"II"^"a" & = C_a sinh(kappa x)
 $
-then continuity gives a condition on $k$ and $kappa$
+Then by continuity
 $
   psi_"III" (a) = psi_"II" (a)";   " psi'_"III" (a) = psi'_"II" (a)
 $
-giving
+giving a condition of $k$ and $kappa$
 $
   "even parity" -> k cot(k b) & = - kappa tanh(kappa a) \
    "odd parity" -> k cot(k b) & = - kappa coth(kappa a)
 $
 we find a $dd(E, d: Delta) > 0$ since the RHS differs.
 
-=== Energy splitting
-In the case of a large barrier $E << V_0$ or equivalently $1 << kappa a$ we find
+Assuming a large barrier where $E << V_0$ or $1 << kappa a$ we find
 $
   "RHS"_s tilde.eq - kappa + 2 kappa e^(-2 kappa a)";   " "RHS"_a tilde.eq - kappa - 2 kappa e^(-2 kappa a)
 $
-and if the wells were isolated and infinite
+And if the wells were isolated and infinite
 $
   sin(k b)=0 => k_0 = (n pi)/b
 $
-for a large barrier these get perturbed $k = k_0 + epsilon$ for some small $epsilon$. Then
+For a large barrier these get perturbed $k = k_0 + epsilon$ for some small $epsilon$. Then
 $
   cot(k b) = cot(k_0 b + epsilon b) = cot(n pi + epsilon b) = cot (epsilon b) tilde.eq 1/(epsilon b)
 $
@@ -322,45 +295,42 @@ so
 $
   k cot (k b) tilde.eq k_0/(epsilon b) + underbrace(1/b, tilde 0)
 $
-this gives
+which gives
 $
   k_0/(epsilon_s b) tilde.eq - kappa + 2 kappa e^(-2 kappa a)";   " k_0/(epsilon_a b) tilde.eq -kappa - 2 kappa e^(-2 kappa a)
 $
-giving
+We solve for $epsilon$
 $
   epsilon_(s,a) tilde.eq -k_0/(b kappa) 1/(1 minus.plus 2 e^(-2 kappa a)) tilde.eq -k_0/(b kappa) (1 plus.minus 2 e^(-2kappa a))
 $
-hence
+so
 $
   k_a -k_s tilde.eq epsilon_a - epsilon_s tilde.eq (4 k_0)/(b kappa) e^(-2 kappa a)
 $
-this gives the energy difference
+This gives the energy difference
 $
   dd(E, d: Delta) & = E_a - E_s tilde.eq hbar^2/(2 m) (k_a^2-k_s^2) \
-                  & tilde.eq hbar^2/(2 m) 2 k_0 (k_a-k_s) \
-                  & = (4 hbar^2 k_0^2)/(m b kappa) e^(-2 kappa a) \
-                  & = (4 hbar^2 pi^2)/(m b^3 kappa) e^(-2 kappa a)
+  & tilde.eq hbar^2/(2 m) 2 k_0 (k_a-k_s) = (4 hbar^2 k_0^2)/(m b kappa) e^(-2 kappa a) = (4 hbar^2 pi^2)/(m b^3 kappa) e^(-2 kappa a)
 $
 with
 $
   kappa tilde.eq sqrt(2m V_0)/hbar
 $
 
-=== Symmetry breaking
-We construct linear combinations
+Consider the linear combinations
 $
   ket(R) & = 1/sqrt(2) (ket(S)+ket(A)) \
   ket(L) & = 1/sqrt(2) (ket(S)-ket(A))
 $
-which are localized to the right- or left well. Before by construction
+which are localized in the right- or left well. By construction
 $
   pi ket(S) = ket(S)";  " pi ket(A) = - ket(A)
 $
-the new states are not parity eigenstates since
+but the new states are not parity eigenstates
 $
   pi ket(R) = ket(L)";  " pi ket(L) = ket(R)
 $
-they are also not energy eigenstates since we had a $dd(E, d: Delta)$, meaning they are non-stationary. If we let the system be in $ket(R)$ at $t=0$ then later
+and they are also not energy eigenstates since we had a $dd(E, d: Delta)$ meaning they are not stationary. We let the system be in $ket(R)$ at $t=0$ then
 $
   ket(R\,t_0 =0\;t) &= 1/sqrt(2) (exp((i E_s t)/hbar)ket(S)+exp((i E_a t)/hbar) ket(A)) \
   &= 1/sqrt(2) exp((i E_s t)/hbar) (ket(S)+exp((i (E_a-E_s)t)/hbar) ket(A))
@@ -373,73 +343,73 @@ and back in $ket(R)$ at $t = T$. So it oscillates with
 $
   omega =(E_a-E_s)/hbar
 $
-when $V -> oo$: $E_a-E_s = 0$ so tunneling vanishes and the state doesn't oscillate $ket(L)<->ket(R)$. This happens since $ket(S)$ and $ket(A)$ become degenerate energy eigenstates, this implies they are not parity eigenstates. So the ground state is assymetrical, even though the Hamiltonian is symmetric. So when energy eigenstates are degenerate, they don't necessarily obey the symmetries of the Hamiltonian---this is called spontaneous symmetry breaking.
+when $V -> oo$: $E_a-E_s = 0$ so tunneling vanishes and the state does not oscillate $ket(L)<-->ket(R)$. This happens since $ket(S)$ and $ket(A)$ become degenerate energy eigenstates implying they are no longer parity eigenstates. So the ground state is assymmetrical even though the Hamiltonian is symmetric. When energy eigenstates are degenerate they do not necessarily obey the symmetries of the Hamiltonian. This is called spontaneous symmetry breaking!
 
 == Bloch's theorem
-We now consider the case where we have infinitely many periodic potential wells (e.g. electron in a lattice),
+Consider the case where we have infinitely many periodic potential wells with
 $
   V(x plus.minus a) = V(x)
 $
-let $cal(T)(l)$ be the translation operator then
+Let $cal(T)(l)$ be the translation operator then
 $
   cal(T)^dagger (l) x cal(T)(l) = x + l";   " cal(T) (l) ket(x') = ket(x'+l)
 $
-in our case
+or
 $
   cal(T)^dagger (a) V(x) cal(T) (a) = V(x+a) = V(x)
 $
-so $cal(T)^dagger (a) H cal(T) (a) = H$ and since $cal(T)$ is unitary (symmetry operator)
+so $cal(T)^dagger (a) H cal(T) (a) = H$ and since $cal(T)$ is unitary
 $
   [H,cal(T)(a)] = 0
 $
 since $cal(T)$ is not Hermitian its eigenvalues have $abs(lambda) = 1$.
 
-We simplify the problem by approximating our potential as periodic minima seperated by infinite potential walls. In this case there is no tunneling, so the ground state can be localized to any lattice site or minima. We assume it is localized at the $n$'th site
+We simplify the problem by approximating our potential as periodic minima seperated by infinite potential walls. Then there is no tunneling so the ground state can be localized to any lattice site or minima. We assume it is localized at the $n$th site
 $
   H ket(n) = E_0 ket(n)
 $
-and $braket(x', n) = 0$ outside the $n$'th site. But we also have infinite degeneracy since $-oo < n < oo$. And
+and $braket(x', n) = 0$ outside the $n$th site. We also have infinite degeneracy since $-oo < n < oo$. We also have symmetry breaking since
 $
   cal(T) (a) ket(n) = ket(n+1)
 $
-so $ket(n)$ is not an eigenstate of $cal(T)(a)$ even though the Hamiltonian is---spontaneous symmetry breaking (ground state), but this is fine since we have infinite degeneracy.
+so $ket(n)$ is not an eigenstate of $cal(T)(a)$ even though the Hamiltonian is! This is expected since we have infinite degeneracy.
 
-We'll try to find simultaneous eigenkets of $cal(T)(a)$ and $H$. We claim
+We try to find simultaneous eigenkets of $cal(T)(a)$ and $H$. We claim
 $
   ket(theta) equiv sum_(n=-oo)^(oo) e^(i n theta) ket(n)
 $
-clearly an energy eigenket and
+does the job. This is clearly an energy eigenket and
 $
   cal(T)(a) ket(theta) = sum_(n=-oo)^oo e^(i n theta) ket(n+1) = sum_(n=-oo)^oo e^(i (n-1) theta) ket(n) = e^(-i theta) ket(theta)
 $
-so it is a simultaneous eigenket, and $E_0 eq.not E_0 (theta)$. Now we consider a finite barrier height, then we expect _leakage_,
+so it is a simultaneous eigenket and $E_0 eq.not E_0 (theta)$! Consider a finite barrier height then we expect _leakage_
 $
   braket(n', H, n) eq.not 0
 $
-for high barriers we assume the tight binding approximation
+we assume the tight binding approximation
 $
   braket(n', H, n) eq.not 0 "iff" n'= {n,n plus.minus 1}
 $
-define
+and define
 $
   braket(n plus.minus 1, H, n) equiv - Delta
 $
-which is independent of $n$ due to translational invariance. Then assuming $ket(n)$ is an orthogonal basis
+which is independent of $n$ due to translational invariance. Then assuming $ket(n)$ is an orthogonal basis we have
 $
   H ket(n) = E_0 ket(n) - Delta ket(n+1)- Delta ket(n-1)
 $
-then $ket(n)$ no longer energy eigenket. Again consider
+so $ket(n)$ is no longer an energy eigenket! Consider
 $
   ket(theta) = sum_(n=-oo)^oo e^(i n theta) ket(n)
 $
-still an eigenstate of $cal(T) (a)$. For the Hamiltonian consider
+this is still an eigenstate of $cal(T) (a)$. For the Hamiltonian consider
 $
   H ket(theta) &= H sum_(n=-oo)^oo e^(i n theta) ket(n) \
   &= E_0 sum_(n=-oo)^oo e^(i n theta) ket(n) - Delta underbrace(sum_(n=-oo)^oo e^(i n theta) ket(n+1), e^(-i theta) ket(theta)) - Delta underbrace(sum_(n=-oo)^oo e^(i n theta) ket(n-1), e^(i theta) ket(theta)) \
   &= E_0 sum_(n=-oo)^oo e^(i n theta) ket(n) - Delta (e^(-i theta) + e^(i theta)) sum_(n=-oo)^oo e^(i n theta) ket(n) \
   &= (E_0 - 2 Delta cos theta) underbrace(sum_(n=-oo)^oo e^(i n theta) ket(n), ket(theta))
 $
-so it is a simultaneous eigenket, but now the degeneracy has lifted, since $E=E(theta)$---continuous spectrum between $E_0 plus.minus 2 Delta$.
+so it is a simultaneous eigenket but now the degeneracy has lifted! Since $E=E(theta)$ with a continuous spectrum between $E_0 plus.minus 2 Delta$.
 
 To see what $theta$ means consider $braket(x', theta)$ and
 $
@@ -447,7 +417,7 @@ $
                                & = e^(-i theta) braket(x', theta) \
         => braket(x'-a, theta) & = braket(x', theta) e^(-i theta)
 $
-we then make the ansatz,
+We then make the ansatz
 $
   braket(x', theta) = e^(i k x') u_k (x')
 $
@@ -455,11 +425,9 @@ with $theta = k a$ and $u_k$ periodic with period $a$. Then
 $
   e^(i k(x'-a)) u_k (x'-a) = e^(i k x') u_k (x') e^(-i k a)
 $
-this satisfies $braket(x'-a, theta) = braket(x', theta) e^(-i theta)$.
+this satisfies $braket(x'-a, theta) = braket(x', theta) e^(-i theta)$. This is Bloch's theorem. The wavefunction of $ket(theta)$ is an eigenket of $cal(T)(a)$ and can be written as a plane wave $e^(i k x')$ times a periodic modulation with period $a$ as above.
 
-This is Bloch's theorem: The wavefunction of $ket(theta)$ is an eigenket of $cal(T)(a)$ and can be written as a plane wave $e^(i k x')$ times a periodic modulation with period $a$ (as above). (also valid outside tight-binding---see solid state)
-
-We also found the dispersion relation (one-dimensional tight-binding) for the first Brillouin zone $abs(k) <= pi\/a$
+We also found the dispersion relation for the first Brillouin zone $abs(k) <= pi\/a$
 $
   E(k) = E_0 - 2 Delta cos(k a)
 $

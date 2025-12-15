@@ -1,5 +1,5 @@
 //**** init-ting
-#import "@preview/physica:0.9.5": *
+#import "@preview/physica:0.9.7": *
 #import "temp.typ": *
 
 
@@ -14,7 +14,7 @@
     ),
   ),
   abstract: [
-    Notes on quantum physics taken during the SDU course. Based primarily on _Modern Quantum Mechanics_ by Sakurai and other notes.
+    Notes on quantum physics taken during the SDU course. Based primarily on _Modern Quantum Mechanics_ by Sakurai. We assume some familiarity with quantum mechanics. All errors are mine.
   ],
 )
 
