@@ -321,7 +321,7 @@ we treat this as a pertubation
 $
   H = H_0 + V_"LS" "with" H_0 = p^2/(2m) + V_c (r)
 $
-now we have two choices with respect to choice of basis: eigenkets of ${L^2, L_z, S^2, S_z}$ with $ket(l s m m')$ or eigenkets of ${L^2, S^2, J^2, J_z}$ with $ket(j=l+s\, m)$. We want the one where $V_"LS"$ is diagonal so the one where $bold(L) dot bold(S)$ commutes with everything---this is the second set with basis $ket(j=l+s\, m)$. Then is it simple to find the correction, we use
+now we have two choices with respect to choice of basis: eigenkets of ${L^2, L_z, S^2, S_z}$ with $ket(l s m m')$ or eigenkets of ${L^2, S^2, J^2, J_z}$ with $ket(j=l+s\, m)$. We want the one where $V_"LS"$ is diagonal so the one where $bold(L) dot bold(S)$ commutes with everything---this is the second set with basis $ket(j=l+s\, m)$. Then it is simple to find the correction. We use
 $
   psi_(n l m) = R_(n l) underbrace(cal(Y)_l^(j = l plus.minus 1/2\, m), "spin-angular function")
 $
@@ -533,7 +533,7 @@ $
 $
 
 
-Consider the Hamiltonian
+As an example consider the Hamiltonian
 $
   H_0 = E_1 ketbra(1) + E_2 ketbra(2) " with " E_2 > E_1
 $
@@ -559,6 +559,7 @@ $
 $
 as  $omega -> omega_21$ we find $abs(c_2 (t))^2 -> 1$ which is resonance.
 
+== Sudden approximation
 Consider turning on a perturbation so fast that the state does not have time to adjust, so we are still in the unperturbed state (e.g. a step-function).
 
 We define some characteristic time $T = Omega^(-1)$. Consider
@@ -571,7 +572,8 @@ $
 $
 we take $T -> 0$ then $U(t,t_0) -> bb(1)$, so we are free to assume that the time-evolution becomes trivial. This is a fair approximation when $hbar Omega >> E_(n m) = hbar omega_(n m)$ or $T << 2 pi omega_(n m)^(-1)$.
 
-Consider the opposite of the sudden approximation, so a very slow time-variation meaning we are always in the perturbed state. The idea is to just use time-independent perturbation theory but make the coefficients time-dependent.
+== Adiabatic approximation
+We assume very slow time-variation meaning we are always in the perturbed state. The idea is to just use time-independent perturbation theory but make the coefficients time-dependent.
 
 Consider the Schrödinger equation
 $
@@ -619,6 +621,7 @@ $
 $
 is the Berry phase.
 
+== The Berry phase
 We assume the time-dependence of $H(t)$ lies in $bold(R) (t)$. Then $E_n (t) = E_n (bold(R)(t))$ and $ket(n\, t) = ket(n(bold(R)(t)))$. Then
 $
   braket(n\, t, pdv(, t), n\, t) & = braket(n\,t, nabla_R, n\, t) dv(bold(R), t)
