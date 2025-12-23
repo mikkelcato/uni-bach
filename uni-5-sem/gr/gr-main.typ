@@ -6,7 +6,7 @@
 #show: thmrules.with(qed-symbol: $square$)
 #show: note.with(
   title: [
-    *general relativity and cosmology*
+    *introductory general relativity*
   ],
   authors: (
     (
@@ -14,7 +14,7 @@
     ),
   ),
   abstract: [
-    Notes on relativity and cosmology taken during the SDU course---based primarily on lecture notes. The purpose of the course is to essentially follow Einstein's derivation of his field equations and then apply them to cosmology. For more of the underlying mathematics see my other notes.
+    Notes on relativity and cosmology taken during the SDU course---based primarily on lecture notes. All errors are likely mine.
   ],
 )
 
