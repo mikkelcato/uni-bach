@@ -200,7 +200,7 @@ $
         0 & tilde.eq R_(i j) - 1/2 g_(i j) R \
   R_(i j) & tilde.eq 1/2 g_(i j) R
 $
-And $g_(i j) tilde.eq n_(i j)$ giving
+And $g_(i j) tilde.eq eta_(i j)$ giving
 $
   R & tilde.eq R_(i i) - R_(00) tilde.eq 3/2 R - R_(0 0) \
   R & tilde.eq 2 R_(00)
@@ -468,8 +468,8 @@ $ 1/(r F) pdv(F, t) = 8 pi G T_(t r) $
 
 = The Schwarzschild solution
 == The solution
-Consider a point mass with mass $M$ at the origin. We assume $m_"obs" << M$ so we can ignore any backreaction. We use the time-dependent spherically symmetric metric
-$ dd(tau^2)=E dd(t^2) - F dd(r^2) - r^2 dd(Omega^2) $
+Consider a point mass with mass $M$ at the origin. We assume $m_"obs" << M$ so we can ignore any backreaction. We use the metric we just derived above but assume $E$ and $F$ are time-independent (this is justified below)
+$ dd(tau^2)=E(r) dd(t^2) - F(r) dd(r^2) - r^2 dd(Omega^2) $
 Since $T_(mu nu) = 0$ for all $r eq.not 0$ we have $R_(mu nu) = 0$. Using $R_(r r) = R_(t t) = 0$ we find
 $
   0 &= R_(r r)/F + R_(t t)/E \
@@ -644,7 +644,7 @@ which is nice and simple!
 == Crossing the horizon
 We want to know what happens when crossing $r = R$. By the above
 $
-  sqrt(r) dot(r) = - sqrt(2 M G)
+  sqrt(r) dot(r) = underbracket(- sqrt(2 M G), "since infalling")
 $
 which has solution
 $
@@ -677,7 +677,7 @@ $
 $
 Then
 $
-  r = 2 M G + C - exp(- t/(2 M G))
+  r = R + C exp(- t/(2 M G))
 $
 so as $t -> oo$ we find $r -> 2 M G$. The free-falling observer appears to stop at $r = R$ but taking infinite time to do so!
 

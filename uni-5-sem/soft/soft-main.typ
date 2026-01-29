@@ -14,7 +14,7 @@
     ),
   ),
   abstract: [
-    Notes on soft matter based on lectures given at SDU---and very loosely on _Soft Matter Physics_ by Masao Doi.
+    Notes on soft matter based on lectures given at SDU (very loosely based on _Soft Matter Physics_ by Masao Doi). All errors are mine.
   ],
 )
 

@@ -12,10 +12,14 @@ At _large enough_ scales clusters of galaxies etc. can be treated like pointlike
 
 _The universe is homogeneous and isotropic._
 
-We also assume there exists some cosmological time implying the Universe has a rest frame. So at some fixed time $t$ matter is at rest. The motion of the cosmic fluid would then follow this cosmological time. This also implies we can define a set of co-moving coordinates.
+We also assume there exists some cosmological time implying the Universe has a rest frame. So at some fixed time $t$ matter is at rest. The motion of the cosmic fluid would then follow this cosmological time.
 
 == The metric
-Consider two spatial slices at different fixed cosmic times $t$ denoted by $S_0$ and $S^*$ respectively. All points $P_0 (x^1,x^2,x^3) in S_0$ evolve in time to become points $P^* (x^1,x^2,x^3) in S^*$. Along a geodesic perpendicular to $S_0$ the $x^i$ remain constant. Following this geodesic evolves the point from $S_0 -> S^*$. Then we have $dd(t^2) = dd(tau^2)$ meaning $g_(0 0) = -1$ along the geodesic. Similarly we need $g_(0 i) = 0$ since we evolve along $t$ without changing the $x^i$. Then
+We describe the above by considering Gaussian coordinates (the synchronous gauge). Consider two spatial slices at fixed cosmic times $t$ denoted by $S_0$ and $S_*$. We let every point $P_0 (x^i)$ evolve along a geodesic perpendicular to $S_0$ to become points $P_* (x^i)$. Along such a geodesic the $x^i$ are fixed (comoving) and we take $t = tau$, meaning
+$
+  dd(tau^2) = dd(t^2)
+$
+implying $g_(00) = -1$. We also require $g_(i 0) = g_(0 i) = 0$ if the geodesics are to remain perpendicular. Then
 $
   dd(tau^2) = dd(t^2) - g_(i j) dd(x^i, x^j) "with" x^i in S_0
 $
@@ -35,7 +39,7 @@ $
 $
 Since $g_(i j)$ can depend on $t$ then $dd(s^2)$ can change over time but the $x^i$ are still fixed. This implies a time-dependent rescaling of $dd(s^2)$.
 
-By the cosmological principle we write
+Using isotropy we require
 $
   dd(tau^2) = dd(t^2) - f_1 (t,r) dd(r^2) - f_2 (t,r) r^2 dd(Omega^2)
 $
@@ -43,6 +47,19 @@ we can decompose $f_1$ and $f_2$
 $
   dd(tau^2) = dd(t^2) - f(t) L(r) dd(r^2) - g(t) H(r) r^2 dd(Omega^2)
 $
+
+#proof[
+  Consider two points at the same $t$ with $dd(theta) = dd(phi) = 0$. The line elements of these points are $f_1 (t,r_1) dd(r^2)$ and $f_1 (t,r_2) dd(r^2)$. The ratio of these is the same at all times since only the overall scale can change
+  $
+    f_1 (t,r_1) = f_1 (t,r_2) F(r_1,r_2)
+  $
+  or taking $r_2 = "constant"$ we find
+  $
+    f_1 (t,r) = f(t) L(r)
+  $
+  Similarly $f_2$ can be decomposed.
+]
+
 By redefining $r$ we can absorb $H$
 $
   dd(tau^2) = dd(t^2) - f(t) L(r) dd(r^2) - g(t) r^2 dd(Omega^2)
@@ -51,7 +68,7 @@ To determine $f, L$ and $g$ we use the EFE. We assume the Universe is a perfect 
 $
   T_(mu nu) = p g_(mu nu) + (p + rho) U_mu U_nu
 $
-The co-moving frame has $U^i = 0$ and $U^t = 1$. Then $R_(t r) = 0$ implies
+The comoving frame has $U^i = 0$ and $U^t = 1$. Then $R_(t r) = 0$ implies
 $
   dot(g)/g = dot(f)/f
 $
@@ -158,7 +175,7 @@ $
 $
 Taking the derivative of $d$ we find
 $
-  v_r = dot(a) (t_0) d = (dot(a) (t_0))/a(t_0) underbracket(a(t_0) d, t_0-t_1) = z
+  v_r = dot(a) (t_0) r = (dot(a) (t_0))/a(t_0) underbracket(a(t_0) r, t_0-t_1) = z
 $
 This is _Hubble's law_
 $
@@ -242,7 +259,7 @@ as we would expect for a cosmological constant.
 == Consequences
 Consider $p >= 0$. Then
 $
-  dot.double(a)/a = - (4 pi G)/3 (rho+ 3p) < 0";  " dot(a)/a < 0
+  dot.double(a)/a = - (4 pi G)/3 (rho+ 3p) < 0";  " dot(a)/a >^"today" 0
 $
 This implies that $a = 0$ at some point. We define the beginning of the Univeres by $a(t=0) =^! 0$. This is called the _Big Bang_.
 
@@ -463,15 +480,14 @@ We also define the _Hubble radius_ $H^(-1)$. Taking $H^(-1)$ as constant then an
 $
   d_H tilde H^(-1)
 $
-for a matter-dominated Universe we would have $d_H = 3 H^(-1)$. Consider
+for a matter-dominated Universe we would have $d_H = 2 H^(-1)$. Consider
 $
   lambda_H (t_"LS") & = d_H (t_0) (a_"LS"/a_0) \
                     & = d_H (t_0) (T_0/T_"LS")
 $
-This is the size of the Universe at last scattering if we scaled the current size of the Universe. Consider also
+This is the size of the observable Universe at last scattering if we scaled the current size. Consider also
 $
-  H_"LS"^(-1) & = d_H (t_"LS") \
-              & tilde.eq^"matter-dominated" d_H (t_0) (T_"LS"/T_0)^(-3\/2)
+  H_"LS"^(-1) & tilde.eq^"matter-dominated" H_0^(-1) (a_"LS"/a_0)^(3\/2) tilde d_H (t_0) (T_0/T_"LS")^(3/2)
 $
 This is the Hubble radius at last scattering. We compute
 $ lambda_H^3/d_H^3 tilde 10^6 $
@@ -513,7 +529,17 @@ When $V(phi) >> dot(phi)^2$ then $p = - rho$ which is just the condition for a c
 $
   underbracket(N, "number of "e"-folds") = ln((a(t_R))/(a(t_i))) gt.tilde underbracket(70, "length of inflation")
 $
-with $t_R$ being the time at _reheating_. The $tilde 70$ comes from requiring $lambda_H (t_i) lt.tilde H^(-1)$. This restricts $V(phi)$ since $phi$ has to be _stuck for long enough_ determined by $+3 H dot(phi)$.
+with $t_R$ being the time at _reheating_. The $tilde 70$ comes from requiring $lambda_H (t_i) lt.tilde H_"inf"^(-1)$
+$
+  lambda_H (t_i) & = d_H (t_0) (a_i/a_R) (a_R/a_0) \
+                 & tilde.eq H_0^(-1) e^(-N) T_0/T_R lt.tilde H_"inf"^(-1)
+$
+so
+$
+  e^N gt.tilde T_0/H_0 H_"inf"/T_R => N gt.tilde ln(T_0/H_0) - ln(T_R/H_"inf") tilde 70
+$
+
+This restricts $V(phi)$ since $phi$ has to be _stuck for long enough_ determined by $+3 H dot(phi)$.
 
 With _slow-roll inflation_ we assume $dot(phi)^2 << V(phi)$ and small $dot.double(phi)$. This is enough for the above assumptions to hold. Then
 $
@@ -737,3 +763,4 @@ $
 So we find a stretch along $x$ and a squeeze along $y$ (initially) with it oscillating as one would expect.
 
 For $times$ polarization one would find a _diagonal_ stretching and squeezing.
+

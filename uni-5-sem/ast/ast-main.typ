@@ -14,8 +14,7 @@
     ),
   ),
   abstract: [
-    Notes on astrophysics and cosmology taken during the SDU course---follows three part structure; from very big to big to small. Based on Ryden's _Introduction to Cosmology_ and _An Introduction to Modern Astrophysics_ by Carroll and Ostie---supplemented with notes taken during lecture.
-  ],
+    Notes on astrophysics and cosmology taken during the SDU course. Based on Ryden's _Introduction to Cosmology_ and _An Introduction to Modern Astrophysics_ by Carroll and Ostie. This course was very ragged as are these notes. All errors are mine. ],
 )
 
 //

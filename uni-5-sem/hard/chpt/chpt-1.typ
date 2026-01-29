@@ -7,14 +7,9 @@
 #show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
-= Introduction
-This course is split up in three-four parts with the first covering the mathematical description of crystal, in terms of the lattice and reciprocal lattice. The second part covers elastic waves and phonons in crystals. The third part covers electrons and energy bands. And the last part covers semiconductors and the Fermi surface.
 
-#pagebreak()
 
 = Crystal structure
-Everything in solid state physics is basically a crystal. This part of the course covers the mathematical description of these.
-
 == The lattice
 An ideal crystal consists of the infinite repetition of identical groups of atoms (the basis). The set to which the basis is attached is called the lattice. This lattice can be defined by three translation vectors $bold(a)_1, bold(a)_2$ and $bold(a)_3$ such that the crystal looks the same at $bold(r)$ and $bold(r)'$ related by
 $
@@ -231,7 +226,7 @@ given the $bold(a)_i$ are primitive then so are the $bold(b)_i$ and $bold(b)_i d
 $
   bold(G) = h bold(b)_1 + k bold(b)_2 + l bold(b)_3
 $
-with $h, k, l in ZZ$. Now consider
+with $h, k, l in ZZ$. Within the cubic system these correspond to the planes $(h k l)$ since the _conventional_ $bold(a)_i$ are very simple. Now consider
 $
   e^(i bold(G) dot bold(T)) = e^(i [h u_1 2 pi + k u_2 2 pi + l u_3 2 pi]) = e^(2pi i[h u_1+k u_2+ l u_3]) = e^(2 m pi i) = 1
 $
@@ -295,4 +290,22 @@ $
 $
 with $bold(rho) = bold(r)-bold(r)_j$ and $f_j$ being the atomic form factor.
 
-These are useful because $f_j$ contains all information about the electron distribution within a cell, while the rest contains information about where the basis is located.
+These are useful because $f_j$ contains all information about the electron distribution within a cell, while the rest contains information about where the basis is located. As an example of this we use
+$
+    bold(G) & = h bold(b)_1 + k bold(b)_2 + l bold(b)_3 \
+  bold(r)_j & = x_j bold(a)_1 + y_j bold(a)_2 + z_j bold(a)_3
+$
+Then
+$
+  e^(-i bold(G) dot bold(r)_j) = e^(-2 pi i (h x_j + k y_j + l z_j))
+$
+For a simple cubic we have $x_1 = y_1 = z_1 = 0$ giving
+$
+  S_bold(G) = f
+$
+meaning all reflections are allowed. For a body-centered cubic we have $x_1 = y_1 = z_1 = 0$ and $x_2 = y_2 = z_2 = 1/2$ giving
+$
+  S_bold(G) & = f (e^(-2 pi i (0)) + e^(-pi i (h+k+l))) \
+            & = f (1 + (-1)^(h+k+l))
+$
+We see $S_bold(G) = 0$ if $h+k+l = "odd"$ and $S_bold(G) = 2 f$ if $h+k+l = "even"$.

@@ -460,7 +460,7 @@ $
 
 The WKB limit is equivalent to
 $
-  lambda = hbar/sqrt(2 m [E-V(x)]) << (2 (E-V(x)))/abs(dd(V)\/dd(x))
+  lambda_"reduced" = hbar/sqrt(2 m [E-V(x)]) << (2 (E-V(x)))/abs(dd(V)\/dd(x))
 $
 
 == The propagator

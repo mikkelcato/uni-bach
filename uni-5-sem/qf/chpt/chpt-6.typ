@@ -320,7 +320,7 @@ so $f^((1)) (bold(k)',bold(k))$ is the Fourier transform of $V(bold(x))$ with re
 
 By momentum conservation $abs(bold(k)) = abs(bold(k)') equiv k$ meaning
 $
-  q = abs(bold(k)-bold(k)') = 2 k sin theta\/2
+  q = abs(bold(k)-bold(k)') = 2 k sin theta/2
 $
 with $theta$ being the angle between $bold(k)$ and $bold(k)'$. Then for a spherically symmetric potential $V(bold(x)) = V(r)$ we find
 $
@@ -410,7 +410,7 @@ $
 $
 physically this can be viewed as a two-part process where we first scatter at $bold(x)''$ after which we propagate to and scatter at $bold(x)'$.
 
-== Partial waves
+== Free-particle states
 By a Fourier transform we can expand a function in terms of plane-waves
 $
   f(x) = integral dd(k, 3)/(2 pi)^3 f(bold(k)) e^(i bold(k) dot bold(x))
@@ -508,6 +508,7 @@ $
   &= (i^l)/hbar sqrt((2 m k)/pi) j_l (k x) Y_(l m) \(hat(x))
 $
 
+== Partial-wave expansion
 We assume the potential is spherically symmetric meaning $T$ commutes with $L^2$ and $bold(L)$. Then we can write
 $
   braket(E'\,l'\,m', T, E\,l\,m) = T_l (E) delta_(l l') delta_(m m') delta(E-E')
@@ -570,7 +571,7 @@ giving
 $
   bold(j) = (rho nabla S)/m
 $
-in the classical limit one can show that $S$ is Hamilton's principle function. The above $bold(j)$ ensure probability is conserved. This is what we mean by unitarity.
+in the classical limit one can show that $S$ is Hamilton's principle function. The above $bold(j)$ ensures probability is conserved. This is what we mean by unitarity.
 
 Take $rho$ to be time-independent. Then
 $
@@ -590,7 +591,7 @@ $
 $
 this is the unitarity relation. We write
 $
-  S_l = e^(2 i delta_l)
+  S_l equiv e^(2 i delta_l)
 $
 giving
 $
@@ -611,7 +612,7 @@ As an example we consider hard sphere scattering
 $
   V = cases(oo &" for" r < R, 0 &" otherwise")
 $
-physically the expansion should be a plane-wave for $r > R$ but for $r <= R$ is should vanish. The current expansion we have
+physically the expansion should be a plane-wave for $r > R$ but for $r <= R$ it should vanish. The current expansion we have
 $
   e^(i bold(k) dot bold(x)) = sum_l (2l + 1) i^l j_l (k r) P_l (cos theta)
 $
@@ -713,7 +714,7 @@ let $delta_l -> evaluated(Delta(b))_(b = l k^(-1))$ and we find
 $
   f(theta) tilde.eq - i k integral_0^oo dd(b) b J_0 (k b theta) (e^(2 i Delta(b))-1)
 $
-this is quite nice!
+this is quite nice! From this $delta_l$ can be computed with enough effort.
 
 For hard sphere scattering
 $

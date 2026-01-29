@@ -5,10 +5,7 @@
 #show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
-#pagebreak()
 = Free electron models
-As the name suggests these models assume electrons move freely. We take all scattering to occur with phonons or defects.
-
 == Drude model
 We take electrons to be accelerated by a field
 $
@@ -38,7 +35,7 @@ this is Ohm's law!
 
 We have $rho = rho_"ph" + rho_i$ since this guy depends on thermal phonons $rho_"ph" (T)$ and impurities $rho_i$. This is called Matthiessen's rule.
 
-Typically $rho$ is dominated by collisions of electrons with lattice phonons giving $rho prop T$.
+Typically $rho$ is dominated by collisions of electrons with lattice phonons giving $rho prop T$. Since $rho prop n_"phonons"$.
 
 
 
@@ -51,7 +48,7 @@ with solutions
 $
   psi_bold(k) (bold(r)) = e^(i bold(k) dot bold(r))
 $
-given that all components of $bold(k)$ satisfy
+Given that all components of $bold(k)$ satisfy
 $
   k_i = 0, plus.minus (2 pi)/L, dots, (2 n pi)/L, dots
 $
@@ -200,7 +197,15 @@ by matching exponential factors one can see this implies
 $
   (epsilon.alt_k^0 - epsilon.alt) C(bold(k)) + sum_bold(G) U_bold(G) C (bold(k)-bold(G)) = 0"  with  " epsilon.alt_k^0 = (hbar^2 k^2)/(2 m)
 $
-which is called the central equation!---notice $epsilon.alt_k^0$ is the free electron energy, as can also be seen in the limit $U_bold(G) = 0$. There is one central equation per Fourier component of $psi_bold(k)$.
+which is called the central equation!---notice $epsilon.alt_k^0$ is the free electron energy, as can also be seen in the limit $U_bold(G) = 0$. There is one central equation per Fourier component of $psi_bold(k)$. We define
+$
+  bold(C) = vec(C(bold(k)), C(bold(k)-bold(G)_1), dots)
+$
+The unknowns in the central equation are all these coefficients. Take $bold(k) -> bold(k) - bold(G)_i$ then
+$
+  (epsilon.alt_(bold(k)-bold(G)_i)^0 - epsilon.alt) C(bold(k)-bold(G)_i) + sum_bold(G) U_bold(G) C(bold(k)-bold(G)_i-bold(G)) = 0
+$
+This tells us how the coefficients couple.
 
 #proof[ of Bloch's theorem][
 
@@ -271,7 +276,7 @@ this shows band gaps since $abs(cos k a)<= 1$ so only certain $K tilde epsilon.a
 == For nearly free electrons
 When applying the central equation to nearly free electrons we assume that the $U_bold(G)$ are small.
 
-We start by considering the simplest case, namely that $U_bold(G) eq.not bold(0)$ when $bold(G)$ is the shortest reciprocal lattice vector---so it only couples $bold(k)$ differing by $plus.minus bold(G)$. We get two equations:
+The simplest case has $U_bold(G) eq.not bold(0)$ when $bold(G)$ is the shortest reciprocal lattice vector. Then it only couples $bold(k)$ differing by $plus.minus bold(G)$. We take $bold(G)_i = 0$ and $bold(G)_i = bold(G)$ having $U_bold(G)$ non-zero. Then
 $
   bold(k)\:"  "& (epsilon.alt_bold(k)^0-epsilon.alt) C(bold(k)) + U_(bold(G)) C(bold(k)-bold(G)) = 0 \
   bold(k)-bold(G)\:"  "& (epsilon.alt_(bold(k)-bold(G))^0-epsilon.alt) C(bold(k)-bold(G))+U_(bold(G)) C(bold(k)) = 0

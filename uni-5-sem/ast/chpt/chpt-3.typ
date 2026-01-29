@@ -1,125 +1,12 @@
 //**** init-ting
-#import "@preview/physica:0.9.5": *
+#import "@preview/physica:0.9.8": *
 #import "chpt-temp.typ": *
 
 #show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
 
-= Observable properties of stars
-We now begin discussing stellar structure and evolution. This will of course be quite brief since this is only an introduction to the subject. These notes follow the lectures given (which are very, very introductory and which do not really introduce stellar structure) and are supplemented quite heavily by other material.
 
-We define the flux
-
-$
-  F = L/(4 pi d^2)
-$
-define the magnitude
-$
-  m = - 2.5 log_10 F/F_"ref" = K - 2.5 log_10 F
-$
-define the absolute magnitude and distance modulus
-$
-  M = m (10 "pc") => mu = M-m = 5 - 2.5 log_10 L
-$
-measure $\{M_i}, \{R_i}, \{L_i}$ measure $M, R$ single star
-$
-  expval(rho) = M/V
-$
-assume all stars are same then
-$
-  expval(rho) = (3M)/(4 pi R^3) & => M = (4 pi R^3 expval(rho))/3 \
-                                & => R = ((3 M)/(4 pi expval(rho)))^(1\/3)
-$
-these are large numbers
-$
-  underbrace(log R, y) = 1/3 log (3 M)/(4 pi expval(rho)) = underbrace(1/3 log M, 1\/3 x) + underbrace(log (3/(4 pi expval(rho)))^(1\/3), b)
-$
-with
-$
-  rho_dot.circle = (3 M_dot.circle)/(4 pi R_dot.circle^3) => rho/rho_dot.circle = R_dot.circle^3/R^3 M/M_dot.circle
-$
-rewriting
-$
-  (R_dot.circle/R)^3 = rho/rho_dot.circle M_dot.circle/M
-$
-taking the logarithm
-$
-  log R/R_dot.circle = 1/3 log M/M_dot.circle - 1/3 log rho/rho_dot.circle
-$
-from observatin the slope is not $1/3$ but
-$
-  (R/R_dot.circle) & = 1.06 (M/M_dot.circle)^(0.945) "for" M/M_dot.circle < 1.7 \
-  (R/R_dot.circle) & = 1.33 (M/M_dot.circle)^(0.555) "for" M/M_dot.circle > 1.7
-$
-Now consider a mass dependent density $rho = rho(M) = M^k$ then
-$
-  log R/R_dot.circle = (1-k)/3 log M/M_dot.circle
-$
-
-Stefan-Boltzmann $F = sigma_"SB" T^4$ can be used to give
-$
-  L = 4 pi R^2 sigma_"SB" T^4
-$
-if we assume stars are blackbodies.
-
-Spectral classification: OBAFGKMLTY, based on types of spectral lines, highly temperature dependent---subcategories $"O1" -> "O9"$.
-
-Luminosity classification: $\{"I" "II" "III" "IV" "V" "VI"}$, based on the width of spectral lines---due to e.g. doppler- or pressure broadening.
-
-HR-diagrams.
-
-$L tau = E => tau = E/L prop M/L$
-
-$tau/tau_dot.circle = (M\/M_dot.circle)/(L\/L_dot.circle)$
-
-Ideal gas
-$
-  P = (rho k_B T)/(mu m_u)
-$
-some write
-$
-  rho = rho_H + rho_"He" + rho_"metal"
-$
-and define
-$
-  X equiv rho_H/rho";  " Y equiv rho_"He"/rho";  " Z equiv rho_"metal"/rho = 1-X-Y
-$
-then the number density for a fully ionized gas is
-$
-  n_"ionized" tilde.eq X ((2 rho)/m_p) + Y ((3 rho)/(4 m_p)) + Z (rho/(2 m_p))
-$
-Hydrostatic equilibrium and mass continuity
-$
-  dv(P, r) = - (G m rho)/r^2";  " dv(m, r) = 4 pi r^2 rho
-$
-For isothermal atmosphere
-$
-  dv(P, r) = - g rho = - P/H";  " H equiv (k_B T)/(g mu m_u)
-$
-
-GMC
-$
-  rho_"GMC" tilde 10^(-15) "kg" "m"^(-3) "versus" expval(rho_dot.circle) tilde 10^3 "kg" "m"^(-3)
-$
-need to compress $R_"GMC" tilde 10^6 R_dot.circle$.
-
-$
-  t_"ff" = P/2 = sqrt((3 pi)/(32 G rho_0)) tilde 10^4 "yrs"
-$
-with
-$
-  P^2 = (4 pi^2 a^3)/(G M)";  " M = 4/3 pi r_0^3 rho_0
-$
-define $t_"pressure"$
-$
-  t_"pressure" = r_0/c_s";  " c_s = sqrt((gamma k_B T)/(mu m_H)) = sqrt((n gamma k_B T)/rho)
-$
-if $t_"pressure" > t_"ff"$ then GMC collapses. We find upper size
-$
-  R > sqrt((3 pi n gamma k_B T)/(32 G rho_0^2)) = R_J
-$
-this is the Jeans length.
 
 #pagebreak()
 = The equation of state

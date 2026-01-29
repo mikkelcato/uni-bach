@@ -494,7 +494,7 @@ $
 so the operators evolve under the free theory, while the states evolve under the interaction. This means we get two equations. Consider
 $
   i hbar pdv(, t) ket(alpha\, t)_I &= i hbar pdv(, t) (exp[(i H_0 t)/hbar] ket(alpha\, t)_S) \
-  &= - H_0 exp[(i H_0 t)/hbar] ket(alpha\, t)_I + exp[(i H_0 t)/hbar] underbrace((i hbar pdv(, t) ket(alpha\,t)_S), "Schrödinger equation") \
+  &= - H_0 exp[(i H_0 t)/hbar] ket(alpha\, t)_S + exp[(i H_0 t)/hbar] underbrace((i hbar pdv(, t) ket(alpha\,t)_S), "Schrödinger equation") \
   &= - H_0 exp[(i H_0 t)/hbar] ket(alpha\, t)_S + exp[(i H_0 t)/hbar] (H_0 + V) ket(alpha\, t)_S \
   &= exp[(i H_0 t)/hbar] V exp[(-i H_0 t)/hbar] exp[(i H_0 t)/hbar] ket(alpha\, t)_S \
   &= V_I ket(alpha\,t)_I

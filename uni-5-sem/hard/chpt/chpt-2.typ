@@ -8,8 +8,6 @@
 
 
 = Binding
-We want to know why crystals are held together. There are four principal types of binding: the van der Waals interaction, the Coulomb interaction between charged particles, covalent binding due to hybridization and metallic binding. We will go through each in turn.
-
 == van der Waals interaction
 The van der Waals interaction is present everywhere and form the simplest crystals. Since it is present everywhere this is the principle interaction responsible for the binding of inert crystals.
 
@@ -70,61 +68,61 @@ with $p_(i j) R$ being the distance between atom $i$ and any other atom $j$ in t
 $
   dv(U_"tot", R) = 0 => R_0/sigma = 1.09
 $
-then the cohesive energy is approximately given by
+Then the cohesive energy is approximately given by
 $
-  U_"tot" (R_0) = -(2.15)(4 N epsilon)
+  U_"tot" (R_0) = -2.15(4 N epsilon)
 $
 
 
 == Coulomb interaction
-The principle interaction between ions with $plus.minus q$ is the Coulomb interaction $tilde plus.minus q^2\/r$ and is thus responsible for binding of ionic crystals.
+The principle interaction between ions with $plus.minus q$ is the Coulomb interaction $ V_"Coulomb" tilde plus.minus q^2\/r $
+This is the interaction responsible for the binding of ionic crystals.
 
-The van der Waals interaction is always present but for ionic crystals it is very weak. The main contribution to the binding energy is instead the Madelung energy. The energy associated to a reference ion $i$ is
+We define the energy associated to some reference ion $i$ by
 $
-  U_i = sum_j U_(i j)
+  U_i = sum_(j eq.not i) U_(i j)
 $
-where we sum over all $j eq.not i$. We write $U_(i j)$ as a combination of the Pauli repulsion and the Coulomb interaction
+where $U_(i j)$ written as
 $
-  U_(i j) = lambda e^(- r_(i j)/rho) plus.minus q^2/r_(i j)
+  U_(i j) = underbracket(lambda e^(- r_(i j)/rho), "Pauli" #linebreak() "repulsion") plus.minus q^2/r_(i j)
 $
-letting $r_(i j) equiv p_(i j) R$ and only including the Pauli repulsion for nearest neighbors we obtain
+We define $r_(i j) equiv p_(i j) R$. We only include the repulsion for nearest-neighbours and assume they have opposite charge. Then
 $
-  U_(i j) = cases(
-    lambda e^(-R/rho)- q^2/R #h(15pt) & "nearest",
-    plus.minus q^2/(p_(i j) R) & "else"
-  )
+  U_(i j)^"nn" = lambda e^(-R\/rho)- q^2/R";  " U_(i j)^"else" = plus.minus q^2/(p_(i j) R)
 $
-where we assume the nearest-neighbors have opposite charge. The total energy for $2N$ ions is then
+We compute $U_"tot"$ as
 $
-  U_"tot" = N U_i = N (z lambda e^(-R\/rho) - (alpha q^2)/R)
+  U_"tot" & =^(2N "ions") N U_i \
+          & = N [z lambda e^(-R\/rho) - (alpha q^2)/R]
 $
-where $z$ is the number of nearest neighbors and $alpha$ is the Madelung constant
+We have defined $z equiv "number of nearest-neighbours"$ and the Madelung constant $alpha$ by
 $
-  alpha equiv sum_j (plus.minus 1)/p_(i j)
+  alpha equiv sum_j (plus.minus 1)/p_(i j) = R sum_j (plus.minus 1)/r_(i j)
 $
-The equilibrium separation is given by
+where if $i$ is negative then $plus$ applies to all positive $j$. We find the equilibrium distance by
 $
-  N dv(U_i, R) = - (N z lambda)/rho e^(-R\/rho) + (N alpha q^2)/R^2 = 0 => R_0^2 e^(-R_0\/rho) = (rho alpha q^2)/(z lambda)
+  0 & = N dv(U_i, R) \
+    & = - (N z lambda)/rho e^(-R_0\/rho) + (N alpha q^2)/R_0^2
 $
-so we obtain
+Which implies
+$
+  R_0^2 e^(-R_0\/rho) = (rho alpha q^2)/(z lambda)
+$
+This gives at $R = R_0$
 $
   U_"tot" = underbracket(- (N alpha q^2)/R_0, "Madelung energy") (1- rho/R_0)
 $
-and we see that for a crystal to be stable $alpha$ must be positive. Taking the reference ion $i$ to be negative then $plus$ applies to all positive ions. An equivalent definition of $alpha$ is
-$
-  alpha/R = sum_j (plus.minus 1)/r_(i j)
-$
-with $r_(i j)$ being the distance from the $j$th ion to the reference ion.
+We see a crystal is stable when $alpha$ is positive.
 
-As an example consider an infinite line of alternating ions with $R$ being the distance between adjacent ions. Then
+We now compute $alpha$ for the simplest example. We consider an infinite line of alternating ions with $R$ being the inter-ion distance. Then
 $
-  alpha/R = 2 [1/R - 1/(2 R) + 1/(3 R) - 1/(4 R) + dots] => alpha = 2 [1-1/2+1/3-dots] = 2 ln 2
+  alpha & = 2 R [1/R - 1/(2 R) + 1/(3 R) - 1/(4 R) + dots] \
+        & = 2 [1-1/2+1/3-dots] \
+        & = 2 ln 2
 $
-this is obviously way harder for three-dimensional structures.
+For obvious reasons this is much harder for three-dimensional structures.
 
 == The exchange interaction
-What the exchange interaction means is not immediately obvious. So we illustrate it with an example.
-
 Consider the hydrogen molecule. When separated we have two protons each with their own electron. As they are brought close their orbitals can _hybridize_. When hybridized the electrons are localized in the region between the two atoms and have anti-parallel spin (it is the singlet state). This is the symmetric (bonding) state. We could also imagine that each atom tries to hold on to their own electron. This is the anti-symmetric (anti-bonding) state. By considering the Hamiltonian one can compute
 $
   J = expval(H)_"anti" - expval(H)_"sym" tilde 10 "eV"
@@ -133,11 +131,6 @@ this is the exchange splitting and it tells us that it is favorable to be in the
 
 Due to symmetry these covalent bonds are highly directional. Since the exchange splitting is high they are also very strong.
 
-
-== Other interactions
-Metallic bonding and hydrogen bonding.
-
-#pagebreak()
 = Elasticity
 == Hooke's law
 We approximate a crystal has a continuous medium. Then the relationship between stress and strain is given by Hooke's law
@@ -218,7 +211,7 @@ $
   rho pdv(u, t, 2) &= C_11 pdv(e_(x x), x) + C_12 (pdv(e_(y y), x)+pdv(e_(z z), x)) + C_44 (pdv(e_(x y), y)+pdv(e_(z x), z)) \
   &= C_11 pdv(u, x, 2) + C_44 (pdv(u, y, 2)+pdv(u, z, 2)) + (C_12+C_44) (pdv(v, x, y)+pdv(w, x, z))
 $
-by symmetry we have similar equations for $v$ and $w$.
+By symmetry we have similar equations for $v$ and $w$.
 
 === Simple solutions
 Consider the ansatz
@@ -269,8 +262,6 @@ $
   omega^2 rho = 1/2 (C_11 - C_12) K^2
 $
 
-
-#pagebreak()
 = Phonons
 == Monoatomic basis
 We consider a crystal with one atom in the primitive cell. We want the dispersion relation for an elastic wave in such a crystal. We take the wave to propagate along a direction with a certain amount of symmetry. This makes the problem one-dimensional with planes of atoms displacing in phase. This displacement can be longitudinal (one mode) or transverse (two modes).
@@ -610,11 +601,11 @@ $
 $
 in thermal equilibrium $expval(bold(J)) =^! 0$. By the condition above normal scattering events preserve $bold(J)$. But for Umklapp scattering we have $dd(bold(J), d: Delta) = hbar bold(G)$ and this manifests itself as thermal resistance.
 
-For an Umklapp process to occur one of the involved phonons must have $bold(K) tilde bold(K)_D$ meaning it has energy $tilde bold(omega)_D$. The number of phonons with this energy is
+For an Umklapp process to occur one of the involved phonons must have $bold(K) tilde bold(K)_D$ meaning it has energy $tilde bold(omega)_D$. The number of phonons with this energy is (by the Planck distribution)
 $
   expval(n_(bold(K))) tilde e^(- theta/T)
 $
-so for $T gt.tilde theta$ most scattering will be Umklapp meaning to $cal(l) tilde T^(-1)$. While for $T lt.tilde theta$ we have exponential suppresion $cal(l) tilde tau tilde e^(- theta/T)$.
+so for $T gt.tilde theta$ most scattering will be Umklapp meaning $cal(l) tilde T^(-1)$ (from $cal(l) tilde n^(-1)$). While for $T lt.tilde theta$ we have exponential suppresion $cal(l) tilde e^(theta/T)$.
 
 Then assuming the velocity is independent of temperature $K tilde C cal(l)$ we find for high temperatures $K tilde T^(-1)$ for intermediate temperatures $K tilde e^(-theta/T)$ and for low temperatures $K tilde T^3$.
 
