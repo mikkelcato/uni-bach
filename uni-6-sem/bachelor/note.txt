@@ -1,0 +1,18 @@
+black hole / hawking temperature
+
+entanglement / von Neumann entropy / TDF
+
+AdS/CFT (motivation)
+
+ER = EPR
+- Maldacena/Susskind
+- Raamsdonk
+- TFD 
+
+von Neumann entropy computation
+
+density matrix TFD -> black hole
+
+noter til:
+DENSITY MATRIX og von Neumann ENTROPI
+Preskill + Maldacena + Ryu-Takayanagi
