@@ -5,7 +5,6 @@
 #show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
-#pagebreak()
 = Polymers
 Before discussing polymers and polymer solutions proper we discuss _normal_ solutions.
 

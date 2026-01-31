@@ -5,19 +5,12 @@
 #import "temp.typ": *
 
 
-#show: thmrules.with(qed-symbol: $square$)
 #show: note.with(
   title: [
-    *solid state physics*
+    Solid State Physics
   ],
-  authors: (
-    (
-      name: "mkh",
-    ),
-  ),
-  abstract: [
-    Notes on solid state physics taken during the SDU course. Based on Kittel supplemented by Oxford and A&M.
-  ],
+  name: [Mikkel Kielstrup Holst],
+  prof: [Line Jelver],
 )
 
 #show figure.caption: emph

@@ -4,13 +4,10 @@
 
 #show: note.with(
   title: [
-    *complex analysis and PDEs*
+    PDEs and Complex Analysis
   ],
-  authors: (
-    (
-      name: "mkh",
-    ),
-  ),
+  name: [Mikkel Kielstrup Holst],
+  prof: [Michele Della Morte],
 )
 
 #include "chpt/chpt-1.typ"

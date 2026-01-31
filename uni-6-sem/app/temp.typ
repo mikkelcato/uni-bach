@@ -10,7 +10,8 @@ template for main
 // note template
 #let note(
   title: none,
-  authors: (),
+  name: [],
+  prof: [],
   doc,
 ) = {
   // page
@@ -32,7 +33,7 @@ template for main
   v(150pt)
   // title
   set align(center)
-  text(size: 24pt, fill: black, title)
+  text(size: 26pt, fill: black, title)
 
   // headings
   show heading: set block(below: 1.2em)
@@ -41,19 +42,24 @@ template for main
   set heading(
     numbering: "1.",
   )
+  v(15pt)
 
-  // authors
-  let count = authors.len()
-  let ncols = calc.min(count, 3)
-  grid(
-    columns: (1fr,) * ncols,
-    row-gutter: 24pt,
-    ..authors.map(author => [
-      #author.name
-      // #author.affiliation \
-      // #link("mailto:" + author.email)
-    ]),
-  )
+  par(justify: false)[
+    #text(size: 14pt, [Based on lectures by #prof])
+  ]
+
+  par(justify: false)[
+    #text(size: 10pt, [Notes taken by #name])
+  ]
+
+  v(50pt)
+  // abstract
+  par(justify: false)[
+    #text(
+      size: 12pt,
+      [These notes are not endorsed by the lecturers. All errors are mine.],
+    )
+  ]
 
   pagebreak()
 

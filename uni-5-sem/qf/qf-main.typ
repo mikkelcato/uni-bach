@@ -1,21 +1,13 @@
 //**** init-ting
-#import "@preview/physica:0.9.7": *
 #import "temp.typ": *
 
 
-#show: thmrules.with(qed-symbol: $square$)
 #show: note.with(
   title: [
-    *quantum physics*
+    Quantum Physics
   ],
-  authors: (
-    (
-      name: "mkh",
-    ),
-  ),
-  abstract: [
-    Notes on quantum physics taken during the SDU course. Based primarily on _Modern Quantum Mechanics_ by Sakurai. We assume some familiarity with quantum mechanics. All errors are mine.
-  ],
+  name: [Mikkel Kielstrup Holst],
+  prof: [Martin Sloth & Thomas Ryttov],
 )
 
 #include "chpt/chpt-1.typ" // formality

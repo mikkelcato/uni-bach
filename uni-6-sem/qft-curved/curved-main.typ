@@ -4,13 +4,10 @@
 
 #show: note.with(
   title: [
-    *qft in curved space*
+    Quantum field theory in curved spacetime
   ],
-  authors: (
-    (
-      name: "mkh",
-    ),
-  ),
+  name: [Mikkel Kielstrup Holst],
+  prof: [Martin Sloth],
 )
 
 #include "chpt/chpt-1.typ"

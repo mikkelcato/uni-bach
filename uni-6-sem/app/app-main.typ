@@ -4,13 +4,14 @@
 
 #show: note.with(
   title: [
-    *astroparticle physics*
+    Astroparticle physics
   ],
-  authors: (
-    (
-      name: "mkh",
-    ),
-  ),
+  name: [
+    Mikkel Kielstrup Holst
+  ],
+  prof: [
+    Manuel Meyer
+  ],
 )
 
 #include "chpt/chpt-1.typ"

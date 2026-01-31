@@ -4,13 +4,10 @@
 
 #show: note.with(
   title: [
-    *particle physics*
+    Particle Physics
   ],
-  authors: (
-    (
-      name: "mkh",
-    ),
-  ),
+  name: [Mikkel Kielstrup Holst],
+  prof: [Thomas Ryttov],
 )
 
 #include "chpt/chpt-1.typ"

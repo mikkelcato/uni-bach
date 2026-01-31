@@ -1,1 +1,1 @@
-### notes on quantum physics (QM3)
+Notes taken during FY803: Kvantefysik (Quantum physics).
