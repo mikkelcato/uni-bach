@@ -1,3 +1,5 @@
+
+#import "@preview/ctheorems:1.1.3": *
 #import "@preview/equate:0.3.2": equate
 #import "@preview/physica:0.9.7": *
 
@@ -6,6 +8,7 @@
 template for main
 
 */
+
 
 // note template
 #let note(
@@ -78,6 +81,9 @@ template for main
     sub-numbering: true,
     number-mode: "label",
   )
+
+  show: thmrules.with(qed-symbol: $square$)
+
   set math.equation(
     numbering: "(1.1)",
     //number-align: bottom,
@@ -87,3 +93,36 @@ template for main
   set align(left)
   doc
 }
+
+// thm-environments
+#let make-thm(kind, title) = thmbox(
+  kind,
+  title,
+  base_level: 0,
+  padding: (top: 0.0em, bottom: 0.0em),
+)
+
+#let thm = make-thm("thm", "Theorem")
+#let lemma = make-thm("thm", "Lemma")
+#let prop = make-thm("thm", "Proposition")
+#let corl = make-thm("thm", "Corollary")
+
+#let def = thmbox(
+  "def",
+  "Definition",
+  padding: (top: 0.0em, bottom: 0.0em),
+)
+
+#let ex = thmbox(
+  "ex",
+  "Example",
+  base_level: 0,
+  breakable: true,
+  padding: (top: 0.0em, bottom: 0.0em),
+)
+
+#let proof = thmproof(
+  "proof",
+  "Proof",
+  padding: (top: 0.0em, bottom: 0.0em),
+)

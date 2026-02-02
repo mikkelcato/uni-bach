@@ -1,5 +1,5 @@
 #import "@preview/equate:0.3.2": equate
-#import "@preview/physica:0.9.7": *
+#import "@preview/physica:0.9.8": *
 
 /*
 
