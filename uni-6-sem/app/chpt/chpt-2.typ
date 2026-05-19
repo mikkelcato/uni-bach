@@ -1,0 +1,25 @@
+#import "chpt-temp.typ": *
+#show: chpt-note.with()
+
+= Astrophysical Detectors
+== Cosmic rays
+An example of a space-based cosmic ray detector is the _Alpha Magnetic Spectrometer_ or _AMS-02_. The majority of onboard detectors abuse that cosmic rays are charged in various ways to determine composition and energy.
+
+== Gamma rays
+An example of a space-based $gamma_"gamma"$ detector is the _Fermi Large Area Telescope_ or _LAT_ whose detection of $gamma_"gamma"$ is based on $gamma -> e^(plus.minus)$. We like charged particles since we can easily track them. These therefore give us the direction of the original $gamma_"gamma"$ while a _calorimeter_ later gives us the energy by abusing the electromagnetic cascades described above. The _Fermi Gamma-ray Burst Monitor_ or _GBM_ observes low energy $gamma_"gamma"$ by _scintillation detectors_ which produce light when hit by a $gamma_"gamma"$. The purpose of the GBM is to measure bursts of $gamma_"gamma"$ whereas the LAT measures and detects individual $gamma_"gamma"$.
+
+The majority of ground-based detectors are based on using the atmosphere as an inhomogeneous calorimeter whereing $gamma_"gamma"$ or cosmic rays ($p, alpha, "Fe"$, etc) can initiate showers. One such example is the _Pierre Auger_ which measures both Cherenkov radiation with water detectors and the _greenish_ light produced by deexcitations of nitrogen molecules in the air. _Imaging Cherenkov telescopes_ in general try to measure the very brief light caused by Cherenkov radiation caused by some _primary particle_. This shows up as an ellipse (characterised by _Hillas parameters_) with the source being along the major axis of this ellipse. With multiple detectors one can therefore pinpoint the origin of the primary particle. An example of such a telescope is the _High Energy Stereoscopic System_ or _H.E.S.S._.
+
+== Neutrinos
+The neutrino $nu$ has very low mass and only interacts through gravity and weak interactions. This makes our job very difficult since they become annoying to detect. We care about $nu$ since high-energy $nu$ can be  produced in hadronic processes initiated by cosmic rays. Typically through the decay of pions $pi^+$ formed in proton-proton collisions or by cosmic rays interacting with $gamma$. The nice thing about $nu$ is that they are not charged meaning they act as _tracers_ pointing back to their source. Then detecting them can tell us something about hadronic processes in said source. Alongside $nu$ we always have the production of $gamma_"gamma"$ in hadronic processes. The Universe is also transparent to $nu$ making them useful probes for the high-energy sky.
+
+To detect $nu$ we need a large detector since they interact weakly, and it should be built underground to isolate from cosmic rays and other background radiation. To make life simple we need a transparent medium such as ice or water at great depths. We want this since $nu$ interacts with $n$ and $p$ in nuclei to form charged particles e.g. $nu_mu + N -> mu +X$. These charged particles will propagate until they decay or interact. Assuming they are fast enough we can detect the Cherenkov radiation they emit. From the emitted spectrum many things can be inferred. This is the principle used by e.g. _IceCube_ and _ANTARES_. The first observes two distinct types of _events_ those being _tracks_ or _cascades_ with their meaning being relatively obvious. The important distinction is that cascade events tell us very little about where the $nu$ came from while the track event does. With a cascade events we usually measure the $gamma$ being produced in the cascade whereas in track events we measure $gamma_"Cherenkov"$.
+
+== Gravitational waves
+Gravitational waves are simply _ripples_ or small perturbations propagating through spacetime at the speed of light. The amplitude of such a wave is characterised by the strain
+$
+  h equiv (2 dd(d, d: Delta))/d
+$
+This is a measure of the relative change in distance between two objects due to the gravitational wave. These waves are formed by many things with the most famous example being _compact binary mergers_ such as two black holes colliding.
+
+We detect these waves by using laser interferometry. The most famous example of such a detector is the _Laser interferometer Gravitational-Wave Observatory_ or _LIGO_. The idea is to pass a laser beam through a beam splitter creating two identical beams along two very long arms. At each end of an arm there is a mirror which reflects the beam ending with the beam merging at the beam splitter. When they merge the beams interfere before reacing a detector. These interferometers are calibrated such that these beams interfere destructively. Then any minute change in the length of the arms would lead to a change in interference and thereby a change in light intensity. The inteferometer is therefore sensitive to changes in the strain $h(t)$. The arms at LIGO are $tilde 4 "km"$ long allowing it to detect incredibly small changes in length. Given these detectors are not directional, meaning they observe the entire sky at once we need multiple to deduce the direction of the source.

@@ -54,11 +54,14 @@ template for main
   set heading(
     numbering: "1.",
   )
+  show outline.entry.where(
+    level: 1,
+  ): set block(above: 1em, below: 0.8em)
+  outline(depth: 2)
 
   set par(
-    first-line-indent: 1em,
-    spacing: 1.2em,
-    leading: 0.65em,
+    first-line-indent: 1.5em,
+    leading: 1.2em,
     justify: true,
   )
   show: equate.with(

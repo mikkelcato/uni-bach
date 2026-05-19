@@ -69,9 +69,8 @@ template for main
   ): set block(above: 1em, below: 0.8em)
   outline(depth: 2)
   set par(
-    first-line-indent: 1em,
-    spacing: 1.2em,
-    leading: 0.65em,
+    first-line-indent: 1.5em,
+    leading: 1.5em,
     justify: true,
   )
   show: equate.with(
@@ -82,6 +81,11 @@ template for main
   set math.equation(
     numbering: "(1.1)",
     //number-align: bottom,
+  )
+
+  set enum(
+    indent: 1.5em,
+    body-indent: 0.75em,
   )
 
   show ref: theoretic.show-ref
@@ -122,4 +126,6 @@ template for main
   ),
 )
 
-#let proof = theoretic.proof.with(suffix: $script(square)$)
+#let proof = theoretic.proof.with(suffix: $square$, options: (
+  block-args: (inset: 8pt),
+))

@@ -36,9 +36,8 @@ template for chapters
   )
 
   set par(
-    first-line-indent: 1em,
-    spacing: 1.2em,
-    leading: 0.65em,
+    first-line-indent: 1.5em,
+    leading: 1.5em,
     justify: true,
   )
   show: equate.with(
@@ -50,6 +49,11 @@ template for chapters
   set math.equation(
     numbering: "(1.1)",
     //number-align: bottom,
+  )
+
+  set enum(
+    indent: 1.5em,
+    body-indent: 0.75em,
   )
 
   show ref: theoretic.show-ref
@@ -89,4 +93,6 @@ template for chapters
   ),
 )
 
-#let proof = theoretic.proof.with(suffix: $script(square)$)
+#let proof = theoretic.proof.with(suffix: $square$, options: (
+  block-args: (inset: 8pt),
+))

@@ -70,9 +70,8 @@ template for main
   ): set block(above: 1em, below: 0.8em)
   outline(depth: 2)
   set par(
-    first-line-indent: 1em,
-    spacing: 1.2em,
-    leading: 0.65em,
+    first-line-indent: 1.5em,
+    leading: 1.5em,
     justify: true,
   )
   show: equate.with(
@@ -84,6 +83,13 @@ template for main
     numbering: "(1.1)",
     //number-align: bottom,
   )
+
+  set enum(
+    indent: 1.5em,
+    body-indent: 0.75em,
+  )
+
+  show figure.caption: set text(size: 11pt, style: "italic")
 
   pagebreak()
   set align(left)
