@@ -1,4 +1,4 @@
-#import "chpt-temp.typ": *
+#import "../../temp.typ": *
 #show: chpt-note.with()
 
 = Advanced Methods for PDEs
@@ -11,7 +11,7 @@ $
 $
 We may refer to a solution as _partially separable_ with the meaning being obvious.
 
-#example[The 3D wave equation][We consider the equation
+#example(name: "The heat equation")[We consider the equation
   $
     laplacian u (bold(r)) = 1/c^2 pdv(u(bold(r)), t, 2)
   $

@@ -1,4 +1,4 @@
-#import "chpt-temp.typ": *
+#import "../../temp.typ": *
 #show: chpt-note.with()
 
 #let d1 = diagram(

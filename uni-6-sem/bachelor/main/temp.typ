@@ -13,7 +13,7 @@
 template for main
 */
 // note template
-#let note(
+#let thesis(
   title: none,
   name: [],
   prof: [],
@@ -23,6 +23,7 @@ template for main
   set page(
     fill: white,
     paper: "a4",
+    header: align(right)[$4127432$],
   )
   // general text
   set text(
@@ -31,7 +32,7 @@ template for main
     font: "New Computer Modern", // LaTeX font
   )
 
-  v(100pt)
+  v(120pt)
   // title
   set align(center)
   text(size: 30pt, fill: black, title)
@@ -39,15 +40,16 @@ template for main
   align(center)[#name]
   v(10pt)
   datetime.today().display("[day] [month repr:long] [year]")
-  v(120pt)
+  v(100pt)
 
   align(left)[Supervised by #prof]
 
-  v(50pt)
+  pagebreak()
   // abstract
-  par(justify: true)[
+  align(center)[#text(size: 12pt, [*Abstract*])]
+  par(justify: true, first-line-indent: 1.5em, leading: 1.5em)[
         #text(size: 12pt, [
-             #highlight[resumé.]
+             The black hole information paradox exemplifies the tension between quantum mechanics and gravity. Modern developments in quantum gravity inspired by the paradox suggests deep connections between spacetime geometry and quantum entanglement. This thesis motivates and discusses the $"ER"="EPR"$ conjecture proposed by Susskind and Maldacena, which relates Einstein-Rosen bridges to entanglement. We review the basics of entanglement and black hole physics, before discussing the Hartle-Hawking state and its dual interpretation in anti-de Sitter spacetime, which provides a concrete realisation of $"ER"="EPR"$. The proposal is further discussed in the context of the AMPS paradox. Although the conjecture remains speculative and lacks precision, it reflects a broader shift in theoretical physics toward understanding spacetime geometry as an emergent phenomenom connected to entanglement.
             ])
       ]
   pagebreak()

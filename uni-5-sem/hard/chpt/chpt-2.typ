@@ -1,9 +1,6 @@
 //**** init-ting
-#import "@preview/physica:0.9.7": *
-#import "chpt-temp.typ": *
+#import "../../temp.typ": *
 #import "@preview/cetz:0.4.1" // drawings
-
-#show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
 

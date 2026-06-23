@@ -1,4 +1,4 @@
-#import "chpt-temp.typ": *
+#import "../../temp.typ": *
 #show: chpt-note.with()
 
 = Gravitational Waves
@@ -106,12 +106,12 @@ The geometry we consider is shown in @binarysystem.
 #let dbinary = diagram(
   node-fill: black,
   label-sep: 0.25em,
-  node((-4, 0)),
-  edge("->", label: $x$, label-pos: 100%),
-  node((4, 0)),
-  node((0, 2)),
-  edge("->", label: $y$, label-pos: 100%),
-  node((0, -2)),
+  node((-4, 0), name: <0>),
+  edge(<0>, <1>, "->", label: $x$, label-pos: 100%),
+  node((4, 0), name: <1>),
+  node((0, 2), name: <2>),
+  edge(<2>, <3>, "->", label: $y$, label-pos: 100%),
+  node((0, -2), name: <3>),
   node((0, 0), name: <CEN>),
   node((3, -1), name: <M2>, radius: .2em),
   node((-3, 1), name: <M1>, radius: .2em, label: $m_2$),
@@ -345,3 +345,4 @@ $
                & = [h^2 mu_u (gamma) (1+delta_(a b))]_(a,b in gamma)
 $
 where $mu_u$ is the _Hellings and Downs function_. Then comparing $Gamma(gamma)$ with observations could show the existence of a GW background. The explanations for the GW background is usually mergers of SMBH or sources from the very early Universe such as inflation!
+

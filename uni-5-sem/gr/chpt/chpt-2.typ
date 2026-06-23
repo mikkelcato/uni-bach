@@ -1,8 +1,6 @@
 //**** init-ting
-#import "@preview/physica:0.9.5": *
-#import "chpt-temp.typ": *
+#import "../../temp.typ": *
 
-#show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
 = The Einstein field equations
@@ -512,7 +510,7 @@ $
 which is very important! Due to _Birkhoff's theorem_ this describes any spherically symmetric mass distribution.
 
 == Birkhoff's theorem
-#thm[Birkhoff's theorem][
+#theorem(name: "Birkhoff's theorem")[
   A spherically symmetric gravitational field in empty space must be static with a metric given by the Schwarzschild metric.
 ]
 #proof[

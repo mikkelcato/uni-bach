@@ -1,8 +1,6 @@
 //**** init-ting
-#import "@preview/physica:0.9.7": *
-#import "chpt-temp.typ": *
+#import "../../temp.typ": *
 #import "@preview/mannot:0.3.0": *
-#show: thmrules.with(qed-symbol: $square$)
 #show: chpt-note.with()
 
 = Free electron models
@@ -207,7 +205,7 @@ $
 $
 This tells us how the coefficients couple.
 
-#proof[ of Bloch's theorem][
+#proof(name: "of Bloch's theorem")[
 
   We can write
   $
@@ -343,7 +341,7 @@ $
 $
 and the energies are confined to a band of width $12 gamma$.
 
-#alt[
+#remark[
 
   Above we used the variational principle
   $

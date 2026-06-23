@@ -1,8 +1,5 @@
 //**** init-ting
-#import "@preview/physica:0.9.7": *
-#import "chpt-temp.typ": *
-
-#show: thmrules.with(qed-symbol: $square$)
+#import "../../temp.typ": *
 #show: chpt-note.with()
 
 #pagebreak()
@@ -196,7 +193,7 @@ $
   psi(-bold(x)') = plus.minus psi(bold(x)') cases("even parity", "odd parity")
 $
 
-#thm[
+#theorem[
   Assume $[H,pi] = 0$ and let $ket(n)$ be a non-degenerate eigenket of $H$ with eigenvalue $E_n$. Then $ket(n)$ is also a parity eigenket.
 ]
 #proof[

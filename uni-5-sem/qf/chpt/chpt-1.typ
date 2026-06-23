@@ -1,8 +1,5 @@
 //**** init-ting
-#import "@preview/physica:0.9.7": *
-#import "chpt-temp.typ": *
-
-#show: thmrules.with(qed-symbol: $square$)
+#import "../../temp.typ": *
 #show: chpt-note.with()
 
 = Formalism
@@ -49,7 +46,7 @@ We define the outer product by $ketbra(beta, alpha)$. This is easily seen to be 
 We assume the associative axiom of multiplication. Meaning kets, bras and operators are all associative under multiplication. This is used to show $X = ketbra(beta, alpha)$ is an operator. We have $X^dagger = ketbra(alpha, beta)$ and $braket(beta, X, alpha) = braket(alpha, X^dagger, beta)^*$.
 
 == Hermiticity and representations
-#thm[
+#theorem[
   The eigenvalues of a Hermitian operator $A$ are real and the eigenkets of $A$ corresponding to different eigenvalues are orthogonal.
 ]
 #proof[
@@ -159,7 +156,7 @@ implying $[bold(S)^2, S_i]=0$.
 
 We say $A$ and $B$ are compatible if $[A,B]=0$. We want a relation between the eigenkets of compatible operators.
 
-#thm[
+#theorem[
   Assume $[A,B]=0$ and non-degeneracy. Then all elements $braket(a'', B, a')$ are diagonal.
 ]
 #proof[
@@ -190,7 +187,7 @@ which implies $[A, B] = 0$. We see that any incompatible observables interfere u
 We define the operator $Delta A equiv A-expval(A)$ giving the dispersion
 $ expval((Delta A)^2) = expval(A^2)-expval(A)^2 $
 this measures the _fuzziness_ of $A$.
-#thm[
+#theorem[
   Let $A$ and $B$ be observables. Then for any state
   $
     expval((Delta A)^2)expval((Delta B)^2) >= 1/4 abs(expval([A,B]))^2
@@ -224,7 +221,7 @@ This is the uncertainty principle and its importance should be obvious.
 == Transformation operator
 Consider $A$ and $B$ with $[A, B] eq.not 0$. We want a transformation between the two bases ${ket(a')}$ and ${ket(b')}$.
 
-#thm[
+#theorem[
   Let ${ket(a')}$ and ${ket(b')}$ be two bases satisfying orthonormality and completeness. Then a unitary operator $U$ with
   $
     ket(b^((1))) = U ket(a^((1))), ket(b^((2))) = U ket(a^((2))),dots
@@ -292,7 +289,7 @@ $
 $
 with the roots being $b^((l))$.
 
-#thm[
+#theorem[
   Let ${ket(a')}$ and ${ket(b')}$ be connected by $U$. Then $A$ and $U A U^dagger$ are unitary equivalent.
 ]
 #proof[

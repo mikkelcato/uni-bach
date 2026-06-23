@@ -1,11 +1,13 @@
-#import "chpt-temp.typ": *
+#import "../../temp.typ": *
 #show: chpt-note.with()
 
-= Symmetries
-We care about _symmetries_ in physics because of _Noether's theorem_ which tells us that all continuous symmetries of an action $S$ imply conserved currents.
+= Discrete Symmetries
+
+/*
+We care about symmetries in physics because of Noether's theorem which tells us that all continuous symmetries of an action $S$ imply conserved currents.
 
 == Group theory
-The notion of a symmetry is best described in the context of groups. A group is a set $G$ along with a binary operation on $G$ that combines any two elements $a, b in G$ to form an element $a dot b in G$ such that the _group axioms_ are satisfied:
+The notion of a symmetry is best described in the context of groups. A group is a set $G$ along with a binary operation on $G$ that combines any two elements $a, b in G$ to form an element $a dot b in G$ such that the group axioms are satisfied:
 
 1. For all $a, b, c in G$ we have $(a dot b) dot c = a dot (b dot c)$.
 
@@ -13,25 +15,26 @@ The notion of a symmetry is best described in the context of groups. A group is 
 
 3. For each $a in G$ there exists an element $b in G$ such that $a dot b = b dot a = e$. We call $b = a^(-1)$ the inverse of $a$.
 
-We call commuting groups _Abelian_. We can have _finite_ or _infinite_ groups, in particular we have _continuous_ groups.#footnote[Within physics all such continuous groups are _Lie_ groups.]
+We call commuting groups Abelian. We can have finite or infinite groups, in particular we have continuous groups.#footnote[Within physics all such continuous groups are Lie groups.]
 
-The groups we care about in physics can typically be written as groups of matrices. We especially care about $"U"(n)$, $"SU"(n)$, $"O"(n)$, and $"SO"(n)$.#footnote[To be concrete $"SO"(3)$ would describe rotational spatial symmetry and it appears almost identical to $"SU"(2)$.] Any group $G$ can be _represented_ by a group of matrices. This means each group element $a in G$ has a corresponding matrix $M_a$ with the correspondence respecting group multiplication,
+The groups we care about in physics can typically be written as groups of matrices. We especially care about $"U"(n)$, $"SU"(n)$, $"O"(n)$, and $"SO"(n)$.#footnote[To be concrete $"SO"(3)$ would describe rotational spatial symmetry and it appears almost identical to $"SU"(2)$.] Any group $G$ can be represented by a group of matrices. This means each group element $a in G$ has a corresponding matrix $M_a$ with the correspondence respecting group multiplication,
 $
   M_a M_b = M_c
 $
-This representation is not necessarily _faithful_ since multiple group elements can be represented by the same matrix.#footnote[As an example take $M_a = bb(1)$ for all $a in G$.] We would say $G_M$ is _homomorphic_ to $G$. Any $G$ which is already a group of matrices is obviously a representation of itself. We call this the _fundamental_ representation. But, we can also have representations of other dimensionalities. We can construct new representations by combining old ones
+This representation is not necessarily faithful since multiple group elements can be represented by the same matrix.#footnote[As an example take $M_a = bb(1)$ for all $a in G$.] We would say $G_M$ is homomorphic to $G$. Any $G$ which is already a group of matrices is obviously a representation of itself. We call this the fundamental representation. But, we can also have representations of other dimensionalities. We can construct new representations by combining old ones
 $
   M_a = mat(M_a^((1)), 0; 0, M_a^((2)))
 $
-However, these are boring and we only care about _irreducible_ representations which cannot be decomposed as above.
+However, these are boring and we only care about irreducible representations which cannot be decomposed as above.
+*/
 
 == Angular momentum
-Within quantum mechanics we care about the orbital angular momentum $bold(L)$ and the _spin_ angular momentum $bold(S)$. These angular momenta $bold(J)$ are very similar and formally they are essentially the same. However, there are some differences. When performing measurements of $bold(L)$ we find these are quantized#footnote[See e.g. _Sakurai_ for details.]
+Within quantum mechanics we care about the orbital angular momentum $bold(L)$ and the spin#footnote["intrinsic"] angular momentum $bold(S)$. These angular momenta $bold(J)$ are very similar and formally they are essentially the same. However, there are some differences. When performing measurements of $bold(L) = bold(r) times m bold(v)$ we find these are quantised#footnote[See e.g. Sakurai for details. We measure $L^2$ since the $L_i$ are non-commuting.]
 $
   L^2 & tilde l(l+1) hbar^2 \
   L_z & tilde m_l hbar
 $
-where $l = 0, 1, dots$ and
+where $l = 0, 1, dots$ and#footnote[This implies $bold(L)$ cannot be oriented along $hat(L)_z$.]
 $
   m_l = -l, -l+1, dots, l-1, l
 $
@@ -44,13 +47,14 @@ where $s = 0, 1/2, 1, dots$ and
 $
   m_s = -s,-s+1, dots, s-1,s
 $
-All particles can be given any $l$, but each type of particle have their own spin $s$. We call particles with half-integer spin _fermions_ and those with integer spin _bosons_.#footnote[All baryons, leptons, and quarks are fermions, while all mesons and mediators are bosons.]
+Now, all particles can be given any $l$, but each type of particle have their own spin $s$! We call particles with half-integer spin fermions and those with integer spin bosons.#footnote[All baryons, leptons, and quarks are fermions, while all mesons and mediators are bosons.]
 
+== Addition of angular momentum
 We can represent angular momentum states by $ket(l m_l)$ and $ket(s m_s)$. We would like to understand composite systems and how to handle the addition of angular momenta
 $
   bold(J) = bold(J)_1 + bold(J)_2
 $
-This could be the _total_ angular momentum of a single particle
+This could be the total angular momentum of a single particle
 $
   bold(J) = bold(L) + bold(S)
 $
@@ -74,127 +78,140 @@ However, the $J^2$ is more annoying and we get all
 $
   j = abs(j_1-j_2), abs(j_1-j_2)+1,dots, j_1+j_2 -1, j_1+j_2
 $
-We can explicitly decompose $ket(j_1 m_1) ket(j_2 m_2)$ as
-$
-  ket(j_1 m_1) ket(j_2 m_2) = sum_(j=abs(j_1-j_2))^(j_1+j_2) underbracket(C_(m m_1 m_2)^(j j_1 j_2), "Clebsch-Gordan" #linebreak() "coefficients") ket(j m)
-$
-with $m = m_1+ m_2$.
+These explain the structure of The Eightfold Way since $B = q q q$ and $M = q overline(q)$ leading to particles with different spins.
 
-== Discrete symmetries
-Consider the _parity_ operator $pi$ which acts on a state $ket(bold(x))$ as
+== P
+Now, we consider the parity operator $P$ which acts on a state $ket(bold(x))$ as
 $
-  pi ket(bold(x)) = ket(-bold(x))
+  P ket(bold(x)) = ket(-bold(x)).
 $
-Classically people believed physics were invariant under parity. However, weak interactions were shown to break parity in 1956 by Wu.
+Lee and Yang proposed#footnote[Motivated by the $theta tau$-puzzle, where two particles seemed identical, but decayed as $theta -> 2 pi$ and $tau -> 3 pi$, thereby violating parity if $theta$ and $tau$ were the same particle.] that weak interactions violate parity around $~ 1956$ which was shown experimentally by Wu.#footnote[Shown using $beta$-decay of cobalt nuclei. The direction of spin is reversed in a mirror, however, the $beta$-rays are emitted in the same direction. Then reorienting the spin (flipping the image) we find the $beta$-rays to be emitted in the opposite direction in the mirror. Thereby showing $beta$-decay (a weak interaction) is changed under parity.]
 
-Consider a particle moving with velocity $v$ we define the $z$-axis to be the direction of motion. We define the _helicity_ as the value of
+Now, consider a particle with velocity $v$ along the $z$-axis (by definition). We define the helicity $h$ as the value of
 $
-  h tilde m_s/s = plus.minus 1
+  m_s/s = plus.minus 1,
 $
-along this axis. When $h = +1$ the spin $s$ and velocity $v$ are parallel and we call the particle _right-handed_.#footnote[Also, note that $h$ is odd under parity.] Otherwise, we call it _left-handed_. However, the value of $h$ is not invariant since an observer moving with velocity greater than $v$ would measure the opposite. The exception is particles moving with velocity $c$ since their motion cannot be reversed. We can treat neutrinos as massless and by experiment we find#footnote[This shows parity is _maximally_ violated.]
+along this axis.#footnote[Here, $m_s$ is the "value" of $S_z$. An $e^-$ with $s = +1/2$ (along $S_z$) moving along $+hat(z)$ would have $h = +1$, while an $e^-$ with $s = -1/2$ moving along $+hat(z)$ would have $h = -1$. However, an $e^-$ with $s = -1/2$ moving along $-hat(z)$ would have $h = +1$.] When the spin and velocity are parallel ($h = + 1$) we call the particle right-handed. Otherwise, we call it left-handed. Under parity we have
+$
+  L <-->^P R
+$
+
+
+However, the value of $h$ is not invariant!#footnote[An observer with velocity larger than $v$ would measure $-h$.] This is nullified when $v = c$. Now, we assume $m_nu tilde 0$ implying
 $
             nu_L & tilde "left-handed" \
   overline(nu)_R & tilde "right-handed"
 $
-This occurs since weak interactions break parity. We can similarly determine the _handed-ness_ of photons and we find an even split since electromagnetic interactions respect parity.
+This can be shown using $pi^-$-decay
+$
+  pi^- -> mu^- + overline(nu)_mu
+$
+where $mu^-$ and $overline(nu)_mu$ are emitted back-to-back. The spin is conserved so we can determine the handedness of $overline(nu)_mu$ by measuring $mu^-$.#footnote[All $mu^-$ are observed to be right-handed implying all $overline(nu)_mu$ are right-handed. Since $S_mu + S_nu =^! 0$.] Likewise, we can use $pi^+$-decay
+$
+  pi^+ -> mu^+ + nu_mu
+$
+showing $nu_mu$ is left-handed. This is unlike photons $gamma$ which have no preferred handedness, which can be seen from $pi^0$-decay.
 
-We characterize objects depending on how they transform under parity:#footnote[We see a theory with only pseudovectors and scalars is invariant under parity. However, the addition of a vector breaks this invariance. This is exactly what happens in weak interactions.]
+We can characterise objects according to how they transform under parity#footnote[The "pseudo" implies they transform "unnormally".]
 $
-        "scalar" & tilde pi(s) = s \
-  "pseudoscalar" & tilde pi(p) = -p \
-        "vector" & tilde pi(bold(v)) = - bold(v) \
-  "pseudovector" & tilde pi(bold(a)) = bold(a)
+        "scalar" & tilde P(s) = s \
+  "pseudoscalar" & tilde P(p) = -p \
+        "vector" & tilde P(bold(v)) = - bold(v) \
+  "pseudovector" & tilde P(bold(a)) = bold(a)
 $
-Also, by definition we have
+Also, we have
 $
-  pi^2 = bb(1)
+  P^2 = bb(1)
 $
-implying the eigenvalues of $pi$ are $plus.minus 1$. We associate
+implying the eigenvalues of $P$ are $plus.minus 1$. Now, we will assign
 $
-  pi (q) = +1";  " pi(overline(q)) = -1
+  P (q) = +1",  " P(overline(q)) = -1
 $
-implying
+implying#footnote[Note, with angular momentum $l$ we include a factor $(-1)^l$.]
 $
-  pi (B) = +1";  " pi(overline(B)) = -1
+  P (B) = +1",  " P(overline(B)) = -1",  " P(M) = -1
 $
 To describe photons we use the vector potential $A^mu$ so
 $
-  pi(gamma) = -1
+  P(gamma) = -1
 $
 
-Consider the _charge conjugation_ operator $C$ which acts on a state $ket(p)$ as
+== C
+Now, we consider the charge conjugation operator $C$ which acts on a state $ket(p)$ as
 $
-  C ket(p) = ket(overline(p))
+  C ket(p) = ket(overline(p)).
 $
-The operator $C$ changes the sign of _all_ internal quantum numbers.#footnote[This leaves mass, energy, momentum, and spin unchanged.] Again by definition
+The operator $C$ changes the sign of all internal quantum numbers.#footnote[This leaves mass, energy, momentum, and spin unchanged.] Also, we have
 $
-  C^2 = bb(1)
+  C^2 = bb(1),
 $
 implying the eigenvalues of $C$ are $plus.minus 1$. Then an eigenstate of $C$ satisfies
 $
-  C ket(p) = plus.minus ket(p)
+  C ket(p) = plus.minus ket(p),
 $
-which is only true for particles who are their own antiparticles. One can show a system consisting of a spin $1/2$ particle and its antiparticle in a configuration with orbital angular momentum $l$ and total spin $s$, is an eigenstate of $C$ with the eigenvalue $(-1)^(l+s)$.#footnote[Think $M = q overline(q)$.] We again have weak interactions violating invariance under $C$ since
-$
-  nu_L ->^C overline(nu)_L tilde "does not exist"
-$
+which holds for particles who are their own antiparticles ($gamma, pi^0, eta$ etc). We can show a $q overline(q)$ state with $l > 0$ and spin $s$ is an eigenstate of $C$ with eigenvalue $(-1)^(l+s)$. Then pseudoscalar mesons ($l = 0$ and $s = 0$) have the eigenvalue $(+1)$, while vector mesons ($l = 0$ and $s = 1$) have the eigenvalue $(-1)$.
 
-We have seen that $pi$ is not respected due to
+Now, consider acting with $C$ on $nu_L$
+$
+  nu_L ->^C overline(nu)_L tilde "does not exist".
+$
+This shows weak interactions violate invariance under charge conjugation.
+
+== CP
+Consider the $pi^+$-decay
 $
   pi^+ -> mu^+ + nu_(mu, L)
 $
-and $C$ is not respected since acting with $C$ gives
-$
-  pi^- -> mu^- + overline(nu)_(mu,L)
-$
-which is impossible. However, we can act with both $pi$ and $C$. Then we obtain
+Now, we apply $C$ and $P$
 $
   pi^- -> mu^- + overline(nu)_(mu,R)
 $
-which does occur! Thus we have found that physics appears to be invariant under $C P$. This has some weird consequences. We consider the process
+which does occur, even though $C$ and $P$ individually are violated. However, $C P$ is also violated.
+
+The process
 $
-  K^0 <-> overline(K)^0
+  K^0 <--> overline(K)^0
 $
-which is possible. This means the particles we typically observe are some linear combinations of $K^0$ and $overline(K)^0$. The $K$'s are pseudoscalars so
+is possible by weak interactions. When measuring these particles we will then find linear combinations of $K^0$ and $overline(K)^0$.
+
+Now, we have
 $
-  pi ket(K^0) = - ket(K^0)";  " pi ket(overline(K)^0) = - ket(overline(K)^0)
+  P ket(K^0) = - ket(K^0)",  " P ket(overline(K)^0) = - ket(overline(K)^0),
 $
-Also,
+and
 $
-  C ket(K^0) = ket(overline(K)^0)";  " C ket(overline(K)^0) = ket(K^0)
+  C ket(K^0) = ket(overline(K)^0)",  " C ket(overline(K)^0) = ket(K^0),
 $
 implying
 $
-  C P ket(K^0) = - ket(overline(K)^0)";  " C P ket(overline(K)^0) = - ket(K^0)
+  C P ket(K^0) = - ket(overline(K)^0)",  " C P ket(overline(K)^0) = - ket(K^0).
 $
-The normalized eigenstates of $C P$ are then
+We find two eigenstates of $C P$
 $
-  ket(K_1) = 1/sqrt(2) (ket(K^0) - ket(overline(K)^0))";  " ket(K_2) = 1/sqrt(2) (ket(K^0) + ket(overline(K)^0))
+  ket(K_1) & = 1/sqrt(2) (ket(K^0) - ket(overline(K)^0)), \
+  ket(K_2) & = 1/sqrt(2) (ket(K^0) + ket(overline(K)^0)),
 $
-with
+where
 $
-  C P ket(K_1) = ket(K_1)";  " C P ket(K_2) = - ket(K_2)
+  C P ket(K_1) = ket(K_1)",  " C P ket(K_2) = - ket(K_2).
 $
-Assuming $C P$ is respected in weak interactions then $K_1$ can only decay into a state with $C P = +1$, while $K_2$ can only decay into a state with $C P = -1$. This implies#footnote[Since each $pi$ carries $pi = -1$.]
+
+Now, assuming $C P$ is not violated then $K_1$ can only decay into states with $C P = +1$, while $K_2$ can only decay into states with $C P = - 1$. This implies#footnote[$2pi$ has $(+1) (+1)$ and $3 pi$ has $(-1)(+1)$, with the factors being $P C$. Also, $K$ likes decaying into $pi$.]
 $
-  K_1 -> 2 pi";  " K_2 -> 3 pi
+  K_1 -> 2 pi",  " K_2 -> 3 pi
 $
-with the $K_1$ decay being much faster. Then we imagine a beam of $K^0$'s
+with the $K_1$-decay being much quicker.
+
+Now, imagine a $K^0$-beam with
 $
   ket(K^0) = 1/sqrt(2) (ket(K_1) + ket(K_2))
 $
-The $K_1$ component will decay quickly meaning at the end of our beam we should have a beam of pure $K_2$'s. Then we expect many $2 pi$ decays near the source and many $3 pi$ near the end of our beam. The existence of $K_1$ and $K_2$ was shown experimentally and their lifetimes were determined to be
+Since the $K_1$-decay is quick we will see many $2 pi$-decays initially and many $3 pi$-decays near the end of our beam. The $K_1$ and $K_2$ have been found and their lifetimes were determined to be
 $
   tau_1 & tilde 10^(-10) "sec" \
   tau_2 & tilde 10^(-8) "sec"
 $
-This allows us to test if $C P$ is actually respected since given we have a long enough beam we can produce an arbitrarily pure sample of $K_2$'s. Then if we still observed $2 pi$ decays $C P$ would be violated. This means the long lived species is not an eigenstate of $C P$ as we assumed, but instead contains a small amount of $K_1$
-$
-  ket(K_L) = 1/sqrt(1 + abs(epsilon)^2) (ket(K_2) + epsilon ket(K_1))
-$
-with $epsilon$ measureing the amount of $C P$ violation. By experiment we determine
-$
-  epsilon tilde 10^(-3)
-$
+We can then see if $C P$ is violated since we can produce an arbitrarily pure $K_2$-beam. We would then still see $2 pi$-decays if $C P$ is violated.#footnote[The "long-lived-species" would contain small amounts of $K_1$ and would therefore not be an eigenstate of $C P$ as assumed.]
 
-Consider the _time reversal_ operator $T$ taking $t -> - t$. We care about this operator because of the _$C P T$ theorem_: any Lorentz invariant local quantum field theory with an Hermitian Hamiltonian $H^dagger = H$ respects $C P T$.#footnote[The standard model is such a theory.] This implies $T$ is violated since the combination $C P T$ is respected. However, this is experimentally very difficult to test.
+== T
+Now, consider the time reversal operator $T$ taking $t -> - t$. The operator $T$ is important because of the $C P T$ theorem: "any Lorentz invariant local quantum field theory with an Hermitian Hamiltonian $H^dagger = H$ preserves $C P T$".#footnote[The standard model is such a theory.] This implies $T$ is violated since the combination $C P T$ is preserved. However, this is experimentally very difficult to test.

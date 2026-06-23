@@ -1,4 +1,4 @@
-#import "chpt-temp.typ": *
+#import "../../temp.typ": *
 #show: chpt-note.with()
 
 = Evidence for Dark Matter
@@ -519,19 +519,19 @@ All of the above are heavily affected by backgrounds which must be reduced. Many
 == Complementarity
 Comparing direct with indirect searches is usually not possible. We therefore use simplified models to compare with collider searches
 
-#let d1 = feynman(
+#let d1 = feynman.feynman(
   (
-    vertex("i1"),
-    vertex("i2"),
-    vertex("a", label: $g_chi$),
-    vertex("b", label: $g_q$),
-    vertex("f1"),
-    vertex("f2"),
-    edge("i1", "a", type: "fermion", label: $chi$),
-    edge("i2", "a", type: "fermion", label: $chi$),
-    edge("a", "b", type: "ghost", label: $M_"med"$),
-    edge("b", "f1", type: "antifermion", label: $overline(f)$),
-    edge("b", "f2", type: "antifermion", label: $f$),
+    feynman.vertex("i1"),
+    feynman.vertex("i2"),
+    feynman.vertex("a", label: $g_chi$),
+    feynman.vertex("b", label: $g_q$),
+    feynman.vertex("f1"),
+    feynman.vertex("f2"),
+    feynman.edge("i1", "a", type: "fermion", label: $chi$),
+    feynman.edge("i2", "a", type: "fermion", label: $chi$),
+    feynman.edge("a", "b", type: "ghost", label: $M_"med"$),
+    feynman.edge("b", "f1", type: "antifermion", label: $overline(f)$),
+    feynman.edge("b", "f2", type: "antifermion", label: $f$),
   ),
 )
 
@@ -540,17 +540,17 @@ Comparing direct with indirect searches is usually not possible. We therefore us
 )
 
 We consider EFT to compare direct and indirect searches. Assuming $E_"c.o.m" << M_"med"$ we have
-#let d2 = feynman(
+#let d2 = feynman.feynman(
   (
-    vertex("i1"),
-    vertex("i2"),
-    vertex("a", shape: "blob", size: .5em, stroke: purple),
-    vertex("f1"),
-    vertex("f2"),
-    edge("i1", "a", type: "fermion", label: $chi$),
-    edge("i2", "a", type: "fermion", label: $overline(f)$),
-    edge("a", "f1", type: "antifermion", label: $chi$),
-    edge("a", "f2", type: "antifermion", label: $f$),
+    feynman.vertex("i1"),
+    feynman.vertex("i2"),
+    feynman.vertex("a", shape: "blob", size: .5em, stroke: purple),
+    feynman.vertex("f1"),
+    feynman.vertex("f2"),
+    feynman.edge("i1", "a", type: "fermion", label: $chi$),
+    feynman.edge("i2", "a", type: "fermion", label: $overline(f)$),
+    feynman.edge("a", "f1", type: "antifermion", label: $chi$),
+    feynman.edge("a", "f2", type: "antifermion", label: $f$),
   ),
 )
 

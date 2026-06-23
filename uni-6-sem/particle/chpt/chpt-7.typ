@@ -1,19 +1,10 @@
-
-#import "chpt-temp.typ": *
+#import "../../temp.typ": *
 #show: chpt-note.with()
 
 // 1st lecture
 = Quantum Electrodynamics
-The ABC theory described above is a perfectly legitimate QFT. However, it does not describe the real world. This is partly due to particles being described differently depending on their spin in real QFTs:
-$
-     "spin" 0 & tilde "Klein-Gordon equation" \
-  "spin" 1\/2 & tilde "Dirac equation" \
-     "spin" 1 & tilde "Proca equation"
-$
-Once we have established the Feynman rules, however, then the underlying field equation _becomes obsolete_. We would like to understand quantum electrodynamics meaning we need to understand the dynamics of $e^-$ and $gamma$.
-
 == The Dirac equation
-We can "derive" the Klein-Gordon equation by considering
+We can "derive" the Klein-Gordon equation#footnote[Which describes spin zero particles.] by considering
 $
   p^mu p_mu - m^2 c^2 = 0
 $
@@ -29,165 +20,152 @@ or with $square equiv partial_mu partial^mu$ we have
 $
   [square + (m^2 c^2)/hbar^2] psi = 0
 $
-which is the Klein-Gordon equation. A more correct derivation uses the Klein-Gordon Lagrangian
-$
-  cal(L)_"KG" = 1/2 partial_mu phi.alt partial^mu phi.alt - 1/2 m^2 phi.alt^2
-$
-which describes a free massive scalar field $phi.alt$.
+which is the Klein-Gordon equation. The Klein-Gordon equation is problematic since the equation is second order in time and only describes spin zero particles.
 
-When first conceived the Klein-Gordon equation appeared very problematic.#footnote[When trying to use it to describe $e^-$ people ran into problems. This is due to the Klein-Gordon equation describing particles with spin $0$. The Klein-Gordon equation is also second order in time leading to an apparent breaking of Born's statistical interpretation.] This lead Dirac to seek an equation consistent with
+This lead Dirac to try and find an equation consistent with
 $
-  p^mu p_mu - m^2 c^2 = 0
+  p^mu p_mu - m^2 c^2 = 0,
 $
-while also being first order in time. The idea is to "factor" the above
+which is first order in time. We "factor" the above
 $
-  p^mu p_mu - m^2 c^2 &= (beta^kappa p_kappa + m c)(gamma^lambda p_lambda - m c) \
-  &= beta^kappa gamma^lambda p_kappa p_lambda - m c( beta^kappa - gamma^kappa) p_kappa - m^2 c^2
+  p^mu p_mu - m^2 c^2 &= (beta^kappa p_kappa + m c)(gamma^lambda p_lambda - m c) = beta^kappa gamma^lambda p_kappa p_lambda - m c( beta^kappa - gamma^kappa) p_kappa - m^2 c^2
 $
-Then we need $beta^kappa = gamma^kappa$ and#footnote[Since $p_kappa p_lambda$ is symmetric.]
+We see $beta^kappa = gamma^kappa$ and
 $
-  p^mu p_mu &= gamma^kappa gamma^lambda p_kappa p_lambda \
-  &= 1/2 (gamma^kappa gamma^lambda + gamma^lambda gamma^kappa) p_kappa p_lambda \
-  &=^! eta^(kappa lambda) p_kappa p_lambda
+  p^mu p_mu &= gamma^kappa gamma^lambda p_kappa p_lambda = 1/2 (gamma^kappa gamma^lambda + gamma^lambda gamma^kappa) p_kappa p_lambda =^! eta^(kappa lambda) p_kappa p_lambda
 $
-which implies the $gamma^mu$ are matrices satisfying the Clifford algebra
+implying the $gamma^mu$#footnote[We could write $gamma^mu_(alpha beta)$ with $alpha, beta$ being spinor indices.] are satisfy the Clifford algebra
 $
   {gamma^mu,gamma^nu} = 2 eta^(mu nu)
 $
-We will use the $4 times 4$ matrices
+We will use the following $gamma^mu$
 $
-  gamma^0 = mat(bb(1)_2, 0; 0, -bb(1)_2)";  " gamma^i = mat(0, sigma^i; -sigma^i, 0)
+  gamma^0 = mat(bb(1)_2, 0; 0, -bb(1)_2)",  " gamma^i = mat(0, sigma^i; -sigma^i, 0),
 $
-However, many other $gamma^mu$ also do the job. Then
+where the $sigma^i$ are the Pauli matrices. However, many other $gamma^mu$ also work.
+
+We find
 $
-  gamma^mu p_mu - m c = 0
+  gamma^mu p_mu - m c = 0,
 $
 and promoting $p_mu$ to an operator we obtain
 $
-  (i hbar gamma^mu partial_mu - m c) psi = 0
+  (i hbar gamma^mu partial_mu - m c) psi = 0,
 $
 which is the Dirac equation. We will call $psi$ the Dirac spinor. Note, the components of $psi$ do not transform like a four-vector!
 
-== Solutions to the Dirac equation
-Consider $psi(bold(x), t) = psi(t)$.#footnote[Then the Dirac equation describes a state with $bold(p) = 0$ i.e. a particle at rest.] Then the Dirac equation becomes
+== $bold(p)=0$ solutions
+Now, consider $psi(bold(x), t) = psi(t)$ or $bold(p)=0$. We find
 $
-  i hbar gamma^0 partial_t psi - m c^2 psi = 0
+  i hbar gamma^0 partial_t psi - m c^2 psi = 0,
 $
 or
 $
-  mat(bb(1)_2, 0; 0, -bb(1)_2) vec(partial_t psi_A, partial_t psi_B) = -i (m c^2)/hbar vec(psi_A, psi_B)
+  mat(bb(1)_2, 0; 0, -bb(1)_2) vec(partial_t psi_A, partial_t psi_B) = -i (m c^2)/hbar vec(psi_A, psi_B),
 $
 implying
 $
-  partial_t psi_A & = -i ((m c^2)/hbar) psi_A \
-  partial_t psi_B & = i ((m c^2)/hbar) psi_B
+  partial_t psi_A & = -i ((m c^2)/hbar) psi_A",  " partial_t psi_B & = i ((m c^2)/hbar) psi_B,
 $
-with solutions
+which has solutions
 $
-  psi_A & = psi_A (0) exp[-i ((m c^2)/hbar) t] \
-  psi_B & = psi_B (0) exp[+i ((m c^2)/hbar) t]
+  psi_A & = psi_A (0) exp[-i ((m c^2)/hbar) t]",  " psi_B & = psi_B (0) exp[+i ((m c^2)/hbar) t].
 $
-We recognize the familiar
+Now, consider the usual time-dependence
 $
-  "time dependence" tilde exp(-(i E t)/hbar)
+  "time dependence" tilde exp(-(i E t)/hbar),
 $
-Then $psi_A$ corresponds to a particle with $E = m c^2$ as expected for a particle at rest. However, $psi_B$ corresponds to a particle with negative energy $E = - m c^2$! We take these negative energy solutions to represent antiparticles with positve energy. Then $psi_A$ describes $e^-$ while $psi_B$ describes $e^+$. Both being two-component spinors which can nicely describe a spin $1/2$ system. We have found four independent solutions with $bold(p)=0$
+implying $psi_A$ corresponds to a particle with $E = m c^2$. However, $psi_B$ corresponds to a particle with negative energy $E = - m c^2$! We say these correspond to antiparticles. We have found four independent solutions ($bold(p)=0$)
 $
   psi^((1)) & = exp[-i ((m c^2)/hbar) t] vec(1, 0, 0, 0) tilde "spin-up" e^- \
   psi^((2)) & = exp[-i ((m c^2)/hbar) t] vec(0, 1, 0, 0) tilde "spin-down" e^- \
   psi^((3)) & = exp[+i ((m c^2)/hbar) t] vec(0, 0, 1, 0) tilde "spin-down" e^+ \
   psi^((4)) & = exp[+i ((m c^2)/hbar) t] vec(0, 0, 0, 1) tilde "spin-up" e^+
 $
-Consider plane-wave solutions
+
+== Plane-wave solutions
+Now, consider plane-wave solutions
 $
-  psi(x) = a e^(-i k^mu x_mu) u(k)
+  psi(x) = a e^(-i k^mu x_mu) u(k),
 $
 implying
 $
-  partial_mu psi = - i k_mu psi
-$
-so
-$
-  (hbar gamma^mu k_mu - m c) u = 0
-$
-Using
-$
-  gamma^mu k_mu = mat(k^0, - bold(k) dot bold(sigma); bold(k) dot bold(sigma), -k^0)
-$
-we find
-$
-  u_A & = 1/(k^0-m c\/hbar) (bold(k) dot bold(sigma)) u_B \
-  u_B & = 1/(k^0 + m c\/hbar) (bold(k) dot bold(sigma)) u_A
+  (hbar gamma^mu k_mu - m c) u = 0.
 $
 or
 $
-  u_A &= 1/((k^0)^2 - (m c \/hbar)^2) (bold(k) dot bold(sigma))^2 u_A \
-  &=^((bold(k) dot bold(sigma))^2 = bold(k)^2) bold(k)^2/((k^0)^2 - (m c\/hbar)^2) u_A
+  u_A & = 1/(k^0-m c\/hbar) (bold(k) dot bold(sigma)) u_B",  " u_B & = 1/(k^0 + m c\/hbar) (bold(k) dot bold(sigma)) u_A.
+$
+We can find a condition on $k_mu$ by
+$
+  u_A &= (bold(k) dot bold(sigma))^2/((k^0)^2 - (m c \/hbar)^2) u_A &=^((bold(k) dot bold(sigma))^2 = bold(k)^2) bold(k)^2/((k^0)^2 - (m c\/hbar)^2) u_A
 $
 implying#footnote[or the trivial solution $u_A = u_B = 0$]
 $
   k^mu k_mu = ((m c)/hbar)^2
 $
-Then $hbar k^mu$ must be a four-vector whose square is $m^2 c^2$ implying
+We find $hbar k^mu$ is a four-vector whose square is $m^2 c^2$ implying
 $
-  hbar k^mu = plus.minus p^mu
+  hbar k^mu = plus.minus p^mu.
 $
-with $+$ being associated with particle states and $-$ being associated with antiparticle states. We can now construct our four independent solutions:
+We say $hbar k^mu = +p^mu$ corresponds to particle states and $hbar k^mu = -p^mu$ corresponds to antiparticle states.#footnote[We have $tilde e^(minus.plus i k_mu x^mu)$ then acting with $p^mu = i hbar partial^mu$ makes this obvious.]
+
+We find four solutions:
 $
   u_A &= vec(1, 0) => u_B = (bold(p) dot bold(sigma))/(p^0 + m c) vec(1, 0) = c/(E + m c^2) vec(p_z, p_z+i p_y) \
   u_A &= vec(0, 1) => u_B= c/(E+m c^2) vec(p_x-i p_y, -p_z) \
   u_B &= vec(1, 0) => u_A = c/(E+m c^2) vec(p_z, p_x+i p_y) \
   u_B &= vec(0, 1) => u_A = c/(E+m c^2) vec(p_x-i p_y, -p_z)
 $
-We need the $+$ sign in the first two, otherwise the $u_B$ would blow up as $bold(p) -> 0$. These are again our particle states. We will normalize these by
+Where $hbar k^mu = + p^mu$ in the first two. We normalise these by
 $
-  u^dagger u = (2 E)/c
+  u^dagger u = (2 E)/c.
 $
-We find the normalisation
+With
 $
-  N equiv sqrt((E+m c^2)/c)
+  N equiv sqrt((E+m c^2)/c),
 $
-and the canonical solutions become
+we find the "canonical" solutions
 $
-  u^((1)) &= N vec(1, 0, (c p_z)/(E+m c^2), (c(p_x+i p_y))/(E+m c^2))";  " u^((2)) = N vec(0, 1, (c(p_x-i p_y))/(E+m c^2), (-c p_z)/(E+m c^2)) \
-  v^((1)) &= N vec((c(p_x-i p_y))/(E+m c^2), (-c p_z)/(E+m c^2), 0, 1)";  " v^((2)) = - N vec((c p_z)/(E+m c^2), (c(p_x+i p_y))/(E+m c^2), 1, 0)
+  u^((1)) &= N vec(1, 0, (c p_z)/(E+m c^2), (c(p_x+i p_y))/(E+m c^2))",  " u^((2)) = N vec(0, 1, (c(p_x-i p_y))/(E+m c^2), (-c p_z)/(E+m c^2)) \
+  v^((1)) &= N vec((c(p_x-i p_y))/(E+m c^2), (-c p_z)/(E+m c^2), 0, 1)",  " v^((2)) = - N vec((c p_z)/(E+m c^2), (c(p_x+i p_y))/(E+m c^2), 1, 0)
 $
-with
+Now, we can write the plane-wave solutions#footnote[With motion along $z$ the $u^((1)), v^((1))$ are spin up, while the $u^((2)), v^((2))$ are spin down.]
 $
   psi & = a exp[-(i p_mu x^mu)/hbar] u tilde "particles" \
   psi & = a exp[+(i p_mu x^mu)/hbar] v tilde "antiparticles"
 $
-The particle states satisfy
+Note, the particle states satisfy
 $
-  (gamma^mu p_mu - m c)u = 0
+  (gamma^mu p_mu - m c)u = 0.
 $
 However, the antiparticle states satisfy
 $
-  (gamma^mu p_mu + m c) v = 0
+  (gamma^mu p_mu + m c) v = 0.
 $
 
 == Bilinear covariants
-We would like to construct a scalar from $psi$. This is done by introducing the adjoint $overline(psi)$ defined by
+We define the adjoint $overline(psi)$ by
 $
   overline(psi) equiv psi^dagger gamma^0
 $
-Then
+With $overline(psi)$ we can make scalars
 $
   overline(psi) psi = psi^dagger gamma^0 psi tilde "scalar"
 $
-We can also construct a pseudoscalar by introducing $gamma^5$
+We can also make pseudoscalars by defining $gamma^5$
 $
-  gamma^5 equiv i gamma^0 gamma^1 gamma^2 gamma^3
+  gamma^5 equiv i gamma^0 gamma^1 gamma^2 gamma^3,
 $
-with
+which satisfies
 $
   {gamma^mu, gamma^5} = 0
 $
-Then
+We can then make
 $
   overline(psi) gamma^5 psi tilde "pseudoscalar"
 $
-Likewise,
+Likewise, we can make more complicated stuff
 $
           overline(psi) gamma^mu psi & tilde "vector" \
   overline(psi) gamma^mu gamma^5 psi & tilde "pseudovector" \
@@ -197,7 +175,9 @@ with
 $
   sigma^(mu nu) equiv i/2 (gamma^mu gamma^nu - gamma^mu gamma^nu)
 $
-Any other _biliniear_ will always reduce to one of the above. One can further show that
+All other biliniears will always reduce to one of these.
+
+Note, one can show
 $
   j^mu = overline(psi) gamma^mu psi
 $
@@ -212,7 +192,7 @@ and the four-current
 $
   J^mu = vecrow(c rho, bold(J))
 $
-Then Maxwell's equations become#footnote[The inhomogeneous ones.]
+We can then write Maxwell's equations as
 $
   partial_mu F^(mu nu) = (4 pi)/c J^nu
 $
@@ -232,7 +212,7 @@ We refer to this as having gauge freedom. We can use this to impose
 $
   partial_mu A^mu = 0
 $
-which is called the Lorentz gauge. With this gauge Maxwell's equations become
+which is called the Lorenz gauge. With this gauge Maxwell's equations become
 $
   square A^mu = (4 pi)/c J^mu
 $
@@ -240,97 +220,91 @@ This still does not uniquely specify $A^mu$ since any gauge transformation with
 $
   square lambda = 0
 $
-will still leave our equations unchanged. We will remedy this by imposing
+will still leave our equations unchanged. We remedy this by imposing
 $
   A^0 = 0
 $
-in empty space where $J^mu = 0$. Then the Lorentz gauge becomes
+in empty space where $J^mu = 0$. Then the Lorenz gauge becomes
 $
   div bold(A) = 0
 $
-which is called the Coulomb gauge. Whenever we single out a component like $A^0$ we break the otherwise manifest Lorentz invariance. Then whenever we perform a Lorentz transformation we are forced to also perform a gauge transformation in order to restore the Coulomb gauge.
+which is called the Coulomb gauge. Note, now we have broken the manifest Lorentz invariance.
 
-$A^mu$ becomes the wave function of $gamma$ in quantum electrodynamics. The free $gamma$ satisfies the above with $J^mu = 0$
+$A^mu$ becomes the wave function of the photon $gamma$ in quantum electrodynamics. The free photon $gamma$ satisfies the above with $J^mu = 0$
 $
-  square A^mu = 0
+  square A^mu = 0,
 $
-which we see is the Klein-Gordon equation for a particle with $m = 0$. Consider plane-wave solutions
+which we see is the Klein-Gordon equation for a particle with $m = 0$. Now, consider plane-wave solutions
 $
-  A^mu (x) = a exp[-(i p_mu x^mu)/hbar] epsilon.alt^mu (p)
+  A^mu (x) = a exp[-(i p_mu x^mu)/hbar] epsilon.alt^mu (p),
 $
-where $p^mu = vecrow(E\/c, bold(p))$ and $epsilon.alt^mu$ is the _polarization vector_.#footnote[$epsilon.alt^mu$ characterises the spin of $gamma$.] We find the constraint
+where $p^mu = vecrow(E\/c, bold(p))$ and $epsilon.alt^mu$ is the polarization vector.#footnote[$epsilon.alt^mu$ characterises the spin of the photon $gamma$.] We find $p^mu p_mu = 0$.
+
+With the Lorenz gauge
 $
-  p^mu p_mu = 0
-$
-as we would expect. We also have by the Lorentz gauge
-$
-  p^mu epsilon.alt_mu = 0
+  p^mu epsilon.alt_mu = 0,
 $
 and in the Coulomb gauge
 $
-  epsilon.alt^0 = 0
+  epsilon.alt^0 = 0,
 $
 implying
 $
-  bold(epsilon.alt) dot bold(p) = 0
+  bold(epsilon.alt) dot bold(p) = 0.
 $
-Then $bold(epsilon.alt)$ is perpendicular to the direction of propagation. We say a free $gamma$ is _transversely polarized_. There are always two linearly independent $bold(epsilon.alt)$ perpendicular to $bold(p)$. As an example if $bold(p)$ is along $hat(z)$ then
+We find $bold(epsilon.alt)$ is perpendicular to $bold(p)$. We say a free photon $gamma$ is transversely polarised. We can always find two $bold(epsilon.alt)$ perpendicular to $bold(p)$. We take $bold(p) = p_z hat(z)$ then
 $
-  bold(epsilon.alt)^((1)) = vecrow(1, 0, 0)";  " bold(epsilon.alt)^((2)) = vecrow(0, 1, 0)
+  bold(epsilon.alt)^((1)) = vecrow(1, 0, 0)",  " bold(epsilon.alt)^((2)) = vecrow(0, 1, 0).
 $
-We would expect a $gamma$ has three spin states. However, only massive particles with spin $s$ admit $2 s + 1$ different spin orientations. All massless particles only have two.#footnote[expect for $s=0$ which only has one.] Then along the direction of motion the $gamma$ can have
+
+We find the photon $gamma$ has two "spin" states.#footnote[Which all massless particles do, except for $s=0$ which only has one.] So the photon $gamma$ can have
 $
   m_s = plus.minus s tilde h = plus.minus 1
 $
+Note, the linear polarisation $bold(epsilon.alt)^((1,2))$ above are superpositions of states with definite $h$. We could have used
+$
+  bold(epsilon.alt)^((+)) = 1/sqrt(2) vec(1, i, 0)",  " bold(epsilon.alt)^((-)) = 1/sqrt(2) vec(1, -i, 0)
+$
 
 // 2nd lecture
-== Feynman rules for QED
-We briefly summarize what we have found above.
-
-We found that free $e^-$ and $e^+$ with $p = vecrow(E\/c, bold(p))$ are represented by
+== Summary
+We have found particles $e^-$ and antiparticles $e^+$ with $p = vecrow(E\/c, bold(p))$ are represented by
 $
   psi(x) & = a exp[-(i p_mu x^mu)/hbar] u^((s)) (p) tilde e^- \
   psi(x) & = a exp[+(i p_mu x^mu)/hbar] v^((s)) (p) tilde e^+
 $
-with $s = 1,2$. The spinors $u^((s))$ and $v^((s))$ satisfy
+with $s = 1,2$. We know the spinors $u^((s))$ and $v^((s))$ satisfy
 $
-  (gamma^mu p_mu - m c) u = 0";  " (gamma^mu p_mu + m c) v = 0
+  (gamma^mu p_mu - m c) u &= 0",  " (gamma^mu p_mu + m c) v = 0 \
+  overline(u) (gamma^mu p_mu - m c)&= 0",  " overline(v) ( gamma^mu p_mu + m c) = 0
 $
-and their adjoints satisfy
+and (orthogonal and normalised)
 $
-  overline(u) (gamma^mu p_mu - m c)= 0";  " overline(v) ( gamma^mu p_mu + m c) = 0
+  overline(u)^((1)) u^((2)) = 0",  " & overline(v)^((1)) v^((2)) = 0 \
+          overline(u) u = 2 m c",  " & overline(v) v = - 2 m c
 $
-These are orthogonal
+We also have the completeness relations
 $
-  overline(u)^((1)) u^((2)) = 0";  " overline(v)^((1)) v^((2)) = 0
+  sum_s u^((s)) overline(u)^((s)) = gamma^mu p_mu + m c",  "& sum_s v^((s)) overline(v)^((s)) = gamma^mu p_mu - m c
 $
-normalised
-$
-  overline(u) u = 2 m c";  " overline(v) v = - 2 m c
-$
-and complete
-$
-  sum u^((s)) overline(u)^((s)) = gamma^mu p_mu + m c";  " sum v^((s)) overline(v)^((s)) = gamma^mu p_mu - m c
-$
-We have already determined a convenient set ${u^((i)), v^((i))}$.
+with an example being the "canonical" ${u^((s)), v^((s))}$ above.
 
-We also found that free $gamma$ with $p = vecrow(E\/c, bold(p))$ are represented by
+We have found photons $gamma$ with $p = vecrow(E\/c, bold(p))$ are represented by
 $
   A_mu (x) = a exp[-(i p_mu x^mu)/hbar] epsilon.alt_mu^((s))
 $
-where $s = 1,2$. The $epsilon.alt_mu^((s))$ satisfy
+with $s = 1,2$.
+
+The $epsilon.alt_mu^((s))$ satisfy (Lorenz gauge)
 $
   p^mu epsilon.alt_mu = 0
 $
-are orthogonal
+and (orthogonal and normalised)
 $
-  epsilon.alt_mu^((1) *) epsilon.alt^((2) mu) = 0
+  epsilon.alt_mu^((1) *) epsilon.alt^((2) mu) & = 0 \
+            epsilon.alt^(mu *) epsilon.alt_mu & = 1
 $
-and normalised#footnote[Note, these are arbitrary choices.]
-$
-  epsilon.alt^(mu *) epsilon.alt_mu = 1
-$
-The Coulomb gauge has
+Also, with the Coulomb gauge we have
 $
   epsilon.alt^0 = 0";  " bold(epsilon.alt) dot bold(p) = 0
 $
@@ -338,28 +312,28 @@ and the $bold(epsilon.alt)$ are complete
 $
   sum epsilon.alt_i^((s)) epsilon.alt_j^((s)*) = delta_(i j) - hat(p)_i hat(p)_j
 $
-We have already determined a convenient pair ${epsilon.alt^((1)), epsilon.alt^((2))}$.
+with an example being the ${bold(epsilon.alt)^((1)), bold(epsilon.alt)^((2))}$ above.
 
-
-We now consider a general Feynman diagram in QED
+== Feynman rules for QED
+Now, consider a general Feynman diagram in QED
 #figure(
-  feynman(orientation: "vertical", (
-    vertex("i1"),
-    vertex("i2"),
-    vertex("i3"),
-    vertex("node", shape: "blob", size: 1),
-    vertex("f4"),
-    vertex("f5"),
-    vertex("f6"),
-    edge("i1", "node", label: $p_1$),
-    edge("i2", "node", type: "boson", label: $p_2$),
-    edge("i3", "node", label: $p_3$),
-    edge("node", "f4", label: $p_4$),
-    edge("node", "f5", type: "boson", label: $p_5$),
-    edge("node", "f6", label: $p_6$),
+  feynman.feynman(orientation: "vertical", (
+    feynman.vertex("i1"),
+    feynman.vertex("i2"),
+    feynman.vertex("i3"),
+    feynman.vertex("node", shape: "blob", size: 1),
+    feynman.vertex("f4"),
+    feynman.vertex("f5"),
+    feynman.vertex("f6"),
+    feynman.edge("i1", "node", label: $p_1$),
+    feynman.edge("i2", "node", type: "boson", label: $p_2$),
+    feynman.edge("i3", "node", label: $p_3$),
+    feynman.edge("node", "f4", label: $p_4$),
+    feynman.edge("node", "f5", type: "boson", label: $p_5$),
+    feynman.edge("node", "f6", label: $p_6$),
   )),
 )
-Then the Feynman rules are:
+The Feynman rules are:
 
 1. Label the incoming- and outgoing momenta $p_1, dots, p_n$ as above and label internal momenta $q_1, dots$.#footnote[Note, the external momenta should go forward in time.]
 
@@ -369,7 +343,7 @@ Then the Feynman rules are:
 
 3. Each vertex carries a factor $i g_e gamma^mu$. Where $g_e$ is related to the fundamental charge $e$ by $ g_e = e sqrt((4 pi)/(hbar c)) = sqrt(4 pi alpha) $
 
-4. Each internal line carries a propagator: $ e^(plus.minus) & tilde (i gamma^mu q_mu + m c)/(q^2 - m^2 c^2) \
+4. Each internal line carries a propagator: $ e^(plus.minus) & tilde (i (gamma^mu q_mu + m c))/(q^2 - m^2 c^2) \
            gamma & tilde (- i eta_(mu nu))/q^2 $
 
 5. Each vertex carries a $delta$ function $ (2 pi)^4 delta^((4)) (k_1 + k_2 + k_3) $ with $k_i$ being negative for outward momenta.
@@ -381,21 +355,21 @@ Then the Feynman rules are:
 8. We include a $-$ between diagrams differing only by the interchange of two incoming or outgoing $e^(plus.minus)$#footnote[or of an incoming $e^(minus.plus)$ and outgoing $e^(plus.minus)$]
 
 == $e^- mu^-$ scattering
-Consider $e^- mu^-$ scattering. We have one diagram contributing to second-order
+Now, consider $e^- mu^-$ scattering. We have one diagram contributing to second-order
 #figure(
-  feynman(
+  feynman.feynman(
     (
-      vertex("i1"),
-      vertex("i2"),
-      vertex("t"),
-      vertex("b"),
-      vertex("f1"),
-      vertex("f2"),
-      edge("i1", "t", label: $mu^-$),
-      edge("t", "f1", label: $mu^-$),
-      edge("i2", "b", label: $e^-$),
-      edge("b", "f2", label: $e^-$),
-      edge("t", "b", type: "boson", label: $q$),
+      feynman.vertex("i1"),
+      feynman.vertex("i2"),
+      feynman.vertex("t"),
+      feynman.vertex("b"),
+      feynman.vertex("f1"),
+      feynman.vertex("f2"),
+      feynman.edge("i1", "t", label: $mu^-$),
+      feynman.edge("t", "f1", label: $mu^-$),
+      feynman.edge("i2", "b", label: $e^-$),
+      feynman.edge("b", "f2", label: $e^-$),
+      feynman.edge("t", "b", type: "boson", label: $q$),
     ),
     orientation: "vertical",
   ),
@@ -404,35 +378,34 @@ with $q$ upwards. We find
 $
   scr(M) &tilde integral dd(q, 4)/(2 pi)^4 overbracket([overline(u)^((s_3)) (p_3) i g_e gamma^mu u^((s_1)) (p_1)], e^- "line") (-i eta_(mu nu))/q^2 underbracket([overline(u)^((s_4)) (p_4) i g_e gamma^nu u^((s_2))(p_2)], mu^- "line") \ & times (2 pi)^4 delta^((4)) (p_2 - p_4 + q) (2 pi)^4 delta^((4)) (p_1 - p_3 - q)
 $
-Above we have constructed the "$e^-$ line" and "$mu^-$ line" _backwards_ and _connected_ them with the $gamma$ propagator. We do this to ensure the matrix multiplication is consistent. Then
+Where the "$e^-$ line" and "$mu^-$ line" have been constructed backwards and "connected" with the photon $gamma$ propagator. We find
 $
   scr(M) &= [overline(u)^((s_3)) (p_3) i g_e gamma^mu u^((s_1)) (p_1)] (eta_(mu nu))/(p_1 - p_3)^2 [overline(u)^((s_4)) (p_4) i g_e gamma^nu u^((s_2)) (p_2)] \
   &= - (g_e^2)/(p_1-p_3)^2 [overline(u)^((s_3)) (p_3) gamma^mu u^((s_1)) (p_1)] [overline(u)^((s_4)) (p_4) gamma_mu u^((s_2)) (p_2)]
 $
 
 == $e^- e^-$ scattering
-We have the same diagram as above. However, now we also have a second diagram where the $e^-$ emerging with $(p_3,s_3)$ comes from the $e^-$ with $(p_2,s_2)$ instead of the $e^-$ with $(p_1,s_1)$. We essentially twist the diagram above. The total amplitude is then
+Now, consider $e^- e^-$ scattering. We have the same diagram as above contributing. However, we also have a second diagram where the $e^-$ emerging with $(p_3,s_3)$ comes from the $e^-$ with $(p_2,s_2)$ instead of the $e^-$ with $(p_1,s_1)$. We essentially "twist" the diagram above. We find
 $
-  scr(M) &= -g_e^2/(p_1-p_3)^2 [overline(u)(3) gamma^mu u(1)][overline(u)(4) gamma_mu u(2)] \ & + underbracket(g_e^2/(p_1-p_4)^2 [overline(u) (4) gamma^mu u(1)] [overline(u)(3) gamma_mu u(2)], 3 <-> 4)
+  scr(M) &= underbracket(-, "by rule" 8)g_e^2/(p_1-p_3)^2 [overline(u)(3) gamma^mu u(1)][overline(u)(4) gamma_mu u(2)] \ & + underbracket(g_e^2/(p_1-p_4)^2 [overline(u) (4) gamma^mu u(1)] [overline(u)(3) gamma_mu u(2)], 3 <-> 4)
 $
-where $-$ comes from rule $8$.
 
 == $e^- e^+$ scattering
-We again have two diagrams. One is similar to $e^- mu^-$ scattering
+Now, consider $e^- e^+$ scattering. We again have two diagrams contributing. One is similar to $e^- mu^-$ scattering
 #figure(
-  feynman(
+  feynman.feynman(
     (
-      vertex("i1"),
-      vertex("i2"),
-      vertex("t"),
-      vertex("b"),
-      vertex("f1"),
-      vertex("f2"),
-      edge("i1", "t", type: "antifermion", label: $e^+$),
-      edge("t", "f1", type: "antifermion", label: $e^+$),
-      edge("i2", "b", label: $e^-$),
-      edge("b", "f2", label: $e^-$),
-      edge("t", "b", type: "boson", label: $q$),
+      feynman.vertex("i1"),
+      feynman.vertex("i2"),
+      feynman.vertex("t"),
+      feynman.vertex("b"),
+      feynman.vertex("f1"),
+      feynman.vertex("f2"),
+      feynman.edge("i1", "t", type: "antifermion", label: $e^+$),
+      feynman.edge("t", "f1", type: "antifermion", label: $e^+$),
+      feynman.edge("i2", "b", label: $e^-$),
+      feynman.edge("b", "f2", label: $e^-$),
+      feynman.edge("t", "b", type: "boson", label: $q$),
     ),
     orientation: "vertical",
   ),
@@ -442,25 +415,25 @@ $
   scr(M)_1 &tilde integral dd(q, 4)/(2 pi)^4 [overline(u)(3) i g_e gamma^mu u(1)] (- i eta_(mu nu))/q^2 underbracket([overline(v)(2) i g_e gamma^nu v(4)], e^+ "line") \
   &times (2 pi)^4 delta^((4)) (p_1-p_3-q) (2 pi)^4 delta^((4)) (p_2 + q - p_4)
 $
-Note, when going _backwards_ along an antiparticle we are going forwards in time.#footnote[The order is always $"adjoint" times "interaction" times "spinor"$ with the momenta going _backwards_ from left to right.] Then
+Note, when going "backwards" along an antiparticle we are going forwards in time.#footnote[The order is always $"adjoint" times "interaction" times "spinor"$ when we follow "fermion-flow".] We find
 $
   scr(M)_1 &= - g_e^2/(p_1-p_3)^2 [overline(u)(3) gamma^mu u(1)][overline(v)(2) gamma_mu v(4)]
 $
-The second diagram is
+The second contributing diagram is
 #figure(
-  feynman(
+  feynman.feynman(
     (
-      vertex("i1"),
-      vertex("i2"),
-      vertex("t"),
-      vertex("b"),
-      vertex("f1"),
-      vertex("f2"),
-      edge("i1", "t", type: "fermion", label: $e^-$),
-      edge("b", "f1", type: "fermion", label: $e^-$),
-      edge("i2", "t", type: "antifermion", label: $e^+$),
-      edge("b", "f2", type: "antifermion", label: $e^+$),
-      edge("t", "b", type: "boson", label: $q$),
+      feynman.vertex("i1"),
+      feynman.vertex("i2"),
+      feynman.vertex("t"),
+      feynman.vertex("b"),
+      feynman.vertex("f1"),
+      feynman.vertex("f2"),
+      feynman.edge("i1", "t", type: "fermion", label: $e^-$),
+      feynman.edge("b", "f1", type: "fermion", label: $e^-$),
+      feynman.edge("i2", "t", type: "antifermion", label: $e^+$),
+      feynman.edge("b", "f2", type: "antifermion", label: $e^+$),
+      feynman.edge("t", "b", type: "boson", label: $q$),
     ),
   ),
 )
@@ -470,27 +443,27 @@ $
   &times (2pi)^4 delta^((4)) (p_1 + p_2 - q) (2 pi)^4 delta^((4)) (q - p_3-p_4) \
   scr(M)_2 &= - g_e^2/(p_1+p_2)^2 [overline(u)(3) gamma^mu v(4)][overline(v)(2) gamma_mu u(1)]
 $
-Also, exchanging the incoming $e^+$ with the outgoing $e^-$ in this diagram we recover the first diagram. Then by rule $8$ we find
+Here, exchanging the incoming positron $e^+$ with the outgoing electron $e^-$ we recover the first diagram. We find
 $
   scr(M) &= - g_e^2/(p_1-p_3)^2 [overline(u)(3) gamma^mu u(1)][overline(v)(2) gamma_mu v(4)] \
-  &+ g_e^2/(p_1+p_2)^2 [overline(u)(3) gamma^mu v(4)][overline(v)(2) gamma_mu u(1)]
+  &underbracket(+, "by rule" 8) g_e^2/(p_1+p_2)^2 [overline(u)(3) gamma^mu v(4)][overline(v)(2) gamma_mu u(1)]
 $
 
 == Compton scattering
-We again have two diagrams. The first diagram is
-#figure(feynman(
+Now, consider $e^- gamma$ scattering. We again have two diagrams contributing. The first diagram is
+#figure(feynman.feynman(
   (
-    vertex("i1"),
-    vertex("i2"),
-    vertex("t"),
-    vertex("b"),
-    vertex("f1"),
-    vertex("f2"),
-    edge("i1", "t", type: "boson"),
-    edge("t", "f1"),
-    edge("i2", "b"),
-    edge("b", "f2", type: "boson"),
-    edge("b", "t", type: "fermion", label: $q$),
+    feynman.vertex("i1"),
+    feynman.vertex("i2"),
+    feynman.vertex("t"),
+    feynman.vertex("b"),
+    feynman.vertex("f1"),
+    feynman.vertex("f2"),
+    feynman.edge("i1", "t", type: "boson"),
+    feynman.edge("t", "f1"),
+    feynman.edge("i2", "b"),
+    feynman.edge("b", "f2", type: "boson"),
+    feynman.edge("b", "t", type: "fermion", label: $q$),
   ),
   orientation: "vertical",
 ))
@@ -499,125 +472,118 @@ We find
 
 
 $
-  scr(M)_1 &tilde integral dd(q, 4)/(2 pi)^4 epsilon.alt_mu (2) [overline(u)(4) i g_e gamma^mu (i (feyn(q) + m c))/(q^2-m^2 c^2) i g_e gamma^nu u(1)] epsilon.alt_nu (3)^* \
+  scr(M)_1 &tilde integral dd(q, 4)/(2 pi)^4 overbracket(epsilon.alt_mu (2) underbracket([overline(u)(4) i g_e gamma^mu (i (feyn(q) + m c))/(q^2-m^2 c^2) i g_e gamma^nu u(1)], e^- "line") epsilon.alt_nu (3)^*, "sandwich") \
   &times (2 pi)^4 delta^((4)) (p_1-p_3-q) (2 pi)^4 delta^((4)) (p_2 + q - p_4)
 $
-Note, we contract each $epsilon.alt_mu$ with the index of the vertex where it was _created_. Then
+Here, we contract each $epsilon.alt_mu$ with the index of the vertex where it was "created". We find
 $
   scr(M)_1 &= g_e^2/((p_1-p_3)^2 - m^2 c^2) [overline(u)(4) feyn(epsilon.alt) (2) (feyn(p)_1 - feyn(p)_3+ m c) feyn(epsilon.alt)(3)^* u(1)]
 $
-where we have defined
+where we define
 $
   feyn(a) equiv gamma^mu a_mu
 $
-Note, we will write $feyn(epsilon.alt^*) = gamma^mu (epsilon.alt_mu^*)$. The second diagram is
+Note, we will write $feyn(epsilon.alt^*) = gamma^mu (epsilon.alt_mu^*)$.
 
-#figure(feynman(
+The second contributing diagram is
+
+#figure(feynman.feynman(
   (
-    vertex("i1"),
-    vertex("i2"),
-    vertex("t"),
-    vertex("b"),
-    vertex("f1"),
-    vertex("f2"),
-    edge("i1", "t"),
-    edge("b", "f1", type: "boson"),
-    edge("i2", "t", type: "boson"),
-    edge("b", "f2"),
-    edge("t", "b", label: $q$),
+    feynman.vertex("i1"),
+    feynman.vertex("i2"),
+    feynman.vertex("t"),
+    feynman.vertex("b"),
+    feynman.vertex("f1"),
+    feynman.vertex("f2"),
+    feynman.edge("i1", "t"),
+    feynman.edge("b", "f1", type: "boson"),
+    feynman.edge("i2", "t", type: "boson"),
+    feynman.edge("b", "f2"),
+    feynman.edge("t", "b", label: $q$),
   ),
 ))
 
-and gives
+We find
 $
   scr(M)_2 = g_e^2/((p_1+p_2)^2 - m^2 c^2) [overline(u)(4) feyn(epsilon.alt)(3)^* (feyn(p)_1+feyn(p)_2+m c) feyn(epsilon.alt)(2) u(1)]
 $
-Then
-$
-  scr(M) = scr(M)_1 + scr(M)_2
-$
 
 == Computing $abs(scr(M))^2$
-We typically do not know $s_i$ and $s_f$ exactly. We would then need
+Now, computing $abs(scr(M))^2$ requires knowing the spins. We usually do not know the incoming spins $s_i$ and outgoing spins $s_f$ exactly. We instead use the "spin-averaged" amplitude
 $
-  expval(abs(scr(M))^2) equiv "average over" s_i "and sum over" s_f "of" abs(scr(M) (s_i -> s_f))^2
+  expval(abs(scr(M))^2) equiv 1/N_i sum_(s_i) sum_(s_f) abs(scr(M) (s_i -> s_f))^2,
 $
-We would prefer computing $expval(abs(scr(M))^2)$ directly. Consider $e^- mu^-$ scattering. Then
+where we only average over the initial spins $s_i$!#footnote[When our experimental setup is unaware of the initial spin state and our detector cannot measure outgoing spin.]
+
+Now, consider $e^- mu^-$ scattering. We found
 $
-  abs(scr(M))^2 = g_e^4/(p_1-p_3)^4 [overline(u)(3) gamma^mu (1)][overline(u)(4) gamma_mu u(2)][overline(u)(3) gamma^nu u(1)]^* [overline(u)(4) gamma_nu u(2)]^*
+  abs(scr(M))^2 = g_e^4/(p_1-p_3)^4 [overline(u)(3) gamma^mu u (1)] [overline(u)(3) gamma^nu u(1)]^* [overline(u)(4) gamma_mu u(2)][overline(u)(4) gamma_nu u(2)]^*
 $
-We see terms of the form
+Here, "all" terms are of the form
 $
-  G equiv [overline(u)(a) Gamma_1 u(b)][overline(u)(a) Gamma_2 u(b)]^*
+  G eq [overline(u)(a) Gamma_1 u(b)][overline(u)(a) Gamma_2 u(b)]^*
 $
-with $a$ and $b$ representing momenta and spin, while $Gamma_1$ and $Gamma_2$ are $4 times 4$ matrices. We have
+where $Gamma_1 = gamma^mu$ and $Gamma_2 = gamma^nu$ above. We have
 $
-  [overline(u)(a) Gamma_2 u(b)]^* & = [u(a)^dagger gamma^0 Gamma_2 u(b)]^dagger \
-  & = u(b)^dagger Gamma_2^dagger gamma^0 u(a) \
-  & = u(b)^dagger gamma^0 gamma^0 Gamma_2^dagger gamma^0 u(a) \
-  & = overline(u)(b) overline(Gamma)_2 u(a)
+  [overline(u)(a) Gamma_2 u(b)]^* & = [u(a)^dagger gamma^0 Gamma_2 u(b)]^dagger = u(b)^dagger Gamma_2^dagger gamma^0 u(a) = u(b)^dagger underbracket(gamma^0 gamma^0, bb(1)) Gamma_2^dagger gamma^0 u(a) = overline(u)(b) overline(Gamma)_2 u(a)
 $
-with
+with $overline(Gamma)_2$ being
 $
   overline(Gamma)_2 equiv gamma^0 Gamma_2^dagger gamma^0
 $
-Then
+implying
 $
   G = [overline(u)(a) Gamma_1 u(b)][overline(u)(b) overline(Gamma)_2 u(a)]
 $
-We sum over $b$ orientations
+Now, we sum over $s_b$
 $
   sum_(s_b) G &= overline(u) (a) Gamma_1 [sum_(s_b) u^((s_b)) (p_b) overline(u)^((s_b)) (p_b)] overline(Gamma)_2 u(a) \
   &=^"completeness" overline(u)(a) Gamma_1 (feyn(p)_b + m_b c) overline(Gamma)_2 u(a) \
   &= overline(u)(a) Q u(a)
 $
-with
+with $Q$ being
 $
   Q equiv Gamma_1 (feyn(p)_b + m_b c) overline(Gamma)_2
 $
-We sum over $a$ orientations
+Now, we sum over $s_a$
 $
   sum_(s_a) sum_(s_b) G & = sum_(s_a) overline(u)^((s_a)) (p_a) Q u^((s_a)) (p_a) \
-  &= sum_(s_a) sum_(i, j =1)^4 overline(u)^((s_a)) (p_a)_i Q_(i j) u^((s_a)) (p_a)_j \
-  &= sum_(i,j=1)^4 Q_(i j) [sum_(s_a) u^((s_a)) (p_a) overline(u)^(s_a)(p_a)]_(j i) \
-  &= sum_(i,j = 1)^4 Q_(i j) (feyn(p)_a + m_a c)_(j i) \
+  &= sum_(s_a) sum_(alpha, beta =1)^4 overline(u)_alpha^((s_a)) (p_a) Q_(alpha beta) u_beta^((s_a)) (p_a) \
+  &= sum_(alpha, beta=1)^4 Q_(alpha beta) [sum_(s_a) u_beta^((s_a)) (p_a) overline(u)_alpha^((s_a)) (p_a)] \
+  &= sum_(alpha, beta = 1)^4 Q_(alpha beta) (feyn(p)_a + m_a c)_(beta alpha) \
   &= tr [Q (feyn(p)_a+m_a c)]
 $
 implying
 $
-  sum_"spins" [overline(u)(a) Gamma_1 u(b)][overline(u)(a) Gamma_2 u(b)]^* = tr [Gamma_1 (feyn(p)_b + m_b c) overline(Gamma)_2 (feyn(p)_a + m_a c)]
+  sum_(s_a, s_b) [overline(u)(a) Gamma_1 u(b)][overline(u)(a) Gamma_2 u(b)]^* = tr [Gamma_1 (feyn(p)_b + m_b c) overline(Gamma)_2 (feyn(p)_a + m_a c)]
 $
-which is sometimes called _Casimir's trick_. When either $u$ is replaced by a $v$ the corresponding $m_i$ switches sign.
+which is called Casimir's trick.#footnote[Here, we had an expression of the form $dots overline(u)(a) [bullet] u (b) overline(u)(b) [bullet] u(a) dots$. We should think of this expression as being circular i.e. the $dots$ connect. We can immediately replace $u overline(u) -> (feyn(p) + m c)$ in this case or $v overline(v) -> (feyn(p) - m c)$ when we have "mixed" or "antiparticle" cases. ] When we have done the sums over $s_i$ and $s_f$ we need to remember the $N_i^(-1)$.
 
-Again for $e^- mu^-$ scattering we have $Gamma_2 = gamma^nu$ so
+Now, with $e^- mu^-$ scattering we had $Gamma_2 = gamma^nu$ so
 $
   overline(Gamma)_2 = gamma^0 gamma^(nu dagger) gamma^0 = gamma^nu
 $
-so applying Casimir's trick twice we find
+We apply Casimir's trick to find
 $
-  expval(abs(scr(M))^2) = g_e^4/(4 (p_1-p_3)^4) tr [gamma^mu (feyn(p)_1 + m c) gamma^nu (feyn(p)_3 + m c)] tr [gamma_mu (feyn(p)_2 + M c) gamma_nu (feyn(p)_4 + M c)]
+  expval(abs(scr(M))^2) = underbracket(1/4, N_i^(-1)) g_e^4/((p_1-p_3)^4) underbracket(tr [gamma^mu (feyn(p)_1 + m_e c) gamma^nu (feyn(p)_3 + m_e c)], "from" sum_(s_1, s_3)) overbracket(tr [gamma_mu (feyn(p)_2 + m_mu c) gamma_nu (feyn(p)_4 + m_mu c)], "from" sum_(s_2,s_4))
 $
-where $m = m_e$ and $M = m_mu$. We include $1/4$ since we average over all initial spins, i.e. from $2 "particles" times 2 "orientations"$.
-
-Casimir's trick reduces the computation of $abs(scr(M))^2$ to computing traces. Note,
+We recall,
 $
-  tr (A + B) & = tr A + tr B \
-  tr alpha A & = alpha tr A \
-      tr A B & = tr B A
+  tr (A + B) & = tr A + tr B",  " tr alpha A & = alpha tr A",  " tr A B & = tr B A
 $
-Recall,
+and,
 $
   eta_(mu nu) eta^(mu nu) & = 4 \
      {gamma^mu, gamma^nu} & = 2 eta^(mu nu) => {feyn(a),feyn(b)} = 2 a dot b
 $
-These imply the _contraction theorems_,
+With these one can derive the contraction theorems
 $
   gamma_mu gamma^mu &= 4 \
   gamma_mu gamma^nu gamma^mu &= - 2 gamma^nu => gamma_mu feyn(a) gamma^mu = - 2 feyn(a) \
   gamma_mu gamma^nu gamma^lambda gamma^mu &= 4 eta^(nu lambda) => gamma_mu feyn(a) feyn(b) gamma^mu = 4 a dot b \
   gamma_mu gamma^nu gamma^lambda gamma^sigma gamma^mu &= -2 gamma^sigma gamma^lambda gamma^nu => gamma_mu feyn(a)feyn(b)feyn(c) gamma^mu = - 2 feyn(a) feyn(b) feyn(c)
 $
-and the _trace theorems_,
+and the trace theorems
 $
   tr "odd" \# gamma^mu & = 0 \
   tr 1 & = 4 \
@@ -625,17 +591,17 @@ $
   tr gamma^mu gamma^nu gamma^lambda gamma^sigma &= 4 (eta^(mu nu) eta^(lambda sigma) - eta^(mu lambda) eta^(nu sigma) + eta^(mu sigma) eta^(nu lambda)) \
   => tr feyn(a)feyn(b)feyn(c)feyn(d) &= 4 [(a dot b )(c dot d) - (a dot c) (b dot d) + (a dot d) (b dot c)]
 $
-With $gamma^5 = i gamma^0 gamma^1 gamma^2 gamma^3$ we find
+With $gamma^5 = i gamma^0 gamma^1 gamma^2 gamma^3$ we also have
 $
   tr gamma^5 &= 0 \
   tr gamma^5 gamma^mu gamma^nu &= 0 => tr gamma^5 feyn(a) feyn(b) = 0 \
   tr gamma^5 gamma^mu gamma^nu gamma^lambda gamma^sigma &= 4 i epsilon.alt^(mu nu lambda sigma) => tr gamma^5 feyn(a)feyn(b)feyn(c)feyn(d) = 4 i epsilon.alt^(mu nu lambda sigma) a_mu b_nu c_lambda d_sigma
 $
-As an example we compute the traces in $e^- mu^-$ scattering
+Now, consider one of the traces in $e^- mu$ scattering
 $
-  tr [gamma^mu (feyn(p)_1 + m c) gamma^nu (feyn(p)_3 + m c)] & = tr gamma^mu feyn(p)_1 gamma^nu feyn(p)_3 + m c underbracket([tr gamma^mu feyn(p)_1 gamma^nu + tr gamma^mu gamma^nu feyn(p)_3], 0 "by" \# gamma^mu "being odd") + (m c)^2 underbracket(tr gamma^mu gamma^nu, 4 eta^(mu nu))
+  tr [gamma^mu (feyn(p)_1 + m_e c) gamma^nu (feyn(p)_3 + m_e c)] & = tr gamma^mu feyn(p)_1 gamma^nu feyn(p)_3 + m_e c underbracket([tr gamma^mu feyn(p)_1 gamma^nu + tr gamma^mu gamma^nu feyn(p)_3], 0 "by" \# gamma^mu "being odd") + (m_e c)^2 underbracket(tr gamma^mu gamma^nu, 4 eta^(mu nu))
 $
-We compute the first term by
+We compute
 $
   tr gamma^mu feyn(p)_1 gamma^nu feyn(p)_3 &= overbracket((p_1)_lambda (p_3)_sigma, "numbers") tr overbracket(gamma^mu gamma^lambda gamma^nu gamma^sigma, "matrices") \
   &= (p_1)_lambda (p_3)_sigma 4 (eta^(mu lambda) eta^(nu sigma) - eta^(mu nu) eta^(lambda sigma) + eta^(mu sigma) eta^(lambda nu)) \
@@ -643,59 +609,64 @@ $
 $
 implying
 $
-  tr[gamma^mu (feyn(p)_1 + m c) gamma^nu (feyn(p)_3 + m c)] &= 4 {p_1^mu p_3^nu + p_3^mu p_1^nu + eta^(mu nu) [(m c)^2 - (p_1 dot p_3)]}
+  tr[gamma^mu (feyn(p)_1 + m_e c) gamma^nu (feyn(p)_3 + m_e c)] &= 4 {p_1^mu p_3^nu + p_3^mu p_1^nu + eta^(mu nu) [(m_e c)^2 - (p_1 dot p_3)]}
 $
-The second trace is similar so
+We find
 $
-  expval(abs(scr(M))^2) &= (4 g_e^4)/(p_1-p_3)^4 {p_1^mu p_3^nu + p_3^mu p_1^nu + eta^(mu nu) [(m c)^2 - (p_(1 kappa) p_3^kappa)]} times {p_(2 mu) p_(4 nu) + p_(4 mu) p_(2 nu) + eta_(mu nu) [(M c)^2 - (p_2 dot p_4)]} \
-  &= (8 g_e^4)/(p_1-p_3)^4 [(p_1 dot p_2)(p_3 dot p_4) + (p_1 dot p_4) (p_2 dot p_3)- (p_1 dot p_3) (M c)^2 - (p_2 dot p_4) (m c)^2 + 2 (m M c^2)^2]
+  expval(abs(scr(M))^2) &= (4 g_e^4)/(p_1-p_3)^4 {p_1^mu p_3^nu + p_3^mu p_1^nu + eta^(mu nu) [(m_e c)^2 - (p_(1 kappa) p_3^kappa)]} {p_(2 mu) p_(4 nu) + p_(4 mu) p_(2 nu) + eta_(mu nu) [(m_mu c)^2 - (p_2 dot p_4)]} \
+  &= (8 g_e^4)/(p_1-p_3)^4 [(p_1 dot p_2)(p_3 dot p_4) + (p_1 dot p_4) (p_2 dot p_3)- (p_1 dot p_3) (m_mu c)^2 - (p_2 dot p_4) (m_e c)^2 + 2 (m_e m_mu c^2)^2]
 $
 
-== Computing $Gamma$ and $sigma$
-Consider $e^- mu^-$ scattering with $M >> m$. We assume the recoil of $mu^-$ can neglected, and would like to determine the cross-section in the lab frame with $M$ at rest. We know
+== $Gamma$ for $e^- mu$ scattering
+Now, we can compute $Gamma$ and $sigma$ using $expval(abs(scr(M))^2)$.
+
+We consider $e^- mu^-$ scattering assuming $m_mu >> m_e$ and would like $sigma$ in the lab frame with $m_mu$ at rest. We have
 $
   dv(sigma, Omega) = (hbar/(8 pi M c))^2 expval(abs(scr(M))^2)
 $
-We have
+with
 $
-  p_1 = vecrow(E/c, bold(p)_1)";  " p_2 = vecrow(M c, bold(0))";  " p_3 = vecrow(E/c, bold(p)_3)";  " p_4 = vecrow(M c, bold(0))
+  p_1 = vecrow(E/c, bold(p)_1)";  " p_2 = vecrow(m_mu c, bold(0))";  " p_3 = vecrow(E/c, bold(p)_3)";  " p_4 = vecrow(m_mu c, bold(0))
 $
-and $abs(bold(p)_1) = abs(bold(p)_3) = abs(bold(p))$ with $bold(p)_1 dot bold(p)_3 = bold(p)^2 cos theta$. Then
+and $abs(bold(p)_1) = abs(bold(p)_3) = abs(bold(p))$ with $bold(p)_1 dot bold(p)_3 = bold(p)^2 cos theta$. We have
 $
                  (p_1-p_3)^2 & =- (bold(p)_1-bold(p)_3)^2
                                = - 4 bold(p)^2 sin^2 theta/2 \
-               (p_1 dot p_3) & = m^2 c^2 + 2 bold(p)^2 sin^2 theta/2 \
-  (p_1 dot p_2)(p_3 dot p_4) & = (p_1 dot p_4)(p_2 dot p_3) = (M E)^2 \
-               (p_2 dot p_4) & = (M c)^2
+               (p_1 dot p_3) & = m_e^2 c^2 + 2 bold(p)^2 sin^2 theta/2 \
+  (p_1 dot p_2)(p_3 dot p_4) & = (p_1 dot p_4)(p_2 dot p_3) = (m_mu E)^2 \
+               (p_2 dot p_4) & = (m_mu c)^2
 $
 implying
 $
-  expval(abs(scr(M))^2) = ((g_e^2 M c)/(bold(p)^2 sin^2 theta\/2))^2 [(m c)^2 + bold(p)^2 cos^2 theta/2]
+  expval(abs(scr(M))^2) = ((g_e^2 m_mu c)/(bold(p)^2 sin^2 theta\/2))^2 [(m_e c)^2 + bold(p)^2 cos^2 theta/2]
 $
-Then
+and
 $
-  dv(sigma, Omega) = ((alpha hbar)/(2 bold(p)^2 sin^2 theta\/2))^2 [(m c)^2 + bold(p)^2 cos^2 theta/2]
+  dv(sigma, Omega) = ((alpha hbar)/(2 bold(p)^2 sin^2 theta\/2))^2 [(m_e c)^2 + bold(p)^2 cos^2 theta/2]
 $
-which is called the _Mott formula_. Assuming $bold(p)^2 << (m c)^2$ we recover the _Rutherford formula_
+which is called the Mott formula. With $bold(p)^2 << (m_e c)^2$ we find the Rutherford formula
 $
   dv(sigma, Omega) = (e^2/(2 m v^2 sin^2 theta\/2))^2
 $
 which is quite nice.
 
-However, in QED decays do not exist! We may consider processes like $pi^0 -> gamma + gamma$ as decays, but these are also scatterings $q + overline(q) -> gamma+ gamma$. We will consider _pair annihilation_ of the form $e^+ + e^- -> 2 gamma$. We find two diagrams with
+== Pair annihilation
+Now, we consider pair annihilation of the form $e^+ + e^- -> 2 gamma$. We have two diagrams with#footnote[One is "twisted".]
 $
   scr(M)_1 &= g_e^2/((p_1-p_3)^2 - m^2 c^2) overline(v)(2) feyn(epsilon.alt)_4 (feyn(p)_1-feyn(p)_3 + m c) feyn(epsilon.alt)_3 u(1) \
   scr(M)_2 &= g_e^2/((p_1-p_4)^2-m^2 c^2) overline(v)(2) feyn(epsilon.alt)_3 (feyn(p)_1-feyn(p)_4 + m c) feyn(epsilon.alt)_4 u(1)
 $
-and $scr(M) = scr(M)_1 + scr(M)_2$. We assume $e^(plus.minus)$ are $tilde$ at rest initially. Then
+and $scr(M) = scr(M)_1 + scr(M)_2$.
+
+We will work in the CM-frame and assume the $e^(plus.minus)$ are initially $tilde$ at rest. Here, we will be unable to average over $s_i$ since the composite system $e^- e^+$ is in the singlet or triplet configuration. When $e^+$ and $e^-$ are at rest the photons $gamma$ come out back-to-back. We take the $z$-axis to coincide with the direction of the first photon. We have#footnote[We use $E_i = 2 m c^2 =^! 2 E_gamma = 2 abs(bold(p)) c$]
 $
-  p_1 = m c vecrow(1, bold(0))";  " p_2 = m c vecrow(1, bold(0))";  " p_3 = m c vecrow(1, 0, 0, 1)";  " p_4 = m c vecrow(1, 0, 0, -1)
+  p_1 = vec(m c, bold(0))",  " p_2 = vec(m c, bold(0))",  " p_3 = vec(m c, 0, 0, m c)",  " p_4 = vec(m c, 0, 0, -m c)
 $
-and
+implying
 $
   (p_1-p_3)^2 - m^2 c^2 = (p_1-p_4)^2 - m^2 c^2 = - 2 (m c)^2
 $
-Also,
+Now, we use
 $
   feyn(p)_1 feyn(epsilon.alt)_3 &= - feyn(epsilon.alt)_3 feyn(p)_1 + 2 underbracket(p_1 dot epsilon.alt_3, 0 "in Coulomb gauge") \
   feyn(p)_3 feyn(epsilon.alt)_3 &= -feyn(epsilon.alt)_3 feyn(p)_3 + 2 underbracket(p_3 dot epsilon.alt_3, 0 "by Lorenz gauge")
@@ -703,25 +674,26 @@ $
 implying
 $
   (feyn(p)_1 - feyn(p)_3 + m c) feyn(epsilon.alt)_3 u(1) &= feyn(epsilon.alt)_3 (-feyn(p)_1 + feyn(p)_3 + m c) u(1) \
-  &=^"by Dirac" feyn(epsilon.alt)_3 feyn(p)_3 u(1)
+  &=^"by Dirac" feyn(epsilon.alt)_3 feyn(p)_3 u(1) \
+  (feyn(p)_1 - feyn(p)_4 + m c) feyn(epsilon.alt)_4 u(1) &= feyn(epsilon.alt)_4 feyn(p)_4 u(1)
 $
-similarly
-$
-  (feyn(p)_1 - feyn(p)_4 + m c) feyn(epsilon.alt)_4 u(1) = feyn(epsilon.alt)_4 feyn(p)_4 u(1)
-$
-Then
+We find
 $
   scr(M) = - g_e^2/(2 (m c)^2) overline(v)(2) [feyn(epsilon.alt)_4 feyn(epsilon.alt)_3 feyn(p)_3 + feyn(epsilon.alt)_3 feyn(epsilon.alt)_4 feyn(p)_4] u(1)
 $
-Note,
+with
 $
   feyn(p)_3 = m c( gamma^0 - gamma^3)";  " feyn(p)_4 = m c (gamma^0 + gamma^3)
 $
-and
+implying
+$
+  [feyn(epsilon.alt)_4 feyn(epsilon.alt)_3 feyn(p)_3 + feyn(epsilon.alt)_3 feyn(epsilon.alt)_4 feyn(p)_4] &= m c [(feyn(epsilon.alt)_4 feyn(epsilon.alt)_3 + feyn(epsilon.alt)_3 feyn(epsilon.alt)_4) gamma^0 - (feyn(epsilon.alt)_4 feyn(epsilon.alt)_3 - feyn(epsilon.alt)_3 feyn(epsilon.alt)_4) gamma^3]
+$
+Now, we use
 $
   feyn(epsilon.alt) = - bold(epsilon.alt) dot bold(gamma) = - mat(0, bold(sigma) dot bold(epsilon.alt); - bold(sigma) dot bold(epsilon.alt), 0)
 $
-so
+or
 $
   feyn(epsilon.alt)_3 feyn(epsilon.alt)_4 = - mat((bold(sigma) dot bold(epsilon.alt)_3)(bold(sigma) dot bold(epsilon.alt)_4), 0; 0, (bold(sigma) dot bold(epsilon.alt)_3)(bold(sigma) dot bold(epsilon.alt)_4))
 $
@@ -731,97 +703,93 @@ $
 $
 implying
 $
-  (feyn(epsilon.alt)_4 feyn(epsilon.alt)_3 + feyn(epsilon.alt)_3 feyn(epsilon.alt)_4) &= - 2 bold(epsilon.alt)_3 dot bold(epsilon.alt)_4 \
-  (feyn(epsilon.alt)_4 feyn(epsilon.alt)_3 - feyn(epsilon.alt)_3 feyn(epsilon.alt)_4) &= 2 i (bold(epsilon.alt)_3 times bold(epsilon.alt)_4) dot bold(Sigma)
+  (feyn(epsilon.alt)_4 feyn(epsilon.alt)_3 + feyn(epsilon.alt)_3 feyn(epsilon.alt)_4) &= - 2 bold(epsilon.alt)_3 dot bold(epsilon.alt)_4",  " (feyn(epsilon.alt)_4 feyn(epsilon.alt)_3 - feyn(epsilon.alt)_3 feyn(epsilon.alt)_4) &= 2 i (bold(epsilon.alt)_3 times bold(epsilon.alt)_4) mat(bold(sigma), 0; 0, bold(sigma))
 $
-with
+We find
 $
-  bold(Sigma) = mat(bold(sigma), 0; 0, bold(sigma))
+  scr(M) = g_e^2/(m c) overline(v)(2) [(bold(epsilon.alt)_3 dot bold(epsilon.alt)_4)gamma^0 + i (bold(epsilon.alt)_3 times bold(epsilon.alt)_4) mat(bold(sigma), 0; 0, bold(sigma)) gamma^3] u(1)
 $
-Then
-$
-  scr(M) = g_e^2/(m c) overline(v)(2) [(bold(epsilon.alt)_3 dot bold(epsilon.alt)_4)gamma^0 + i (bold(epsilon.alt)_3 times bold(epsilon.alt)_4) dot bold(Sigma) gamma^3] u(1)
-$
-We consider the _singlet state_ of $e^- e^+$. Then
+Now, we consider the singlet configuration of $e^- e^+$ or symbolically
 $
   scr(M)_"singlet" = 1/sqrt(2) (scr(M)_(arrow.t arrow.b) - scr(M)_(arrow.b arrow.t))
 $
-where $scr(M)_(arrow.t arrow.b)$ is found by using $u^((1))$ and $v^((2))$ given by
+where $scr(M)_(arrow.t arrow.b)$ is found by using $u^((1))$ (spin up $e^-$) and $v^((2))$ (spin down $e^+$) given by
 $
-  u(1) = sqrt(2 m c) vec(1, 0, 0, 0)";  " overline(v)(2) = sqrt(2 m c) vecrow(0, 0, 1, 0)
+  u(1) = sqrt(2 m c) vec(1, 0, 0, 0)",  " overline(v)(2) = sqrt(2 m c) vecrow(0, 0, 1, 0)
 $
-i.e. spin-up for $e^-$ and spin-down for $e^+$. Then
+We find
 $
-  overline(v)(2) gamma^0 u(1) = 0";  " overline(v)(2) bold(Sigma) gamma^3 u(1) = - 2 m c hat(z)
+  overline(v)(2) gamma^0 u(1) = 0",  " overline(v)(2) mat(bold(sigma), 0; 0, bold(sigma)) gamma^3 u(1) = - 2 m c hat(z)
 $
-so
+implying
 $
   scr(M)_(arrow.t arrow.b) = - 2 i g_e^2 (bold(epsilon.alt)_3 times bold(epsilon.alt)_4)_z
 $
-Likewise,
+Likewise, we find
 $
   scr(M)_(arrow.b arrow.t) = - scr(M)_(arrow.t arrow.b)
 $
-implying the amplitude for annihilation of a stationary $e^- e^+$ pair into two $gamma$ emerging in $plus.minus hat(z)$ is
+implying
 $
   scr(M)_"singlet" = -2 sqrt(2) i g_e^2 (bold(epsilon.alt)_3 times bold(epsilon.alt)_4)_z
 $
-Note, for the _triplet state_ we would have
+Note, the triplet configuration would have
 $
   scr(M)_"triplet" = 1/sqrt(2) (scr(M)_(arrow.t arrow.b) + scr(M)_(arrow.b arrow.t)) = 0
 $
-implying it is forbidden! We have
+implying the decay is forbidden in this case!
+
+Now, we need the corresponding $bold(epsilon.alt)$. Recall the "spin-up" ($m_s = +1$) and "spin-down" ($m_s = -1$) polarisations
 $
   bold(epsilon.alt)_+ = - 1/sqrt(2) vec(1, i, 0)";  " bold(epsilon.alt)_- = 1/sqrt(2) vec(1, -i, 0)
 $
-Also, the $gamma$ spins must be opposite so we can have
+We know the value of $L_z$ should vanish, so the photon spins should be antiparallel $arrow.t arrow.b$ or $arrow.b arrow.t$. When $arrow.t arrow.b$ we have#footnote[Here, the photon 4 has $h = +1$ along $-z$ i.e. $epsilon.alt_+ (+z) = epsilon.alt_- (+z)$]
 $
-  bold(epsilon.alt)_3 = bold(epsilon.alt)_+";  " bold(epsilon.alt)_4 = bold(epsilon.alt)_-
+  bold(epsilon.alt)_3 = bold(epsilon.alt)_+",  " bold(epsilon.alt)_4 = bold(epsilon.alt)_-
 $
-so
+implying
 $
   bold(epsilon.alt)_3 times bold(epsilon.alt)_4 = i hat(k)
 $
-or in the other case
+When $arrow.b arrow.t$ we have
 $
   bold(epsilon.alt)_3 times bold(epsilon.alt)_4 = -i hat(k)
 $
-We need the antisymmetric combination#footnote[Where $arrow.t$ and $arrow.b$ refer to $gamma$ polarization.]
+We need the antisymmetric combination#footnote[Where $arrow.t$ and $arrow.b$ refer to photon polarisation.]
 $
-  scr(M)_"singlet" &= 1/sqrt(2) (scr(M)_(arrow.t arrow.b) - scr(M)_(arrow.b arrow.t)) \
-  &= - 4 g_e^2
+  scr(M)_"singlet" &= 1/sqrt(2) (scr(M)_(arrow.t arrow.b) - scr(M)_(arrow.b arrow.t)) = - 4 g_e^2
 $
-since again $scr(M)_"triplet" = 0$.
+since $scr(M)_"triplet" = 0$.
 
-Then in the CM frame
+Now, we have in the CM-frame
 $
-  dv(sigma, Omega) = ((hbar c)/(8 pi (E_1+E_2)))^2 abs(bold(p)_f)/abs(bold(p)_i) abs(scr(M))^2
+  dv(sigma, Omega) =1/2 ((hbar c)/(8 pi (E_1+E_2)))^2 abs(bold(p)_f)/abs(bold(p)_i) abs(scr(M))^2
 $
 with
 $
-  E_1 = E_2 = m c^2";  " abs(bold(p)_f) = m c";  " abs(bold(p)_i) = m v
+  E_1 = E_2 = m c^2",  " abs(bold(p)_f) = m c",  " abs(bold(p)_i) = (m v)/2
 $
-we find
+where $v$ is the relative velocity between $e^-$ and $e^+$. We find
 $
   dv(sigma, Omega) = 1/(c v) ((hbar alpha)/m)^2 => sigma = (4 pi)/(c v) ((hbar alpha)/m)^2
 $
-We can find $tau$ by considering
+Now, we can compute $tau_(e^- e^+)$. We can write
 $
-  dv(sigma, Omega) = 1/L dv(N, Omega)
+  dv(sigma, Omega) = 1/scr(L) dv(N, Omega)
 $
-or $N = L sigma$ with
+or $N = scr(L) sigma$ with
 $
-  L = rho v
+  scr(L) = rho v
 $
-The $e^-$ density for a _single atom_ is $abs(psi(0))^2$ so
+where $rho$ is the number density of incident particles. The $e^-$ density of a single "atom" is $abs(psi(0))^2$ and $N = Gamma$ implying
 $
-  Gamma &equiv N = rho v sigma = v sigma abs(psi(0))^2 = (4 pi)/c ((hbar alpha)/m)^2 abs(psi(0))^2
+  Gamma = v sigma abs(psi(0))^2 = (4 pi)/c ((hbar alpha)/m)^2 abs(psi(0))^2
 $
-The ground state has
+Now, the ground state has
 $
   abs(psi(0))^2 = 1/pi ((alpha m c)/(2 hbar))^2
 $
-so
+implying
 $
   tau = Gamma^(-1) = (2 hbar)/(alpha^5 m c^2) tilde 10^(-10) "s"
 $

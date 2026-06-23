@@ -1,13 +1,12 @@
 //**** init-ting
-#import "temp.typ": *
+#import "../temp.typ": *
 
-
-#show: note.with(
+#show: lect-note.with(
   title: [
     Astroparticle Physics
   ],
   name: [
-    Mikkel Kielstrup Holst
+    Mikkel K. Holst
   ],
   prof: [
     Manuel Meyer and Atreya Archayya
@@ -26,3 +25,4 @@ Another part of this course is _multimessenger astronomy_, where we look at diff
 #include "chpt/chpt-5.typ"
 #include "chpt/chpt-6.typ"
 #include "chpt/chpt-7.typ"
+#include "chpt/chpt-8.typ"

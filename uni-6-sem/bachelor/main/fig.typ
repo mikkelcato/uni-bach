@@ -5,7 +5,7 @@
   node-stroke: .1em,
   edge-stroke: .1em,
   node-fill: green.lighten(70%),
-  spacing: 1.35em,
+  spacing: 0.6cm,
   node((-1, 0), radius: .0em, fill: white, stroke: 0em, name: <A>),
   edge("--"),
   node((0, 0), radius: .8em, name: <B>),
@@ -40,19 +40,19 @@
 ) // example system
 
 #let d2 = diagram(
-  spacing: 4em,
+  spacing: 1.69cm,
   edge-stroke: .1em,
-  node((0, 0), name: <A>),
+  node((0, 0), name: <a>),
   edge("..", $phi.alt_2$, label-sep: -1.35em),
-  node((2, 0), name: <B>),
+  node((2, 0), name: <b>),
   edge("-"),
-  node((2, 1.5), name: <C>),
+  node((2, 1.5), name: <c>),
   edge("..", $phi.alt_1$, label-sep: .1em),
-  node((0, 1.5), name: <D>),
-  edge(<A>, <D>, "-"),
+  node((0, 1.5), name: <d>),
+  edge(<a>, <d>, "-"),
   edge(
-    <B>,
-    <C>,
+    <b>,
+    <c>,
     "<->",
     shift: .5em,
     $beta$,
@@ -60,14 +60,14 @@
     stroke: .075em,
     mark-scale: 40%,
   ),
-  node((-0.5, 0.75), $braket(phi.alt_2, e^(-beta H), phi.alt_1)=$),
+  node((-0.5, 0.75), $braket(phi.alt_2, e^(-beta h), phi.alt_1)=$),
 ) // example geometry for path integral
 
 #let d3 = diagram(
-  spacing: 4em,
+  spacing: 1.69cm,
   edge-stroke: .1em,
   node((0, 0), name: <A>),
-  edge("..", [?], label-sep: -1.35em),
+  edge("..", [open], label-sep: -1.35em),
   node((2, 0), name: <B>),
   edge("-"),
   node((2, 1.5), name: <C>),
@@ -88,10 +88,10 @@
 ) // example geometry for state
 
 #let d4 = diagram(
-  spacing: 4em,
+  spacing: 1.69cm,
   edge-stroke: .1em,
   node((0, 0), name: <A>),
-  edge("..", [?], label-sep: -1.35em),
+  edge("..", [open], label-sep: -1.35em),
   node((2, 0), name: <B>),
   edge("-"),
   node((2, 1.5), name: <C>),
@@ -102,7 +102,7 @@
 ) // example geometry for state
 
 #let double-pen = diagram(
-  spacing: 6em,
+  spacing: 3cm,
   edge-stroke: .08em,
   node((0, 0), name: <A>),
   edge(<A>, <B>, "-"),
@@ -133,7 +133,7 @@
 )
 
 #let pen-bh = diagram(
-  spacing: 4em,
+  spacing: 1.69cm,
   edge-stroke: .08em,
   node((0, 0), name: <A>),
   edge(<A>, <B>, "zigzag"),
@@ -149,7 +149,7 @@
 )
 
 #let mink-pen = diagram(
-  spacing: 4em,
+  spacing: 1.69cm,
   edge-stroke: .08em,
   node((0, 0), name: <A>),
   node((0, 3), name: <B>),
@@ -166,7 +166,7 @@
 )
 
 #let pen-ads = diagram(
-  spacing: 4em,
+  spacing: 1.69cm,
   edge-stroke: .08em,
   node((0, 0), name: <A>),
   node((0, 3), name: <B>),
@@ -182,7 +182,7 @@
 )
 
 #let pen-evap = diagram(
-  spacing: 5em,
+  spacing: 2.12cm,
   edge-stroke: .08em,
   node((0, 0), name: <A>),
   edge(<A>, <B>, "zigzag"),
@@ -208,7 +208,7 @@
 )
 
 #let kruskal = diagram(
-  spacing: 5em,
+  spacing: 2.12cm,
   edge-stroke: .08em,
   node((0, 0), name: <A>),
   node((0, 3), name: <B>),
@@ -261,7 +261,7 @@
 
 
 #let hh-state-r = diagram(
-  spacing: 4em,
+  spacing: 1.69cm,
   edge-stroke: .1em,
   node((1, 0), name: <A>),
   node((0, 1), name: <B>),
@@ -272,10 +272,6 @@
   edge(
     <A>,
     <B>,
-    [$t_E = beta/2$],
-    label-pos: 100%,
-    label-side: right,
-    label-sep: .0em,
   ),
   edge(<A>, <C>),
   edge(<A>, <D>, "--"),
@@ -283,20 +279,29 @@
   edge(
     <C>,
     <E>,
-    [$t_E = 0$],
-    label-pos: 100%,
-    label-side: left,
-    label-sep: .0em,
   ),
-  edge(<D>, <E>, "--", stroke: red),
-  edge(<D>, <B>, "-", stroke: blue),
+  edge(<D>, <E>, $phi.alt_R$, "..", stroke: red),
+  edge(<D>, <B>, $phi.alt_L$, "-", stroke: blue),
   node(
     enclose: ((0.125, 0.0), (3.875, 2.0)),
     name: <p0>,
     width: 1em,
     shape: semicircs.with(),
-    stroke: 1pt + black,
+    stroke: black,
     fill: gray.lighten(70%),
+    layer: 1,
+  ),
+  node((2.2, 1), name: <a1>, layer: 2),
+  node((1.8, 1), name: <a2>, layer: 2),
+  edge(
+    <a1>,
+    <a2>,
+    "<-",
+    bend: 90deg,
+    stroke: black,
+    label: $t_E = beta/2$,
+    mark-scale: 50%,
+    layer: 2,
   ),
 )
 
@@ -360,42 +365,75 @@
     (2, -2),
     "--",
     label: $x = plus.minus t$,
-    label-pos: 100%,
+    label-pos: 110%,
     label-side: center,
+    label-fill: none,
   ),
   edge((0, 0), (2, 2), "--"),
   edge((2, -1.8), (2, 1.8), bend: -35deg, stroke: red),
 )
 
+#let rindlerwedge_alt = diagram(
+  edge-stroke: .06em,
+  edge((0, 0), (2, 0), "->", mark-scale: 50%, label: $x$, label-pos: 100%),
+  edge((0, 0), (0, -2), "->", mark-scale: 50%, label: $t$, label-pos: 100%),
+  edge(
+    (0, 0),
+    (2, -2),
+    "--",
+    label: $x = plus.minus t$,
+    label-pos: 110%,
+    label-side: center,
+    label-fill: none,
+  ),
+  edge((0, 0), (2, 2), "--"),
+)
+
+
 #let AdSCFT = diagram(
   edge-stroke: 1pt,
-  node-fill: green.lighten(70%),
   node(
     (0, 0),
-    [*bulk AdS*],
     shape: cylinder.with(tilt: 12deg),
     radius: 5em,
     stroke: (paint: black, thickness: 1pt),
   ),
-  edge(
-    (-.75, 0.5),
-    (-.75, -.75),
-    "->",
-    mark-scale: 50%,
-    label: [*time*],
-    label-side: left,
+  node((0, .75), $G eq.not 0$),
+  node(
+    (2, 0),
+    shape: cylinder.with(tilt: 12deg),
+    radius: 5em,
+    stroke: (paint: black, thickness: 1pt),
+    fill: gray,
   ),
-  edge(
-    (1, .2),
-    (0.675, -.2),
-    "-->",
-    bend: -60deg,
-    mark-scale: 50%,
-    label: [*boundary CFT*],
+  node((2, .75), $G = 0$),
+  edge((.85, 0), (1.15, 0), "<->", $"AdS"\/"CFT"$),
+  edge((-.75, 0), (-.75, -.25), "->", $t$, label-side: left),
+
+  node((0, .5), shape: ellipse, width: 10em, height: 2.25em, stroke: (
+    paint: black,
+    thickness: 1pt,
+  )),
+  node(
+    (2, -.65),
+    shape: ellipse,
+    width: 10em,
+    height: 2.1em,
+    stroke: (
+      paint: black,
+      thickness: 1pt,
+    ),
+    fill: white,
   ),
+  node((0, .5), layer: 2, name: <1>, radius: 2pt, fill: black),
+  node((.62, 0), layer: 2, name: <2>),
+  edge(<1>, <2>, "--"),
+  node((0, -.62), layer: 2, name: <3>, radius: 2pt, fill: black),
+  edge(<2>, <3>, "--"),
 )
 
 #let pagecurve = diagram(
+  spacing: 1.69cm,
   edge-stroke: 0.1em,
   edge((0, 0), (0, -4), "->", label: $S_R$, label-pos: 100%, mark-scale: 50%),
   edge((0, 0), (4, 0), "->", label: $t$, label-pos: 100%, mark-scale: 50%),
@@ -458,22 +496,31 @@
 )
 
 #let entanglementradiation = diagram(
+  spacing: 1.69cm,
+  node((-2, .5), name: <A>),
+  node((4, -.5), name: <B>),
   node(
-    enclose: ((-2, .5), (4, -.5)),
-    stroke: 1.5pt,
+    enclose: (<A>, <B>),
+    stroke: 1pt,
     shape: parallelogram.with(angle: 60deg),
     fill: green.lighten(60%),
   ),
-  node((-1, .2), [*BH*]),
-  edge((-.5, -.1), (-.75, .6), "-", stroke: 1.5pt),
-  edge((-1.5, -.1), (-1.25, .6), "-", stroke: 1.5pt),
-  edge((-.8, .6), (-1.2, .6), stroke: green.lighten(60%) + 4pt),
-  node((2.25, 0), [*radiation*]),
+  node((-1, .2), [BH], layer: 3),
+  node((-.5, -.1), name: <A1>, layer: 3),
+  node((-.75, .6), name: <A2>, layer: 3),
+  edge(<A1>, <A2>, "-", stroke: 1pt),
+  node((-1.5, -.1), name: <B1>, layer: 3),
+  node((-1.25, .6), name: <B2>, layer: 3),
+  edge(<B1>, <B2>, "-", stroke: 1pt),
+  node((-.8, .6), name: <c1>, layer: 1),
+  node((-1.2, .6), name: <c2>, layer: 1),
+  edge(<c1>, <c2>, stroke: green.lighten(60%) + 4pt),
+  node((2.25, 0), [radiation], layer: 3),
 
-  node((2, .4), $bullet$),
-  node((3, .4), $bullet$),
-  node((2.5, .45), $bullet$),
-  node((1.5, .45), $bullet$),
+  node((2, .4), $bullet$, layer: 3),
+  node((3, .4), $bullet$, layer: 3),
+  node((2.5, .45), $bullet$, layer: 3),
+  node((1.5, .45), $bullet$, layer: 3),
 
   edge((-.8, .6), (1.7, .2), stroke: green.lighten(60%) + 4pt, bend: -50deg),
   edge((-.925, .6), (2.0, .6), stroke: green.lighten(60%) + 4pt, bend: -50deg),
@@ -482,7 +529,7 @@
 )
 
 #let ERdiagram = diagram(
-  spacing: 4em,
+  spacing: 1.69cm,
   node-fill: gray,
   node-stroke: black + .15em,
   edge-stroke: black + .15em,
@@ -493,7 +540,7 @@
 )
 
 #let pen-AMPS = diagram(
-  spacing: 4em,
+  spacing: 1.69cm,
   edge-stroke: .1em,
   node((0, 0), name: <A>),
   edge(<A>, <B>, "zigzag"),
@@ -540,7 +587,7 @@
 )
 
 #let sketch-AMPS = diagram(
-  spacing: 8em,
+  spacing: 3.38cm,
   edge-stroke: .1em,
   edge((0, 0), (2, 0), "->", mark-scale: 50%, label: [space], label-pos: 100%),
   edge((0, 0), (0, -2), "->", mark-scale: 50%, label: [time], label-pos: 100%),
@@ -552,5 +599,67 @@
   node((.9, -1.1), $C$, shape: rect, fill: red.lighten(50%)),
   edge((1.3, -1.1), (1.7, -1.1), "-", stroke: red),
   edge((1.3, -1.1), (.9, -1.1), "-", stroke: red),
+)
+
+#let EPRgedanken = diagram(
+  spacing: 2.5cm,
+  edge-stroke: .1em,
+  node-fill: black,
+  mark-scale: 50%,
+  node((-.2, 0.4), $A$, layer: 3, shape: rect, fill: green.lighten(50%)),
+  node((3.2, 0.4), $B$, layer: 3, shape: rect, fill: blue.lighten(50%)),
+
+  node((1.4, 1), name: <1a1>, radius: 2pt),
+  node((1.6, 1), name: <2a1>, radius: 2pt),
+  edge(<1a1>, <2a1>, "-", stroke: red),
+
+  node((0, .25), name: <1a1l>, radius: 2pt),
+  edge(<1a1>, <1a1l>, "-->--"),
+  node((3, .25), name: <2a1r>, radius: 2pt),
+  edge(<2a1>, <2a1r>, "-->--"),
+
+  node((1.4, 1.1), name: <1b1>, radius: 2pt),
+  node((1.6, 1.1), name: <2b1>, radius: 2pt),
+  edge(<1b1>, <2b1>, "-", stroke: red),
+
+  node((0, .35), name: <1b1l>, radius: 2pt),
+  edge(<1b1>, <1b1l>, "-->--"),
+  node((3, .35), name: <2b1r>, radius: 2pt),
+  edge(<2b1>, <2b1r>, "-->--"),
+
+  node((1.4, 1.2), name: <1c1>, radius: 2pt),
+  node((1.6, 1.2), name: <2c1>, radius: 2pt),
+  edge(<1c1>, <2c1>, "-", stroke: red),
+
+  node((0, .45), name: <1c1l>, radius: 2pt),
+  edge(<1c1>, <1c1l>, "-->--"),
+  node((3, .45), name: <2c1r>, radius: 2pt),
+  edge(<2c1>, <2c1r>, "-->--"),
+
+  node((1.4, 1.3), name: <1d1>, radius: 2pt),
+  node((1.6, 1.3), name: <2d1>, radius: 2pt),
+  edge(<1d1>, <2d1>, "-", stroke: red),
+
+  node((0, .55), name: <1d1l>, radius: 2pt),
+  edge(<1d1>, <1d1l>, "-->--"),
+  node((3, .55), name: <2d1r>, radius: 2pt),
+  edge(<2d1>, <2d1r>, "-->--"),
+)
+
+#let smoothness = diagram(
+  spacing: 1cm,
+  node((0, -1), fill: black.lighten(30%), radius: 20pt, layer: 2),
+  node((0, 0.5), fill: black.lighten(30%), radius: 10pt, layer: 2),
+  node((3, 0.5), fill: black.lighten(30%), radius: 10pt, layer: 2),
+  node((0, 1.1), [Bob]),
+  node((3, 1.1), [Alice]),
+  node((0, -.4), [Bob]),
+  node((2.5, -.7), [Alice]),
+  node((2.75, -1), fill: orange, radius: 3pt, layer: 2),
+  node((2.5, -1), fill: orange, radius: 3pt, layer: 2),
+  node((2.25, -1), fill: orange, radius: 3pt, layer: 2),
+  node((2, -1), fill: orange, radius: 3pt, layer: 2),
+  node((3, -1), fill: orange, radius: 3pt, layer: 2),
+  edge((-.75, -1), (-.75, .5), "-->", bend: -50deg, [After $t_"Page"$]),
 )
 

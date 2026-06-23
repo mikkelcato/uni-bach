@@ -1,4 +1,4 @@
-#import "chpt-temp.typ": *
+#import "../../temp.typ": *
 #show: chpt-note.with()
 
 = Complex Analysis
@@ -21,7 +21,7 @@ $
 $
 exists and is unique.#footnote[_Unique_ meaning independent of how we take $Delta z -> 0$.] When $f$ is differentiable for all $z_0 in D$ we call $f$ _holomorphic_ on $D$. A single-valued and differentiable $f$ on $D subset.eq CC$ is called _analytic_ on $D$. When $f$ is analytic on $D$ expect at a finite number of points in $D$ then these are called _singularities_ of $f$.
 
-#theorem[Cauchy-Riemann][
+#theorem(name: "Cauchy-Riemann")[
   Let $D subset.eq CC$ be an open interval, $z_0 in D$ and $f : D -> CC$ be a function. Let $z = x + i y$ and $z_0 = x_0 + i y_0$. Writing $f(x,y) = u(x,y) + i v(x,y)$ the following are equivalent:
 
   1. $f$ is complex differentiable in $z_0$.
@@ -183,7 +183,7 @@ $
 with the length of $Gamma$ being $L$.
 
 == Cauchy's theorem
-#theorem[Cuachy's integral theorem][
+#theorem(name: "Cuachy's integral theorem")[
   Let $D subset.eq CC$ open, $f : D -> CC$ holomorphic and $f'(z)$ continuous at all points in and on a closed contour $Gamma subset D$. Then
   $
     integral.cont_Gamma f(z) dd(z) = 0
@@ -221,7 +221,7 @@ $
 ]
 
 == Cauchy's integral formula
-#theorem[Cauchy's integral formula][
+#theorem(name: "Cauchy's integral formula")[
   Let $D subset.eq CC$ open and $f : D -> CC$ holomorphic. Let $Gamma subset D$ be a closed contour and $z_0$ a point within $Gamma$. Then
   $
     f(z_0) = 1/(2 pi i) integral.cont_Gamma f(z)/(z-z_0) dd(z)
@@ -264,7 +264,7 @@ Then the value of any analytic function inside $Gamma$ is fully determined by th
 
 This allows us to determine the value of all derivatives within $Gamma$ by knowing the values on $Gamma$.
 
-#theorem[Cauchy's inequality][
+#theorem(name: "Cauchy's inequality")[
   Let $f$ be analytic inside and on a circle $gamma$ of radius $R$ centered on the point $z_0 in CC$. If $abs(f) <= M$ on $gamma$ with $M in RR^+$ then
   $
     abs(f^((n)) (z_0)) <= (M n!)/R^n
@@ -284,7 +284,7 @@ This allows us to determine the value of all derivatives within $Gamma$ by knowi
 
 We call a function $f$ _entire_ when it is holomorphic on $CC$.
 
-#theorem[Liouville's theorem][
+#theorem(name: "Liouville's theorem")[
   An entire function which is bounded has to be a constant.
 ]
 
@@ -298,7 +298,7 @@ We call a function $f$ _entire_ when it is holomorphic on $CC$.
 ]
 
 == Taylor- and Laurent series
-#theorem[Taylor's theorem][
+#theorem(name: "Taylor's theorem")[
   Let $f$ be analytic inside and on a circle $gamma$ of radius $R$ centered at the point $z = z_0$ with $z$ in $gamma$. Then
   $
     f(z) = sum_(n=0)^oo a_n (z-z_0)^n";  " a_n = (f^((n)) (z_0))/n!
@@ -334,7 +334,7 @@ We call a function $f$ _entire_ when it is holomorphic on $CC$.
   and we are done.
 ]
 
-#theorem[Identity theorem][
+#theorem(name: "Identity theorem")[
   Let $f$ and $g$ be analytic in some region $R$ and $f = g$ in $S subset R$ containing an _accumulation point_ $z_0$. Then $f = g$ in $R$.#footnote[The identity theorem implies _analytic continuations_ are unique.]
 ]
 
@@ -353,7 +353,7 @@ We call a function $f$ _entire_ when it is holomorphic on $CC$.
 
 When $f$ has a singularity inside $gamma$ at some $z = z_0$ we cannot write a Taylor series.
 
-#theorem[Laurent series][
+#theorem(name: "Laurent series")[
   Let $f$ have a pole of order $p$ at $z = z_0$ and be analytic at all other points inside and on $gamma$. Then
   $
     f(z) = underbracket(a_(-p)/(z-z_0)^p + dots + a_(-1)/(z-z_0), "principal part") + underbracket(a_0 + a_1 (z-z_0) + a_2 (z-z_0)^2 + dots, "analytic part")
@@ -481,7 +481,7 @@ $
   cal(I) = 2pi i a_(-1)
 $
 implying the value of $cal(I)$ is fully determined by the residue of $f$ at $z_0$. The generalisation of the above is the _residue theorem_
-#theorem[Residue theorem][
+#theorem(name: "Residue theorem")[
   Let $f$ be continuous within and on a closed contour $Gamma$ and analytic, except for a finite number of poles within $Gamma$. Then
   $
     integral.cont_Gamma f(z) dd(z) = 2 pi i sum_j Res_(z=z_j) f(z)
@@ -491,7 +491,7 @@ implying the value of $cal(I)$ is fully determined by the residue of $f$ at $z_0
   The proof follows by the above observation. We can encircle each singularity and connect these in such a way that the internal contours cancel.
 ]
 
-#example[Green's function for the wave equation][
+#example(name: "Green's function for the wave equation")[
   Consider
   $
     (-1/c^2 pdv(, t, 2) + laplacian) u(bold(r),t) = f(bold(r),t)

@@ -1,4 +1,4 @@
-#import "chpt-temp.typ": *
+#import "../../temp.typ": *
 #show: chpt-note.with()
 
 = Basics of Energy Loss
@@ -287,11 +287,11 @@ As a simple model we assume the incoming particle has energy $E_0 >> E_c$ with $
 $
   t = X/X_0";  " epsilon = E/E_c
 $
-An example of a shower is seen in @shower
+An example of a shower is:
 
-#let shower = diagram(
+#diagram(
   node((0, 0), name: <0>),
-  edge("wave", label: $gamma$),
+  edge(<0>, <1>, "wave", label: $gamma$),
   node((0, 1), name: <1>),
   node((1.5, 2), name: <2A>),
   node((-1.5, 2), name: <2B>),
@@ -309,10 +309,6 @@ An example of a shower is seen in @shower
   edge(<2B>, <3A>, label: $e^+$),
 )
 
-#figure(
-  scale(shower, 100%),
-  caption: [An electromagnetic cascade. ],
-)<shower>
 
 After $t$ radiation lengths we have $N(t) &= 2^t$ and roughly equal amounts of $gamma$ and $e^(plus.minus)$. The average energy is then
 $

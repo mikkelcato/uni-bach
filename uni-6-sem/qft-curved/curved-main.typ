@@ -1,8 +1,8 @@
 //**** init-ting
-#import "temp.typ": *
+#import "../temp.typ": *
 
 
-#show: note.with(
+#show: lect-note.with(
   title: [
     Quantum Field Theory #linebreak() in Curved Spacetime
   ],
